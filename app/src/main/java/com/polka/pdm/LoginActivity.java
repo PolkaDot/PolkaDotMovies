@@ -89,31 +89,47 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.editTextName);
-        populateAutoComplete();
+        Log.d("LOGIN ACTIVITY", "Login Button Pressed");
+        EditText nameBox = (EditText) findViewById(R.id.editTextName);
+        EditText passBox = (EditText) findViewById(R.id.editTextPassword);
+        CharSequence text;
+        if (nameBox.getText().toString().equals("user") && passBox.getText().toString().equals("pass")) {
 
-        mPasswordView = (EditText) findViewById(R.id.editTextPassword);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
-            }
-        });
+            text = "Login Success!";
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                attemptLogin();
-            }
-        });
+        } else {
+            text = "Login Failure!";
+        }
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+        Toast t = Toast.makeText(context, text, duration);
+        t.show();
 
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
+//        mEmailView = (AutoCompleteTextView) findViewById(R.id.editTextName);
+//        populateAutoComplete();
+//
+//        mPasswordView = (EditText) findViewById(R.id.editTextPassword);
+//        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
+//                if (id == R.id.login || id == EditorInfo.IME_NULL) {
+//                    attemptLogin();
+//                    return true;
+//                }
+//                return false;
+//            }
+//        });
+//
+//        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+//        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                attemptLogin();
+//            }
+//        });
+//
+//        mLoginFormView = findViewById(R.id.login_form);
+//        mProgressView = findViewById(R.id.login_progress);
     }
 
     private void populateAutoComplete() {
@@ -214,13 +230,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        return email.contains("@");
+//        return email.contains("@");
+        return true;
     }
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > 4;
+//        return password.length() > 4;
+        return true;
     }
+
 
     /**
      * Shows the progress UI and hides the login form.
