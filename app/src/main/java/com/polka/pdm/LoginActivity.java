@@ -32,6 +32,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.content.Intent;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,7 +76,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         if (nameBox.getText().toString().equals("user") && passBox.getText().toString().equals("pass")) {
 
             text = "Login Success!";
-
+            Intent intent = new Intent(LoginActivity.this, StartApplication.class);
+            startActivity(intent);
         } else {
             text = "Login Failure!";
         }
@@ -89,21 +92,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
-        Log.d("LOGIN ACTIVITY", "Login Button Pressed");
-        EditText nameBox = (EditText) findViewById(R.id.editTextName);
-        EditText passBox = (EditText) findViewById(R.id.editTextPassword);
-        CharSequence text;
-        if (nameBox.getText().toString().equals("user") && passBox.getText().toString().equals("pass")) {
 
-            text = "Login Success!";
-
-        } else {
-            text = "Login Failure!";
-        }
-        Context context = getApplicationContext();
-        int duration = Toast.LENGTH_SHORT;
-        Toast t = Toast.makeText(context, text, duration);
-        t.show();
 
 //        mEmailView = (AutoCompleteTextView) findViewById(R.id.editTextName);
 //        populateAutoComplete();
