@@ -89,21 +89,32 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
-        Log.d("LOGIN ACTIVITY", "Login Button Pressed");
-        EditText nameBox = (EditText) findViewById(R.id.editTextName);
-        EditText passBox = (EditText) findViewById(R.id.editTextPassword);
-        CharSequence text;
-        if (nameBox.getText().toString().equals("user") && passBox.getText().toString().equals("pass")) {
+//        Log.d("LOGIN ACTIVITY", "Login Button Pressed");
+//        EditText nameBox = (EditText) findViewById(R.id.editTextName);
+//        EditText passBox = (EditText) findViewById(R.id.editTextPassword);
+//        CharSequence text;
+//        if (nameBox.getText().toString().equals("user") && passBox.getText().toString().equals("pass")) {
+//
+//            text = "Login Success!";
+//
+//        } else {
+//            text = "Login Failure!";
+//        }
+//        Context context = getApplicationContext();
+//        int duration = Toast.LENGTH_SHORT;
+//        Toast t = Toast.makeText(context, text, duration);
+//        t.show();
 
-            text = "Login Success!";
+        Button btCancel = (Button) findViewById(R.id.cancel_button);
 
-        } else {
-            text = "Login Failure!";
-        }
-        Context context = getApplicationContext();
-        int duration = Toast.LENGTH_SHORT;
-        Toast t = Toast.makeText(context, text, duration);
-        t.show();
+        btCancel.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                setResult(RESULT_OK);
+                finish();
+            }
+        });
 
 //        mEmailView = (AutoCompleteTextView) findViewById(R.id.editTextName);
 //        populateAutoComplete();
