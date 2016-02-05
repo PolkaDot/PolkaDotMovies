@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
+        Log.d("HomePage", "Login Button Pressed");
+
     }
 
     // comment thingy
