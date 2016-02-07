@@ -21,16 +21,15 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Button;
+import android.view.View.OnClickListener;
+
+import android.content.Intent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,7 +73,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         if (nameBox.getText().toString().equals("user") && passBox.getText().toString().equals("pass")) {
 
             text = "Login Success!";
-
+            Intent intent = new Intent(LoginActivity.this, StartApplication.class);
+            startActivity(intent);
         } else {
             text = "Login Failure!";
         }
@@ -84,13 +84,37 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         t.show();
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
+//        Log.d("LOGIN ACTIVITY", "Login Button Pressed");
+//        EditText nameBox = (EditText) findViewById(R.id.editTextName);
+//        EditText passBox = (EditText) findViewById(R.id.editTextPassword);
+//        CharSequence text;
+//        if (nameBox.getText().toString().equals("user") && passBox.getText().toString().equals("pass")) {
+//
+//            text = "Login Success!";
+//
+//        } else {
+//            text = "Login Failure!";
+//        }
+//        Context context = getApplicationContext();
+//        int duration = Toast.LENGTH_SHORT;
+//        Toast t = Toast.makeText(context, text, duration);
+//        t.show();
 
+        Button btCancel = (Button) findViewById(R.id.cancel_button);
+
+        btCancel.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                setResult(RESULT_OK);
+                finish();
+            }
+        });
 
 //        mEmailView = (AutoCompleteTextView) findViewById(R.id.editTextName);
 //        populateAutoComplete();
