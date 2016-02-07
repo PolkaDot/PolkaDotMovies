@@ -71,7 +71,7 @@
                 android:layout_marginTop="16dp"
                 android:text="SIGN IN"
                 android:textStyle="bold"
-                android:onClick="onLoginButtonPressed()" />
+                android:onClick="onLoginButtonPressed" />
 
             <Button
                 android:id="@+id/cancel_button"
