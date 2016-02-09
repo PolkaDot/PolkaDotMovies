@@ -7,6 +7,8 @@ import android.os.Bundle;
 
 public class StartApplication extends AppCompatActivity  {
 
+    //when we create this activity, there are some things we need to do first
+    // hence the name on create
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +21,11 @@ public class StartApplication extends AppCompatActivity  {
     // to the method in this case logoutClickListener
     public void logoutClickListener(View view) {
         Intent intent = new Intent(StartApplication.this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void onViewProfileClick(View view) {
+        Intent intent = new Intent(this, ViewProfile.class);
         startActivity(intent);
     }
 
