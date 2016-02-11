@@ -12,17 +12,6 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
-
-    public void testThing(View view)
-    {
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-        startActivity(intent);
-        Log.d("HomePage", "Login Button Pressed");
-
-    }
-
-    // comment thingy
-    // Arsh Comment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onLoginButtonClicked(View w) {
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, LoginApplication.class);
         startActivity(intent);
     }
 
