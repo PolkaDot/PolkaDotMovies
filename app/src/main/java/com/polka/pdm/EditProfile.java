@@ -30,6 +30,8 @@ public class EditProfile extends AppCompatActivity {
 
     public void onSavePress(View view) {
         Log.d("EditProfile", "Save Button Pressed");
+        Intent intent = new Intent(this, ViewProfile.class);
+        startActivity(intent);
     }
 
 }
