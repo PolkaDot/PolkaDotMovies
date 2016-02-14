@@ -28,10 +28,27 @@ public class RegistrationPage extends AppCompatActivity {
         });*/
     }
 
+    /**
+     * This method takes the user back to the main screen without
+     * saving the user's details in the database. The registration
+     * is incomplete.
+     *
+     * @param  v  the view of the Cancel button that is clicked
+     */
+
     public void onCancelButtonPress(View v ) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
+    /**
+     * This method saves the user's details in the database and
+     * redirects the user back to the home page if all the information
+     * provided by the user is correct. It gives an error message if the
+     * information is incorrect.
+     *
+     * @param  v  the view of the Register button that is clicked
+     */
 
     public void onRegisterButtonPress(View v ) {
         Log.d("Register", "Register Button Pressed");
