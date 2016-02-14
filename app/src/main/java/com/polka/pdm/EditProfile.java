@@ -1,3 +1,9 @@
+ /*
+ * @author Arsh Momin
+ * @version 1.0
+ * class to help a user edit his/her profile
+ * */
+
 package com.polka.pdm;
 
 import android.content.Intent;
@@ -11,6 +17,7 @@ import android.view.View;
 
 public class EditProfile extends AppCompatActivity {
 
+    //when this activity is created, it makes a toolbar and stuff
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,16 +25,9 @@ public class EditProfile extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
     }
 
+//    save button. should take you back to view profile
     public void onSavePress(View view) {
         Log.d("EditProfile", "Save Button Pressed");
         Intent intent = new Intent(this, ViewProfile.class);
