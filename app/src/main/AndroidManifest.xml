@@ -27,6 +27,10 @@
         <activity
             android:name=".LoginApplication"
             android:label="@string/title_activity_login_application"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".RegistrationPage"
+            android:label="@string/title_activity_registration_page"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -17,4 +17,5 @@
     </string>
     <string name="title_activity_login1">LoginActivity1</string>
     <string name="title_activity_login_application">LoginApplication</string>
+    <string name="title_activity_registration_page">RegistrationPage</string>
 </resources>
