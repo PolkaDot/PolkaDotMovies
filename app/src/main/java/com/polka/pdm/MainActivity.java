@@ -58,9 +58,9 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void onRegisterButtonPress(View v ) {
-        Log.d("HomePage", "Registration Button Pressed");
-
+    public void onSignUpButtonPress(View v ) {
+        Intent intent = new Intent(this, RegistrationPage.class);
+        startActivity(intent);
     }
 
 }
