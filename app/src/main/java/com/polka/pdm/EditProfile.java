@@ -30,6 +30,13 @@ public class EditProfile extends AppCompatActivity {
 //    save button. should take you back to view profile
     public void onSavePress(View view) {
         Log.d("EditProfile", "Save Button Pressed");
+        //save some data here
+        Intent intent = new Intent(this, ViewProfile.class);
+        startActivity(intent);
+    }
+    public void onCancelPress(View view) {
+        Log.d("EditProfile", "Cancel Button Pressed");
+        //don't save anything
         Intent intent = new Intent(this, ViewProfile.class);
         startActivity(intent);
     }
