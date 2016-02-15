@@ -2,8 +2,6 @@ package com.polka.pdm;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -21,7 +19,7 @@ public class ViewProfile extends AppCompatActivity {
         User user = new User("user1", "pass1", "firstName1", "lastName1", "email1");
         repo.insert(user);
         String name = repo.getUserByUsername("user1").toString();
-        TextView NameTextView = (TextView)findViewById(R.id.NameTextField);
+        TextView NameTextView = (TextView)findViewById(R.id.FirstNameTextField);
         NameTextView.setText(name);
         TextView UserTextView = (TextView)findViewById(R.id.UserTextField);
         UserTextView.setText(name);

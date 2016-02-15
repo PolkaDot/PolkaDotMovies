@@ -120,7 +120,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:focusable="false"
         android:textSize="30dp"
-        android:id="@+id/NameTextField"
+        android:id="@+id/FirstNameTextField"
         android:layout_alignParentEnd="true"
         android:layout_gravity="right"
         android:text="Hello"
