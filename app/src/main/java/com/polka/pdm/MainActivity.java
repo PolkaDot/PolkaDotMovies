@@ -60,9 +60,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
     public void onSignUpButtonPress(View v ) {
         Intent intent = new Intent(this, RegistrationPage.class);
         startActivity(intent);
+
 
     }
 

@@ -1,3 +1,9 @@
+ /*
+ * @author Arsh Momin
+ * @version 1.0
+ * class to help a user edit his/her profile
+ * */
+
 package com.polka.pdm;
 
 import android.content.Intent;
@@ -7,10 +13,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.widget.EditText;
 import android.view.View;
+
 
 public class EditProfile extends AppCompatActivity {
 
+    //when this activity is created, it makes a toolbar and stuff
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,18 +27,38 @@ public class EditProfile extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        UserRepo repo = new UserRepo(this);
+        User user = repo.getUserByUsername("user1");
+        EditText username = (EditText)findViewById(R.id.UserTextField);
+        username.setText(user.username);
+//        EditText pass = (EditText)findViewById(R.id.passwordText);
+//        pass.setText(user.password);
+//        EditText name = (EditText)findViewById(R.id.nameText);
+//        name.setText(user.firstName);
+//        EditText email = (EditText)findViewById(R.id.emailText);
+//        email.setText(user.email);
+//        EditText phone = (EditText)findViewById(R.id.PhoneTextField);
+//        phone.setText(user.phone);
+//        EditText interests = (EditText)findViewById(R.id.InterestsLabel);
+//        interests.setText(user.interests);
+
+
+
+        //        EditText major = (EditText)findViewById(R.id.MajorTextField);
+        //  //        major.setText(user.major);
+
     }
 
+//    save button. should take you back to view profile
     public void onSavePress(View view) {
         Log.d("EditProfile", "Save Button Pressed");
+        //save some data here
+        Intent intent = new Intent(this, ViewProfile.class);
+        startActivity(intent);
+    }
+    public void onCancelPress(View view) {
+        Log.d("EditProfile", "Cancel Button Pressed");
+        //don't save anything
         Intent intent = new Intent(this, ViewProfile.class);
         startActivity(intent);
     }

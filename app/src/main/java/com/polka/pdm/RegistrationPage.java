@@ -52,7 +52,7 @@ public class RegistrationPage extends AppCompatActivity {
 
     public void onRegisterButtonPress(View v ) {
         Log.d("Register", "Register Button Pressed");
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, EditProfile.class);
         startActivity(intent);
     }
 

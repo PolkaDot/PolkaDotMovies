@@ -1,5 +1,9 @@
+// @Author Arsh Momin
+// @version 1.0
+
 package com.polka.pdm;
 import android.content.Intent;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +20,9 @@ public class StartApplication extends AppCompatActivity  {
         userdb = new DBHelper(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_application);
-
+//        counldn't get toolbar to work
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
     }
 
     /**
@@ -45,6 +51,9 @@ public class StartApplication extends AppCompatActivity  {
         startActivity(intent);
     }
 
+    /*
+    * when you click view profile, it takes you to the view profile activity
+     */
     public void onViewProfileClick(View view) {
         Intent intent = new Intent(this, ViewProfile.class);
         startActivity(intent);
