@@ -13,7 +13,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.widget.EditText;
 import android.view.View;
+
 
 public class EditProfile extends AppCompatActivity {
 
@@ -24,6 +26,26 @@ public class EditProfile extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        UserRepo repo = new UserRepo(this);
+        User user = repo.getUserByUsername("user1");
+        EditText username = (EditText)findViewById(R.id.UserTextField);
+        username.setText(user.username);
+//        EditText pass = (EditText)findViewById(R.id.passwordText);
+//        pass.setText(user.password);
+//        EditText name = (EditText)findViewById(R.id.nameText);
+//        name.setText(user.firstName);
+//        EditText email = (EditText)findViewById(R.id.emailText);
+//        email.setText(user.email);
+//        EditText phone = (EditText)findViewById(R.id.PhoneTextField);
+//        phone.setText(user.phone);
+//        EditText interests = (EditText)findViewById(R.id.InterestsLabel);
+//        interests.setText(user.interests);
+
+
+
+        //        EditText major = (EditText)findViewById(R.id.MajorTextField);
+        //  //        major.setText(user.major);
 
     }
 

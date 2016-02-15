@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 public class ViewProfile extends AppCompatActivity {
-
+    private String original;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +36,7 @@ public class ViewProfile extends AppCompatActivity {
         TextView InterestTextView = (TextView)findViewById(R.id.InterestTextField);
         InterestTextView.setText(name);
 
+        original = user.username;
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -48,6 +49,7 @@ public class ViewProfile extends AppCompatActivity {
 
     public void onEditProfileClick(View view) {
         Intent intent = new Intent(this, EditProfile.class);
+//        intent.putExtra("username",original);
         startActivity(intent);
     }
 
