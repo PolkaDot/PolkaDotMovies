@@ -1,11 +1,14 @@
 package com.polka.pdm;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * User class
  *
  * Created by C. Shih on 2/12/2016.
  */
-public class User {
+public class User implements Parcelable {
 
     // labels table name
     public static final String TABLE = "User";
@@ -69,4 +72,51 @@ public class User {
     public String toString() {
         return this.username + " " + this.password;
     }
+
+    // Parcelling part
+    public User(Parcel in) {
+        String[] data = new String[10];
+        in.readStringArray(data);
+
+        this.username = data[0];
+        this.password = data[1];
+        this.firstName = data[2];
+        this.lastName = data[3];
+        this.email = data[4];
+        this.phone = data[5];
+        this.interests = data[6];
+        this.isLocked = Integer.parseInt(data[7]);
+        this.isBanned = Integer.parseInt(data[8]);
+        this.isAdmin = Integer.parseInt(data[9]);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeStringArray(new String[] {
+                this.username,
+                this.password,
+                this.firstName,
+                this.lastName,
+                this.email,
+                this.phone,
+                this.interests,
+                Integer.toString(this.isLocked),
+                Integer.toString(this.isBanned),
+                Integer.toString(this.isAdmin)});
+    }
+
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 }

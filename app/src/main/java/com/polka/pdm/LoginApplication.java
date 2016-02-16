@@ -24,14 +24,19 @@ public class LoginApplication extends AppCompatActivity {
         CharSequence text;
 
         UserRepo repo = new UserRepo(this);
+        // Get user information from database
         User user = repo.getUserByUsername(nameBox.getText().toString());
-
+        // verify password
         if (passBox.getText().toString().equals(user.password)) {
             text = "Login Success!";
+
+            Intent startApp = new Intent(this, StartApplication.class);
+            // Save user data for next activity
+            startApp.putExtra("user", user);
+            startActivity(startApp);
         } else {
             text = "Login Failure!";
         }
-
 
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
