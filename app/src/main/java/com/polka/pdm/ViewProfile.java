@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ViewProfile extends AppCompatActivity {
@@ -30,6 +31,20 @@ public class ViewProfile extends AppCompatActivity {
             user = savedInstanceState.getParcelable("user");
         }
         Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
+
+        // Get TextViews on viewprofile page
+        TextView nameTextView = (TextView)findViewById(R.id.NameTextField);
+        // TextView editTextLastName; TODO: add this into view profile page
+        TextView userTextView = (TextView)findViewById(R.id.UserTextField);
+        TextView emailTextView = (TextView)findViewById(R.id.EmailTextField);
+        TextView passTextView = (TextView)findViewById(R.id.PassTextField);
+
+//        // Display user information
+        nameTextView.setText(user.firstName);
+        userTextView.setText(user.username);
+        emailTextView.setText(user.email);
+        passTextView.setText(user.password);
+
 //        User user = new User("user1", "pass1", "firstName1", "lastName1", "email1");
 //        repo.insert(user);
 //        String name = repo.getUserByUsername("user1").toString();
