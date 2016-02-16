@@ -3,15 +3,15 @@
 
 package com.polka.pdm;
 import android.content.Intent;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Toast;
 
 public class StartApplication extends AppCompatActivity  {
     public DBHelper userdb;
+
+    private User user;
 
     //when we create this activity, there are some things we need to do first
     // hence the name on create
@@ -20,9 +20,22 @@ public class StartApplication extends AppCompatActivity  {
         userdb = new DBHelper(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_application);
-//        counldn't get toolbar to work
+//        couldn't get toolbar to work
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
+
+        // Grab data about user from extras
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if (extras == null) {
+                user = null;
+            } else {
+                user = extras.getParcelable("user");
+            }
+        } else {
+            user = savedInstanceState.getParcelable("user");
+        }
+        Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -56,6 +69,7 @@ public class StartApplication extends AppCompatActivity  {
      */
     public void onViewProfileClick(View view) {
         Intent intent = new Intent(this, ViewProfile.class);
+        intent.putExtra("user", user);
         startActivity(intent);
     }
 
