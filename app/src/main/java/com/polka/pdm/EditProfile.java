@@ -17,8 +17,16 @@ import android.widget.Toast;
 
 
  public class EditProfile extends AppCompatActivity {
+     private User user;
 
-    //when this activity is created, it makes a toolbar and stuff
+     EditText username;
+     EditText pass;
+     EditText name;
+     EditText email;
+     EditText phone;
+     EditText interests;
+
+     //when this activity is created, it makes a toolbar and stuff
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +34,6 @@ import android.widget.Toast;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        User user;
         // Grab saved data about user
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -40,21 +47,21 @@ import android.widget.Toast;
         }
         Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
 
+        // get edit text fields
+        username = (EditText)findViewById(R.id.UserTextField); //TODO: DECIDE WHETHER USER CAN CHANGE USERNAME
+        pass = (EditText)findViewById(R.id.PassTextField);
+        name = (EditText)findViewById(R.id.NameTextField);
+        email = (EditText)findViewById(R.id.EmailTextField);
+        phone = (EditText)findViewById(R.id.PhoneTextField);
+        interests = (EditText)findViewById(R.id.InterestsLabel);
 
-        EditText username = (EditText)findViewById(R.id.UserTextField);
+        // Set all the text fields with user data
         username.setText(user.username);
-        EditText pass = (EditText)findViewById(R.id.PassTextField);
         pass.setText(user.password);
-        EditText name = (EditText)findViewById(R.id.NameTextField);
         name.setText(user.firstName);
-        EditText email = (EditText)findViewById(R.id.EmailTextField);
         email.setText(user.email);
-        EditText phone = (EditText)findViewById(R.id.PhoneTextField);
         phone.setText(user.phone);
-        EditText interests = (EditText)findViewById(R.id.InterestsLabel);
         interests.setText(user.interests);
-
-
 
         //        EditText major = (EditText)findViewById(R.id.MajorTextField);
         //  //        major.setText(user.major);
@@ -65,13 +72,37 @@ import android.widget.Toast;
     public void onSavePress(View view) {
         Log.d("EditProfile", "Save Button Pressed");
         //save some data here
+
+
+        // Insert user in database
+        UserRepo repo = new UserRepo(this);
+
+//        user.firstName = name.getText().toString();
+//        user.username = username.getText().toString();
+//        user.email = email.getText().toString();
+//        user.password = pass.getText().toString();
+
+        // insert updated user info into database TODO: Check if user is already in database
+        repo.updateProfile(user.username, username.getText().toString(), pass.getText().toString(),
+                name.getText().toString(), email.getText().toString(), phone.getText().toString(),
+                null, interests.getText().toString());
+        // update current User instance (I believe this is unchanged at this point)
+        user = repo.getUserByUsername(user.username);
+
+        // Toasts
+        Toast.makeText(this, "Changed name", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
+
+        // Switch activities
         Intent intent = new Intent(this, ViewProfile.class);
+        intent.putExtra("user", user);
         startActivity(intent);
     }
     public void onCancelPress(View view) {
         Log.d("EditProfile", "Cancel Button Pressed");
         //don't save anything
         Intent intent = new Intent(this, ViewProfile.class);
+        intent.putExtra("user", user);
         startActivity(intent);
     }
 

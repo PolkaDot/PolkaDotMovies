@@ -52,4 +52,6 @@ public class ViewProfile extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+
 }

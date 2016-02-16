@@ -30,15 +30,6 @@ public class RegistrationPage extends AppCompatActivity {
         editTextUserName = (EditText) findViewById(R.id.editTextUserName);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-
-        /**FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
     }
 
     /**
@@ -75,13 +66,19 @@ public class RegistrationPage extends AppCompatActivity {
         user.password = editTextPassword.getText().toString();
 
         // insert user into database TODO: Check if user is already in database
-        repo.insert(user);
-        Toast.makeText(this, "New student inserted", Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
+        if (repo.getUserByUsername(user.username).username == null) {
+            repo.insert(user);
+            Toast.makeText(this, "New student inserted", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
 
-        // Switch to Edit Profile Activity
-        Intent intent = new Intent(this, EditProfile.class);
-        startActivity(intent);
+            // Switch to Edit Profile Activity
+            Intent intent = new Intent(this, EditProfile.class);
+            intent.putExtra("user", user);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Username already in use.", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 }
