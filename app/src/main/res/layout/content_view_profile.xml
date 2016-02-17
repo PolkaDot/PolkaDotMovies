@@ -18,10 +18,11 @@
         android:layout_height="wrap_content"
         android:text="Edit Profile"
         android:id="@+id/EditProfile"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
         android:clickable="true"
-        android:onClick="onEditProfileClick" />
+        android:onClick="onEditProfileClick"
+        android:background="#bcae31"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -192,6 +193,16 @@
         android:layout_gravity="right"
         android:text="Hello"
         android:layout_alignBaseline="@+id/MajorLabel" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        android:id="@+id/HomeProfileButton"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:background="#bcae31"
+        android:onClick="onHomeClick" />
 
 
 </RelativeLayout>

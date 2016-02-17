@@ -54,6 +54,12 @@ public class ViewProfile extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onHomeClick(View view) {
+        Intent intent = new Intent(this, HomeApp.class);
+        intent.putExtra("user", user);
+        startActivity(intent);
+    }
+
 
 
 }
