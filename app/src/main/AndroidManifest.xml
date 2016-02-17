@@ -23,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--<activity android:name=".StartApplication" />-->
+        <!-- <activity android:name=".StartApplication" /> -->
         <activity
             android:name=".LoginApplication"
             android:label="@string/title_activity_login_application"
@@ -31,9 +31,9 @@
         <activity
             android:name=".RegistrationPage"
             android:label="@string/title_activity_registration_page"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:theme="@style/AppTheme.NoActionBar" />
+        android:name=".LoginActivity"
+        android:label="@string/title_activity_login" />
         <activity android:name=".StartApplication" />
         <activity
             android:name=".ViewProfile"
@@ -42,7 +42,7 @@
         <activity
             android:name=".EditProfile"
             android:label="@string/title_activity_edit_profile"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

@@ -59,6 +59,7 @@ public class EditProfile extends AppCompatActivity {
     public void onCancelPress(View view) {
         Log.d("EditProfile", "Cancel Button Pressed");
         //don't save anything
+//        Intent intent = new Intent(this, ViewProfile.class);
         Intent intent = new Intent(this, ViewProfile.class);
         startActivity(intent);
     }
