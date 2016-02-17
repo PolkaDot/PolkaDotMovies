@@ -71,6 +71,7 @@ public class UserRepo {
                 user.firstName = cursor.getString(cursor.getColumnIndex(User.KEY_firstName));
                 user.lastName = cursor.getString(cursor.getColumnIndex(User.KEY_lastName));
                 user.email = cursor.getString(cursor.getColumnIndex(User.KEY_email));
+                user.major = cursor.getString(cursor.getColumnIndex(User.KEY_major));
                 user.phone = cursor.getString(cursor.getColumnIndex(User.KEY_phone));
                 user.interests = cursor.getString(cursor.getColumnIndex(User.KEY_interests));
                 user.isLocked = cursor.getInt(cursor.getColumnIndex(User.KEY_isLocked));
@@ -86,13 +87,13 @@ public class UserRepo {
     }
 
     public void updateProfile(String user, String newuser, String pass, String name, String email, String phone, String major, String interests) {
-        // TODO: not sure bout efficiency writing to databases many times
+        // TODO: not sure about efficiency writing to databases many times
         setUsername(user, newuser);
         setPass(user, pass);
         setName(user, name);
         setEmail(user, email);
         setPhone(user, phone);
-        //setMajor
+        setMajor(user, major);
         setInterests(user, interests);
     }
 
@@ -175,22 +176,22 @@ public class UserRepo {
         int numberRowsUpdated = db.update(User.TABLE, values, where, whereArgs);
         db.close();
     }
-    // TODO: Need to add Major to table
-//    public void setMajor(String user, String major) {
-//
-//        // open connection to write data
-//        SQLiteDatabase db = dbHelper.getWritableDatabase();
-//
-//        ContentValues values = new ContentValues();
-//        values.put(User.KEY_major, major);
-//        // creates where and where arguments
-//        String where = User.KEY_username + " = ?";
-//        String[] whereArgs = {user};
-//
-//        // update
-//        int numberRowsUpdated = db.update(User.TABLE, values, where, whereArgs);
-//        db.close();
-//    }
+
+    public void setMajor(String user, String major) {
+
+        // open connection to write data
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(User.KEY_major, major);
+        // creates where and where arguments
+        String where = User.KEY_username + " = ?";
+        String[] whereArgs = {user};
+
+        // update
+        int numberRowsUpdated = db.update(User.TABLE, values, where, whereArgs);
+        db.close();
+    }
 
     public void setInterests(String user, String interests) {
 

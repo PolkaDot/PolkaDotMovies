@@ -23,6 +23,7 @@ import android.widget.Toast;
      EditText pass;
      EditText name;
      EditText email;
+     EditText major;
      EditText phone;
      EditText interests;
 
@@ -52,6 +53,7 @@ import android.widget.Toast;
         pass = (EditText)findViewById(R.id.PassTextField);
         name = (EditText)findViewById(R.id.NameTextField);
         email = (EditText)findViewById(R.id.EmailTextField);
+        major = (EditText)findViewById(R.id.MajorTextField);
         phone = (EditText)findViewById(R.id.PhoneTextField);
         interests = (EditText)findViewById(R.id.InterestsLabel);
 
@@ -60,6 +62,7 @@ import android.widget.Toast;
         pass.setText(user.password);
         name.setText(user.firstName);
         email.setText(user.email);
+        major.setText(user.major);
         phone.setText(user.phone);
         interests.setText(user.interests);
 
@@ -85,7 +88,7 @@ import android.widget.Toast;
         // insert updated user info into database TODO: Check if user is already in database
         repo.updateProfile(user.username, username.getText().toString(), pass.getText().toString(),
                 name.getText().toString(), email.getText().toString(), phone.getText().toString(),
-                null, interests.getText().toString());
+                major.getText().toString(), interests.getText().toString());
         // update current User instance (I believe this is unchanged at this point)
         user = repo.getUserByUsername(user.username);
 
