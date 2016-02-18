@@ -16,6 +16,8 @@
         completions."
     </string>
     <string name="title_activity_login1">LoginActivity1</string>
+    <string name="title_activity_view_profile">ViewProfile</string>
+    <string name="title_activity_edit_profile">EditProfile</string>
     <string name="title_activity_login_application">LoginApplication</string>
     <string name="title_activity_registration_page">RegistrationPage</string>
 </resources>
