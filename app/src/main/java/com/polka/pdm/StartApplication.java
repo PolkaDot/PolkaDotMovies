@@ -2,6 +2,7 @@
  * @Author Arsh Momin
  * @version 1.0
  * Activity that starts after you log into the app
+ * this is the right way to do javadocs
  */
 
 package com.polka.pdm;
