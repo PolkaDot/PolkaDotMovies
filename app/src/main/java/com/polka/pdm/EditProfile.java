@@ -76,6 +76,19 @@ import android.widget.Toast;
         Log.d("EditProfile", "Save Button Pressed");
         //save some data here
 
+        String aUsername = username.getText().toString();
+        String aPassword = pass.getText().toString();
+        String aName = name.getText().toString();
+        String aEmail = email.getText().toString();
+        String aPhone = phone.getText().toString();
+        String aMajor = major.getText().toString();
+        String aInterest = interests.getText().toString();
+
+
+        if (aUsername.length() == 0 || aPassword.length() == 0 || aEmail.length() == 0 || aPassword.length() == 0) {
+            Toast.makeText(this, "All fields must be filled!", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         // Insert user in database
         UserRepo repo = new UserRepo(this);
@@ -84,6 +97,8 @@ import android.widget.Toast;
 //        user.username = username.getText().toString();
 //        user.email = email.getText().toString();
 //        user.password = pass.getText().toString();
+
+
 
         // insert updated user info into database TODO: Check if user is already in database
         repo.updateProfile(user.username, username.getText().toString(), pass.getText().toString(),

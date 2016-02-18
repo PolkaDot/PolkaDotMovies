@@ -41,6 +41,7 @@ public class RegistrationPage extends AppCompatActivity {
      */
 
     public void onCancelButtonPress(View v ) {
+        Log.d("Cancel", "Cancel Button Pressed");
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
@@ -56,14 +57,27 @@ public class RegistrationPage extends AppCompatActivity {
 
     public void onRegisterButtonPress(View v ) {
         Log.d("Register", "Register Button Pressed");
+
+        String aFirstName = editTextFirstName.getText().toString();
+        String aUsername = editTextUserName.getText().toString();
+        String aEmail = editTextEmail.getText().toString();
+        String aPassword = editTextPassword.getText().toString();
+
+        if (aFirstName.length() == 0 || aUsername.length() == 0 || aEmail.length() == 0 || aPassword.length() == 0) {
+            Toast.makeText(this, "Name, username, password, and email must all be filled!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         // Insert user in database
         UserRepo repo = new UserRepo(this);
         User user = new User();
 
-        user.firstName = editTextFirstName.getText().toString();
-        user.username = editTextUserName.getText().toString();
-        user.email = editTextEmail.getText().toString();
-        user.password = editTextPassword.getText().toString();
+        user.firstName = aFirstName;
+        user.username = aUsername;
+        user.email = aEmail;
+        user.password = aPassword;
+
+
 
         // insert user into database TODO: Check if user is already in database
         if (repo.getUserByUsername(user.username).username == null) {
