@@ -1,5 +1,8 @@
-// @Author Arsh Momin
-// @version 1.0
+/**
+ * @Author Arsh Momin
+ * @version 1.0
+ * Activity that starts after you log into the app
+ */
 
 package com.polka.pdm;
 import android.content.Intent;
@@ -51,9 +54,11 @@ public class StartApplication extends AppCompatActivity  {
         startActivity(intent);
     }
 
-    /*
-    * when you click view profile, it takes you to the view profile activity
-     */
+    /**
+     * when you click view profile, it takes you to the view profile activity
+     * @param view it is being used on
+     *
+     * */
     public void onViewProfileClick(View view) {
         Intent intent = new Intent(this, ViewProfile.class);
         startActivity(intent);

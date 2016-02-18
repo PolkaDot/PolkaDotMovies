@@ -1,7 +1,7 @@
- /*
+ /**
  * @author Arsh Momin
  * @version 1.0
- * class to help a user edit his/her profile
+ * class to help a user edit his/her profile info
  * */
 
 package com.polka.pdm;
@@ -19,7 +19,12 @@ import android.view.View;
 
 public class EditProfile extends AppCompatActivity {
 
-    //when this activity is created, it makes a toolbar and stuff
+
+
+    /**
+     * when this activity is created, it makes a toolbar and stuff
+     * @param savedInstanceState to add stuff on this activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,13 +54,24 @@ public class EditProfile extends AppCompatActivity {
 
     }
 
-//    save button. should take you back to view profile
+
+    /**
+     * save button. should take you back to view profile
+     * @param view which we need to direct to the next activity
+     *
+     * */
     public void onSavePress(View view) {
         Log.d("EditProfile", "Save Button Pressed");
         //save some data here
         Intent intent = new Intent(this, ViewProfile.class);
         startActivity(intent);
     }
+
+    /** cancel button. should take you back to view profile
+     * wihthout saving anything
+     *
+     * @param view which we need to direct to the next activity
+     */
     public void onCancelPress(View view) {
         Log.d("EditProfile", "Cancel Button Pressed");
         //don't save anything
