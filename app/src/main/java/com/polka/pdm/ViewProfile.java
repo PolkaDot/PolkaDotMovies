@@ -34,6 +34,7 @@ public class ViewProfile extends AppCompatActivity {
         // Get TextViews on view profile page
         TextView nameTextView = (TextView)findViewById(R.id.NameTextField);
         // TextView editTextLastName; TODO: add this into view profile page
+        TextView phoneTextView = (TextView)findViewById(R.id.PhoneTextField);
         TextView userTextView = (TextView)findViewById(R.id.UserTextField);
         TextView emailTextView = (TextView)findViewById(R.id.EmailTextField);
         TextView majorTextView = (TextView)findViewById(R.id.MajorTextField);
@@ -41,10 +42,12 @@ public class ViewProfile extends AppCompatActivity {
 
         // Put user information in TextView boxes
         nameTextView.setText(user.firstName);
+        phoneTextView.setText(user.phone);
         userTextView.setText(user.username);
         emailTextView.setText(user.email);
         majorTextView.setText(user.major);
         passTextView.setText(user.password);
+
     }
 
     public void onEditProfileClick(View view) {
