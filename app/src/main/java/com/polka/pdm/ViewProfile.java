@@ -1,3 +1,8 @@
+/**
+ * @author Esha Singh
+ * @version 1.0
+ * View User Profile
+ */
 package com.polka.pdm;
 
 import android.content.Intent;
@@ -45,6 +50,11 @@ public class ViewProfile extends AppCompatActivity {
         passTextView.setText(user.password);
     }
 
+    /**
+     * This method takes the user to edit profile
+     *
+     * @param  view  the view of the Edit button that is clicked
+     */
     public void onEditProfileClick(View view) {
         Intent intent = new Intent(this, EditProfile.class);
         // putExtra to store user information between views
