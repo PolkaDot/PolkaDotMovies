@@ -19,7 +19,7 @@
         android:id="@+id/UserTextField"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignStart="@+id/nameTextField" />
+        android:layout_alignStart="@+id/NameTextField" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -29,7 +29,7 @@
         android:id="@+id/emailLabel"
         android:textSize="35dp"
         android:layout_gravity="left"
-        android:layout_below="@+id/nameTextField"
+        android:layout_below="@+id/NameTextField"
         android:layout_alignParentStart="true" />
 
     <EditText
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/nameTextField"
+        android:id="@+id/NameTextField"
         android:layout_gravity="right|top"
         android:layout_alignBottom="@+id/NameLabel"
         android:layout_alignParentEnd="true" />
@@ -92,10 +92,12 @@
         android:background="#bcae31"
         android:layout_marginBottom="53dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/NameLabel"
         android:clickable="true"
         android:onClick="onSavePress"
-        android:layout_alignEnd="@+id/InterestsLabel" />
+        android:layout_alignEnd="@+id/InterestsLabel"
+        android:layout_toEndOf="@+id/cancelButton"
+        android:layout_alignStart="@+id/MajorTextField"
+        android:textSize="25dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -171,4 +173,18 @@
         android:id="@+id/PassTextField"
         android:layout_below="@+id/UserTextField"
         android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:id="@+id/cancelButton"
+        android:layout_below="@+id/InterestsLabel"
+        android:layout_alignParentStart="true"
+        android:onClick="onCancelPress"
+        android:clickable="true"
+        android:layout_toStartOf="@+id/MajorTextField"
+        android:background="#bcae31"
+        android:layout_alignEnd="@+id/phoneLabel"
+        android:textSize="25dp" />
 </RelativeLayout>
