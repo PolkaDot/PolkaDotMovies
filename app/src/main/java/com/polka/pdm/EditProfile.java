@@ -21,7 +21,8 @@ import android.widget.Toast;
 
      EditText username;
      EditText pass;
-     EditText name;
+     EditText firstname;
+     EditText lastname;
      EditText email;
      EditText major;
      EditText phone;
@@ -46,12 +47,15 @@ import android.widget.Toast;
         } else {
             user = savedInstanceState.getParcelable("user");
         }
-        Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
+        if (user!=null) {
+            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
+        }
 
         // get edit text fields
         username = (EditText)findViewById(R.id.UserTextField); //TODO: DECIDE WHETHER USER CAN CHANGE USERNAME
         pass = (EditText)findViewById(R.id.PassTextField);
-        name = (EditText)findViewById(R.id.NameTextField);
+        firstname = (EditText)findViewById(R.id.FirstNameTextField);
+        lastname = (EditText)findViewById(R.id.LastNameTextField);
         email = (EditText)findViewById(R.id.EmailTextField);
         major = (EditText)findViewById(R.id.MajorTextField);
         phone = (EditText)findViewById(R.id.PhoneTextField);
@@ -60,7 +64,8 @@ import android.widget.Toast;
         // Set all the text fields with user data
         username.setText(user.username);
         pass.setText(user.password);
-        name.setText(user.firstName);
+        firstname.setText(user.firstName);
+        lastname.setText(user.lastName);
         email.setText(user.email);
         major.setText(user.major);
         phone.setText(user.phone);
@@ -76,6 +81,25 @@ import android.widget.Toast;
         Log.d("EditProfile", "Save Button Pressed");
         //save some data here
 
+        String aUsername = username.getText().toString();
+        String aPassword = pass.getText().toString();
+        String aFirstName = firstname.getText().toString();
+        String aLastName = lastname.getText().toString();
+        String aEmail = email.getText().toString();
+        String aPhone = phone.getText().toString();
+        String aMajor = major.getText().toString();
+        String aInterest = interests.getText().toString();
+
+
+        if (aFirstName.length() == 0 || aLastName.length() == 0 || aUsername.length() == 0 || aEmail.length() == 0 || aPassword.length() == 0) {
+            Toast.makeText(this, "First Name, Last Name, Username, Password, and Email must all be filled!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!aEmail.contains("@")) {
+            Toast.makeText(this, "Must have valid email", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         // Insert user in database
         UserRepo repo = new UserRepo(this);
@@ -85,9 +109,11 @@ import android.widget.Toast;
 //        user.email = email.getText().toString();
 //        user.password = pass.getText().toString();
 
+
+
         // insert updated user info into database TODO: Check if user is already in database
         repo.updateProfile(user.username, username.getText().toString(), pass.getText().toString(),
-                name.getText().toString(), email.getText().toString(), phone.getText().toString(),
+                firstname.getText().toString(),lastname.getText().toString(), email.getText().toString(), phone.getText().toString(),
                 major.getText().toString(), interests.getText().toString());
         // update current User instance (I believe this is unchanged at this point)
         user = repo.getUserByUsername(user.username);

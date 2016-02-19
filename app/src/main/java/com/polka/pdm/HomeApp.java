@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -59,6 +60,8 @@ public class HomeApp extends AppCompatActivity {
      */
 
     public void logoutClickListener(View view) {
+        Log.d("Logout", "Logout Button Pressed");
+
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
@@ -67,6 +70,8 @@ public class HomeApp extends AppCompatActivity {
     * when you click view profile, it takes you to the view profile activity
      */
     public void onViewProfileClick(View view) {
+        Log.d("ViewProfile", "View Profile Button Pressed");
+
         Intent intent = new Intent(this, ViewProfile.class);
         intent.putExtra("user", user);
         startActivity(intent);

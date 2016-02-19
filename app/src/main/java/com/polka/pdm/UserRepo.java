@@ -86,11 +86,12 @@ public class UserRepo {
         return user;
     }
 
-    public void updateProfile(String user, String newuser, String pass, String name, String email, String phone, String major, String interests) {
+    public void updateProfile(String user, String newuser, String pass, String firstname, String lastname, String email, String phone, String major, String interests) {
         // TODO: not sure about efficiency writing to databases many times
         setUsername(user, newuser);
         setPass(user, pass);
-        setName(user, name);
+        setFirstName(user, firstname);
+        setLastName(user,lastname);
         setEmail(user, email);
         setPhone(user, phone);
         setMajor(user, major);
@@ -113,13 +114,29 @@ public class UserRepo {
         db.close();
     }
 
-    public void setName(String user, String name) {
+    public void setFirstName(String user, String name) {
 
         // open connection to write data
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(User.KEY_firstName, name);
+        // creates where and where arguments
+        String where = User.KEY_username + " = ?";
+        String[] whereArgs = {user};
+
+        // update
+        int numberRowsUpdated = db.update(User.TABLE, values, where, whereArgs);
+        db.close();
+    }
+
+    public void setLastName(String user, String name) {
+
+        // open connection to write data
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(User.KEY_lastName, name);
         // creates where and where arguments
         String where = User.KEY_username + " = ?";
         String[] whereArgs = {user};

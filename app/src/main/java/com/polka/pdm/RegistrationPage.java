@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class RegistrationPage extends AppCompatActivity {
 
     EditText editTextFirstName;
-    // EditText editTextLastName; TODO: add this into registration page
+    EditText editTextLastName;
     EditText editTextUserName;
     EditText editTextEmail;
     EditText editTextPassword;
@@ -27,6 +27,7 @@ public class RegistrationPage extends AppCompatActivity {
 
         // Get EditText fields
         editTextFirstName = (EditText) findViewById(R.id.editTextFirstName);
+        editTextLastName = (EditText) findViewById(R.id.editTextLastName);
         editTextUserName = (EditText) findViewById(R.id.editTextUserName);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
@@ -41,6 +42,7 @@ public class RegistrationPage extends AppCompatActivity {
      */
 
     public void onCancelButtonPress(View v ) {
+        Log.d("Cancel", "Cancel Button Pressed");
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
@@ -56,14 +58,34 @@ public class RegistrationPage extends AppCompatActivity {
 
     public void onRegisterButtonPress(View v ) {
         Log.d("Register", "Register Button Pressed");
+
+        String aFirstName = editTextFirstName.getText().toString();
+        String aLastName = editTextLastName.getText().toString();
+        String aUsername = editTextUserName.getText().toString();
+        String aEmail = editTextEmail.getText().toString();
+        String aPassword = editTextPassword.getText().toString();
+
+        if (aFirstName.length() == 0 || aLastName.length() == 0 || aUsername.length() == 0 || aEmail.length() == 0 || aPassword.length() == 0) {
+            Toast.makeText(this, "First Name, Last Name, Username, Password, and Email must all be filled!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!aEmail.contains("@")) {
+            Toast.makeText(this, "Must have valid email", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         // Insert user in database
         UserRepo repo = new UserRepo(this);
         User user = new User();
 
-        user.firstName = editTextFirstName.getText().toString();
-        user.username = editTextUserName.getText().toString();
-        user.email = editTextEmail.getText().toString();
-        user.password = editTextPassword.getText().toString();
+        user.firstName = aFirstName;
+        user.lastName = aLastName;
+        user.username = aUsername;
+        user.email = aEmail;
+        user.password = aPassword;
+
+
 
         // insert user into database TODO: Check if user is already in database
         if (repo.getUserByUsername(user.username).username == null) {
