@@ -27,11 +27,15 @@ public class LoginApplication extends AppCompatActivity {
         CharSequence text;
         if (nameBox.getText().toString().equals("user") && passBox.getText().toString().equals("pass")) {
             text = "Login Success!";
-            Intent intent = new Intent(this, StartApplication.class);
-            startActivity(intent);
+
+            Intent startApp = new Intent(this, StartApplication.class);
+            // Save user data for next activity
+            startApp.putExtra("user", user);
+            startActivity(startApp);
         } else {
             text = "Login Failure!";
         }
+
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
         Toast t = Toast.makeText(context, text, duration);

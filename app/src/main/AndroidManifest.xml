@@ -31,10 +31,10 @@
         <activity
             android:name=".RegistrationPage"
             android:label="@string/title_activity_registration_page"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" /><![CDATA[
         android:name=".LoginActivity"
         android:label="@string/title_activity_login" />
-        <activity android:name=".StartApplication" />
+        ]]>
         <activity
             android:name=".ViewProfile"
             android:label="@string/title_activity_view_profile"
@@ -43,6 +43,10 @@
             android:name=".EditProfile"
             android:label="@string/title_activity_edit_profile"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".HomeApp"
+            android:label="@string/title_activity_home_app"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

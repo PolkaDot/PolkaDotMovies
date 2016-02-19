@@ -8,7 +8,8 @@ import android.view.View;
 import android.widget.TextView;
 
 public class ViewProfile extends AppCompatActivity {
-    private String original;
+    private User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,41 +17,48 @@ public class ViewProfile extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Grab saved data about user
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if (extras == null) {
+                user = null;
+            } else {
+                user = extras.getParcelable("user");
+            }
+        } else {
+            user = savedInstanceState.getParcelable("user");
+        }
+        Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
 
-        UserRepo repo = new UserRepo(this);
-        User user = new User("user1", "pass1", "firstName1", "lastName1", "email1");
-        repo.insert(user);
-        String name = repo.getUserByUsername("user1").toString();
-        TextView NameTextView = (TextView)findViewById(R.id.FirstNameTextField);
-        NameTextView.setText(name);
-        TextView UserTextView = (TextView)findViewById(R.id.UserTextField);
-        UserTextView.setText(name);
-        TextView PassTextView = (TextView)findViewById(R.id.PassTextField);
-        PassTextView.setText(name);
-        TextView PhoneTextView = (TextView)findViewById(R.id.PhoneTextField);
-        PhoneTextView.setText(name);
-        TextView EmailTextView = (TextView)findViewById(R.id.EmailTextField);
-        EmailTextView.setText(name);
-        TextView MajorTextView = (TextView)findViewById(R.id.MajorTextField);
-        MajorTextView.setText(name);
-        TextView InterestTextView = (TextView)findViewById(R.id.InterestTextField);
-        InterestTextView.setText(name);
+        // Get TextViews on view profile page
+        TextView nameTextView = (TextView)findViewById(R.id.NameTextField);
+        // TextView editTextLastName; TODO: add this into view profile page
+        TextView userTextView = (TextView)findViewById(R.id.UserTextField);
+        TextView emailTextView = (TextView)findViewById(R.id.EmailTextField);
+        TextView majorTextView = (TextView)findViewById(R.id.MajorTextField);
+        TextView passTextView = (TextView)findViewById(R.id.PassTextField);
 
-        original = user.username;
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        // Put user information in TextView boxes
+        nameTextView.setText(user.firstName);
+        userTextView.setText(user.username);
+        emailTextView.setText(user.email);
+        majorTextView.setText(user.major);
+        passTextView.setText(user.password);
     }
 
     public void onEditProfileClick(View view) {
         Intent intent = new Intent(this, EditProfile.class);
-//        intent.putExtra("username",original);
+        // putExtra to store user information between views
+        intent.putExtra("user", user);
         startActivity(intent);
     }
+
+    public void onHomeClick(View view) {
+        Intent intent = new Intent(this, HomeApp.class);
+        intent.putExtra("user", user);
+        startActivity(intent);
+    }
+
+
 
 }
