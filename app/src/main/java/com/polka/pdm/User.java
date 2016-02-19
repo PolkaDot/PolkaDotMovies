@@ -19,6 +19,7 @@ public class User implements Parcelable {
     public static final String KEY_firstName = "firstName";
     public static final String KEY_lastName = "lastName";
     public static final String KEY_email = "email";
+    public static final String KEY_major = "major";
     public static final String KEY_phone = "phone";
     public static final String KEY_interests = "interests";
     public static final String KEY_isLocked = "isLocked";
@@ -32,6 +33,7 @@ public class User implements Parcelable {
     public String firstName;
     public String lastName;
     public String email;
+    public String major;
     public String phone;
     public String interests;
     public int isLocked;
@@ -70,12 +72,12 @@ public class User implements Parcelable {
      * @return the username and password of the user object
      */
     public String toString() {
-        return this.username + " " + this.password;
+        return "username" + " " + this.username + " password: " + this.password;
     }
 
     // Parcelling part
     public User(Parcel in) {
-        String[] data = new String[10];
+        String[] data = new String[11];
         in.readStringArray(data);
 
         this.username = data[0];
@@ -83,11 +85,12 @@ public class User implements Parcelable {
         this.firstName = data[2];
         this.lastName = data[3];
         this.email = data[4];
-        this.phone = data[5];
-        this.interests = data[6];
-        this.isLocked = Integer.parseInt(data[7]);
-        this.isBanned = Integer.parseInt(data[8]);
-        this.isAdmin = Integer.parseInt(data[9]);
+        this.major = data[5];
+        this.phone = data[6];
+        this.interests = data[7];
+        this.isLocked = Integer.parseInt(data[8]);
+        this.isBanned = Integer.parseInt(data[9]);
+        this.isAdmin = Integer.parseInt(data[10]);
     }
 
     @Override
@@ -103,6 +106,7 @@ public class User implements Parcelable {
                 this.firstName,
                 this.lastName,
                 this.email,
+                this.major,
                 this.phone,
                 this.interests,
                 Integer.toString(this.isLocked),

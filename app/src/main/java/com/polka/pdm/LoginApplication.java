@@ -30,7 +30,7 @@ public class LoginApplication extends AppCompatActivity {
         if (passBox.getText().toString().equals(user.password)) {
             text = "Login Success!";
 
-            Intent startApp = new Intent(this, StartApplication.class);
+            Intent startApp = new Intent(this, HomeApp.class);
             // Save user data for next activity
             startApp.putExtra("user", user);
             startActivity(startApp);

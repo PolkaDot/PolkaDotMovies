@@ -20,4 +20,5 @@
     <string name="title_activity_edit_profile">EditProfile</string>
     <string name="title_activity_login_application">LoginApplication</string>
     <string name="title_activity_registration_page">RegistrationPage</string>
+    <string name="title_activity_home_app">HomeApp</string>
 </resources>

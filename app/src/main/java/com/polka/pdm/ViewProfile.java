@@ -41,12 +41,14 @@ public class ViewProfile extends AppCompatActivity {
         // TextView editTextLastName; TODO: add this into view profile page
         TextView userTextView = (TextView)findViewById(R.id.UserTextField);
         TextView emailTextView = (TextView)findViewById(R.id.EmailTextField);
+        TextView majorTextView = (TextView)findViewById(R.id.MajorTextField);
         TextView passTextView = (TextView)findViewById(R.id.PassTextField);
 
         // Put user information in TextView boxes
         nameTextView.setText(user.firstName);
         userTextView.setText(user.username);
         emailTextView.setText(user.email);
+        majorTextView.setText(user.major);
         passTextView.setText(user.password);
     }
 
@@ -58,6 +60,12 @@ public class ViewProfile extends AppCompatActivity {
     public void onEditProfileClick(View view) {
         Intent intent = new Intent(this, EditProfile.class);
         // putExtra to store user information between views
+        intent.putExtra("user", user);
+        startActivity(intent);
+    }
+
+    public void onHomeClick(View view) {
+        Intent intent = new Intent(this, HomeApp.class);
         intent.putExtra("user", user);
         startActivity(intent);
     }

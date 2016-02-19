@@ -1,28 +1,27 @@
-// @Author Arsh Momin
-// @version 1.0
-
 package com.polka.pdm;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
-public class StartApplication extends AppCompatActivity  {
-    public DBHelper userdb;
+public class HomeApp extends AppCompatActivity {
 
     private User user;
 
-    //when we create this activity, there are some things we need to do first
-    // hence the name on create
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        userdb = new DBHelper(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start_application);
+        setContentView(R.layout.activity_home_app);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
 //        couldn't get toolbar to work
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
 
         // Grab data about user from extras
         if (savedInstanceState == null) {
@@ -60,7 +59,7 @@ public class StartApplication extends AppCompatActivity  {
      */
 
     public void logoutClickListener(View view) {
-        Intent intent = new Intent(StartApplication.this, MainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
