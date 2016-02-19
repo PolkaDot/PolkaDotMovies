@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class RegistrationPage extends AppCompatActivity {
 
     EditText editTextFirstName;
-    // EditText editTextLastName; TODO: add this into registration page
+    EditText editTextLastName;
     EditText editTextUserName;
     EditText editTextEmail;
     EditText editTextPassword;
@@ -27,6 +27,7 @@ public class RegistrationPage extends AppCompatActivity {
 
         // Get EditText fields
         editTextFirstName = (EditText) findViewById(R.id.editTextFirstName);
+        editTextLastName = (EditText) findViewById(R.id.editTextLastName);
         editTextUserName = (EditText) findViewById(R.id.editTextUserName);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
@@ -59,12 +60,18 @@ public class RegistrationPage extends AppCompatActivity {
         Log.d("Register", "Register Button Pressed");
 
         String aFirstName = editTextFirstName.getText().toString();
+        String aLastName = editTextLastName.getText().toString();
         String aUsername = editTextUserName.getText().toString();
         String aEmail = editTextEmail.getText().toString();
         String aPassword = editTextPassword.getText().toString();
 
-        if (aFirstName.length() == 0 || aUsername.length() == 0 || aEmail.length() == 0 || aPassword.length() == 0) {
-            Toast.makeText(this, "Name, username, password, and email must all be filled!", Toast.LENGTH_SHORT).show();
+        if (aFirstName.length() == 0 || aLastName.length() == 0 || aUsername.length() == 0 || aEmail.length() == 0 || aPassword.length() == 0) {
+            Toast.makeText(this, "First Name, Last Name, Username, Password, and Email must all be filled!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!aEmail.contains("@")) {
+            Toast.makeText(this, "Must have valid email", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -73,6 +80,7 @@ public class RegistrationPage extends AppCompatActivity {
         User user = new User();
 
         user.firstName = aFirstName;
+        user.lastName = aLastName;
         user.username = aUsername;
         user.email = aEmail;
         user.password = aPassword;

@@ -32,9 +32,20 @@
         android:id="@+id/editTextFirstName"
         android:layout_below="@+id/registrationTitle"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="53dp"
+        android:layout_marginTop="35dp"
         android:layout_alignParentStart="true"
-        android:hint="Full Name" />
+        android:hint="First Name" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editTextLastName"
+        android:layout_below="@+id/editTextFirstName"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:hint="Last Name" />
 
     <EditText
         android:layout_width="match_parent"
@@ -42,9 +53,9 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/editTextUserName"
-        android:layout_below="@+id/editTextFirstName"
+        android:layout_below="@+id/editTextLastName"
         android:layout_alignStart="@+id/editTextFirstName"
-        android:hint="User Name" />
+        android:hint="Username" />
 
     <EditText
         android:layout_width="match_parent"
