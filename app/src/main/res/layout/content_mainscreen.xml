@@ -12,6 +12,14 @@
     tools:context="com.polka.pdm.MainActivity"
     tools:showIn="@layout/activity_mainscreen">
 
+    <ImageView
+        android:id="@+id/logo"
+        android:src="@drawable/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,11 +52,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Buzz-Movie Reviewer"
         android:id="@+id/appTitle"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="84dp"
         android:textStyle="bold"
         android:textSize="50dp"
         android:textAlignment="center"
-        android:onClick="onLoginButtonClicked" />
+        android:onClick="onLoginButtonClicked"
+        android:layout_below="@+id/logo"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
