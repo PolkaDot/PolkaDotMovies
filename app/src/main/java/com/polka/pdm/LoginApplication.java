@@ -25,10 +25,15 @@ public class LoginApplication extends AppCompatActivity {
         EditText nameBox = (EditText) findViewById(R.id.usernameEdit);
         EditText passBox = (EditText) findViewById(R.id.passwordEdit);
         CharSequence text;
-        if (nameBox.getText().toString().equals("user") && passBox.getText().toString().equals("pass")) {
+
+        UserRepo repo = new UserRepo(this);
+        // Get user information from database
+        User user = repo.getUserByUsername(nameBox.getText().toString());
+        // verify password
+        if (passBox.getText().toString().equals(user.password)) {
             text = "Login Success!";
 
-            Intent startApp = new Intent(this, StartApplication.class);
+            Intent startApp = new Intent(this, HomeApp.class);
             // Save user data for next activity
             startApp.putExtra("user", user);
             startActivity(startApp);

@@ -24,7 +24,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 + User.KEY_firstName + " TEXT, "
                 + User.KEY_lastName + " TEXT, "
                 + User.KEY_email + " TEXT, "
-                + User.KEY_phone + " TEXT, "
+                + User.KEY_major + " TEXT, "
+                + User.KEY_phone + " TEXT, " //TODO: Text or int?
                 + User.KEY_interests + " TEXT, "
                 + User.KEY_isLocked + " INTEGER, "
                 + User.KEY_isBanned + " INTEGER, "
