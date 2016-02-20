@@ -196,7 +196,7 @@
         android:layout_height="wrap_content"
         android:text="Save"
         android:id="@+id/Save"
-        android:background="#bcae31"
+        android:background="#F7BE39"
         android:clickable="true"
         android:onClick="onSavePress"
         android:textSize="25dp"
@@ -216,7 +216,7 @@
         android:onClick="onCancelPress"
         android:clickable="true"
         android:layout_toStartOf="@+id/MajorTextField"
-        android:background="#bcae31"
+        android:background="#F7BE39"
         android:textSize="25dp"
         android:layout_alignEnd="@+id/InterestLabel" />
 </RelativeLayout>

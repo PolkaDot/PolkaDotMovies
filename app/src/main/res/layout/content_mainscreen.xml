@@ -21,7 +21,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="131dp"
-        android:background="#bcae31"
+        android:background="#F7BE39"
         android:clickable="true"
         android:textSize="25dp"
         android:onClick="onLoginButtonClicked" />
@@ -34,7 +34,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="53dp"
-        android:background="#bcae31"
+        android:background="#F7BE39"
         android:clickable="true"
         android:textSize="25dp"
         android:onClick="onSignUpButtonPress" />
@@ -51,6 +51,5 @@
         android:textStyle="bold"
         android:textSize="50dp"
         android:textAlignment="center"
-        android:textColor="#433333"
         android:onClick="onLoginButtonClicked" />
 </RelativeLayout>
