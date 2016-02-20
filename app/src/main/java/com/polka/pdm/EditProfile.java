@@ -13,13 +13,14 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
  public class EditProfile extends AppCompatActivity {
      private User user;
 
-     EditText username;
+     TextView username;
      EditText pass;
      EditText firstname;
      EditText lastname;
@@ -52,7 +53,7 @@ import android.widget.Toast;
         }
 
         // get edit text fields
-        username = (EditText)findViewById(R.id.UserTextField); //TODO: DECIDE WHETHER USER CAN CHANGE USERNAME
+        username = (TextView)findViewById(R.id.UserTextField);
         pass = (EditText)findViewById(R.id.PassTextField);
         firstname = (EditText)findViewById(R.id.FirstNameTextField);
         lastname = (EditText)findViewById(R.id.LastNameTextField);
@@ -81,7 +82,7 @@ import android.widget.Toast;
         Log.d("EditProfile", "Save Button Pressed");
         //save some data here
 
-        String aUsername = username.getText().toString();
+//        String aUsername = username.getText().toString();
         String aPassword = pass.getText().toString();
         String aFirstName = firstname.getText().toString();
         String aLastName = lastname.getText().toString();
@@ -91,8 +92,8 @@ import android.widget.Toast;
         String aInterest = interests.getText().toString();
 
 
-        if (aFirstName.length() == 0 || aLastName.length() == 0 || aUsername.length() == 0 || aEmail.length() == 0 || aPassword.length() == 0) {
-            Toast.makeText(this, "First Name, Last Name, Username, Password, and Email must all be filled!", Toast.LENGTH_SHORT).show();
+        if (aFirstName.length() == 0 || aLastName.length() == 0 || aEmail.length() == 0 || aPassword.length() == 0) {
+            Toast.makeText(this, "First Name, Last Name, Password, and Email must all be filled!", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -112,7 +113,7 @@ import android.widget.Toast;
 
 
         // insert updated user info into database TODO: Check if user is already in database
-        repo.updateProfile(user.username, username.getText().toString(), pass.getText().toString(),
+        repo.updateProfile(user.username, /*username.getText().toString(),*/ pass.getText().toString(),
                 firstname.getText().toString(),lastname.getText().toString(), email.getText().toString(), phone.getText().toString(),
                 major.getText().toString(), interests.getText().toString());
         // update current User instance (I believe this is unchanged at this point)

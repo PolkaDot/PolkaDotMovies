@@ -29,22 +29,30 @@ public class ViewProfile extends AppCompatActivity {
         } else {
             user = savedInstanceState.getParcelable("user");
         }
-        Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
+        if (user != null) {
+            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
+        }
 
         // Get TextViews on view profile page
-        TextView nameTextView = (TextView)findViewById(R.id.NameTextField);
-        // TextView editTextLastName; TODO: add this into view profile page
+        TextView firstNameTextView = (TextView)findViewById(R.id.FirstNameTextField);
+        TextView lastNameTextView = (TextView)findViewById(R.id.LastNameTextField);
         TextView userTextView = (TextView)findViewById(R.id.UserTextField);
         TextView emailTextView = (TextView)findViewById(R.id.EmailTextField);
+        TextView phoneTextView = (TextView)findViewById(R.id.PhoneTextField);
         TextView majorTextView = (TextView)findViewById(R.id.MajorTextField);
         TextView passTextView = (TextView)findViewById(R.id.PassTextField);
+        TextView interestsTextView = (TextView)findViewById(R.id.InterestTextField);
+
 
         // Put user information in TextView boxes
-        nameTextView.setText(user.firstName);
+        firstNameTextView.setText(user.firstName);
+        lastNameTextView.setText(user.lastName);
         userTextView.setText(user.username);
         emailTextView.setText(user.email);
+        phoneTextView.setText(user.phone);
         majorTextView.setText(user.major);
         passTextView.setText(user.password);
+        interestsTextView.setText(user.interests);
     }
 
     public void onEditProfileClick(View view) {
