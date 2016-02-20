@@ -45,7 +45,8 @@
         android:layout_marginTop="10dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:background="#F7BE39" />
+        android:background="#F7BE39"
+        android:onClick="onSearchMovieClick" />
 
     <Button
         android:layout_width="wrap_content"
