@@ -20,7 +20,7 @@
         android:id="@+id/LogoutHomeButton"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:background="#bcae31"
+        android:background="#F7BE39"
         android:onClick="logoutClickListener" />
 
     <Button
@@ -32,7 +32,7 @@
         android:layout_below="@+id/LogoutHomeButton"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
-        android:background="#bcae31"
+        android:background="#F7BE39"
         android:onClick="onViewProfileClick" />
 
     <Button
@@ -45,7 +45,7 @@
         android:layout_marginTop="10dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:background="#bcae31" />
+        android:background="#F7BE39" />
 
     <Button
         android:layout_width="wrap_content"
@@ -57,7 +57,7 @@
         android:layout_marginTop="10dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
-        android:background="#bcae31" />
+        android:background="#F7BE39" />
 
     <Button
         android:layout_width="wrap_content"
@@ -69,7 +69,7 @@
         android:layout_marginTop="10dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
-        android:background="#bcae31" />
+        android:background="#F7BE39" />
 
     <Button
         android:layout_width="wrap_content"
@@ -81,5 +81,5 @@
         android:layout_marginTop="10dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
-        android:background="#bcae31" />
+        android:background="#F7BE39" />
 </RelativeLayout>

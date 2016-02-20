@@ -8,7 +8,6 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/homebackground"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.polka.pdm.ViewProfile"
     tools:showIn="@layout/activity_view_profile">
@@ -20,8 +19,52 @@
         android:id="@+id/EditProfile"
         android:clickable="true"
         android:onClick="onEditProfileClick"
-        android:background="#bcae31"
+        android:background="#F7BE39"
         android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Username"
+        android:id="@+id/UserNameLabel"
+        android:textSize="30dp"
+        android:layout_below="@+id/EditProfile"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Password"
+        android:id="@+id/PasswordLabel"
+        android:layout_below="@+id/UserNameLabel"
+        android:layout_alignParentStart="true"
+        android:textSize="30dp"
+        android:password="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="First Name"
+        android:id="@+id/FirstNameLabel"
+        android:textSize="30dp"
+        android:layout_gravity="left|top"
+        android:layout_below="@+id/PasswordLabel"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Last Name"
+        android:id="@+id/LastNameLabel"
+        android:textSize="30dp"
+        android:layout_gravity="left|top"
+        android:layout_below="@+id/FirstNameLabel"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -30,21 +73,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Email"
         android:id="@+id/emailLabel"
-        android:textSize="35dp"
+        android:textSize="30dp"
         android:layout_gravity="left"
-        android:layout_below="@+id/PasswordLabel"
-        android:layout_alignParentStart="true" />
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Name"
-        android:id="@+id/NameLabel"
-        android:textSize="35dp"
-        android:layout_gravity="left|top"
-        android:layout_below="@+id/EditProfile"
+        android:layout_below="@+id/LastNameLabel"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -53,9 +84,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Phone"
         android:id="@+id/phoneLabel"
-        android:textSize="35dp"
+        android:textSize="30dp"
         android:layout_gravity="left"
-        android:layout_below="@+id/NameLabel"
+        android:layout_below="@+id/emailLabel"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -65,9 +96,9 @@
         android:text="Major"
         android:id="@+id/MajorLabel"
         android:clickable="false"
-        android:textSize="35dp"
+        android:textSize="30dp"
         android:layout_gravity="left"
-        android:layout_below="@+id/emailLabel"
+        android:layout_below="@+id/phoneLabel"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -76,31 +107,14 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Interests:"
         android:id="@+id/InterestLabel"
-        android:textSize="35dp"
+        android:textSize="30dp"
         android:layout_gravity="right"
         android:layout_below="@+id/MajorLabel"
         android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="User"
-        android:id="@+id/UserNameLabel"
-        android:textSize="35dp"
-        android:layout_below="@+id/phoneLabel"
-        android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Pass"
-        android:id="@+id/PasswordLabel"
-        android:layout_below="@+id/UserNameLabel"
-        android:layout_alignParentStart="true"
-        android:textSize="35dp"
-        android:password="false" />
+
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -121,11 +135,23 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:focusable="false"
         android:textSize="30dp"
-        android:id="@+id/NameTextField"
+        android:id="@+id/FirstNameTextField"
         android:layout_alignParentEnd="true"
         android:layout_gravity="right"
         android:text="Hello"
-        android:layout_alignBaseline="@+id/NameLabel" />
+        android:layout_alignBaseline="@+id/FirstNameLabel" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:focusable="false"
+        android:textSize="30dp"
+        android:id="@+id/LastNameTextField"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="right"
+        android:text="Hello"
+        android:layout_alignBaseline="@+id/LastNameLabel" />
 
 
     <TextView
@@ -151,7 +177,6 @@
         android:layout_gravity="right"
         android:text="Hello"
         android:layout_alignBaseline="@+id/UserNameLabel" />
-    />
 
 
     <TextView
@@ -201,7 +226,7 @@
         android:id="@+id/HomeProfileButton"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:background="#bcae31"
+        android:background="#F7BE39"
         android:onClick="onHomeClick" />
 
 

@@ -86,9 +86,9 @@ public class UserRepo {
         return user;
     }
 
-    public void updateProfile(String user, String newuser, String pass, String firstname, String lastname, String email, String phone, String major, String interests) {
+    public void updateProfile(String user, /*String newuser,*/ String pass, String firstname, String lastname, String email, String phone, String major, String interests) {
         // TODO: not sure about efficiency writing to databases many times
-        setUsername(user, newuser);
+//        setUsername(user, newuser);
         setPass(user, pass);
         setFirstName(user, firstname);
         setLastName(user,lastname);
