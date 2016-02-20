@@ -1,3 +1,7 @@
+/**
+ * Search Activity Class
+ * for When the user wants to search for movies
+ */
 package com.polka.pdm;
 
 import android.os.Bundle;
@@ -17,17 +21,14 @@ public class SearchMovies extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
 
     }
 
+    /**
+     * indicates that the user wants to search the movie typed in the editText
+     *
+     * @param view of the search Movies activity
+     */
     public void onSearchButtonPress(View view) {
         Log.d("SearchMovies", "search button pressed");
 
