@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
  * inserts user into db and gets user by username
  *
  * Created by C. Shih on 2/12/2016.
+ * Updated by Y. Avila-Stanley
  */
 public class UserRepo {
     private DBHelper dbHelper;
@@ -70,6 +71,7 @@ public class UserRepo {
                 user.firstName = cursor.getString(cursor.getColumnIndex(User.KEY_firstName));
                 user.lastName = cursor.getString(cursor.getColumnIndex(User.KEY_lastName));
                 user.email = cursor.getString(cursor.getColumnIndex(User.KEY_email));
+                user.major = cursor.getString(cursor.getColumnIndex(User.KEY_major));
                 user.phone = cursor.getString(cursor.getColumnIndex(User.KEY_phone));
                 user.interests = cursor.getString(cursor.getColumnIndex(User.KEY_interests));
                 user.isLocked = cursor.getInt(cursor.getColumnIndex(User.KEY_isLocked));
@@ -84,5 +86,143 @@ public class UserRepo {
         return user;
     }
 
+    public void updateProfile(String user, /*String newuser,*/ String pass, String firstname, String lastname, String email, String phone, String major, String interests) {
+        // TODO: not sure about efficiency writing to databases many times
+//        setUsername(user, newuser);
+        setPass(user, pass);
+        setFirstName(user, firstname);
+        setLastName(user,lastname);
+        setEmail(user, email);
+        setPhone(user, phone);
+        setMajor(user, major);
+        setInterests(user, interests);
+    }
 
+    public void setUsername(String user, String newUser) {
+
+        // open connection to write data
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(User.KEY_username, newUser);
+        // creates where and where arguments
+        String where = User.KEY_username + " = ?";
+        String[] whereArgs = {user};
+
+        // update
+        int numberRowsUpdated = db.update(User.TABLE, values, where, whereArgs);
+        db.close();
+    }
+
+    public void setFirstName(String user, String name) {
+
+        // open connection to write data
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(User.KEY_firstName, name);
+        // creates where and where arguments
+        String where = User.KEY_username + " = ?";
+        String[] whereArgs = {user};
+
+        // update
+        int numberRowsUpdated = db.update(User.TABLE, values, where, whereArgs);
+        db.close();
+    }
+
+    public void setLastName(String user, String name) {
+
+        // open connection to write data
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(User.KEY_lastName, name);
+        // creates where and where arguments
+        String where = User.KEY_username + " = ?";
+        String[] whereArgs = {user};
+
+        // update
+        int numberRowsUpdated = db.update(User.TABLE, values, where, whereArgs);
+        db.close();
+    }
+
+    public void setPass(String user, String pass) {
+
+        // open connection to write data
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(User.KEY_password, pass);
+        // creates where and where arguments
+        String where = User.KEY_username + " = ?";
+        String[] whereArgs = {user};
+
+        // update
+        int numberRowsUpdated = db.update(User.TABLE, values, where, whereArgs);
+        db.close();
+    }
+
+    public void setEmail(String user, String email) {
+
+        // open connection to write data
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(User.KEY_email, email);
+        // creates where and where arguments
+        String where = User.KEY_username + " = ?";
+        String[] whereArgs = {user};
+
+        // update
+        int numberRowsUpdated = db.update(User.TABLE, values, where, whereArgs);
+        db.close();
+    }
+
+    public void setPhone(String user, String phone) {
+
+        // open connection to write data
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(User.KEY_phone, phone);
+        // creates where and where arguments
+        String where = User.KEY_username + " = ?";
+        String[] whereArgs = {user};
+
+        // update
+        int numberRowsUpdated = db.update(User.TABLE, values, where, whereArgs);
+        db.close();
+    }
+
+    public void setMajor(String user, String major) {
+
+        // open connection to write data
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(User.KEY_major, major);
+        // creates where and where arguments
+        String where = User.KEY_username + " = ?";
+        String[] whereArgs = {user};
+
+        // update
+        int numberRowsUpdated = db.update(User.TABLE, values, where, whereArgs);
+        db.close();
+    }
+
+    public void setInterests(String user, String interests) {
+
+        // open connection to write data
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(User.KEY_interests, interests);
+        // creates where and where arguments
+        String where = User.KEY_username + " = ?";
+        String[] whereArgs = {user};
+
+        // update
+        int numberRowsUpdated = db.update(User.TABLE, values, where, whereArgs);
+        db.close();
+    }
 }

@@ -8,7 +8,6 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/homebackground"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.polka.pdm.RegistrationPage"
     tools:showIn="@layout/activity_registration_page">
@@ -29,10 +28,21 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/nameText"
+        android:id="@+id/editTextFirstName"
         android:layout_below="@+id/registrationTitle"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="53dp"
+        android:layout_marginTop="35dp"
+        android:layout_alignParentStart="true"
+        android:hint="First Name" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editTextLastName"
+        android:layout_below="@+id/editTextFirstName"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
         android:hint="Last Name" />
 
@@ -41,19 +51,19 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/userNameEdit"
-        android:layout_below="@+id/nameText"
-        android:layout_alignStart="@+id/nameText"
-        android:hint="User Name" />
+        android:id="@+id/editTextUserName"
+        android:layout_below="@+id/editTextLastName"
+        android:layout_alignStart="@+id/editTextFirstName"
+        android:hint="Username" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/emailText"
-        android:layout_below="@+id/userNameEdit"
-        android:layout_alignStart="@+id/userNameEdit"
+        android:id="@+id/editTextEmail"
+        android:layout_below="@+id/editTextUserName"
+        android:layout_alignStart="@+id/editTextUserName"
         android:hint="Email Address" />
 
     <Button
@@ -62,12 +72,12 @@
         android:text="Register"
         android:id="@+id/signUpButton"
         android:layout_marginTop="49dp"
-        android:background="#bcae31"
+        android:background="#F7BE39"
         android:textSize="25dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
         android:onClick="onRegisterButtonPress"
-        android:layout_below="@+id/passwordText"
+        android:layout_below="@+id/editTextPassword"
         android:layout_alignParentStart="true" />
 
     <Button
@@ -75,7 +85,7 @@
         android:layout_height="wrap_content"
         android:text="Cancel"
         android:id="@+id/cancelRegistrationButton"
-        android:background="#bcae31"
+        android:background="#F7BE39"
         android:textSize="25dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
@@ -89,21 +99,10 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/passwordText"
-        android:layout_below="@+id/emailText"
+        android:id="@+id/editTextPassword"
+        android:layout_below="@+id/editTextEmail"
         android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/emailText"
+        android:layout_alignEnd="@+id/editTextEmail"
         android:hint="Password" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText"
-        android:layout_below="@+id/registrationTitle"
-        android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/nameText"
-        android:hint="First Name" />
 
 </RelativeLayout>
