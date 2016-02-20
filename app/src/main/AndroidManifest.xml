@@ -31,10 +31,9 @@
         <activity
             android:name=".RegistrationPage"
             android:label="@string/title_activity_registration_page"
-            android:theme="@style/AppTheme.NoActionBar" /><![CDATA[
+            android:theme="@style/AppTheme.NoActionBar" />
         android:name=".LoginActivity"
         android:label="@string/title_activity_login" />
-        ]]>
         <activity
             android:name=".ViewProfile"
             android:label="@string/title_activity_view_profile"
@@ -46,6 +45,10 @@
         <activity
             android:name=".HomeApp"
             android:label="@string/title_activity_home_app"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SearchMovies"
+            android:label="@string/title_activity_search_movies"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
