@@ -50,6 +50,8 @@ public class RegistrationPage extends AppCompatActivity {
         Log.d("Cancel", "Cancel Button Pressed");
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+//        Intent intent = new Intent(this, SearchMovies.class);
+//        startActivity(intent);
     }
 
     /**
