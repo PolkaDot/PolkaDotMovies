@@ -84,7 +84,6 @@ public class HomeApp extends AppCompatActivity {
         startActivity(intent);
     }
 
-
     public void onSearchButtonPress(View view) {
         Log.d("HomeApp", "Search Button Pressed");
 
@@ -94,5 +93,8 @@ public class HomeApp extends AppCompatActivity {
 
     }
 
-
+    public void onMoviesButtonClick(View view) {
+        Intent intent = new Intent(this, RecentMovies.class);
+        startActivity(intent);
+    }
 }

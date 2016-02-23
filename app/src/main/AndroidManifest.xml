@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -50,11 +50,18 @@
             android:name=".RecentDvds"
             android:label="@string/title_activity_recent_dvds"
             android:theme="@style/AppTheme.NoActionBar" />
+<<<<<<< Updated upstream
 
         <activity
             android:name=".SearchMovies"
             android:label="@string/title_activity_search_movies"
             android:theme="@style/AppTheme.NoActionBar"/>
+=======
+        <activity
+            android:name=".RecentMovies"
+            android:label="@string/title_activity_recent_movies"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+>>>>>>> Stashed changes
     </application>
 
 </manifest>
