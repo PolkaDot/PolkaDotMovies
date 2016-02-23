@@ -51,6 +51,11 @@
             android:name=".RecentDvds"
             android:label="RecentDvds"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".SearchMovies"
+            android:label="@string/title_activity_search_movies"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
