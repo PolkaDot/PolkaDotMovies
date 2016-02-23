@@ -1,3 +1,4 @@
+
  /*
  * @author Arsh Momin
  * @version 1.0
@@ -77,7 +78,10 @@ import android.widget.Toast;
 
     }
 
-//    save button. should take you back to view profile
+     /**
+      * when you press save, it should save all the updates you made to your profile
+      * @param view of the viewAProfile Activity
+      */
     public void onSavePress(View view) {
         Log.d("EditProfile", "Save Button Pressed");
         //save some data here
@@ -128,6 +132,12 @@ import android.widget.Toast;
         intent.putExtra("user", user);
         startActivity(intent);
     }
+
+     /**
+      * when you press cancel it still goes to the viewProfile activity
+      * except for that it doesn't actually save any of the changs you made
+      * @param view of the viewProfile activity
+      */
     public void onCancelPress(View view) {
         Log.d("EditProfile", "Cancel Button Pressed");
         //don't save anything

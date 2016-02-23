@@ -42,7 +42,10 @@ public class HomeApp extends AppCompatActivity {
         } else {
             user = savedInstanceState.getParcelable("user");
         }
-        Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
+        if (user != null) {
+            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     /**
@@ -84,34 +87,14 @@ public class HomeApp extends AppCompatActivity {
         startActivity(intent);
     }
 
-    /**
-     * Test Method to see if call to API works.
-     * TODO: Implement in actual search activity when Arsh is done.
-     * @param view
-     */
-    public void onSearchMovieClick(View view) {
-        String apiKey = "yedukp76ffytfuy24zsqk7f5";
-        String baseUrl = "http://api.rottentomatoes.com/api/public/v1.0/";
-        String searchUrl = "movies.json?apikey=" + apiKey + "&q=Jack&page_limit=1";
 
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.GET, baseUrl + searchUrl, (String)null, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject resp) {
-                        //handle a valid response coming back.  Getting this string mainly for debug
-                        response = resp.toString();
-                    }
-                }, new Response.ErrorListener() {
+    public void onSearchButtonPress(View view) {
+        Log.d("HomeApp", "Search Button Pressed");
 
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        response = "JSon Request Failed!!";
-                    }
-                });
+        Intent intent = new Intent(this, SearchMovies.class);
+//        intent.putExtra("user", user);
+        startActivity(intent);
 
-        // Access the RequestQueue through your singleton class.
-        Toast.makeText(this, response, Toast.LENGTH_SHORT).show();
-        MySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
     }
 
 }
