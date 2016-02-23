@@ -13,23 +13,10 @@
     tools:showIn="@layout/activity_recentdvds">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Recent DVDs"
-        android:id="@+id/TextView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:textStyle="bold"
-        android:textSize="40dp" />
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
         android:id="@+id/RecentDVDsTextView"
-        android:layout_below="@+id/TextView"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

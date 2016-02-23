@@ -58,7 +58,7 @@ public class RecentDvds extends AppCompatActivity {
                     }
                 }
                 );
-        RottenTomato.getInstance(this).addToRequestQueue(jsObjRequest);
+        MySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
 
     }
 
@@ -71,11 +71,12 @@ public class RecentDvds extends AppCompatActivity {
             TextView  movie_names = (TextView)findViewById(R.id.RecentDVDsTextView);
             StringBuilder data = new StringBuilder();
             JSONArray arrayMovies = response.getJSONArray(Keys.KEY_MOVIE);
-            for (int i = 0; i < arrayMovies.length() && i < 5; i++) {
+            for (int i = 0; i < arrayMovies.length() && i < 10; i++) {
 
                 JSONObject currentMovie = arrayMovies.getJSONObject(i);
                 String name = currentMovie.getString(Keys.KEY_TITLE);
-                data.append(name + "\n");
+                int num = i +1;
+                data.append(num + " " + name + "\n");
             }
             movie_names.setText(data);
         } catch (JSONException e) {
