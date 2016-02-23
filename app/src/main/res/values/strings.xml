@@ -19,4 +19,8 @@
     <string name="title_activity_view_profile">ViewProfile</string>
     <string name="title_activity_edit_profile">EditProfile</string>
     <string name="title_activity_login_application">LoginApplication</string>
+    <string name="title_activity_registration_page">RegistrationPage</string>
+    <string name="title_activity_home_app">HomeApp</string>
+    <string name="title_activity_dvds">Dvds</string>
+    <string name="title_activity_test">Sign in</string>
 </resources>
