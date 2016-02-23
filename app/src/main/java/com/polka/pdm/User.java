@@ -119,6 +119,22 @@ public class User implements Parcelable {
                 Integer.toString(this.isAdmin)});
     }
 
+    @Override
+    public boolean equals(Object object) {
+        if (object == null) {
+            return false;
+        }
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof User)) {
+            return false;
+        }
+        User that = (User) object;
+        return this.username.equals(that.username);
+    }
+
+
     /**
      * inner class
      * creates a new creator
@@ -141,5 +157,7 @@ public class User implements Parcelable {
         public User[] newArray(int size) {
             return new User[size];
         }
+
+
     };
 }
