@@ -1,8 +1,8 @@
- /*
+ /**
  * @author Arsh Momin
  * @version 1.0
  * class to help a user edit his/her profile
- * */
+ */
 
 package com.polka.pdm;
 
@@ -77,7 +77,11 @@ import android.widget.Toast;
 
     }
 
-//    save button. should take you back to view profile
+
+     /**
+      * save button. should take you back to view profile
+      * @param view of Edit Profile
+      */
     public void onSavePress(View view) {
         Log.d("EditProfile", "Save Button Pressed");
         //save some data here
@@ -128,6 +132,11 @@ import android.widget.Toast;
         intent.putExtra("user", user);
         startActivity(intent);
     }
+     /**
+      * cancel button. should take you back to view profile
+      * without saving data
+      * @param view of Edit Profile
+      */
     public void onCancelPress(View view) {
         Log.d("EditProfile", "Cancel Button Pressed");
         //don't save anything
