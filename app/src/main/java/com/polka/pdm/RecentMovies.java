@@ -25,13 +25,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 
-public class RecentDvds extends AppCompatActivity {
+public class RecentMovies extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // getActionBar().setHomeButtonEnabled(true);
-        setContentView(R.layout.activity_recentdvds);
+        setContentView(R.layout.activity_recent_movies);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -39,7 +39,7 @@ public class RecentDvds extends AppCompatActivity {
     }
 
     private void sendJsonRequest() {
-        String url = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?apikey=yedukp76ffytfuy24zsqk7f5";
+        String url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=yedukp76ffytfuy24zsqk7f5";
 
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
@@ -58,7 +58,7 @@ public class RecentDvds extends AppCompatActivity {
                     }
                 }
                 );
-        MySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
+        RottenTomato.getInstance(this).addToRequestQueue(jsObjRequest);
 
     }
 
@@ -68,15 +68,14 @@ public class RecentDvds extends AppCompatActivity {
         }
 
         try {
-            TextView  movie_names = (TextView)findViewById(R.id.RecentDVDsTextView);
+            TextView  movie_names = (TextView)findViewById(R.id.RecentMoviesTextView);
             StringBuilder data = new StringBuilder();
             JSONArray arrayMovies = response.getJSONArray(Keys.KEY_MOVIE);
-            for (int i = 0; i < arrayMovies.length() && i < 10; i++) {
+            for (int i = 0; i < arrayMovies.length() && i < 5; i++) {
 
                 JSONObject currentMovie = arrayMovies.getJSONObject(i);
                 String name = currentMovie.getString(Keys.KEY_TITLE);
-                int num = i +1;
-                data.append(num + " " + name + "\n");
+                data.append(name + "\n");
             }
             movie_names.setText(data);
         } catch (JSONException e) {

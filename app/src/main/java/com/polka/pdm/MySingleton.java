@@ -1,7 +1,6 @@
 package com.polka.pdm;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -9,22 +8,22 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
 /**
- * Created by alisha on 2/18/2016.
+ * Created by thech_000 on 2/20/2016.
  */
-public class RottenTomato {
-
-    private static RottenTomato mInstance;
+public class MySingleton {
+    private static MySingleton mInstance;
     private RequestQueue mRequestQueue;
     private static Context mCtx;
 
-    private RottenTomato(Context context) {
+    private MySingleton(Context context) {
         mCtx = context;
         mRequestQueue = getRequestQueue();
+
     }
 
-    public static synchronized RottenTomato getInstance(Context context) {
+    public static synchronized MySingleton getInstance(Context context) {
         if (mInstance == null) {
-            mInstance = new RottenTomato(context);
+            mInstance = new MySingleton(context);
         }
         return mInstance;
     }
