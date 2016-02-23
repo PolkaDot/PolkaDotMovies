@@ -116,12 +116,24 @@ public class HomeApp extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /*
+     * Opens the Recent DVDs page
+     *
+     * @param view user interface component
+     */
+    public void onDVDsButtonClick(View view) {
+        Intent intent = new Intent(this, RecentDvds.class);
+        startActivity(intent);
+    }
+
+
     public void onSearchButtonPress(View view) {
         Log.d("HomeApp", "Search Button Pressed");
 
         Intent intent = new Intent(this, SearchMovies.class);
 //        intent.putExtra("user", user);
         startActivity(intent);
+
     }
 
     //
@@ -255,6 +267,7 @@ public class HomeApp extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
         drawerToggle.onConfigurationChanged(newConfig);
     }
+
 
 
 }

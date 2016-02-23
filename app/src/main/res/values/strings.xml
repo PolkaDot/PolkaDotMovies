@@ -29,4 +29,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_view_profile">View Profile</string>
+    <string name="title_activity_edit_profile">Edit Profile</string>
+    <string name="title_activity_login_application">Login</string>
+    <string name="title_activity_registration_page">Registration Page</string>
+    <string name="title_activity_home_app">Home Page</string>
+    <string name="title_activity_recent_dvds">Recent Dvds</string>
+    <string name="title_activity_search_movies">Search Movies</string>
 </resources>

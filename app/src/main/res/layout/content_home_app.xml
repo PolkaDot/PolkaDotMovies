@@ -46,6 +46,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:background="#F7BE39"
+
         android:clickable="true"
         android:onClick="onSearchButtonPress" />
 
@@ -71,7 +72,9 @@
         android:layout_marginTop="10dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
+        android:onClick="onDVDsButtonClick"
         android:background="#F7BE39" />
+
 
     <Button
         android:layout_width="wrap_content"
