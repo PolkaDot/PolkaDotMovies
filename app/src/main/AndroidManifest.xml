@@ -8,7 +8,6 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET"/>
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -34,8 +33,7 @@
             android:name=".RegistrationPage"
             android:label="@string/title_activity_registration_page"
             android:theme="@style/AppTheme.NoActionBar" />
-        android:name=".LoginActivity"
-        android:label="@string/title_activity_login" />
+
         <activity
             android:name=".ViewProfile"
             android:label="@string/title_activity_view_profile"
@@ -49,9 +47,14 @@
             android:label="@string/title_activity_home_app"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".RecentDvds"
+            android:label="@string/title_activity_recent_dvds"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
             android:name=".SearchMovies"
             android:label="@string/title_activity_search_movies"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

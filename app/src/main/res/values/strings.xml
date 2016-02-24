@@ -15,11 +15,11 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="title_activity_login1">LoginActivity1</string>
-    <string name="title_activity_view_profile">ViewProfile</string>
-    <string name="title_activity_edit_profile">EditProfile</string>
-    <string name="title_activity_login_application">LoginApplication</string>
-    <string name="title_activity_registration_page">RegistrationPage</string>
-    <string name="title_activity_home_app">HomeApp</string>
-    <string name="title_activity_search_movies">SearchMovies</string>
+    <string name="title_activity_view_profile">View Profile</string>
+    <string name="title_activity_edit_profile">Edit Profile</string>
+    <string name="title_activity_login_application">Login</string>
+    <string name="title_activity_registration_page">Registration Page</string>
+    <string name="title_activity_home_app">Home Page</string>
+    <string name="title_activity_recent_dvds">Recent Dvds</string>
+    <string name="title_activity_search_movies">Search Movies</string>
 </resources>
