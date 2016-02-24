@@ -11,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -26,11 +25,10 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 public class SearchMovies extends AppCompatActivity {
+    // Size of response array
     protected String[] mDataset;
-    private static final int DATASET_COUNT = 60;
-    // to test response
-    private String response;
-    private String[] test;
+    private static final int DATASET_COUNT = 50;
+
     // Needed for recycler view
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -44,7 +42,6 @@ public class SearchMovies extends AppCompatActivity {
         setContentView(R.layout.activity_search_movies);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        initDataset();
 
         // BEGIN_INCLUDE (initializeRecyclerView)
         mRecyclerView = (RecyclerView) findViewById(R.id.moviesRecylerView);
@@ -57,9 +54,7 @@ public class SearchMovies extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        // specify an adapter
-        mAdapter = new MyAdapter(mDataset);
-        mRecyclerView.setAdapter(mAdapter);
+
     }
 
     /**
@@ -84,7 +79,7 @@ public class SearchMovies extends AppCompatActivity {
         String baseUrl = "http://api.rottentomatoes.com/api/public/v1.0/";
         String searchUrl = null;
         try {
-            searchUrl = "movies.json?apikey=" + apiKey + "&q=" + URLEncoder.encode(searchParam, "UTF-8") + "&page_limit=1";
+            searchUrl = "movies.json?apikey=" + apiKey + "&q=" + URLEncoder.encode(searchParam, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             // UTF-8 should always be supported; can safely ignore
             e.printStackTrace();
@@ -95,19 +90,20 @@ public class SearchMovies extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject resp) {
                         //handle a valid response coming back.  Getting this string mainly for debug
-                        response = resp.toString();
-//                        test = parseJSONObject(resp);
+                        mDataset = parseJSONObject(resp);
+                        // specify an adapter
+                        mAdapter = new MyAdapter(mDataset);
+                        mRecyclerView.setAdapter(mAdapter);
                     }
                 }, new Response.ErrorListener() {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        response = "JSon Request Failed!!";
+                        // err
                     }
                 });
 
         // Access the RequestQueue through your singleton class.
-        Toast.makeText(this, response, Toast.LENGTH_SHORT).show();
         MySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
     }
 
@@ -122,9 +118,9 @@ public class SearchMovies extends AppCompatActivity {
             return null;
         }
         try {
-            String[] data = new String[10];
+            String[] data = new String[DATASET_COUNT];
             JSONArray arrayMovies = response.getJSONArray(Keys.KEY_MOVIE);
-            for (int i = 0; i < arrayMovies.length() && i < 10; i++) {
+            for (int i = 0; i < arrayMovies.length() && i < DATASET_COUNT; i++) {
                 JSONObject currentMovie = arrayMovies.getJSONObject(i);
                 String name = currentMovie.getString(Keys.KEY_TITLE);
                 data[i] = name;
@@ -135,12 +131,4 @@ public class SearchMovies extends AppCompatActivity {
         }
         return null;
     }
-
-    private void initDataset() {
-        mDataset = new String[DATASET_COUNT];
-        for (int i = 0; i < DATASET_COUNT; i++) {
-            mDataset[i] = "This is element #" + i;
-        }
-    }
-
 }
