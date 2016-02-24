@@ -1,14 +1,12 @@
-/**
- * @author Alisha KC
- * @version 1.0
- * The begining of our application (when we first start the app)
- */
 package com.polka.pdm;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -64,9 +62,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -80,8 +78,6 @@ public class MainActivity extends AppCompatActivity {
     public void onSignUpButtonPress(View v ) {
         Intent intent = new Intent(this, RegistrationPage.class);
         startActivity(intent);
-
-
     }
 
 }
