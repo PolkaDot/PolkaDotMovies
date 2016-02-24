@@ -1,3 +1,8 @@
+/**
+ * @author Christine Shih
+ * @version 2.0
+ * The start/home page of the application (after we have logged in)
+ */
 package com.polka.pdm;
 
 import android.content.Intent;
@@ -36,7 +41,6 @@ public class HomeApp extends AppCompatActivity {
         if (user != null) {
             Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
         }
-
     }
 
     /**
@@ -67,8 +71,9 @@ public class HomeApp extends AppCompatActivity {
         startActivity(intent);
     }
 
-    /*
+    /**
     * when you click view profile, it takes you to the view profile activity
+    * @param view that you're looking at.
      */
     public void onViewProfileClick(View view) {
         Log.d("ViewProfile", "View Profile Button Pressed");
@@ -97,6 +102,4 @@ public class HomeApp extends AppCompatActivity {
         startActivity(intent);
 
     }
-
-
 }
