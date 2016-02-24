@@ -12,12 +12,17 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "user.db";
 
+    /**
+     * constructor for DBHelper
+     * @param context of the app
+     */
     public DBHelper(Context context){
             super(context, DATABASE_NAME, null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        // creates user table
         String CREATE_TABLE_USER = "CREATE TABLE " + User.TABLE + " ("
                 + User.KEY_username + " TEXT PRIMARY KEY, "
                 + User.KEY_password + " TEXT, "
@@ -31,6 +36,16 @@ public class DBHelper extends SQLiteOpenHelper {
                 + User.KEY_isBanned + " INTEGER, "
                 + User.KEY_isAdmin + " INTEGER)";
         db.execSQL(CREATE_TABLE_USER);
+
+        // creates rating table
+        String CREATE_TABLE_RATING = "CREATE TABLE " + Rating.TABLE + " ("
+                + Rating.KEY_ratingId + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + Rating.KEY_movie + " TEXT, "
+                + Rating.KEY_movieYear + " TEXT, "
+                + Rating.KEY_user + " TEXT, "
+                + Rating.KEY_rating + " INTEGER, "
+                + Rating.KEY_comment + " TEXT)";
+        db.execSQL(CREATE_TABLE_RATING);
     }
 
     @Override

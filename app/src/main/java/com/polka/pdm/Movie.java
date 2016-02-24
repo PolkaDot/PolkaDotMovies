@@ -45,6 +45,26 @@ public class Movie {
         return this.title.equals(that.title) && this.year == that.year;
     }
 
+
+    /**
+     * to string of a movie's title
+     *
+     * @return movie title
+     */
+    public String getTitle() {
+        return this.title;
+    }
+
+
+    /**
+     * to string of a movie's year
+     *
+     * @return movie's year made
+     */
+    public int getYear() {
+        return this.year;
+    }
+
     @Override
     public int hashCode() {
         return 7*year + synopsis.length();
