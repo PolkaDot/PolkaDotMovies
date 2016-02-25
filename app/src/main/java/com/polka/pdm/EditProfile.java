@@ -1,9 +1,9 @@
 
- /*
+ /**
  * @author Arsh Momin
  * @version 1.0
  * class to help a user edit his/her profile
- * */
+ */
 
 package com.polka.pdm;
 
@@ -78,6 +78,7 @@ import android.widget.Toast;
 
     }
 
+
      /**
       * when you press save, it should save all the updates you made to your profile
       * @param view of the viewAProfile Activity
@@ -134,9 +135,9 @@ import android.widget.Toast;
     }
 
      /**
-      * when you press cancel it still goes to the viewProfile activity
-      * except for that it doesn't actually save any of the changs you made
-      * @param view of the viewProfile activity
+      * cancel button. should take you back to view profile
+      * without saving data
+      * @param view of Edit Profile
       */
     public void onCancelPress(View view) {
         Log.d("EditProfile", "Cancel Button Pressed");

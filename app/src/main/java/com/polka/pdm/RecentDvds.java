@@ -38,6 +38,10 @@ public class RecentDvds extends AppCompatActivity {
         sendJsonRequest();
     }
 
+    /*
+    * Sends a JSON request to the Rotten Tomato API for a JSON object
+    *
+    */
     private void sendJsonRequest() {
         String url = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?apikey=yedukp76ffytfuy24zsqk7f5";
 
@@ -62,6 +66,11 @@ public class RecentDvds extends AppCompatActivity {
 
     }
 
+    /*
+    * Parses the JSON object from the rotten tomato website
+    * Sets text on the Recent DVDs page to the string that was parsed
+    *
+    */
     private void parseJSONObject(JSONObject response) {
         if (response == null || response.length() == 0) {
             return;
