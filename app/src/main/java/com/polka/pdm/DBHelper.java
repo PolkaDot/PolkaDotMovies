@@ -1,8 +1,8 @@
 package com.polka.pdm;
 /**
  * DBHelper to create the database and the table
- *
- * Created by C. Shih on 2/12/2016.
+ * @author Christine Shih 2/12/2016
+ * @version 1.0
  */
 
 import android.content.Context;

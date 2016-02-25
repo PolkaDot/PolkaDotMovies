@@ -1,3 +1,8 @@
+/**
+ * @author Alisha KC
+ * @version 1.0
+ * The begining of our application (when we first start the app)
+ */
 package com.polka.pdm;
 
 import android.content.Intent;
@@ -38,6 +43,13 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * /**
+     * when you press the login button,
+     * it takes you back to the login activity
+     * @param w that we were are on
+     *
+     */
     public void onLoginButtonClicked(View w) {
         Intent intent = new Intent(this, LoginApplication.class);
         startActivity(intent);
@@ -60,7 +72,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * when you press the sign up button,
+     * it takes you back to the registration activity
+     * @param v that we were are on
+     */
     public void onSignUpButtonPress(View v ) {
         Intent intent = new Intent(this, RegistrationPage.class);
         startActivity(intent);
