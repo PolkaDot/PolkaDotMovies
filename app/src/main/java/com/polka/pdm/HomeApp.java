@@ -1,10 +1,8 @@
 /**
- * @Author Arsh Momin
- * @version 1.0
- * Activity that starts after you log into the app
- * this is the right way to do javadocs
+ * @author Christine Shih
+ * @version 2.0
+ * The start/home page of the application (after we have logged in)
  */
-
 package com.polka.pdm;
 
 //import android.app.FragmentManager;
@@ -37,6 +35,7 @@ public class HomeApp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_app);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -63,7 +62,6 @@ public class HomeApp extends AppCompatActivity {
         if (user != null) {
             Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
         }
-
     }
 
     /**

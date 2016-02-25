@@ -16,6 +16,10 @@ import android.database.sqlite.SQLiteDatabase;
 public class UserRepo {
     private DBHelper dbHelper;
 
+    /**
+     * create of db helper
+     * @param context context of the application?
+     */
     public UserRepo(Context context) {
         dbHelper = new DBHelper(context);
     }
@@ -86,6 +90,17 @@ public class UserRepo {
         return user;
     }
 
+    /**
+     * updates the profile of a user
+     * @param user username
+     * @param pass password
+     * @param firstname the first name
+     * @param lastname the sir name
+     * @param email the email of the user
+     * @param phone number
+     * @param major major offical
+     * @param interests things the user likes
+     */
     public void updateProfile(String user, /*String newuser,*/ String pass, String firstname, String lastname, String email, String phone, String major, String interests) {
         // TODO: not sure about efficiency writing to databases many times
 //        setUsername(user, newuser);
@@ -98,6 +113,11 @@ public class UserRepo {
         setInterests(user, interests);
     }
 
+    /**
+     * setter for user
+     * @param user name of user
+     * @param newUser new username
+     */
     public void setUsername(String user, String newUser) {
 
         // open connection to write data
@@ -114,6 +134,11 @@ public class UserRepo {
         db.close();
     }
 
+    /**
+     * setter for first name
+     * @param user name of user
+     * @param name new first name
+     */
     public void setFirstName(String user, String name) {
 
         // open connection to write data
@@ -130,6 +155,11 @@ public class UserRepo {
         db.close();
     }
 
+    /**
+     * setter for last name
+     * @param user name of user
+     * @param name new last name
+     */
     public void setLastName(String user, String name) {
 
         // open connection to write data
@@ -146,6 +176,11 @@ public class UserRepo {
         db.close();
     }
 
+    /**
+     * setter for passsowrd
+     * @param user name of user
+     * @param pass new pwassword
+     */
     public void setPass(String user, String pass) {
 
         // open connection to write data
@@ -162,6 +197,11 @@ public class UserRepo {
         db.close();
     }
 
+    /**
+     * setter for email name
+     * @param user name of user
+     * @param email new email
+     */
     public void setEmail(String user, String email) {
 
         // open connection to write data
@@ -178,6 +218,11 @@ public class UserRepo {
         db.close();
     }
 
+    /**
+     * setter for phone name
+     * @param user name of user
+     * @param phone new number
+     */
     public void setPhone(String user, String phone) {
 
         // open connection to write data
@@ -194,6 +239,11 @@ public class UserRepo {
         db.close();
     }
 
+    /**
+     * setter for major
+     * @param user name of user
+     * @param major new major
+     */
     public void setMajor(String user, String major) {
 
         // open connection to write data
@@ -210,6 +260,11 @@ public class UserRepo {
         db.close();
     }
 
+    /**
+     * setter for interets
+     * @param user name of user
+     * @param interests new interests
+     */
     public void setInterests(String user, String interests) {
 
         // open connection to write data

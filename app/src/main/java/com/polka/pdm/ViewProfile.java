@@ -90,6 +90,10 @@ public class ViewProfile extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * when you click on the home button it takes you to the home page
+     * @param view of the current page
+     */
     public void onHomeClick(View view) {
         Intent intent = new Intent(this, HomeApp.class);
         intent.putExtra("user", user);
