@@ -8,27 +8,18 @@
 package com.polka.pdm;
 
 //import android.app.FragmentManager;
-import android.content.res.Configuration;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.Toast;
 
 public class HomeApp extends AppCompatActivity {
@@ -195,7 +186,6 @@ public class HomeApp extends AppCompatActivity {
             case R.id.ViewProfile:
 //                fragmentClass = Frag.class;
                 intent = new Intent(this, ViewProfile.class);
-                intent.putExtra("user", user);
                 break;
             case R.id.SearchMovies:
 //                fragmentClass = Frag.class;
@@ -208,7 +198,7 @@ public class HomeApp extends AppCompatActivity {
 //                fragmentClass = Frag.class;
                 break;
             case R.id.DVDs:
-                intent = new Intent(this, MainActivity.class);
+                intent = new Intent(this, RecentDvds.class);
 //                fragmentClass = Frag.class;
                 break;
             case R.id.Recommendations:
@@ -247,6 +237,7 @@ public class HomeApp extends AppCompatActivity {
 //        Log.d("HomeApp", "creating title");
         // close the drawer
         mDrawer.closeDrawers();
+        intent.putExtra("user", user);
         startActivity(intent);
 
     }

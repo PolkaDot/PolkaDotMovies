@@ -7,9 +7,7 @@ package com.polka.pdm;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -36,7 +34,7 @@ public class SearchMovies extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-//    User user;
+    private User user;
 
     private Toolbar toolbar;
     private DrawerLayout mDrawer;
@@ -49,12 +47,10 @@ public class SearchMovies extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+
         // BEGIN_INCLUDE (initializeRecyclerView)
         mRecyclerView = (RecyclerView) findViewById(R.id.moviesRecylerView);
-        //
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
-        setupDrawerContent(nvDrawer);
 
         // improves performance if you know that changes in content do not change the layout size
         // of the RecyclerView
@@ -66,20 +62,26 @@ public class SearchMovies extends AppCompatActivity {
 
         // specify an adapter
 
+        //
+        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
+        setupDrawerContent(nvDrawer);
+
+        //toggle for nav bar
         drawerToggle = setupDrawerToggle();
         mDrawer.setDrawerListener(drawerToggle);
 
         // Grab data about user from extras
-//        if (savedInstanceState == null) {
-//            Bundle extras = getIntent().getExtras();
-//            if (extras == null) {
-//                user = null;
-//            } else {
-//                user = extras.getParcelable("user");
-//            }
-//        } else {
-//            user = savedInstanceState.getParcelable("user");
-//        }
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if (extras == null) {
+                user = null;
+            } else {
+                user = extras.getParcelable("user");
+            }
+        } else {
+            user = savedInstanceState.getParcelable("user");
+        }
 
     }
 
@@ -176,7 +178,7 @@ public class SearchMovies extends AppCompatActivity {
             case R.id.ViewProfile:
 //                fragmentClass = Frag.class;
                 intent = new Intent(this, ViewProfile.class);
-//                intent.putExtra("user", user);
+                intent.putExtra("user", user);
                 break;
             case R.id.SearchMovies:
 //                fragmentClass = Frag.class;
@@ -189,7 +191,7 @@ public class SearchMovies extends AppCompatActivity {
 //                fragmentClass = Frag.class;
                 break;
             case R.id.DVDs:
-                intent = new Intent(this, MainActivity.class);
+                intent = new Intent(this, RecentDvds.class);
 //                fragmentClass = Frag.class;
                 break;
             case R.id.Recommendations:

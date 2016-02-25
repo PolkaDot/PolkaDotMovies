@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,9 +62,13 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+
     public void onSignUpButtonPress(View v ) {
         Intent intent = new Intent(this, RegistrationPage.class);
         startActivity(intent);
+
+
     }
 
 }

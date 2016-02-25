@@ -156,7 +156,6 @@ public class ViewProfile extends AppCompatActivity {
             case R.id.ViewProfile:
 //                fragmentClass = Frag.class;
                 intent = new Intent(this, ViewProfile.class);
-                intent.putExtra("user", user);
                 break;
             case R.id.SearchMovies:
 //                fragmentClass = Frag.class;
@@ -189,7 +188,6 @@ public class ViewProfile extends AppCompatActivity {
             default:
 //                fragmentClass = Frag.class;
                 intent = new Intent(this, ViewProfile.class);
-                intent.putExtra("user", user);
         }
 //        try {
 //            fragment = (Fragment) fragmentClass.newInstance();
@@ -209,6 +207,7 @@ public class ViewProfile extends AppCompatActivity {
 //        Log.d("HomeApp", "creating title");
         // close the drawer
         mDrawer.closeDrawers();
+        intent.putExtra("user", user);
         startActivity(intent);
 
     }
