@@ -187,7 +187,7 @@ public class RecentDvds extends AppCompatActivity {
 //                Log.d("HomeApp","searched movies");
                 break;
             case R.id.Movies:
-                intent = new Intent(this, MainActivity.class);
+                intent = new Intent(this, RecentMovies.class);
 //                fragmentClass = Frag.class;
                 break;
             case R.id.DVDs:
