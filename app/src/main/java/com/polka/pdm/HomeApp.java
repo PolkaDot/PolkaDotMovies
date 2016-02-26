@@ -37,7 +37,8 @@ public class HomeApp extends AppCompatActivity {
         setContentView(R.layout.activity_home_app);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        couldn't get toolbar to work
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         //
@@ -123,6 +124,11 @@ public class HomeApp extends AppCompatActivity {
 //        intent.putExtra("user", user);
         startActivity(intent);
 
+    }
+
+    public void onMoviesButtonClick(View view) {
+        Intent intent = new Intent(this, RecentMovies.class);
+        startActivity(intent);
     }
 
     //
