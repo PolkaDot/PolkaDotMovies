@@ -14,7 +14,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:id="@+id/linearLayout"
+        android:orientation="vertical"
+        android:weightSum="1">
         <!-- The ActionBar displayed at the top -->
         <include
             layout="@layout/toolbar"
@@ -29,16 +31,19 @@
             android:id="@+id/flContent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_weight="0.77">
 
             <EditText
                 android:layout_width="300dp"
                 android:layout_height="60dp"
-                android:id="@+id/editText2"
+                android:id="@+id/searchMovie"
                 android:layout_gravity="left|top"
                 android:hint="Search Movie"
+                android:editable="true"
+                android:clickable="true"
                 android:textSize="32dp"
-                android:editable="true" />
+                android:enabled="true" />
 
             <ImageButton
                 android:layout_width="74dp"
@@ -49,16 +54,28 @@
                 android:background="@drawable/search"
                 android:onClick="onSearchButtonPress" />
 
+
+
         </FrameLayout>
 
     </LinearLayout>
-<android.support.design.widget.NavigationView
-    android:id="@+id/nvView"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:layout_gravity="start"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/moviesRecylerView"
+        android:layout_width="match_parent"
+        android:layout_height="417dp"
 
-    app:menu="@menu/menu_main"/>
+        android:layout_gravity="center">
+    </android.support.v7.widget.RecyclerView>
+
+    <!--android:layout_below="@+id/linearLayout"-->
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nvView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/menu_main"/>
+
 
 </android.support.v4.widget.DrawerLayout>
 <!--<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"-->

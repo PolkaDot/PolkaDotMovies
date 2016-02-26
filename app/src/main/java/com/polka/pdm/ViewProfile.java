@@ -172,7 +172,7 @@ public class ViewProfile extends AppCompatActivity {
 //                fragmentClass = Frag.class;
                 break;
             case R.id.DVDs:
-                intent = new Intent(this, MainActivity.class);
+                intent = new Intent(this, RecentDvds.class);
 //                fragmentClass = Frag.class;
                 break;
             case R.id.Recommendations:
