@@ -54,6 +54,8 @@ public class SearchMovies extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+        mAdapter = new MyAdapter(mDataset);
+        mRecyclerView.setAdapter(mAdapter);
 
     }
 
@@ -91,9 +93,10 @@ public class SearchMovies extends AppCompatActivity {
                     public void onResponse(JSONObject resp) {
                         //handle a valid response coming back.  Getting this string mainly for debug
                         mDataset = parseJSONObject(resp);
-                        // specify an adapter
-                        mAdapter = new MyAdapter(mDataset);
-                        mRecyclerView.setAdapter(mAdapter);
+                        // update data in the adapter
+                        // notify adapter that data has updated
+                        ((MyAdapter)mAdapter).setData(mDataset);
+                        mAdapter.notifyDataSetChanged();
                     }
                 }, new Response.ErrorListener() {
 

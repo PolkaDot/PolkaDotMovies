@@ -29,6 +29,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         mDataset = myDataset;
     }
 
+    // Sets the dataset
+    public void setData (String[] myDataset) {
+        mDataset = myDataset;
+    }
+
     // Create new views (invoked by the layout manager)
     @Override
     public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
@@ -54,6 +59,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        if (mDataset != null) {
+            return mDataset.length;
+        }
+        return 0;
     }
+
+
 }
