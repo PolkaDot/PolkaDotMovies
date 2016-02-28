@@ -32,8 +32,8 @@ import java.net.URLEncoder;
 
 public class SearchMovies extends AppCompatActivity {
     // Size of response array
-    protected String[] mDataset;
-    private static final int DATASET_COUNT = 50;
+    protected Movie[] mDataset;
+    private static final int DATASET_COUNT = 30;
 
     // Needed for recycler view
     private RecyclerView mRecyclerView;
@@ -68,6 +68,8 @@ public class SearchMovies extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+        mAdapter = new MyAdapter(mDataset);
+        mRecyclerView.setAdapter(mAdapter);
 
         //
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -98,10 +100,9 @@ public class SearchMovies extends AppCompatActivity {
      * @param view of the search Movies activity
      */
     public void onSearchButtonPress(View view) {
-        editTextSearchParam = (EditText) findViewById(R.id.editText);
+        editTextSearchParam = (EditText) findViewById(R.id.searchMovie);
         String searchParam =  editTextSearchParam.getText().toString();
         sendJSONRequest(searchParam);
-
     }
 
     /**
@@ -126,9 +127,9 @@ public class SearchMovies extends AppCompatActivity {
                     public void onResponse(JSONObject resp) {
                         //handle a valid response coming back.  Getting this string mainly for debug
                         mDataset = parseJSONObject(resp);
-                        // specify an adapter
-                        mAdapter = new MyAdapter(mDataset);
-                        mRecyclerView.setAdapter(mAdapter);
+                        // update data in the adapter
+                        ((MyAdapter)mAdapter).setData(mDataset);
+
                     }
                 }, new Response.ErrorListener() {
 
@@ -278,22 +279,39 @@ public class SearchMovies extends AppCompatActivity {
      * @param response response from the Rotten Tomatoes API
      * @return array of 10 movie titles that match search
      */
-    private String[] parseJSONObject(JSONObject response) {
+    private Movie[] parseJSONObject(JSONObject response) {
         if (response == null || response.length() == 0) {
             return null;
         }
         try {
-            String[] data = new String[DATASET_COUNT];
-            JSONArray arrayMovies = response.getJSONArray(Keys.KEY_MOVIE);
+            Movie[] data = new Movie[DATASET_COUNT];
+            JSONArray arrayMovies = response.getJSONArray("movies");
             for (int i = 0; i < arrayMovies.length() && i < DATASET_COUNT; i++) {
                 JSONObject currentMovie = arrayMovies.getJSONObject(i);
-                String name = currentMovie.getString(Keys.KEY_TITLE);
-                data[i] = name;
+                String title = currentMovie.getString(Keys.KEY_TITLE);
+                int year = currentMovie.getInt("year");
+                String synopsis = currentMovie.getString("synopsis");
+                JSONObject posters = currentMovie.getJSONObject("posters");
+                String poster;
+                if (posters.isNull("thumbnail")) {
+                    poster = null;
+                } else {
+                    poster = posters.getString("thumbnail");
+                }
+                data[i] = new Movie(title, year, synopsis, poster);
             }
             return data;
         } catch (JSONException e) {
             System.out.println("JSON Exception Exception");
         }
         return null;
+    }
+
+    /**
+     * Returns the user from this activity. To be used in MyAdapter.
+     * @return the user object
+     */
+    public User getUser() {
+        return user;
     }
 }
