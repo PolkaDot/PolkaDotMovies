@@ -17,7 +17,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -33,7 +32,7 @@ import java.net.URLEncoder;
 
 public class SearchMovies extends AppCompatActivity {
     // Size of response array
-    protected String[] mDataset;
+    protected Movie[] mDataset;
     private static final int DATASET_COUNT = 50;
 
     // Needed for recycler view
@@ -102,15 +101,8 @@ public class SearchMovies extends AppCompatActivity {
      */
     public void onSearchButtonPress(View view) {
         editTextSearchParam = (EditText) findViewById(R.id.searchMovie);
-        if (editTextSearchParam != null) {
-            String searchParam =  editTextSearchParam.getText().toString();
-            Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show();
-            sendJSONRequest(searchParam);
-        } else {
-            Toast.makeText(this, "Edit Text Param is Empty", Toast.LENGTH_SHORT).show();
-        }
-
-
+        String searchParam =  editTextSearchParam.getText().toString();
+        sendJSONRequest(searchParam);
     }
 
     /**
@@ -287,17 +279,26 @@ public class SearchMovies extends AppCompatActivity {
      * @param response response from the Rotten Tomatoes API
      * @return array of 10 movie titles that match search
      */
-    private String[] parseJSONObject(JSONObject response) {
+    private Movie[] parseJSONObject(JSONObject response) {
         if (response == null || response.length() == 0) {
             return null;
         }
         try {
-            String[] data = new String[DATASET_COUNT];
-            JSONArray arrayMovies = response.getJSONArray(Keys.KEY_MOVIE);
+            Movie[] data = new Movie[DATASET_COUNT];
+            JSONArray arrayMovies = response.getJSONArray("movies");
             for (int i = 0; i < arrayMovies.length() && i < DATASET_COUNT; i++) {
                 JSONObject currentMovie = arrayMovies.getJSONObject(i);
-                String name = currentMovie.getString(Keys.KEY_TITLE);
-                data[i] = name;
+                String title = currentMovie.getString(Keys.KEY_TITLE);
+                int year = currentMovie.getInt("year");
+                String synopsis = currentMovie.getString("synopsis");
+                JSONObject posters = currentMovie.getJSONObject("posters");
+                String poster;
+                if (posters.isNull("thumbnail")) {
+                    poster = null;
+                } else {
+                    poster = posters.getString("thumbnail");
+                }
+                data[i] = new Movie(title, year, synopsis, poster);
             }
             return data;
         } catch (JSONException e) {

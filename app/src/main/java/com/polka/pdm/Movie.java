@@ -20,14 +20,15 @@ public class Movie {
     private String title;
     private int year;
     private String synopsis;
-//    private String poster
+    private String poster;
 //    private Rating (array list of Ratings)
 
 
-    public Movie(String title, int year, String synopsis) {
+    public Movie(String title, int year, String synopsis, String poster) {
         this.title = title;
         this.year = year;
         this.synopsis = synopsis;
+        this.poster = poster;
     }
 
     @Override
@@ -48,5 +49,37 @@ public class Movie {
     @Override
     public int hashCode() {
         return 7*year + synopsis.length();
+    }
+
+    /**
+     * Gets the title
+     * @return the title of the movie
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * Gets the year movie was made
+     * @return gets the year the movie was made
+     */
+    public int getYear() {
+        return year;
+    }
+
+    /**
+     * Gets the synopsis
+     * @return synopsis of the movie
+     */
+    public String getSynopsis() {
+        return synopsis;
+    }
+
+    /**
+     * Gets the poster
+     * @return the poster image for the movie
+     */
+    public String getPoster() {
+        return poster;
     }
 }
