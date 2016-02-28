@@ -29,12 +29,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         public void setItem(Movie item) {
             mItem = item;
-            mTextView.setText(item.getTitle());
+            if (item != null) {
+                mTextView.setText(item.getTitle());
+            }
         }
 
         @Override
         public void onClick(View view) {
-            Log.d("CLICK", "on Click" + mItem.getTitle());
+            if (mItem != null) {
+                Log.d("CLICK", "on Click" + mItem.getTitle());
+            }
         }
     }
 

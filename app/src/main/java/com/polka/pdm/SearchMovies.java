@@ -33,7 +33,7 @@ import java.net.URLEncoder;
 public class SearchMovies extends AppCompatActivity {
     // Size of response array
     protected Movie[] mDataset;
-    private static final int DATASET_COUNT = 50;
+    private static final int DATASET_COUNT = 30;
 
     // Needed for recycler view
     private RecyclerView mRecyclerView;
