@@ -306,4 +306,12 @@ public class SearchMovies extends AppCompatActivity {
         }
         return null;
     }
+
+    /**
+     * Returns the user from this activity. To be used in MyAdapter.
+     * @return the user object
+     */
+    public User getUser() {
+        return user;
+    }
 }

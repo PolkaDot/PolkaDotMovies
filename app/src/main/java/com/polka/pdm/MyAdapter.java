@@ -1,5 +1,7 @@
 package com.polka.pdm;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,9 +22,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         // each data item is just a string in this case
         public TextView mTextView;
         private Movie mItem;
+        private final Context context;
 
         public ViewHolder(View v) {
             super(v);
+            context = itemView.getContext();
             v.setOnClickListener(this);
             mTextView = (TextView) v.findViewById(R.id.movieTitleTextView);
         }
@@ -37,7 +41,23 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         @Override
         public void onClick(View view) {
             if (mItem != null) {
-                Log.d("CLICK", "on Click" + mItem.getTitle());
+                Log.d("CLICK", "on Click" + mItem.getTitle());// Switch activities
+                // TODO: Replace MainActivity with MovieActivity
+                // PutExtra Movie
+                Intent intent = new Intent(context, ViewProfile.class);
+                intent.putExtra("movie", mItem);
+
+                // PutExtra User
+                User user = null;
+                if (context instanceof SearchMovies) {
+                   user = ((SearchMovies)context).getUser();
+                }
+
+                if (user != null) {
+                    intent.putExtra("user", user);
+                }
+                // start next activity
+                context.startActivity(intent);
             }
         }
     }
