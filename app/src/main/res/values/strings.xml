@@ -28,5 +28,6 @@
     <string name="drawer_close">close drawer</string>
 
     <string name="title_activity_recent_movies">Recent Movies</string>
+    <string name="title_activity_view_movie">ViewMovie</string>
 
 </resources>
