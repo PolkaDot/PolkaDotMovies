@@ -203,7 +203,6 @@ public class SearchMovies extends AppCompatActivity {
             case R.id.ViewProfile:
 //                fragmentClass = Frag.class;
                 intent = new Intent(this, ViewProfile.class);
-                intent.putExtra("user", user);
                 break;
             case R.id.SearchMovies:
 //                fragmentClass = Frag.class;
@@ -250,6 +249,7 @@ public class SearchMovies extends AppCompatActivity {
 //        Log.d("HomeApp", "creating title");
         // close the drawer
         mDrawer.closeDrawers();
+        intent.putExtra("user", user);
         startActivity(intent);
 
     }

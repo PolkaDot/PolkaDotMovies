@@ -52,9 +52,9 @@ public class ViewProfile extends AppCompatActivity {
         } else {
             user = savedInstanceState.getParcelable("user");
         }
-        if (user != null) {
-            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
-        }
+//        if (user != null) {
+//            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
+//        }
 
         // Get TextViews on view profile page
         TextView firstNameTextView = (TextView)findViewById(R.id.FirstNameTextField);
@@ -168,7 +168,7 @@ public class ViewProfile extends AppCompatActivity {
 //                Log.d("HomeApp","searched movies");
                 break;
             case R.id.Movies:
-                intent = new Intent(this, MainActivity.class);
+                intent = new Intent(this, RecentMovies.class);
 //                fragmentClass = Frag.class;
                 break;
             case R.id.DVDs:
