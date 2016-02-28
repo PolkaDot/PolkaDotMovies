@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -100,9 +101,15 @@ public class SearchMovies extends AppCompatActivity {
      * @param view of the search Movies activity
      */
     public void onSearchButtonPress(View view) {
-        editTextSearchParam = (EditText) findViewById(R.id.editText);
-        String searchParam =  editTextSearchParam.getText().toString();
-        sendJSONRequest(searchParam);
+        editTextSearchParam = (EditText) findViewById(R.id.searchMovie);
+        if (editTextSearchParam != null) {
+            String searchParam =  editTextSearchParam.getText().toString();
+            Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show();
+            sendJSONRequest(searchParam);
+        } else {
+            Toast.makeText(this, "Edit Text Param is Empty", Toast.LENGTH_SHORT).show();
+        }
+
 
     }
 
@@ -129,9 +136,8 @@ public class SearchMovies extends AppCompatActivity {
                         //handle a valid response coming back.  Getting this string mainly for debug
                         mDataset = parseJSONObject(resp);
                         // update data in the adapter
-                        // notify adapter that data has updated
                         ((MyAdapter)mAdapter).setData(mDataset);
-                        mAdapter.notifyDataSetChanged();
+
                     }
                 }, new Response.ErrorListener() {
 

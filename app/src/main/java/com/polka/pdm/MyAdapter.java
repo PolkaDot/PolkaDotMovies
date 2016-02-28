@@ -32,6 +32,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     // Sets the dataset
     public void setData (String[] myDataset) {
         mDataset = myDataset;
+        // notify adapter that the data has changed
+        notifyDataSetChanged();
     }
 
     // Create new views (invoked by the layout manager)
