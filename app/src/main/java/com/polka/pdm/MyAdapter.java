@@ -1,6 +1,7 @@
 package com.polka.pdm;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +16,25 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // each data item is just a string in this case
         public TextView mTextView;
+        private Movie mItem;
+
         public ViewHolder(View v) {
             super(v);
+            v.setOnClickListener(this);
             mTextView = (TextView) v.findViewById(R.id.movieTitleTextView);
+        }
+
+        public void setItem(Movie item) {
+            mItem = item;
+            mTextView.setText(item.getTitle());
+        }
+
+        @Override
+        public void onClick(View view) {
+            Log.d("CLICK", "on Click" + mItem.getTitle());
         }
     }
 
@@ -54,7 +68,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.mTextView.setText(mDataset[position].getTitle());
+        holder.setItem(mDataset[position]);
 
     }
 
