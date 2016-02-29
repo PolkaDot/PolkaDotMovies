@@ -69,16 +69,14 @@
                 android:textSize="30dp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:scrollbars = "vertical"
                 android:text="MovieSynopsis"
                 android:id="@+id/MovieSynopsis"
                 android:layout_below="@+id/MovieYear"
                 android:layout_alignParentEnd="true"
-                android:layout_toEndOf="@+id/RecentMoviesTextView"
-                android:textSize="30dp" />
+                android:layout_toEndOf="@+id/RecentMoviesTextView"/>
 
             <Button
                 style="?android:attr/buttonStyleSmall"

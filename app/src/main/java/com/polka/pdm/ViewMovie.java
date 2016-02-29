@@ -1,44 +1,49 @@
 package com.polka.pdm;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.text.method.ScrollingMovementMethod;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.Response.ErrorListener;
-import com.android.volley.Response.Listener;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import javax.net.ssl.HttpsURLConnection;
 
-public class RecentMovies extends AppCompatActivity {
-
-    private Toolbar toolbar;
+public class ViewMovie extends AppCompatActivity {
+    private Movie movie;
     private DrawerLayout mDrawer;
     private ActionBarDrawerToggle drawerToggle;
-    private User user;
+    private Toolbar toolbar;
+    private ImageView poster;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // getActionBar().setHomeButtonEnabled(true);
-        setContentView(R.layout.activity_recent_movies);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setContentView(R.layout.activity_view_movie);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //
+
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
         setupDrawerContent(nvDrawer);
@@ -46,98 +51,41 @@ public class RecentMovies extends AppCompatActivity {
         drawerToggle = setupDrawerToggle();
         mDrawer.setDrawerListener(drawerToggle);
 
-        // Grab data about user from extras
+        // Grab saved data about Movie
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if (extras == null) {
-                user = null;
+                movie = null;
             } else {
-                user = extras.getParcelable("user");
+                movie = extras.getParcelable("movie");
             }
         } else {
-            user = savedInstanceState.getParcelable("user");
+            movie = savedInstanceState.getParcelable("movie");
         }
 //        if (user != null) {
 //            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
 //        }
 
-        sendJsonRequest();
-    }
+        // Get TextViews on view profile page
+        TextView movieNameTextView = (TextView) findViewById(R.id.MovieName);
+        TextView movieYearTextView = (TextView) findViewById(R.id.MovieYear);
+        TextView movieSynopsisTextView = (TextView) findViewById(R.id.MovieSynopsis);
+        //movieSynopsisTextView.setMovementMethod(new ScrollingMovementMethod());
 
-    private void sendJsonRequest() {
-        String url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=yedukp76ffytfuy24zsqk7f5";
+//        movieSynopsisTextView.setMovementMethod(new ScrollingMovementMethod());
+//
 
-
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.GET, url, (String)null, new Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        parseJSONObject(response);
-                    }
-                }, new ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // TODO Auto-generated method stub
-
-                    }
-                }
-                );
-        MySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
-
-    }
-
-    private void parseJSONObject(JSONObject response) {
-        if (response == null || response.length() == 0) {
-            return;
-        }
-
-        try {
-            TextView  movie_names = (TextView)findViewById(R.id.RecentMoviesTextView);
-            StringBuilder data = new StringBuilder();
-            JSONArray arrayMovies = response.getJSONArray(Keys.KEY_MOVIE);
-            for (int i = 0; i < arrayMovies.length() && i < 10; i++) {
-
-                JSONObject currentMovie = arrayMovies.getJSONObject(i);
-                String name = currentMovie.getString(Keys.KEY_TITLE);
-                int num = i +1;
-                data.append(num + " " + name + "\n");
-            }
-            movie_names.setText(data);
-        } catch (JSONException e) {
-            System.out.println("JSON Exception Exception");
-        }
-
-    }
+        // Put user information in TextView boxes
+        movieNameTextView.setText(movie.getTitle());
+        movieYearTextView.setText(Integer.toString(movie.getYear()));
+//        movieSynopsisTextView.setText(movie.getTitle()+"abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbab");
 
 
-    //NAV BAR STUFF
-    //
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        //open close drawer
-//        switch(item.getItemId()) {
-//            case android.R.id.home:
-//                mDrawer.openDrawer(GravityCompat.START);
-//                return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-        if (drawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    //
-    @Override
-    public void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        drawerToggle.syncState();
     }
 
     /**
      * sets up listener for the side bar
+     *
      * @param navigationView the side bar
      */
     private void setupDrawerContent(NavigationView navigationView) {
@@ -159,16 +107,17 @@ public class RecentMovies extends AppCompatActivity {
      * new activity
      * and changing the appearances and stuff
      * (like highlighing your selection)
+     *
      * @param menuItem the item that you pressed
      */
     public void selectDrawerItem(MenuItem menuItem) {
         //create new frag
         //determine what to show
-//        Fragment fragment = null;
-//        Class fragmentClass;
+        Fragment fragment = null;
+        Class fragmentClass;
         Intent intent;
 //        Log.d("HomeApp","starting method");
-        switch(menuItem.getItemId()) {
+        switch (menuItem.getItemId()) {
             case R.id.ViewProfile:
 //                fragmentClass = Frag.class;
                 intent = new Intent(this, ViewProfile.class);
@@ -196,9 +145,14 @@ public class RecentMovies extends AppCompatActivity {
 //                Log.d("HomeApp","logging out");
                 intent = new Intent(this, MainActivity.class);
                 break;
+//            case R.id.Cancel:
+////                fragmentClass = Frag.class;
+////                Log.d("HomeApp","logging out");
+//                intent = new Intent(this, HomeApp.class);
+//                break;
             default:
 //                fragmentClass = Frag.class;
-                intent = new Intent(this, RecentMovies.class);
+                intent = new Intent(this, ViewProfile.class);
         }
 //        try {
 //            fragment = (Fragment) fragmentClass.newInstance();
@@ -218,13 +172,15 @@ public class RecentMovies extends AppCompatActivity {
 //        Log.d("HomeApp", "creating title");
         // close the drawer
         mDrawer.closeDrawers();
-        intent.putExtra("user", user);
+        //intent.putExtra("user", user);
         startActivity(intent);
 
     }
 
+
     /**
      * allows us to create a new ActionBarDrawerToggle specific to our needs
+     *
      * @return a new ActionBarDrawer Toggle
      */
     private ActionBarDrawerToggle setupDrawerToggle() {
@@ -233,12 +189,12 @@ public class RecentMovies extends AppCompatActivity {
 
     /**
      * allows us to change the state of the toolbar whenever we change config
+     *
      * @param newConfig the new configuration
      */
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         drawerToggle.onConfigurationChanged(newConfig);
     }
-
-
 }
+
