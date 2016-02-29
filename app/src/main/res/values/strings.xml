@@ -22,4 +22,5 @@
     <string name="title_activity_home_app">Home Page</string>
     <string name="title_activity_recent_dvds">Recent Dvds</string>
     <string name="title_activity_search_movies">Search Movies</string>
+    <string name="title_activity_ratings_page">Ratings and Review</string>
 </resources>
