@@ -1,27 +1,323 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--xmlns:tools="http://schemas.android.com/tools"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent"-->
+<!--android:fitsSystemWindows="true"-->
+<!--android:background="@drawable/appbackgroundlogo"-->
+<!--tools:context="com.polka.pdm.HomeApp">-->
+
+
+<!--<android.support.design.widget.AppBarLayout-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:theme="@style/AppTheme.AppBarOverlay">-->
+
+<!--<android.support.v7.widget.Toolbar-->
+<!--android:id="@+id/toolbar"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="?attr/actionBarSize"-->
+<!--android:background="#F7BE39"-->
+<!--app:popupTheme="@style/AppTheme.PopupOverlay" />-->
+
+<!--</android.support.design.widget.AppBarLayout>-->
+
+<!--<include layout="@layout/content_home_app" />-->
+
+<!--&lt;!&ndash;<android.support.design.widget.FloatingActionButton&ndash;&gt;-->
+<!--&lt;!&ndash;android:id="@+id/fab"&ndash;&gt;-->
+<!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;android:layout_gravity="bottom|end"&ndash;&gt;-->
+<!--&lt;!&ndash;android:layout_margin="@dimen/fab_margin"&ndash;&gt;-->
+<!--&lt;!&ndash;android:src="@android:drawable/ic_dialog_email" />&ndash;&gt;-->
+
+<!--</android.support.design.widget.CoordinatorLayout>-->
+
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.polka.pdm.ViewProfile"
-    android:background="@drawable/appbackground">
+    android:background="@drawable/appbackgroundlogo"
+    tools:context="com.polka.pdm.ViewProfile">
 
-    <android.support.design.widget.AppBarLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        android:orientation="vertical">
+        <!-- The ActionBar displayed at the top -->
+        <include
+            layout="@layout/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="#F7BE39"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="wrap_content"
+            />
 
-    </android.support.design.widget.AppBarLayout>
+        <RelativeLayout
+            android:id="@+id/flContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <include layout="@layout/content_view_profile" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit Profile"
+                android:id="@+id/EditProfile"
+                android:clickable="true"
+                android:onClick="onEditProfileClick"
+                android:background="#F7BE39"
+                android:layout_alignParentTop="true"
+                android:layout_alignEnd="@+id/UserTextField" />
 
-</android.support.design.widget.CoordinatorLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Username"
+                android:id="@+id/UserNameLabel"
+                android:textSize="30dp"
+                android:layout_below="@+id/EditProfile"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Password"
+                android:id="@+id/PasswordLabel"
+                android:layout_below="@+id/UserNameLabel"
+                android:layout_alignParentStart="true"
+                android:textSize="30dp"
+                android:password="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="First Name"
+                android:id="@+id/FirstNameLabel"
+                android:textSize="30dp"
+                android:layout_gravity="left|top"
+                android:layout_below="@+id/PasswordLabel"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Last Name"
+                android:id="@+id/LastNameLabel"
+                android:textSize="30dp"
+                android:layout_gravity="left|top"
+                android:layout_below="@+id/FirstNameLabel"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Email"
+                android:id="@+id/emailLabel"
+                android:textSize="30dp"
+                android:layout_gravity="left"
+                android:layout_below="@+id/LastNameLabel"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Phone"
+                android:id="@+id/phoneLabel"
+                android:textSize="30dp"
+                android:layout_gravity="left"
+                android:layout_below="@+id/emailLabel"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Major"
+                android:id="@+id/MajorLabel"
+                android:clickable="false"
+                android:textSize="30dp"
+                android:layout_gravity="left"
+                android:layout_below="@+id/phoneLabel"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Interests:"
+                android:id="@+id/InterestLabel"
+                android:textSize="30dp"
+                android:layout_gravity="right"
+                android:layout_below="@+id/MajorLabel"
+                android:layout_alignParentStart="true" />
+
+
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:focusable="false"
+                android:textSize="30dp"
+                android:id="@+id/PhoneTextField"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="right"
+                android:text="Hello"
+                android:layout_alignBaseline="@+id/phoneLabel" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:focusable="false"
+                android:textSize="30dp"
+                android:id="@+id/FirstNameTextField"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="right"
+                android:text="Hello"
+                android:layout_alignBaseline="@+id/FirstNameLabel" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:focusable="false"
+                android:textSize="30dp"
+                android:id="@+id/LastNameTextField"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="right"
+                android:text="Hello"
+                android:layout_alignBaseline="@+id/LastNameLabel" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:focusable="false"
+                android:textSize="30dp"
+                android:id="@+id/PassTextField"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="right"
+                android:text="Hello"
+                android:layout_alignBaseline="@+id/PasswordLabel" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:focusable="false"
+                android:textSize="30dp"
+                android:id="@+id/UserTextField"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="right"
+                android:text="Hello"
+                android:layout_alignBaseline="@+id/UserNameLabel" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:focusable="false"
+                android:textSize="30dp"
+                android:id="@+id/EmailTextField"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="right"
+                android:text="Hello"
+                android:layout_alignBaseline="@+id/emailLabel" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:focusable="false"
+                android:textSize="20dp"
+                android:id="@+id/InterestTextField"
+                android:layout_gravity="left"
+                android:height="100dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/InterestLabel"
+                android:text="Hellooooooooooooooo"
+                android:layout_above="@+id/Save" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:focusable="false"
+                android:textSize="30dp"
+                android:id="@+id/MajorTextField"
+                android:layout_alignTop="@+id/MajorLabel"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="right"
+                android:text="Hello"
+                android:layout_alignBaseline="@+id/MajorLabel" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:id="@+id/HomeProfileButton"
+                android:background="#F7BE39"
+                android:onClick="onHomeClick"
+                android:layout_alignBottom="@+id/InterestTextField"
+                android:layout_alignParentEnd="true" />
+
+
+            <!--<include layout="@layout/content_home_app" />-->
+        </RelativeLayout>
+
+    </LinearLayout>
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nvView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+
+        app:menu="@menu/menu_main"/>
+
+</android.support.v4.widget.DrawerLayout>
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+    <!--<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:fitsSystemWindows="true"-->
+    <!--tools:context="com.polka.pdm.ViewProfile"-->
+    <!--android:background="@drawable/appbackground">-->
+
+    <!--<android.support.design.widget.AppBarLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:theme="@style/AppTheme.AppBarOverlay">-->
+
+    <!--<android.support.v7.widget.Toolbar-->
+    <!--android:id="@+id/toolbar"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="?attr/actionBarSize"-->
+    <!--android:background="#F7BE39"-->
+    <!--app:popupTheme="@style/AppTheme.PopupOverlay" />-->
+
+    <!--</android.support.design.widget.AppBarLayout>-->
+
+    <!--<include layout="@layout/content_view_profile" />-->
+
+    <!--</android.support.design.widget.CoordinatorLayout>-->

@@ -6,7 +6,9 @@ import android.os.Parcelable;
 /**
  * User class
  *
- * Created by C. Shih on 2/12/2016.
+ * @author C. Shih on 2/12/2016.
+ *
+ * @version 1.0
  */
 public class User implements Parcelable {
 
@@ -75,7 +77,10 @@ public class User implements Parcelable {
         return "username" + " " + this.username + " password: " + this.password;
     }
 
-    // Parcelling part
+    /**
+     * takes in the user data from database
+     * @param in input from database
+     */
     public User(Parcel in) {
         String[] data = new String[11];
         in.readStringArray(data);
@@ -114,11 +119,25 @@ public class User implements Parcelable {
                 Integer.toString(this.isAdmin)});
     }
 
+    /**
+     * inner class
+     * creates a new creator
+     */
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        /**
+         * creates a user from parcel
+         * @param in parcel (of data)
+         * @return user that we created
+         */
         public User createFromParcel(Parcel in) {
             return new User(in);
         }
 
+        /**
+         * gives an array of users
+         * @param size size of array
+         * @return user array
+         */
         public User[] newArray(int size) {
             return new User[size];
         }

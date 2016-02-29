@@ -1,38 +1,41 @@
-/**
- * @author Esha Singh
- * @version 1.0
- * View User Profile
- */
 package com.polka.pdm;
 
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class ViewProfile extends AppCompatActivity {
-    private User user;
+import com.android.volley.Request;
+import com.android.volley.Response.ErrorListener;
+import com.android.volley.Response.Listener;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class RecentMovies extends AppCompatActivity {
+
+    private Toolbar toolbar;
     private DrawerLayout mDrawer;
     private ActionBarDrawerToggle drawerToggle;
-    private Toolbar toolbar;
+    private User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_profile);
+        // getActionBar().setHomeButtonEnabled(true);
+        setContentView(R.layout.activity_recent_movies);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //NAV bar stuff
         //
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
@@ -41,7 +44,7 @@ public class ViewProfile extends AppCompatActivity {
         drawerToggle = setupDrawerToggle();
         mDrawer.setDrawerListener(drawerToggle);
 
-        // Grab saved data about user
+        // Grab data about user from extras
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if (extras == null) {
@@ -56,51 +59,58 @@ public class ViewProfile extends AppCompatActivity {
 //            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
 //        }
 
-        // Get TextViews on view profile page
-        TextView firstNameTextView = (TextView)findViewById(R.id.FirstNameTextField);
-        TextView lastNameTextView = (TextView)findViewById(R.id.LastNameTextField);
-        TextView userTextView = (TextView)findViewById(R.id.UserTextField);
-        TextView emailTextView = (TextView)findViewById(R.id.EmailTextField);
-        TextView phoneTextView = (TextView)findViewById(R.id.PhoneTextField);
-        TextView majorTextView = (TextView)findViewById(R.id.MajorTextField);
-        TextView passTextView = (TextView)findViewById(R.id.PassTextField);
-        TextView interestsTextView = (TextView)findViewById(R.id.InterestTextField);
-
-
-        // Put user information in TextView boxes
-        firstNameTextView.setText(user.firstName);
-        lastNameTextView.setText(user.lastName);
-        userTextView.setText(user.username);
-        emailTextView.setText(user.email);
-        phoneTextView.setText(user.phone);
-        majorTextView.setText(user.major);
-        passTextView.setText(user.password);
-        interestsTextView.setText(user.interests);
+        sendJsonRequest();
     }
 
-    /**
-     * This method takes the user to edit profile
-     *
-     * @param  view  the view of the Edit button that is clicked
-     */
-    public void onEditProfileClick(View view) {
-        Intent intent = new Intent(this, EditProfile.class);
-        // putExtra to store user information between views
-        intent.putExtra("user", user);
-        startActivity(intent);
+    private void sendJsonRequest() {
+        String url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=yedukp76ffytfuy24zsqk7f5";
+
+
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                (Request.Method.GET, url, (String)null, new Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        parseJSONObject(response);
+                    }
+                }, new ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO Auto-generated method stub
+
+                    }
+                }
+                );
+        MySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
+
     }
 
-    /**
-     * when you click on the home button it takes you to the home page
-     * @param view of the current page
-     */
-    public void onHomeClick(View view) {
-        Intent intent = new Intent(this, HomeApp.class);
-        intent.putExtra("user", user);
-        startActivity(intent);
+    private void parseJSONObject(JSONObject response) {
+        if (response == null || response.length() == 0) {
+            return;
+        }
+
+        try {
+            TextView  movie_names = (TextView)findViewById(R.id.RecentMoviesTextView);
+            StringBuilder data = new StringBuilder();
+            JSONArray arrayMovies = response.getJSONArray(Keys.KEY_MOVIE);
+            for (int i = 0; i < arrayMovies.length() && i < 10; i++) {
+
+                JSONObject currentMovie = arrayMovies.getJSONObject(i);
+                String name = currentMovie.getString(Keys.KEY_TITLE);
+                int num = i +1;
+                data.append(num + " " + name + "\n");
+            }
+            movie_names.setText(data);
+        } catch (JSONException e) {
+            System.out.println("JSON Exception Exception");
+        }
+
     }
 
-    //Navigation bar stuff
+
+    //NAV BAR STUFF
     //
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -152,8 +162,8 @@ public class ViewProfile extends AppCompatActivity {
     public void selectDrawerItem(MenuItem menuItem) {
         //create new frag
         //determine what to show
-        Fragment fragment = null;
-        Class fragmentClass;
+//        Fragment fragment = null;
+//        Class fragmentClass;
         Intent intent;
 //        Log.d("HomeApp","starting method");
         switch(menuItem.getItemId()) {
@@ -184,14 +194,9 @@ public class ViewProfile extends AppCompatActivity {
 //                Log.d("HomeApp","logging out");
                 intent = new Intent(this, MainActivity.class);
                 break;
-//            case R.id.Cancel:
-////                fragmentClass = Frag.class;
-////                Log.d("HomeApp","logging out");
-//                intent = new Intent(this, HomeApp.class);
-//                break;
             default:
 //                fragmentClass = Frag.class;
-                intent = new Intent(this, ViewProfile.class);
+                intent = new Intent(this, RecentMovies.class);
         }
 //        try {
 //            fragment = (Fragment) fragmentClass.newInstance();
@@ -232,8 +237,6 @@ public class ViewProfile extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
         drawerToggle.onConfigurationChanged(newConfig);
     }
-
-
 
 
 }

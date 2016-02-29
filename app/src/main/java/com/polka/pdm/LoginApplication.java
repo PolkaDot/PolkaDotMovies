@@ -1,22 +1,40 @@
+/**
+ * @author Christine Shih
+ * @version 1.0
+ * screen you see when you log in
+ */
 package com.polka.pdm;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 public class LoginApplication extends AppCompatActivity {
-
+    /**
+     * when you press the cancel button,
+     * it takes you back to the main activity
+     * @param v that we were are on
+     */
     public void onLoginCancelPressed(View v) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * when you press login
+     * it checks if your username and pass is legit
+     * if so it takes you to the homescreen of the app
+     * @param v view that you are on
+     */
     public void onLoginButtonPressed(View v) {
         Log.d("LOGIN ACTIVITY", "Login Button Pressed");
         EditText nameBox = (EditText) findViewById(R.id.usernameEdit);
