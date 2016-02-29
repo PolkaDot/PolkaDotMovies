@@ -98,5 +98,11 @@ public class HomeApp extends AppCompatActivity {
 
     }
 
+    public void onReccomendationPress(View view) {
+        Intent intent = new Intent(this, RatingsPage.class);
+        startActivity(intent);
+
+    }
+
 
 }
