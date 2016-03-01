@@ -41,9 +41,9 @@ public class DBHelper extends SQLiteOpenHelper {
         String CREATE_TABLE_RATING = "CREATE TABLE " + Rating.TABLE + " ("
                 + Rating.KEY_ratingId + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + Rating.KEY_movie + " TEXT, "
-                + Rating.KEY_movieYear + " TEXT, "
+                + Rating.KEY_movieYear + " INTEGER, "
                 + Rating.KEY_user + " TEXT, "
-                + Rating.KEY_rating + " INTEGER, "
+                + Rating.KEY_rating + " DOUBLE, "
                 + Rating.KEY_comment + " TEXT)";
         db.execSQL(CREATE_TABLE_RATING);
     }
