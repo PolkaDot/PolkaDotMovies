@@ -60,7 +60,7 @@
         <activity
             android:name=".ViewMovie"
             android:label="@string/title_activity_view_movie"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

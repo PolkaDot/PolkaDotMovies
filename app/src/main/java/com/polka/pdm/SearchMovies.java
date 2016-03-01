@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -299,6 +300,8 @@ public class SearchMovies extends AppCompatActivity {
                     poster = posters.getString("thumbnail");
                 }
                 data[i] = new Movie(title, year, synopsis, poster);
+                Log.d("LLL", "Synopsis " + synopsis);
+
             }
             return data;
         } catch (JSONException e) {

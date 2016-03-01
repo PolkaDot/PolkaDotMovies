@@ -70,15 +70,17 @@ public class ViewMovie extends AppCompatActivity {
         TextView movieNameTextView = (TextView) findViewById(R.id.MovieName);
         TextView movieYearTextView = (TextView) findViewById(R.id.MovieYear);
         TextView movieSynopsisTextView = (TextView) findViewById(R.id.MovieSynopsis);
+        movieSynopsisTextView.setMovementMethod(new ScrollingMovementMethod());
         //movieSynopsisTextView.setMovementMethod(new ScrollingMovementMethod());
 
-//        movieSynopsisTextView.setMovementMethod(new ScrollingMovementMethod());
+
+        movieSynopsisTextView.setMovementMethod(new ScrollingMovementMethod());
 //
 
-        // Put user information in TextView boxes
+         //Put user information in TextView boxes
         movieNameTextView.setText(movie.getTitle());
         movieYearTextView.setText(Integer.toString(movie.getYear()));
-//        movieSynopsisTextView.setText(movie.getTitle()+"abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbab");
+        movieSynopsisTextView.setText(movie.getSynopsis());
 
 
     }
