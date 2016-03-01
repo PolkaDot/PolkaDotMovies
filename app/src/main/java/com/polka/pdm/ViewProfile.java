@@ -29,7 +29,7 @@ public class ViewProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_profile);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         //NAV bar stuff
@@ -57,22 +57,24 @@ public class ViewProfile extends AppCompatActivity {
         }
 
         // Get TextViews on view profile page
+        TextView nameTextView = (TextView)findViewById(R.id.NameTextField);
+        // TextView editTextLastName; TODO: add this into view profile page
+        TextView phoneTextView = (TextView)findViewById(R.id.PhoneTextField);
         TextView firstNameTextView = (TextView)findViewById(R.id.FirstNameTextField);
         TextView lastNameTextView = (TextView)findViewById(R.id.LastNameTextField);
         TextView userTextView = (TextView)findViewById(R.id.UserTextField);
         TextView emailTextView = (TextView)findViewById(R.id.EmailTextField);
-        TextView phoneTextView = (TextView)findViewById(R.id.PhoneTextField);
         TextView majorTextView = (TextView)findViewById(R.id.MajorTextField);
         TextView passTextView = (TextView)findViewById(R.id.PassTextField);
         TextView interestsTextView = (TextView)findViewById(R.id.InterestTextField);
 
-
         // Put user information in TextView boxes
+        nameTextView.setText(user.firstName);
+        phoneTextView.setText(user.phone);
         firstNameTextView.setText(user.firstName);
         lastNameTextView.setText(user.lastName);
         userTextView.setText(user.username);
         emailTextView.setText(user.email);
-        phoneTextView.setText(user.phone);
         majorTextView.setText(user.major);
         passTextView.setText(user.password);
         interestsTextView.setText(user.interests);
