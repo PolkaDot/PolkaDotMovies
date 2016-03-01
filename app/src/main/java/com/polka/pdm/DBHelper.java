@@ -8,6 +8,7 @@ package com.polka.pdm;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.media.Rating;
 
 public class DBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "user.db";
@@ -30,7 +31,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 + User.KEY_isLocked + " INTEGER, "
                 + User.KEY_isBanned + " INTEGER, "
                 + User.KEY_isAdmin + " INTEGER)";
-        db.execSQL(CREATE_TABLE_USER);
+
     }
 
     @Override
