@@ -21,6 +21,7 @@
     <string name="title_activity_login_application">LoginApplication</string>
     <string name="title_activity_registration_page">RegistrationPage</string>
     <string name="title_activity_home_app">HomeApp</string>
+    <string name="title_activity_recent_dvds">Recent Dvds</string>
     <string name="title_activity_search_movies">SearchMovies</string>
 
     <string name="drawer_open">Open navigation drawer</string>
