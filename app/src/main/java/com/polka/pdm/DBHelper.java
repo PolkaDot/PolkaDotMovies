@@ -43,6 +43,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 + Rating.KEY_movie + " TEXT, "
                 + Rating.KEY_movieYear + " INTEGER, "
                 + Rating.KEY_user + " TEXT, "
+                + Rating.KEY_major + " TEXT, "
                 + Rating.KEY_rating + " DOUBLE, "
                 + Rating.KEY_comment + " TEXT)";
         db.execSQL(CREATE_TABLE_RATING);

@@ -57,7 +57,6 @@ public class ViewProfile extends AppCompatActivity {
         }
 
         // Get TextViews on view profile page
-        TextView nameTextView = (TextView)findViewById(R.id.NameTextField);
         // TextView editTextLastName; TODO: add this into view profile page
         TextView phoneTextView = (TextView)findViewById(R.id.PhoneTextField);
         TextView firstNameTextView = (TextView)findViewById(R.id.FirstNameTextField);
@@ -69,7 +68,6 @@ public class ViewProfile extends AppCompatActivity {
         TextView interestsTextView = (TextView)findViewById(R.id.InterestTextField);
 
         // Put user information in TextView boxes
-        nameTextView.setText(user.firstName);
         phoneTextView.setText(user.phone);
         firstNameTextView.setText(user.firstName);
         lastNameTextView.setText(user.lastName);

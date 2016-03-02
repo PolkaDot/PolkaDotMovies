@@ -41,6 +41,7 @@ public class RatingRepo {
         values.put(Rating.KEY_movie, rating.movie);
         values.put(Rating.KEY_movieYear, rating.movieYear);
         values.put(Rating.KEY_user, rating.user);
+        values.put(Rating.KEY_major, rating.major);
         values.put(Rating.KEY_rating, rating.rating);
         values.put(Rating.KEY_rating, rating.comment);
 
@@ -79,6 +80,7 @@ public class RatingRepo {
                 Rating rating = new Rating();
                 rating.movie = cursor.getString(cursor.getColumnIndex(Rating.KEY_movie));
                 rating.user = cursor.getString(cursor.getColumnIndex(Rating.KEY_user));
+                rating.major = cursor.getString(cursor.getColumnIndex(Rating.KEY_major));
                 rating.rating = cursor.getInt(cursor.getColumnIndex(Rating.KEY_rating));
                 rating.comment = cursor.getString(cursor.getColumnIndex(Rating.KEY_comment));
                 ratings.add(rating);

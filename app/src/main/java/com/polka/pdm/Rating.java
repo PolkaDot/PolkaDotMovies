@@ -14,6 +14,7 @@ public class Rating {
     public static final String KEY_movie = "movie";
     public static final String KEY_movieYear = "movieYear";
     public static final String KEY_user = "user";
+    public static final String KEY_major = "major";
     public static final String KEY_rating = "rating";
     public static final String KEY_comment = "comment";
 
@@ -23,6 +24,7 @@ public class Rating {
     protected String comment;
     protected int movieYear;
     protected  String user;
+    protected String major;
 //    protected User user;
 
 
@@ -37,12 +39,14 @@ public class Rating {
      * constructor with user, movie, and rating input, comment null
      *
      * @param user who wrote the rating
+     * @param major of user
      * @param movie that rating is about
      * @param movieYear year movie made
      * @param rating of that movie
      */
-    public Rating(String user, String movie, int movieYear, int rating) {
+    public Rating(String user, String major, String movie, int movieYear, int rating) {
         this.user = user;
+        this.major = major;
         this.movie = movie;
         this.movieYear = movieYear;
         this.rating = rating;
@@ -54,13 +58,15 @@ public class Rating {
      * constructor with user, movie, rating, and comment
      *
      * @param user who wrote the rating
+     * @param major of user
      * @param movie that rating is about
      * @param movieYear that movie was made
      * @param rating of that movie
      * @param comment about that movie
      */
-    public Rating(String user, String movie, int movieYear, int rating, String comment) {
+    public Rating(String user, String major, String movie, int movieYear, int rating, String comment) {
         this.user = user;
+        this.major = major;
         this.movie = movie;
         this.movieYear = movieYear;
         this.rating = rating;
