@@ -79,6 +79,82 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LOGOUT"
+                android:id="@+id/LogoutHomeButton"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:background="#F7BE39"
+                android:onClick="logoutClickListener" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="VIEW PROFILE"
+                android:id="@+id/ViewProfileButton"
+                android:layout_marginTop="45dp"
+                android:layout_below="@+id/LogoutHomeButton"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:background="#F7BE39"
+                android:onClick="onViewProfileClick" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SEARCH MOVIES"
+                android:id="@+id/SearchMoviesButton"
+                android:layout_below="@+id/ViewProfileButton"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:background="#F7BE39"
+
+                android:clickable="true"
+                android:onClick="onSearchButtonPress" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MOVIES"
+                android:id="@+id/MoviesButton"
+                android:layout_below="@+id/SearchMoviesButton"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:onClick="onMoviesButtonClick"
+                android:background="#F7BE39" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DVDS"
+                android:id="@+id/DVDsButton"
+                android:layout_below="@+id/MoviesButton"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:onClick="onDVDsButtonClick"
+                android:background="#F7BE39" />
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RECOMMENDATIONS"
+                android:id="@+id/RecommendationsButton"
+                android:layout_below="@+id/DVDsButton"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:background="#F7BE39" />
+
             <!--<include layout="@layout/content_home_app" />-->
         </RelativeLayout>
 

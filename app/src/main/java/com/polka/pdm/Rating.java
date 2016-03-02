@@ -88,9 +88,9 @@ public class Rating {
         return this.movie.equals(that.movie) && this.rating == that.rating && this.user.equals(that.user);
     }
 
-//    @Override
-//    public int hashCode() {
-//        return 13 * rating + comment.length();
-//    }
+    @Override
+    public int hashCode() {
+        return 13 * rating + comment.length();
+    }
 
 }

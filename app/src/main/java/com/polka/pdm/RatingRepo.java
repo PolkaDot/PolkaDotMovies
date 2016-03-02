@@ -91,4 +91,8 @@ public class RatingRepo {
         return ratings;
     }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/alisha

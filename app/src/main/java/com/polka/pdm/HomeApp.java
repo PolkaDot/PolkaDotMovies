@@ -2,17 +2,20 @@
  * @author Christine Shih
  * @version 2.0
  * The start/home page of the application (after we have logged in)
+ * Activity that starts after you log into the app
+ * this is the right way to do javadocs
  */
+
+
+>>>>>>> Temporary merge branch 2
 package com.polka.pdm;
 
 //import android.app.FragmentManager;
-import android.content.res.Configuration;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
@@ -24,9 +27,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.Toast;
 
 public class HomeApp extends AppCompatActivity {
@@ -46,6 +46,9 @@ public class HomeApp extends AppCompatActivity {
         setContentView(R.layout.activity_home_app);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+//        couldn't get toolbar to work
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         //
@@ -112,7 +115,11 @@ public class HomeApp extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    /*
+     * Opens the Recent DVDs page
+     *
+     * @param view user interface component
+     */
     public void onDVDsButtonClick(View view) {
         Intent intent = new Intent(this, RecentDvds.class);
         startActivity(intent);
@@ -124,6 +131,18 @@ public class HomeApp extends AppCompatActivity {
 
         Intent intent = new Intent(this, SearchMovies.class);
 //        intent.putExtra("user", user);
+        startActivity(intent);
+
+    }
+
+    public void onReccomendationPress(View view) {
+        Intent intent = new Intent(this, RatingsPage.class);
+        startActivity(intent);
+
+    }
+
+    public void onMoviesButtonClick(View view) {
+        Intent intent = new Intent(this, RecentMovies.class);
         startActivity(intent);
     }
 
@@ -186,7 +205,6 @@ public class HomeApp extends AppCompatActivity {
             case R.id.ViewProfile:
 //                fragmentClass = Frag.class;
                 intent = new Intent(this, ViewProfile.class);
-                intent.putExtra("user", user);
                 break;
             case R.id.SearchMovies:
 //                fragmentClass = Frag.class;
@@ -195,11 +213,11 @@ public class HomeApp extends AppCompatActivity {
 //                Log.d("HomeApp","searched movies");
                 break;
             case R.id.Movies:
-                intent = new Intent(this, MainActivity.class);
+                intent = new Intent(this, RecentMovies.class);
 //                fragmentClass = Frag.class;
                 break;
             case R.id.DVDs:
-                intent = new Intent(this, MainActivity.class);
+                intent = new Intent(this, RecentDvds.class);
 //                fragmentClass = Frag.class;
                 break;
             case R.id.Recommendations:
@@ -238,6 +256,7 @@ public class HomeApp extends AppCompatActivity {
 //        Log.d("HomeApp", "creating title");
         // close the drawer
         mDrawer.closeDrawers();
+        intent.putExtra("user", user);
         startActivity(intent);
 
     }
@@ -259,5 +278,6 @@ public class HomeApp extends AppCompatActivity {
         drawerToggle.onConfigurationChanged(newConfig);
     }
 
+>>>>>>> Temporary merge branch 2
 
 }
