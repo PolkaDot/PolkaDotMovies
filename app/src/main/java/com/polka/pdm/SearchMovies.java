@@ -76,11 +76,6 @@ public class SearchMovies extends AppCompatActivity {
         mAdapter = new MyAdapter(mDataset);
         mRecyclerView.setAdapter(mAdapter);
 
-        //
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
-        setupDrawerContent(nvDrawer);
-
         //toggle for nav bar
         drawerToggle = setupDrawerToggle();
         mDrawer.setDrawerListener(drawerToggle);

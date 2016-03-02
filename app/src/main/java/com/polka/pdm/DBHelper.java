@@ -39,14 +39,14 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_USER);
 
         // creates rating table
-        String CREATE_TABLE_RATING = "CREATE TABLE " + Rating.TABLE + " ("
-                + Rating.KEY_ratingId + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + Rating.KEY_movie + " TEXT, "
-                + Rating.KEY_movieYear + " INTEGER, "
-                + Rating.KEY_user + " TEXT, "
-                + Rating.KEY_major + " TEXT, "
-                + Rating.KEY_rating + " DOUBLE, "
-                + Rating.KEY_comment + " TEXT)";
+        String CREATE_TABLE_RATING = "CREATE TABLE " + com.polka.pdm.Rating.TABLE + " ("
+                + com.polka.pdm.Rating.KEY_ratingId + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + com.polka.pdm.Rating.KEY_movie + " TEXT, "
+                + com.polka.pdm.Rating.KEY_movieYear + " INTEGER, "
+                + com.polka.pdm.Rating.KEY_user + " TEXT, "
+                + com.polka.pdm.Rating.KEY_major + " TEXT, "
+                + com.polka.pdm.Rating.KEY_rating + " DOUBLE, "
+                + com.polka.pdm.Rating.KEY_comment + " TEXT)";
         db.execSQL(CREATE_TABLE_RATING);
     }
 

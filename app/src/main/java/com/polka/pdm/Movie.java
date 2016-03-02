@@ -73,6 +73,7 @@ public class Movie implements Parcelable {
 
     /**
      * Gets the synopsis
+     *
      * @return synopsis of the movie
      */
     public String getSynopsis() {
@@ -81,6 +82,7 @@ public class Movie implements Parcelable {
 
     /**
      * Gets the poster
+     *
      * @return the poster image for the movie
      */
     public String getPoster() {

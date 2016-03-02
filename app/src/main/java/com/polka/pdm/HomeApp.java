@@ -7,7 +7,6 @@
  */
 
 
->>>>>>> Temporary merge branch 2
 package com.polka.pdm;
 
 //import android.app.FragmentManager;
@@ -277,7 +276,5 @@ public class HomeApp extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
         drawerToggle.onConfigurationChanged(newConfig);
     }
-
->>>>>>> Temporary merge branch 2
 
 }

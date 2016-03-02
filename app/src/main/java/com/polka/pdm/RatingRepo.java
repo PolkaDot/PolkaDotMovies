@@ -21,6 +21,7 @@ public class RatingRepo {
 
     /**
      * create of db helper
+     *
      * @param context context of the application?
      */
     public RatingRepo(Context context) {
@@ -67,14 +68,14 @@ public class RatingRepo {
         String selectQuery = "SELECT * FROM " + Rating.TABLE
                 + " WHERE " +
                 Rating.KEY_movie + " = " + movie.getTitle() +
-                " AND " + Rating.KEY_movieYear  + " = "
+                " AND " + Rating.KEY_movieYear + " = "
                 + movie.getYear();
 
         ArrayList<Rating> ratings = new ArrayList<>();
 
         Rating ratingForSize = new Rating();
 
-        Cursor cursor = db.rawQuery(selectQuery, new String[] {String.valueOf(ratingForSize)});
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{String.valueOf(ratingForSize)});
         if (cursor.moveToFirst()) {
             do {
                 Rating rating = new Rating();
@@ -91,8 +92,4 @@ public class RatingRepo {
         return ratings;
     }
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/alisha
