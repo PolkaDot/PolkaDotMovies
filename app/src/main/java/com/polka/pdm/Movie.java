@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 /**
  * Created by Arsh on 2/23/16.
- * @author Arsh
+ * @author Arsh, Yami
  * @version 1.0
  */
 public class Movie implements Parcelable {
@@ -48,25 +48,7 @@ public class Movie implements Parcelable {
         return this.title.equals(that.title) && this.year == that.year;
     }
 
-
-    /**
-     * to string of a movie's title
-     *
-     * @return movie title
-     */
-    public String getTitle() {
-        return this.title;
-    }
-
-
-    /**
-     * to string of a movie's year
-     *
-     * @return movie's year made
-     */
-    public int getYear() {
-        return this.year;
-    }
+    
 
     @Override
     public int hashCode() {
@@ -75,7 +57,6 @@ public class Movie implements Parcelable {
 
     /**
      * Gets the title
-     *
      * @return the title of the movie
      */
     public String getTitle() {
@@ -84,7 +65,6 @@ public class Movie implements Parcelable {
 
     /**
      * Gets the year movie was made
-     *
      * @return gets the year the movie was made
      */
     public int getYear() {
@@ -93,7 +73,6 @@ public class Movie implements Parcelable {
 
     /**
      * Gets the synopsis
-     *
      * @return synopsis of the movie
      */
     public String getSynopsis() {
@@ -102,7 +81,6 @@ public class Movie implements Parcelable {
 
     /**
      * Gets the poster
-     *
      * @return the poster image for the movie
      */
     public String getPoster() {
@@ -116,7 +94,7 @@ public class Movie implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeStringArray(new String[]{
+        dest.writeStringArray(new String[] {
                 this.getTitle(),
                 Integer.toString(this.getYear()),
                 this.getSynopsis(),

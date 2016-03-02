@@ -52,10 +52,9 @@
                 android:layout_height="wrap_content"
                 android:text="MOVIE NAME"
                 android:id="@+id/MovieName"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/RecentMoviesTextView"
-                android:textSize="30dp" />
+                android:textSize="30dp"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/RecentMoviesTextView" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -71,14 +70,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:scrollbars = "vertical"
                 android:text="MovieSynopsis"
                 android:id="@+id/MovieSynopsis"
-                android:layout_below="@+id/MovieYear"
-                android:layout_alignParentEnd="true"
-                android:layout_toEndOf="@+id/RecentMoviesTextView"
-                android:textSize="30dp" />
+                android:layout_below="@+id/MovieYear" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"

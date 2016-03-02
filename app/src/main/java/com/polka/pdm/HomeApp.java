@@ -130,7 +130,7 @@ public class HomeApp extends AppCompatActivity {
         Log.d("HomeApp", "Search Button Pressed");
 
         Intent intent = new Intent(this, SearchMovies.class);
-//        intent.putExtra("user", user);
+        intent.putExtra("user", user);
         startActivity(intent);
 
     }
