@@ -126,12 +126,6 @@ public class HomeApp extends AppCompatActivity {
 
     }
 
-    public void onReccomendationPress(View view) {
-        Intent intent = new Intent(this, RatingsPage.class);
-        startActivity(intent);
-
-    }
-
     public void onMoviesButtonClick(View view) {
         Intent intent = new Intent(this, RecentMovies.class);
         startActivity(intent);

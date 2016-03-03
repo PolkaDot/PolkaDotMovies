@@ -1,13 +1,9 @@
 package com.polka.pdm;
 
 import android.content.Intent;
-import android.media.Rating;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
@@ -15,16 +11,21 @@ import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class RatingsPage extends AppCompatActivity {
+public class ReviewPage extends AppCompatActivity {
 
     float ratings;
     boolean hasRated;
-    ReviewAndRate ratingObj;
+    Review ratingObj;
+    Movie movie;
+    String movieName = "Movie Name";
+    int movieYear  = 11 ;
+    User user;
+    String username = "Alisha";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ratings_page);
+        setContentView(R.layout.activity_review_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -32,11 +33,29 @@ public class RatingsPage extends AppCompatActivity {
         ratingBar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
 
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                Toast.makeText(RatingsPage.this, String.valueOf(rating), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ReviewPage.this, String.valueOf(rating), Toast.LENGTH_SHORT).show();
                 ratings = rating;
                 hasRated = true;
             }
         });
+
+      /* if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if (extras == null) {
+                movie = null;
+            } else {
+                movie = extras.getParcelable("movie");
+            }
+        } else {
+            movie = savedInstanceState.getParcelable("movie");
+        }
+*/
+        //movieName = movie.getTitle();
+        //movieYear = movie.getYear();
+        //Log.d("MovieName", movie.getTitle());
+        TextView ratingTextViews = (TextView) findViewById(R.id.ratingTextView);
+        ratingTextViews.setText(movieName);
+
     }
 
     /**
@@ -47,22 +66,18 @@ public class RatingsPage extends AppCompatActivity {
         EditText comment = (EditText) findViewById(R.id.reviewEditText);
         String comments = comment.getText().toString();
 
-        Movie movie;
-        int movieYear;
-        User user;
-
         if (ratings == 0 && comment.length() == 0) {
             Toast.makeText(this, "Please enter either a review or rating before submitting!", Toast.LENGTH_SHORT).show();
             return;
         }
 
         // Insert user in database
-        RatingRepo ratingRepo = new RatingRepo(this);
+        ReviewRepo ratingRepo = new ReviewRepo(this);
         if (hasRated){
-            ratingObj = new ReviewAndRate("user", "movie", 11, ratings, comments);
+            ratingObj = new Review("user", movieName, movieYear, ratings, comments);
 
         }else {
-            ratingObj = new ReviewAndRate("user", "movie", 11, comments);
+            ratingObj = new Review("user", movieName, movieYear, comments);
         }
 
 

@@ -16,7 +16,7 @@ import java.util.List;
  * @author C. Shih on 2/23/2016.
  * @version 1.0
  */
-public class RatingRepo {
+public class ReviewRepo {
 
     private DBHelper dbHelper;
 
@@ -24,7 +24,7 @@ public class RatingRepo {
      * create of db helper
      * @param context context of the application?
      */
-    public RatingRepo(Context context) {
+    public ReviewRepo(Context context) {
         dbHelper = new DBHelper(context);
     }
 
@@ -34,21 +34,21 @@ public class RatingRepo {
      * @param rating that it is inserting
      * @return returns row ID of newly inserted row, -1 otherwise
      */
-    public long insert(ReviewAndRate rating) {
+    public long insert(Review rating) {
 
         // open connection to write data
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(ReviewAndRate.KEY_movie, rating.movie);
-        values.put(ReviewAndRate.KEY_movieYear, rating.movieYear);
-        values.put(ReviewAndRate.KEY_user, rating.user);
-        values.put(ReviewAndRate.KEY_rating, rating.rating);
-        values.put(ReviewAndRate.KEY_comment, rating.comment);
+        values.put(Review.KEY_movie, rating.movie);
+        values.put(Review.KEY_movieYear, rating.movieYear);
+        values.put(Review.KEY_user, rating.user);
+        values.put(Review.KEY_rating, rating.rating);
+        values.put(Review.KEY_comment, rating.comment);
 
 
         //inserting row
         try {
-            long rating_ratingId = db.insertOrThrow(ReviewAndRate.TABLE, null, values);
+            long rating_ratingId = db.insertOrThrow(Review.TABLE, null, values);
             db.close();
             return rating_ratingId;
         } catch (SQLException e) {
@@ -62,26 +62,26 @@ public class RatingRepo {
      * @param movie to find by
      * @return rating array if found ratings with corresponding movie, null otherwise
      */
-    public List<ReviewAndRate> getRatingsByMovie(Movie movie) {
+    public List<Review> getRatingsByMovie(Movie movie) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery = "SELECT * FROM " + ReviewAndRate.TABLE
+        String selectQuery = "SELECT * FROM " + Review.TABLE
                 + " WHERE " +
-                ReviewAndRate.KEY_movie + " = " + movie.getTitle() +
-                " AND " + ReviewAndRate.KEY_movieYear  + " = "
+                Review.KEY_movie + " = " + movie.getTitle() +
+                " AND " + Review.KEY_movieYear  + " = "
                 + movie.getYear();
 
-        ArrayList<ReviewAndRate> ratings = new ArrayList<>();
+        ArrayList<Review> ratings = new ArrayList<>();
 
-        ReviewAndRate ratingForSize = new ReviewAndRate();
+        Review ratingForSize = new Review();
 
         Cursor cursor = db.rawQuery(selectQuery, new String[] {String.valueOf(ratingForSize)});
         if (cursor.moveToFirst()) {
             do {
-                ReviewAndRate rating = new ReviewAndRate();
-                rating.movie = cursor.getString(cursor.getColumnIndex(ReviewAndRate.KEY_movie));
-                rating.user = cursor.getString(cursor.getColumnIndex(ReviewAndRate.KEY_user));
-                rating.rating = cursor.getDouble(cursor.getColumnIndex(ReviewAndRate.KEY_rating));
-                rating.comment = cursor.getString(cursor.getColumnIndex(ReviewAndRate.KEY_comment));
+                Review rating = new Review();
+                rating.movie = cursor.getString(cursor.getColumnIndex(Review.KEY_movie));
+                rating.user = cursor.getString(cursor.getColumnIndex(Review.KEY_user));
+                rating.rating = cursor.getDouble(cursor.getColumnIndex(Review.KEY_rating));
+                rating.comment = cursor.getString(cursor.getColumnIndex(Review.KEY_comment));
                 ratings.add(rating);
             } while (cursor.moveToNext());
         }

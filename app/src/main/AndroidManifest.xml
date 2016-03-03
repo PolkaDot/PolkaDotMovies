@@ -55,8 +55,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".RatingsPage"
-            android:label="@string/title_activity_ratings_page"
+            android:name=".ReviewPage"
+            android:label="@string/title_activity_review_page"
             android:theme="@style/AppTheme.NoActionBar"></activity>
             android:theme="@style/AppTheme.NoActionBar"/>
 

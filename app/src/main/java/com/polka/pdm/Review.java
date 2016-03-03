@@ -1,6 +1,7 @@
 package com.polka.pdm;
 
 import android.media.Rating;
+import android.widget.TextView;
 
 /**
  * Ratings AND COMMENTS class (but we wanted the name to be short hehehe)
@@ -8,7 +9,7 @@ import android.media.Rating;
  * @author Arsh
  * @version 1.0
  */
-public class ReviewAndRate {
+public class Review {
 
     public static final String TABLE = "Rating";
 
@@ -30,7 +31,7 @@ public class ReviewAndRate {
     /*
     * Empty constructor
      */
-    public ReviewAndRate(){
+    public Review(){
 
     }
 
@@ -42,7 +43,7 @@ public class ReviewAndRate {
      * @param movieYear year movie made
      * @param comment about that movie
      */
-    public ReviewAndRate(String user, String movie, int movieYear,String comment) {
+    public Review(String user, String movie, int movieYear,String comment) {
         this.user = user;
         this.movie = movie;
         this.movieYear = movieYear;
@@ -60,7 +61,7 @@ public class ReviewAndRate {
      * @param rating of that movie
      * @param comment about that movie
      */
-    public ReviewAndRate(String user, String movie, int movieYear, double rating, String comment) {
+    public Review(String user, String movie, int movieYear, double rating, String comment) {
         this.user = user;
         this.movie = movie;
         this.movieYear = movieYear;
@@ -79,7 +80,7 @@ public class ReviewAndRate {
         if (!(object instanceof Rating)) {
             return false;
         }
-        ReviewAndRate that = (ReviewAndRate) object;
+        Review that = (Review) object;
         return this.movie.equals(that.movie) && this.rating == that.rating && this.user.equals(that.user);
     }
 

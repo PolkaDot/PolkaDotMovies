@@ -202,7 +202,7 @@ public class ViewMovie extends AppCompatActivity {
 
     public void onRateMoviePress(View view) {
         Log.d("Rate Movie", "Rate Movie Button Pressed");
-        Intent intent = new Intent(this, RatingsPage.class);
+        Intent intent = new Intent(this, ReviewPage.class);
         startActivity(intent);
     }
 }

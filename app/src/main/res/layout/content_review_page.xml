@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.polka.pdm.RatingsPage"
-    tools:showIn="@layout/activity_ratings_page">
+    tools:showIn="@layout/activity_review_page">
 
     <RatingBar
         android:layout_width="wrap_content"
@@ -24,7 +24,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Review and Rating"
         android:id="@+id/ratingTextView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
