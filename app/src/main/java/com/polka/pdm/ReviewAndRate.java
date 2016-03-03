@@ -1,12 +1,14 @@
 package com.polka.pdm;
 
+import android.media.Rating;
+
 /**
  * Ratings AND COMMENTS class (but we wanted the name to be short hehehe)
  * Created by Arsh on 2/23/16.
  * @author Arsh
  * @version 1.0
  */
-public class Rating {
+public class ReviewAndRate {
 
     public static final String TABLE = "Rating";
 
@@ -19,19 +21,18 @@ public class Rating {
 
     protected String movie;
     //    protected Movie movie;
-    protected int rating;
+    protected double rating;
     protected String comment;
     protected int movieYear;
     protected  String user;
 //    protected User user;
 
-
-    /**
-     * no arg constructor
+    /*
+    * Empty constructor
      */
-    public Rating() {
-    }
+    public ReviewAndRate(){
 
+    }
 
     /**
      * constructor with user, movie, and rating input, comment null
@@ -39,14 +40,14 @@ public class Rating {
      * @param user who wrote the rating
      * @param movie that rating is about
      * @param movieYear year movie made
-     * @param rating of that movie
+     * @param comment about that movie
      */
-    public Rating(String user, String movie, int movieYear, int rating) {
+    public ReviewAndRate(String user, String movie, int movieYear,String comment) {
         this.user = user;
         this.movie = movie;
         this.movieYear = movieYear;
-        this.rating = rating;
-        this.comment = null;
+        this.rating = -1 ;
+        this.comment = comment;
 
     }
 
@@ -59,7 +60,7 @@ public class Rating {
      * @param rating of that movie
      * @param comment about that movie
      */
-    public Rating(String user, String movie, int movieYear, int rating, String comment) {
+    public ReviewAndRate(String user, String movie, int movieYear, double rating, String comment) {
         this.user = user;
         this.movie = movie;
         this.movieYear = movieYear;
@@ -78,7 +79,7 @@ public class Rating {
         if (!(object instanceof Rating)) {
             return false;
         }
-        Rating that = (Rating) object;
+        ReviewAndRate that = (ReviewAndRate) object;
         return this.movie.equals(that.movie) && this.rating == that.rating && this.user.equals(that.user);
     }
 

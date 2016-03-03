@@ -18,6 +18,8 @@ import android.widget.Toast;
 public class RatingsPage extends AppCompatActivity {
 
     float ratings;
+    boolean hasRated;
+    ReviewAndRate ratingObj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +34,9 @@ public class RatingsPage extends AppCompatActivity {
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 Toast.makeText(RatingsPage.this, String.valueOf(rating), Toast.LENGTH_SHORT).show();
                 ratings = rating;
-
+                hasRated = true;
             }
         });
-
     }
 
     /**
@@ -43,19 +44,39 @@ public class RatingsPage extends AppCompatActivity {
      * @param view of the viewAProfile Activity
      */
     public void onSubmitPress(View view) {
-        Log.d("RatingsPage", "Submit Button Pressed");
+        EditText comment = (EditText) findViewById(R.id.reviewEditText);
+        String comments = comment.getText().toString();
 
-        float rating  = ratings;
+        Movie movie;
+        int movieYear;
+        User user;
+
+        if (ratings == 0 && comment.length() == 0) {
+            Toast.makeText(this, "Please enter either a review or rating before submitting!", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         // Insert user in database
-        UserRepo repo = new UserRepo(this);
+        RatingRepo ratingRepo = new RatingRepo(this);
+        if (hasRated){
+            ratingObj = new ReviewAndRate("user", "movie", 11, ratings, comments);
 
-        // insert updated user info into database TODO: Check if user is already in database
+        }else {
+            ratingObj = new ReviewAndRate("user", "movie", 11, comments);
+        }
 
 
-        // Back to movie activity
-        Intent intent = new Intent(this, Movie.class);
-        startActivity(intent);
+        // insert user into database TODO: Check if user is already in database
+        if (true) {//check if rating already exists: ratingRepo.getRatingsByMovie(ratingObj.movie).movie == null
+            ratingRepo.insert(ratingObj);
+            Toast.makeText(this, "Thanks for the rating!", Toast.LENGTH_SHORT).show();
+            // Switch to Edit Profile Activity
+            Intent intent = new Intent(this, HomeApp.class);
+            // intent.putExtra("user", ratingObj);//not sure what this does
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Already rated.", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

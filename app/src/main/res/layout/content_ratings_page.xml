@@ -41,7 +41,8 @@
         android:layout_centerHorizontal="true"
         android:textStyle="bold"
         android:textSize="30dp"
-        android:background="#F7BE39" />
+        android:background="#F7BE39"
+        android:onClick="onSubmitPress" />
 
     <EditText
         android:layout_width="match_parent"

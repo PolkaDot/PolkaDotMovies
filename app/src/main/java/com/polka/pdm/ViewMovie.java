@@ -16,6 +16,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -197,6 +198,12 @@ public class ViewMovie extends AppCompatActivity {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         drawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    public void onRateMoviePress(View view) {
+        Log.d("Rate Movie", "Rate Movie Button Pressed");
+        Intent intent = new Intent(this, RatingsPage.class);
+        startActivity(intent);
     }
 }
 
