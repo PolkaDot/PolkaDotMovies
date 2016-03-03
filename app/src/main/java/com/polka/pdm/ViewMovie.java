@@ -36,6 +36,7 @@ public class ViewMovie extends AppCompatActivity {
     private ActionBarDrawerToggle drawerToggle;
     private Toolbar toolbar;
     private ImageView poster;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,17 @@ public class ViewMovie extends AppCompatActivity {
             }
         } else {
             movie = savedInstanceState.getParcelable("movie");
+        }
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if (extras == null) {
+                user = null;
+            } else {
+                user = extras.getParcelable("user");
+            }
+        } else {
+            user = savedInstanceState.getParcelable("user");
         }
 //        if (user != null) {
 //            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
@@ -203,6 +215,9 @@ public class ViewMovie extends AppCompatActivity {
     public void onRateMoviePress(View view) {
         Log.d("Rate Movie", "Rate Movie Button Pressed");
         Intent intent = new Intent(this, ReviewPage.class);
+        intent.putExtra("movie", movie);
+        intent.putExtra("user", user);
+
         startActivity(intent);
     }
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
@@ -17,10 +18,10 @@ public class ReviewPage extends AppCompatActivity {
     boolean hasRated;
     Review ratingObj;
     Movie movie;
-    String movieName = "Movie Name";
-    int movieYear  = 11 ;
+    String movieName;
+    int movieYear ;
     User user;
-    String username = "Alisha";
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class ReviewPage extends AppCompatActivity {
             }
         });
 
-      /* if (savedInstanceState == null) {
+       if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if (extras == null) {
                 movie = null;
@@ -49,12 +50,23 @@ public class ReviewPage extends AppCompatActivity {
         } else {
             movie = savedInstanceState.getParcelable("movie");
         }
-*/
-        //movieName = movie.getTitle();
-        //movieYear = movie.getYear();
-        //Log.d("MovieName", movie.getTitle());
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if (extras == null) {
+                user = null;
+            } else {
+                user = extras.getParcelable("user");
+            }
+        } else {
+            user = savedInstanceState.getParcelable("user");
+        }
+
+        movieName = movie.getTitle();
+        movieYear = movie.getYear();
         TextView ratingTextViews = (TextView) findViewById(R.id.ratingTextView);
         ratingTextViews.setText(movieName);
+        username = user.username;
 
     }
 
@@ -74,15 +86,15 @@ public class ReviewPage extends AppCompatActivity {
         // Insert user in database
         ReviewRepo ratingRepo = new ReviewRepo(this);
         if (hasRated){
-            ratingObj = new Review("user", movieName, movieYear, ratings, comments);
+            ratingObj = new Review(username, movieName, movieYear, ratings, comments);
 
         }else {
-            ratingObj = new Review("user", movieName, movieYear, comments);
+            ratingObj = new Review(username, movieName, movieYear, comments);
         }
 
 
-        // insert user into database TODO: Check if user is already in database
-        if (true) {//check if rating already exists: ratingRepo.getRatingsByMovie(ratingObj.movie).movie == null
+        // insert user already rated the movie
+        if (true) {
             ratingRepo.insert(ratingObj);
             Toast.makeText(this, "Thanks for the rating!", Toast.LENGTH_SHORT).show();
             // Switch to Edit Profile Activity
