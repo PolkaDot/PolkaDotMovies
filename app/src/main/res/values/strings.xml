@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">PDM</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <string name="title_activity_view_profile">View Profile</string>
+    <string name="title_activity_edit_profile">Edit Profile</string>
+    <string name="title_activity_login_application">Login</string>
+    <string name="title_activity_registration_page">Registration Page</string>
+    <string name="title_activity_home_app">Home Page</string>
+    <string name="title_activity_recent_dvds">Recent Dvds</string>
+    <string name="title_activity_search_movies">Search Movies</string>
+    <string name="title_activity_review_page">Review</string>
+
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
+
+    <string name="title_activity_recent_movies">Recent Movies</string>
+    <string name="title_activity_view_movie">View Movie</string>
+    <string name="title_activity_block_user">Block User</string>
+
+</resources>
