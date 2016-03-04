@@ -1,12 +1,15 @@
 package com.polka.pdm;
 
+import android.media.Rating;
+import android.widget.TextView;
+
 /**
  * Ratings AND COMMENTS class (but we wanted the name to be short hehehe)
  * Created by Arsh on 2/23/16.
  * @author Arsh
  * @version 1.0
  */
-public class Rating {
+public class Review {
 
     public static final String TABLE = "Rating";
 
@@ -19,38 +22,34 @@ public class Rating {
     public static final String KEY_comment = "comment";
 
     protected String movie;
-//    protected Movie movie;
-    protected int rating;
+    protected double rating;
     protected String comment;
     protected int movieYear;
     protected  String user;
     protected String major;
 //    protected User user;
 
-
-    /**
-     * no arg constructor
+    /*
+    * Empty constructor
      */
-    public Rating() {
-    }
+    public Review(){
 
+    }
 
     /**
      * constructor with user, movie, and rating input, comment null
      *
      * @param user who wrote the rating
-     * @param major of user
      * @param movie that rating is about
      * @param movieYear year movie made
-     * @param rating of that movie
+     * @param comment about that movie
      */
-    public Rating(String user, String major, String movie, int movieYear, int rating) {
+    public Review(String user, String movie, int movieYear,String comment) {
         this.user = user;
-        this.major = major;
         this.movie = movie;
         this.movieYear = movieYear;
-        this.rating = rating;
-        this.comment = null;
+        this.rating = -1 ;
+        this.comment = comment;
 
     }
 
@@ -58,15 +57,13 @@ public class Rating {
      * constructor with user, movie, rating, and comment
      *
      * @param user who wrote the rating
-     * @param major of user
      * @param movie that rating is about
      * @param movieYear that movie was made
      * @param rating of that movie
      * @param comment about that movie
      */
-    public Rating(String user, String major, String movie, int movieYear, int rating, String comment) {
+    public Review(String user, String movie, int movieYear, double rating, String comment) {
         this.user = user;
-        this.major = major;
         this.movie = movie;
         this.movieYear = movieYear;
         this.rating = rating;
@@ -81,16 +78,16 @@ public class Rating {
         if (this == object) {
             return true;
         }
-        if (!(object instanceof Rating)) {
+        if (!(object instanceof Review)) {
             return false;
         }
-        Rating that = (Rating) object;
+        Review that = (Review) object;
         return this.movie.equals(that.movie) && this.rating == that.rating && this.user.equals(that.user);
     }
 
     @Override
     public int hashCode() {
-        return 13 * rating + comment.length();
+        return (int) (13 * rating + comment.length());
     }
 
 }

@@ -54,10 +54,10 @@
             android:label="@string/title_activity_search_movies"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".RatingsPage"
-            android:label="@string/title_activity_ratings_page"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
+            android:name=".ReviewPage"
+            android:label="@string/title_activity_review_page"
+            android:theme="@style/AppTheme.NoActionBar" />
+        android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".RecentMovies"
             android:label="@string/title_activity_recent_movies"
@@ -65,7 +65,11 @@
         <activity
             android:name=".ViewMovie"
             android:label="@string/title_activity_view_movie"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".BlockUser"
+            android:label="@string/title_activity_block_user"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

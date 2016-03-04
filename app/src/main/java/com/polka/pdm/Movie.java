@@ -55,6 +55,7 @@ public class Movie implements Parcelable {
         return 7 * year + synopsis.length();
     }
 
+
     /**
      * Gets the title
      * @return the title of the movie
@@ -73,7 +74,6 @@ public class Movie implements Parcelable {
 
     /**
      * Gets the synopsis
-     *
      * @return synopsis of the movie
      */
     public String getSynopsis() {
@@ -82,7 +82,6 @@ public class Movie implements Parcelable {
 
     /**
      * Gets the poster
-     *
      * @return the poster image for the movie
      */
     public String getPoster() {
@@ -96,6 +95,7 @@ public class Movie implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+
         dest.writeStringArray(new String[] {
                 this.getTitle(),
                 Integer.toString(this.getYear()),

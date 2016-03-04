@@ -125,6 +125,11 @@ public class HomeApp extends AppCompatActivity {
     }
 
 
+    /**
+     * opens search button page
+     *
+     * @param view user interface component
+     */
     public void onSearchButtonPress(View view) {
         Log.d("HomeApp", "Search Button Pressed");
 
@@ -134,12 +139,12 @@ public class HomeApp extends AppCompatActivity {
 
     }
 
-    public void onReccomendationPress(View view) {
-        Intent intent = new Intent(this, RatingsPage.class);
-        startActivity(intent);
 
-    }
-
+    /**
+     * opens movies button
+     *
+     * @param view
+     */
     public void onMoviesButtonClick(View view) {
         Intent intent = new Intent(this, RecentMovies.class);
         startActivity(intent);

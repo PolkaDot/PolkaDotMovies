@@ -16,6 +16,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -35,6 +36,7 @@ public class ViewMovie extends AppCompatActivity {
     private ActionBarDrawerToggle drawerToggle;
     private Toolbar toolbar;
     private ImageView poster;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,17 @@ public class ViewMovie extends AppCompatActivity {
             }
         } else {
             movie = savedInstanceState.getParcelable("movie");
+        }
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if (extras == null) {
+                user = null;
+            } else {
+                user = extras.getParcelable("user");
+            }
+        } else {
+            user = savedInstanceState.getParcelable("user");
         }
 //        if (user != null) {
 //            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
@@ -197,6 +210,15 @@ public class ViewMovie extends AppCompatActivity {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         drawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    public void onRateMoviePress(View view) {
+        Log.d("Rate Movie", "Rate Movie Button Pressed");
+        Intent intent = new Intent(this, ReviewPage.class);
+        intent.putExtra("movie", movie);
+        intent.putExtra("user", user);
+
+        startActivity(intent);
     }
 }
 

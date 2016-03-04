@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.Rating;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
  * @author C. Shih on 2/23/2016.
  * @version 1.0
  */
-public class RatingRepo {
+public class ReviewRepo {
 
     private DBHelper dbHelper;
 
@@ -24,7 +25,7 @@ public class RatingRepo {
      *
      * @param context context of the application?
      */
-    public RatingRepo(Context context) {
+    public ReviewRepo(Context context) {
         dbHelper = new DBHelper(context);
     }
 
@@ -34,22 +35,21 @@ public class RatingRepo {
      * @param rating that it is inserting
      * @return returns row ID of newly inserted row, -1 otherwise
      */
-    public long insert(Rating rating) {
+    public long insert(Review rating) {
 
         // open connection to write data
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(Rating.KEY_movie, rating.movie);
-        values.put(Rating.KEY_movieYear, rating.movieYear);
-        values.put(Rating.KEY_user, rating.user);
-        values.put(Rating.KEY_major, rating.major);
-        values.put(Rating.KEY_rating, rating.rating);
-        values.put(Rating.KEY_rating, rating.comment);
+        values.put(Review.KEY_movie, rating.movie);
+        values.put(Review.KEY_movieYear, rating.movieYear);
+        values.put(Review.KEY_user, rating.user);
+        values.put(Review.KEY_rating, rating.rating);
+        values.put(Review.KEY_comment, rating.comment);
 
 
         //inserting row
         try {
-            long rating_ratingId = db.insertOrThrow(Rating.TABLE, null, values);
+            long rating_ratingId = db.insertOrThrow(Review.TABLE, null, values);
             db.close();
             return rating_ratingId;
         } catch (SQLException e) {
@@ -63,27 +63,26 @@ public class RatingRepo {
      * @param movie to find by
      * @return rating array if found ratings with corresponding movie, null otherwise
      */
-    public List<Rating> getRatingsByMovie(Movie movie) {
+    public List<Review> getRatingsByMovie(Movie movie) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery = "SELECT * FROM " + Rating.TABLE
+        String selectQuery = "SELECT * FROM " + Review.TABLE
                 + " WHERE " +
-                Rating.KEY_movie + " = " + movie.getTitle() +
-                " AND " + Rating.KEY_movieYear + " = "
+                Review.KEY_movie + " = " + movie.getTitle() +
+                " AND " + Review.KEY_movieYear  + " = "
                 + movie.getYear();
 
-        ArrayList<Rating> ratings = new ArrayList<>();
+        ArrayList<Review> ratings = new ArrayList<>();
 
-        Rating ratingForSize = new Rating();
+        Review ratingForSize = new Review();
 
         Cursor cursor = db.rawQuery(selectQuery, new String[]{String.valueOf(ratingForSize)});
         if (cursor.moveToFirst()) {
             do {
-                Rating rating = new Rating();
-                rating.movie = cursor.getString(cursor.getColumnIndex(Rating.KEY_movie));
-                rating.user = cursor.getString(cursor.getColumnIndex(Rating.KEY_user));
-                rating.major = cursor.getString(cursor.getColumnIndex(Rating.KEY_major));
-                rating.rating = cursor.getInt(cursor.getColumnIndex(Rating.KEY_rating));
-                rating.comment = cursor.getString(cursor.getColumnIndex(Rating.KEY_comment));
+                Review rating = new Review();
+                rating.movie = cursor.getString(cursor.getColumnIndex(Review.KEY_movie));
+                rating.user = cursor.getString(cursor.getColumnIndex(Review.KEY_user));
+                rating.rating = cursor.getDouble(cursor.getColumnIndex(Review.KEY_rating));
+                rating.comment = cursor.getString(cursor.getColumnIndex(Review.KEY_comment));
                 ratings.add(rating);
             } while (cursor.moveToNext());
         }
