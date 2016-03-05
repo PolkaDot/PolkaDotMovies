@@ -68,14 +68,14 @@ public class ViewProfile extends AppCompatActivity {
         TextView interestsTextView = (TextView)findViewById(R.id.InterestTextField);
 
         // Put user information in TextView boxes
-        phoneTextView.setText(user.phone);
-        firstNameTextView.setText(user.firstName);
-        lastNameTextView.setText(user.lastName);
-        userTextView.setText(user.username);
-        emailTextView.setText(user.email);
-        majorTextView.setText(user.major);
-        passTextView.setText(user.password);
-        interestsTextView.setText(user.interests);
+        phoneTextView.setText(user.getPhone());
+        firstNameTextView.setText(user.getFirstName());
+        lastNameTextView.setText(user.getLastName());
+        userTextView.setText(user.getUsername());
+        emailTextView.setText(user.getEmail());
+        majorTextView.setText(user.getMajor());
+        passTextView.setText(user.getPhone());
+        interestsTextView.setText(user.getInterests());
     }
 
     /**

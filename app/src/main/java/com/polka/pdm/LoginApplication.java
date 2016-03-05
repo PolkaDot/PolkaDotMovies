@@ -46,7 +46,7 @@ public class LoginApplication extends AppCompatActivity {
         User user = repo.getUserByUsername(nameBox.getText().toString());
 
         // Checks if an admin
-        if (user.isAdmin == 1 && passBox.getText().toString().equals(user.password)) {
+        if (user.getIsAdmin() == 1 && passBox.getText().toString().equals(user.getPassword())) {
             text = "Logged in as Admin";
             Intent startApp = new Intent(this, HomeApp.class); // TODO: CHANGE THIS ONCE ACTIVITY DONE!
             startApp.putExtra("user", user); // just in case this is needed...
@@ -55,7 +55,7 @@ public class LoginApplication extends AppCompatActivity {
         } else {
             // is a regular user then...
             // verify password
-            if (passBox.getText().toString().equals(user.password) && isNotLocked(user) && user.isBanned != 1) {
+            if (passBox.getText().toString().equals(user.getPassword()) && isNotLocked(user) && user.getIsBanned() != 1) {
                 text = "Login Success!";
 
                 Intent startApp = new Intent(this, HomeApp.class);
@@ -63,7 +63,7 @@ public class LoginApplication extends AppCompatActivity {
                 startApp.putExtra("user", user);
                 startActivity(startApp);
             } else {
-                if (user.isBanned == 1) {
+                if (user.getIsBanned() == 1) {
                     Toast.makeText(this, "YOU'RE BANNED FROM USING THIS!!!", Toast.LENGTH_SHORT).show();
                 } else {
                     incrementLock(repo, user);
@@ -84,7 +84,7 @@ public class LoginApplication extends AppCompatActivity {
      * @return true if user is not locked
      */
     private boolean isNotLocked(User user) {
-        return user.isLocked != 3;
+        return user.getIsLocked() != 3;
     }
 
     /**
@@ -94,9 +94,9 @@ public class LoginApplication extends AppCompatActivity {
      * @param user trying to login
      */
     private void incrementLock(UserRepo userRepo, User user) {
-        if (user.username != null && user.isAdmin != 1) {
-            if (user.isLocked < 3) {
-                userRepo.setLock(user.username, user.isLocked + 1);
+        if (user.getUsername() != null && user.getIsAdmin() != 1) {
+            if (user.getIsLocked() < 3) {
+                userRepo.setLock(user.getUsername(), user.getIsLocked() + 1);
             } else {
                 Toast.makeText(this, "YOU'RE LOCKED OUT!!!", Toast.LENGTH_SHORT).show();
             }
