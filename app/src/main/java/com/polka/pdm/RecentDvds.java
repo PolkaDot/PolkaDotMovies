@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response.ErrorListener;
@@ -56,9 +55,9 @@ public class RecentDvds extends AppCompatActivity {
         } else {
             user = savedInstanceState.getParcelable("user");
         }
-        if (user != null) {
-            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
-        }
+//        if (user != null) {
+//            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
+//        }
 
         sendJsonRequest();
     }
@@ -187,7 +186,7 @@ public class RecentDvds extends AppCompatActivity {
 //                Log.d("HomeApp","searched movies");
                 break;
             case R.id.Movies:
-                intent = new Intent(this, MainActivity.class);
+                intent = new Intent(this, RecentMovies.class);
 //                fragmentClass = Frag.class;
                 break;
             case R.id.DVDs:

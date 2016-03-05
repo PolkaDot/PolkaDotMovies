@@ -86,19 +86,19 @@ public class RegistrationPage extends AppCompatActivity {
         UserRepo repo = new UserRepo(this);
         User user = new User();
 
-        user.firstName = aFirstName;
-        user.lastName = aLastName;
-        user.username = aUsername;
-        user.email = aEmail;
-        user.password = aPassword;
+        user.setFirstName(aFirstName);
+        user.setLastName(aLastName);
+        user.setUsername(aUsername);
+        user.setEmail(aEmail);
+        user.setPassword(aPassword);
 
 
 
         // insert user into database TODO: Check if user is already in database
-        if (repo.getUserByUsername(user.username).username == null) {
+        if (repo.getUserByUsername(user.getUsername()).getUsername() == null) {
             repo.insert(user);
             Toast.makeText(this, "New student inserted", Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
 
             // Switch to Edit Profile Activity
             Intent intent = new Intent(this, EditProfile.class);

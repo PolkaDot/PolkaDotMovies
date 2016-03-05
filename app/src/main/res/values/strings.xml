@@ -15,6 +15,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
     <string name="title_activity_view_profile">View Profile</string>
     <string name="title_activity_edit_profile">Edit Profile</string>
     <string name="title_activity_login_application">Login</string>
@@ -22,8 +23,14 @@
     <string name="title_activity_home_app">Home Page</string>
     <string name="title_activity_recent_dvds">Recent Dvds</string>
     <string name="title_activity_search_movies">Search Movies</string>
+    <string name="title_activity_review_page">Review</string>
 
-    <string name="drawer_open">open drawer</string>
-    <string name="drawer_close">close drawer</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
+
+    <string name="title_activity_recent_movies">Recent Movies</string>
+    <string name="title_activity_view_movie">View Movie</string>
+    <string name="title_activity_block_user">Block User</string>
 
 </resources>

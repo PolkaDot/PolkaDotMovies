@@ -48,10 +48,13 @@ public class Movie implements Parcelable {
         return this.title.equals(that.title) && this.year == that.year;
     }
 
+    
+
     @Override
     public int hashCode() {
-        return 7*year + synopsis.length();
+        return 7 * year + synopsis.length();
     }
+
 
     /**
      * Gets the title
@@ -92,6 +95,7 @@ public class Movie implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+
         dest.writeStringArray(new String[] {
                 this.getTitle(),
                 Integer.toString(this.getYear()),

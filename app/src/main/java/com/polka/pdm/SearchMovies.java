@@ -7,13 +7,16 @@ package com.polka.pdm;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -55,10 +58,12 @@ public class SearchMovies extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
         // BEGIN_INCLUDE (initializeRecyclerView)
         mRecyclerView = (RecyclerView) findViewById(R.id.moviesRecylerView);
+        //
+        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
+        setupDrawerContent(nvDrawer);
 
         // improves performance if you know that changes in content do not change the layout size
         // of the RecyclerView
@@ -70,11 +75,6 @@ public class SearchMovies extends AppCompatActivity {
 
         mAdapter = new MyAdapter(mDataset);
         mRecyclerView.setAdapter(mAdapter);
-
-        //
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
-        setupDrawerContent(nvDrawer);
 
         //toggle for nav bar
         drawerToggle = setupDrawerToggle();
@@ -204,7 +204,6 @@ public class SearchMovies extends AppCompatActivity {
             case R.id.ViewProfile:
 //                fragmentClass = Frag.class;
                 intent = new Intent(this, ViewProfile.class);
-                intent.putExtra("user", user);
                 break;
             case R.id.SearchMovies:
 //                fragmentClass = Frag.class;
@@ -213,7 +212,7 @@ public class SearchMovies extends AppCompatActivity {
 //                Log.d("HomeApp","searched movies");
                 break;
             case R.id.Movies:
-                intent = new Intent(this, MainActivity.class);
+                intent = new Intent(this, RecentMovies.class);
 //                fragmentClass = Frag.class;
                 break;
             case R.id.DVDs:
@@ -251,6 +250,7 @@ public class SearchMovies extends AppCompatActivity {
 //        Log.d("HomeApp", "creating title");
         // close the drawer
         mDrawer.closeDrawers();
+        intent.putExtra("user", user);
         startActivity(intent);
 
     }
@@ -299,6 +299,8 @@ public class SearchMovies extends AppCompatActivity {
                     poster = posters.getString("thumbnail");
                 }
                 data[i] = new Movie(title, year, synopsis, poster);
+                Log.d("LLL", "Synopsis " + synopsis);
+
             }
             return data;
         } catch (JSONException e) {

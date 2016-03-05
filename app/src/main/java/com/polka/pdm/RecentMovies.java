@@ -1,53 +1,41 @@
-/**
- * @author Christine Shih
- * @version 2.0
- * The start/home page of the application (after we have logged in)
- * Activity that starts after you log into the app
- * this is the right way to do javadocs
- */
-
-
 package com.polka.pdm;
 
-//import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.TextView;
 
-public class HomeApp extends AppCompatActivity {
+import com.android.volley.Request;
+import com.android.volley.Response.ErrorListener;
+import com.android.volley.Response.Listener;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class RecentMovies extends AppCompatActivity {
+
+    private Toolbar toolbar;
+    private DrawerLayout mDrawer;
+    private ActionBarDrawerToggle drawerToggle;
     private User user;
 
-    //
-    private DrawerLayout mDrawer;
-    private Toolbar toolbar;
-    private ActionBarDrawerToggle drawerToggle;
-
-    //when we create this activity, there are some things we need to do first
-    // hence the name on create
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_app);
-
+        // getActionBar().setHomeButtonEnabled(true);
+        setContentView(R.layout.activity_recent_movies);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-//        couldn't get toolbar to work
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         //
@@ -72,84 +60,59 @@ public class HomeApp extends AppCompatActivity {
 //        if (user != null) {
 //            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
 //        }
+
+        sendJsonRequest();
     }
 
-    /**
-     * Tester code for playing around with the database, creates a toast if found "user1" in db
-     *
-     * @param view view it is being used on
-     */
-    public void testDB(View view) {
-        UserRepo repo = new UserRepo(this);
-        User user = new User("user1", "pass1", "firstName1", "lastName1", "email1");
-        repo.insert(user);
-        String name = repo.getUserByUsername("user1").toString();
-        Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
+    private void sendJsonRequest() {
+        String url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=yedukp76ffytfuy24zsqk7f5";
+
+
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                (Request.Method.GET, url, (String)null, new Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        parseJSONObject(response);
+                    }
+                }, new ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO Auto-generated method stub
+
+                    }
+                }
+                );
+        MySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
+
     }
 
-    /**
-     *     if you press log out, it will take you to the main activity screen
-     *     future reference, go to layout, xml add button and set its on click
-     *     to the method in this case logoutClickListener
-     *
-     * @param view it is being used on
-     */
+    private void parseJSONObject(JSONObject response) {
+        if (response == null || response.length() == 0) {
+            return;
+        }
 
-    public void logoutClickListener(View view) {
-        Log.d("Logout", "Logout Button Pressed");
+        try {
+            TextView  movie_names = (TextView)findViewById(R.id.RecentMoviesTextView);
+            StringBuilder data = new StringBuilder();
+            JSONArray arrayMovies = response.getJSONArray(Keys.KEY_MOVIE);
+            for (int i = 0; i < arrayMovies.length() && i < 10; i++) {
 
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    /**
-    * when you click view profile, it takes you to the view profile activity
-    * @param view that you're looking at.
-     */
-    public void onViewProfileClick(View view) {
-        Log.d("ViewProfile", "View Profile Button Pressed");
-
-        Intent intent = new Intent(this, ViewProfile.class);
-        intent.putExtra("user", user);
-        startActivity(intent);
-    }
-
-    /*
-     * Opens the Recent DVDs page
-     *
-     * @param view user interface component
-     */
-    public void onDVDsButtonClick(View view) {
-        Intent intent = new Intent(this, RecentDvds.class);
-        startActivity(intent);
-    }
-
-
-    /**
-     * opens search button page
-     *
-     * @param view user interface component
-     */
-    public void onSearchButtonPress(View view) {
-        Log.d("HomeApp", "Search Button Pressed");
-
-        Intent intent = new Intent(this, SearchMovies.class);
-        intent.putExtra("user", user);
-        startActivity(intent);
+                JSONObject currentMovie = arrayMovies.getJSONObject(i);
+                String name = currentMovie.getString(Keys.KEY_TITLE);
+                int num = i +1;
+                data.append(num + " " + name + "\n");
+            }
+            movie_names.setText(data);
+        } catch (JSONException e) {
+            System.out.println("JSON Exception Exception");
+        }
 
     }
 
 
-    /**
-     * opens movies button
-     *
-     * @param view of the page
-     */
-    public void onMoviesButtonClick(View view) {
-        Intent intent = new Intent(this, RecentMovies.class);
-        startActivity(intent);
-    }
-
+    //NAV BAR STUFF
     //
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -201,8 +164,8 @@ public class HomeApp extends AppCompatActivity {
     public void selectDrawerItem(MenuItem menuItem) {
         //create new frag
         //determine what to show
-        Fragment fragment = null;
-        Class fragmentClass;
+//        Fragment fragment = null;
+//        Class fragmentClass;
         Intent intent;
 //        Log.d("HomeApp","starting method");
         switch(menuItem.getItemId()) {
@@ -233,14 +196,9 @@ public class HomeApp extends AppCompatActivity {
 //                Log.d("HomeApp","logging out");
                 intent = new Intent(this, MainActivity.class);
                 break;
-//            case R.id.Cancel:
-////                fragmentClass = Frag.class;
-////                Log.d("HomeApp","logging out");
-//                intent = new Intent(this, HomeApp.class);
-//                break;
             default:
 //                fragmentClass = Frag.class;
-                intent = new Intent(this, HomeApp.class);
+                intent = new Intent(this, RecentMovies.class);
         }
 //        try {
 //            fragment = (Fragment) fragmentClass.newInstance();
@@ -281,5 +239,6 @@ public class HomeApp extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
         drawerToggle.onConfigurationChanged(newConfig);
     }
+
 
 }

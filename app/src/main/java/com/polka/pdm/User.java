@@ -30,17 +30,17 @@ public class User implements Parcelable {
 
 
     // attributes to keep data
-    public String username;
-    public String password;
-    public String firstName;
-    public String lastName;
-    public String email;
-    public String major;
-    public String phone;
-    public String interests;
-    public int isLocked;
-    public int isBanned;
-    public int isAdmin;
+    private String username;
+    private String password;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String major;
+    private String phone;
+    private String interests;
+    private int isLocked;
+    private int isBanned;
+    private int isAdmin;
 
 
     /**
@@ -67,6 +67,185 @@ public class User implements Parcelable {
         this.lastName = aLastName;
         this.email = aEmail;
     }
+
+
+    /**
+     * gets User's username
+     * @return username of User
+     */
+    public String getUsername() {
+        return this.username;
+    }
+
+    /**
+     * gets User's password
+     * @return password of User
+     */
+    public String getPassword() {
+        return this.password;
+    }
+
+    /**
+     * gets User's first name
+     * @return first name of User
+     */
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    /**
+     * gets User's last name
+     * @return last name of User
+     */
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    /**
+     * gets User's email
+     * @return email of User
+     */
+    public String getEmail() {
+        return this.email;
+    }
+
+    /**
+     * gets User's phone
+     * @return phone of User
+     */
+    public String getPhone() {
+        return this.phone;
+    }
+
+    /**
+     * gets User's major
+     * @return major of User
+     */
+    public String getMajor() {
+        return this.major;
+    }
+
+    /**
+     * gets User's interests
+     * @return interests of User
+     */
+    public String getInterests() {
+        return this.interests;
+    }
+
+    /**
+     * gets if user is locked
+     * @return int value (num of login attempts) for locked
+     */
+    public int getIsLocked() {
+        return this.isLocked;
+    }
+
+    /**
+     * gets if user is banned
+     * @return 1 if user is banned
+     */
+    public int getIsBanned() {
+        return this.isBanned;
+    }
+
+    /**
+     * gets if user is admin
+     * @return 1 if user is admin
+     */
+    public int getIsAdmin() {
+        return this.isAdmin;
+    }
+
+    /**
+     * sets User's username
+     * @param username of user
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /**
+     * sets user's password
+     * @param password of user
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
+     * sets user's firstname
+     * @param firstName of the user
+     */
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    /**
+     * sets last name of user
+     * @param lastName of user
+     */
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    /**
+     * sets user's phone
+     * @param phone of user
+     */
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    /**
+     * sets user's email
+     * @param email of user
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * sets user's major
+     * @param major of user
+     */
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    /**
+     * set user's interests
+     * @param interests of the user
+     */
+    public void setInterests(String interests) {
+        this.interests = interests;
+    }
+
+    /**
+     * sets if user is admin
+     * @param isAdmin int val if admin
+     */
+    public void setIsAdmin(int isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
+    /**
+     * sets if user is banned
+     * @param isBanned int value if user banned
+     */
+    public void setIsBanned(int isBanned) {
+        this.isBanned = isBanned;
+    }
+
+    /**
+     * sets if user locked
+     * @param isLocked int value if user locked
+     */
+    public void setIsLock(int isLocked) {
+        this.isLocked = isLocked;
+    }
+
+
 
     /**
      * converts to string the username and password
@@ -118,6 +297,22 @@ public class User implements Parcelable {
                 Integer.toString(this.isBanned),
                 Integer.toString(this.isAdmin)});
     }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == null) {
+            return false;
+        }
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof User)) {
+            return false;
+        }
+        User that = (User) object;
+        return this.username.equals(that.username);
+    }
+
 
     /**
      * inner class

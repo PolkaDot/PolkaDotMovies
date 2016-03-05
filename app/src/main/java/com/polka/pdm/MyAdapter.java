@@ -44,7 +44,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 Log.d("CLICK", "on Click" + mItem.getTitle());// Switch activities
                 // TODO: Replace MainActivity with MovieActivity
                 // PutExtra Movie
-                Intent intent = new Intent(context, ViewProfile.class);
+                Intent intent = new Intent(context, ViewMovie.class);
                 intent.putExtra("movie", mItem);
 
                 // PutExtra User

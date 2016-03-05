@@ -1,15 +1,5 @@
-/**
- * @author Christine Shih
- * @version 2.0
- * The start/home page of the application (after we have logged in)
- * Activity that starts after you log into the app
- * this is the right way to do javadocs
- */
-
-
 package com.polka.pdm;
 
-//import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -17,139 +7,23 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
-public class HomeApp extends AppCompatActivity {
+/**
+ * attempt at Navigation bar class to have all methods in one place
+ *
+ * Created by C. Shih on 3/4/2016.
+ */
+public class NavBar extends AppCompatActivity {
 
-    private User user;
-
-    //
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
     private ActionBarDrawerToggle drawerToggle;
 
-    //when we create this activity, there are some things we need to do first
-    // hence the name on create
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_app);
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-//        couldn't get toolbar to work
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        //
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
-        setupDrawerContent(nvDrawer);
-
-        drawerToggle = setupDrawerToggle();
-        mDrawer.setDrawerListener(drawerToggle);
-
-        // Grab data about user from extras
-        if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
-            if (extras == null) {
-                user = null;
-            } else {
-                user = extras.getParcelable("user");
-            }
-        } else {
-            user = savedInstanceState.getParcelable("user");
-        }
-//        if (user != null) {
-//            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
-//        }
-    }
-
-    /**
-     * Tester code for playing around with the database, creates a toast if found "user1" in db
-     *
-     * @param view view it is being used on
-     */
-    public void testDB(View view) {
-        UserRepo repo = new UserRepo(this);
-        User user = new User("user1", "pass1", "firstName1", "lastName1", "email1");
-        repo.insert(user);
-        String name = repo.getUserByUsername("user1").toString();
-        Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
-    }
-
-    /**
-     *     if you press log out, it will take you to the main activity screen
-     *     future reference, go to layout, xml add button and set its on click
-     *     to the method in this case logoutClickListener
-     *
-     * @param view it is being used on
-     */
-
-    public void logoutClickListener(View view) {
-        Log.d("Logout", "Logout Button Pressed");
-
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    /**
-    * when you click view profile, it takes you to the view profile activity
-    * @param view that you're looking at.
-     */
-    public void onViewProfileClick(View view) {
-        Log.d("ViewProfile", "View Profile Button Pressed");
-
-        Intent intent = new Intent(this, ViewProfile.class);
-        intent.putExtra("user", user);
-        startActivity(intent);
-    }
-
-    /*
-     * Opens the Recent DVDs page
-     *
-     * @param view user interface component
-     */
-    public void onDVDsButtonClick(View view) {
-        Intent intent = new Intent(this, RecentDvds.class);
-        startActivity(intent);
-    }
-
-
-    /**
-     * opens search button page
-     *
-     * @param view user interface component
-     */
-    public void onSearchButtonPress(View view) {
-        Log.d("HomeApp", "Search Button Pressed");
-
-        Intent intent = new Intent(this, SearchMovies.class);
-        intent.putExtra("user", user);
-        startActivity(intent);
-
-    }
-
-
-    /**
-     * opens movies button
-     *
-     * @param view of the page
-     */
-    public void onMoviesButtonClick(View view) {
-        Intent intent = new Intent(this, RecentMovies.class);
-        startActivity(intent);
-    }
-
+    User user;
+    //Navigation bar stuff
     //
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -177,7 +51,7 @@ public class HomeApp extends AppCompatActivity {
      * sets up listener for the side bar
      * @param navigationView the side bar
      */
-    private void setupDrawerContent(NavigationView navigationView) {
+    public void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -240,7 +114,7 @@ public class HomeApp extends AppCompatActivity {
 //                break;
             default:
 //                fragmentClass = Frag.class;
-                intent = new Intent(this, HomeApp.class);
+                intent = new Intent(this, ViewProfile.class);
         }
 //        try {
 //            fragment = (Fragment) fragmentClass.newInstance();
@@ -269,7 +143,7 @@ public class HomeApp extends AppCompatActivity {
      * allows us to create a new ActionBarDrawerToggle specific to our needs
      * @return a new ActionBarDrawer Toggle
      */
-    private ActionBarDrawerToggle setupDrawerToggle() {
+    public ActionBarDrawerToggle setupDrawerToggle() {
         return new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.drawer_open, R.string.drawer_close);
     }
 
@@ -282,4 +156,36 @@ public class HomeApp extends AppCompatActivity {
         drawerToggle.onConfigurationChanged(newConfig);
     }
 
+    public DrawerLayout getMDrawer() {
+        return this.mDrawer;
+    }
+
+    public Toolbar getToolbar() {
+        return this.toolbar;
+    }
+
+    public ActionBarDrawerToggle getDrawerToggle() {
+        return this.drawerToggle;
+    }
+
+    public User getUser() {
+        return this.user;
+    }
+
+
+    public void setMDrawer(DrawerLayout mDrawer) {
+        this.mDrawer = mDrawer;
+    }
+
+    public void setToolbar(Toolbar toolbar) {
+        this.toolbar = toolbar;
+    }
+
+    public void setDrawerToggle(ActionBarDrawerToggle drawerToggle) {
+        this.drawerToggle = drawerToggle;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
