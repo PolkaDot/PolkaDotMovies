@@ -37,6 +37,11 @@ public class DBHelper extends SQLiteOpenHelper {
                 + User.KEY_isBanned + " INTEGER, "
                 + User.KEY_isAdmin + " INTEGER)";
         db.execSQL(CREATE_TABLE_USER);
+        String INSERT_ADMIN = "INSERT INTO " + User.TABLE
+                + " (" + User.KEY_username + ", " + User.KEY_password + ", " + User.KEY_firstName + ", "
+                + User.KEY_lastName + ", " + User.KEY_isAdmin + ") VALUES ("
+                + "'admin', 'pass', 'polka', 'dots', 1);";
+        db.execSQL(INSERT_ADMIN);
 
         // creates rating table
 

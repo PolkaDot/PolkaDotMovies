@@ -1,105 +1,57 @@
 package com.polka.pdm;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+/**
+ * attempt at Navigation bar class to have all methods in one place
+ *
+ * Created by C. Shih on 3/4/2016.
+ */
+public class NavBar extends AppCompatActivity {
 
-import javax.net.ssl.HttpsURLConnection;
-
-public class ViewMovie extends AppCompatActivity {
-    private Movie movie;
     private DrawerLayout mDrawer;
-    private ActionBarDrawerToggle drawerToggle;
     private Toolbar toolbar;
-    private ImageView poster;
-    private User user;
+    private ActionBarDrawerToggle drawerToggle;
 
+    User user;
+    //Navigation bar stuff
+    //
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_movie);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
-        setupDrawerContent(nvDrawer);
-
-        drawerToggle = setupDrawerToggle();
-        mDrawer.setDrawerListener(drawerToggle);
-
-        // Grab saved data about Movie
-        if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
-            if (extras == null) {
-                movie = null;
-            } else {
-                movie = extras.getParcelable("movie");
-            }
-        } else {
-            movie = savedInstanceState.getParcelable("movie");
-        }
-
-        if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
-            if (extras == null) {
-                user = null;
-            } else {
-                user = extras.getParcelable("user");
-            }
-        } else {
-            user = savedInstanceState.getParcelable("user");
-        }
-//        if (user != null) {
-//            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //open close drawer
+//        switch(item.getItemId()) {
+//            case android.R.id.home:
+//                mDrawer.openDrawer(GravityCompat.START);
+//                return true;
 //        }
+//        return super.onOptionsItemSelected(item);
+        if (drawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
-        // Get TextViews on view profile page
-        TextView movieNameTextView = (TextView) findViewById(R.id.MovieName);
-        TextView movieYearTextView = (TextView) findViewById(R.id.MovieYear);
-        TextView movieSynopsisTextView = (TextView) findViewById(R.id.MovieSynopsis);
-        movieSynopsisTextView.setMovementMethod(new ScrollingMovementMethod());
-
-
-         //Put user information in TextView boxes
-        movieNameTextView.setText(movie.getTitle());
-        movieYearTextView.setText(Integer.toString(movie.getYear()));
-        movieSynopsisTextView.setText(movie.getSynopsis());
-
-
+    //
+    @Override
+    public void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        drawerToggle.syncState();
     }
 
     /**
      * sets up listener for the side bar
-     *
      * @param navigationView the side bar
      */
-    private void setupDrawerContent(NavigationView navigationView) {
+    public void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -118,7 +70,6 @@ public class ViewMovie extends AppCompatActivity {
      * new activity
      * and changing the appearances and stuff
      * (like highlighing your selection)
-     *
      * @param menuItem the item that you pressed
      */
     public void selectDrawerItem(MenuItem menuItem) {
@@ -128,7 +79,7 @@ public class ViewMovie extends AppCompatActivity {
         Class fragmentClass;
         Intent intent;
 //        Log.d("HomeApp","starting method");
-        switch (menuItem.getItemId()) {
+        switch(menuItem.getItemId()) {
             case R.id.ViewProfile:
 //                fragmentClass = Frag.class;
                 intent = new Intent(this, ViewProfile.class);
@@ -183,24 +134,21 @@ public class ViewMovie extends AppCompatActivity {
 //        Log.d("HomeApp", "creating title");
         // close the drawer
         mDrawer.closeDrawers();
-        //intent.putExtra("user", user);
+        intent.putExtra("user", user);
         startActivity(intent);
 
     }
 
-
     /**
      * allows us to create a new ActionBarDrawerToggle specific to our needs
-     *
      * @return a new ActionBarDrawer Toggle
      */
-    private ActionBarDrawerToggle setupDrawerToggle() {
+    public ActionBarDrawerToggle setupDrawerToggle() {
         return new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.drawer_open, R.string.drawer_close);
     }
 
     /**
      * allows us to change the state of the toolbar whenever we change config
-     *
      * @param newConfig the new configuration
      */
     public void onConfigurationChanged(Configuration newConfig) {
@@ -208,13 +156,36 @@ public class ViewMovie extends AppCompatActivity {
         drawerToggle.onConfigurationChanged(newConfig);
     }
 
-    public void onRateMoviePress(View view) {
-        Log.d("Rate Movie", "Rate Movie Button Pressed");
-        Intent intent = new Intent(this, ReviewPage.class);
-        intent.putExtra("movie", movie);
-        intent.putExtra("user", user);
+    public DrawerLayout getMDrawer() {
+        return this.mDrawer;
+    }
 
-        startActivity(intent);
+    public Toolbar getToolbar() {
+        return this.toolbar;
+    }
+
+    public ActionBarDrawerToggle getDrawerToggle() {
+        return this.drawerToggle;
+    }
+
+    public User getUser() {
+        return this.user;
+    }
+
+
+    public void setMDrawer(DrawerLayout mDrawer) {
+        this.mDrawer = mDrawer;
+    }
+
+    public void setToolbar(Toolbar toolbar) {
+        this.toolbar = toolbar;
+    }
+
+    public void setDrawerToggle(ActionBarDrawerToggle drawerToggle) {
+        this.drawerToggle = drawerToggle;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
-
