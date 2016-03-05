@@ -40,11 +40,12 @@ public class ReviewRepo {
         // open connection to write data
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(Review.KEY_movie, rating.movie);
-        values.put(Review.KEY_movieYear, rating.movieYear);
-        values.put(Review.KEY_user, rating.user);
-        values.put(Review.KEY_rating, rating.rating);
-        values.put(Review.KEY_comment, rating.comment);
+        values.put(Review.KEY_movie, rating.getMovie());
+        values.put(Review.KEY_movieYear, rating.getMovieYear());
+        values.put(Review.KEY_user, rating.getUser());
+        values.put(Review.KEY_major, rating.getMajor());
+        values.put(Review.KEY_rating, rating.getRating());
+        values.put(Review.KEY_comment, rating.getComment());
 
 
         //inserting row
@@ -79,10 +80,12 @@ public class ReviewRepo {
         if (cursor.moveToFirst()) {
             do {
                 Review rating = new Review();
-                rating.movie = cursor.getString(cursor.getColumnIndex(Review.KEY_movie));
-                rating.user = cursor.getString(cursor.getColumnIndex(Review.KEY_user));
-                rating.rating = cursor.getDouble(cursor.getColumnIndex(Review.KEY_rating));
-                rating.comment = cursor.getString(cursor.getColumnIndex(Review.KEY_comment));
+                rating.setMovie(cursor.getString(cursor.getColumnIndex(Review.KEY_movie)));
+                rating.setMovieYear(cursor.getInt(cursor.getColumnIndex(Review.KEY_movieYear)));
+                rating.setUser(cursor.getString(cursor.getColumnIndex(Review.KEY_user)));
+                rating.setMajor(cursor.getString(cursor.getColumnIndex(Review.KEY_major)));
+                rating.setRating(cursor.getDouble(cursor.getColumnIndex(Review.KEY_rating)));
+                rating.setComment(cursor.getString(cursor.getColumnIndex(Review.KEY_comment)));
                 ratings.add(rating);
             } while (cursor.moveToNext());
         }

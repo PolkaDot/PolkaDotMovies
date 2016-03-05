@@ -69,9 +69,9 @@ public class HomeApp extends AppCompatActivity {
         } else {
             user = savedInstanceState.getParcelable("user");
         }
-        if (user != null) {
-            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
-        }
+//        if (user != null) {
+//            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
+//        }
     }
 
     /**
@@ -143,7 +143,7 @@ public class HomeApp extends AppCompatActivity {
     /**
      * opens movies button
      *
-     * @param view
+     * @param view of the page
      */
     public void onMoviesButtonClick(View view) {
         Intent intent = new Intent(this, RecentMovies.class);
