@@ -124,14 +124,17 @@ public class ReviewPage extends AppCompatActivity {
         if (hasRated){
             ratingObj = new Review(username, major, movieName, movieYear, ratings, comments);
 
-        }else {
+        } else {
             ratingObj = new Review(username, major, movieName, movieYear, comments);
         }
 
 
         // insert user already rated the movie
         if (true) {
-            ratingRepo.insert(ratingObj);
+            long check = ratingRepo.insert(ratingObj);
+            if (check == -1) {
+                Toast.makeText(this, "Updated your previous review :D", Toast.LENGTH_SHORT).show();
+            }
             Toast.makeText(this, "Thanks for the rating!", Toast.LENGTH_SHORT).show();
             // Switch to Edit Profile Activity
             Intent intent = new Intent(this, HomeApp.class);

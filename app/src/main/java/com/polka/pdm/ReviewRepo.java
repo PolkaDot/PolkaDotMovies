@@ -54,9 +54,56 @@ public class ReviewRepo {
             db.close();
             return rating_ratingId;
         } catch (SQLException e) {
+            db.close();
+            updateReview(rating.getUser(), rating.getMovie(), rating.getMovieYear(), rating.getRating(), rating.getComment());
             return -1;
         }
     }
+
+
+    private void setRating(String user, String movie, int movieYear, double rating) {
+
+        // open connection to write data
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(Review.KEY_rating, rating);
+        // creates where and where arguments
+        String where = Review.KEY_user + " = ? AND "
+                + Review.KEY_movie + " = ? AND "
+                + Review.KEY_movieYear + " = ? ";
+        String[] whereArgs = {user, movie, ((Integer)movieYear).toString()};
+
+        // update
+        int numberRowsUpdated = db.update(Review.TABLE, values, where, whereArgs);
+        db.close();
+    }
+
+    private void setComment(String user, String movie, int movieYear, String comment) {
+
+        // open connection to write data
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(Review.KEY_comment, comment);
+        // creates where and where arguments
+        String where = Review.KEY_user + " = ? AND "
+                + Review.KEY_movie + " = ? AND "
+                + Review.KEY_movieYear + " = ? ";
+        String[] whereArgs = {user, movie, ((Integer)movieYear).toString()};
+
+        // update
+        int numberRowsUpdated = db.update(Review.TABLE, values, where, whereArgs);
+        db.close();
+    }
+
+
+    public void updateReview(String user, String movie, int movieYear, double rating, String comment) {
+        setRating(user, movie, movieYear, rating);
+        setComment(user, movie, movieYear, comment);
+    }
+
+
 
     /**
      * gets the user object by username from database
