@@ -12,4 +12,243 @@
     tools:context="com.polka.pdm.BlockUser"
     tools:showIn="@layout/activity_block_user">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Unlock"
+        android:id="@+id/unlockButton1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:background="#F7BE39" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ban"
+        android:id="@+id/banButton1"
+        android:layout_alignBottom="@+id/unlockButton1"
+        android:layout_toStartOf="@+id/unlockButton1"
+        android:background="#F7BE39"
+        android:paddingBottom="10dp"
+        android:layout_marginRight="10dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Unlock"
+        android:id="@+id/unlockButton2"
+        android:layout_below="@+id/unlockButton1"
+        android:layout_alignParentEnd="true"
+        android:background="#F7BE39"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Unlock"
+        android:id="@+id/unlockButton3"
+        android:layout_below="@+id/unlockButton2"
+        android:layout_alignEnd="@+id/unlockButton2"
+        android:background="#F7BE39"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Unlock"
+        android:id="@+id/unlockButton4"
+        android:background="#F7BE39"
+        android:layout_below="@+id/unlockButton3"
+        android:layout_alignStart="@+id/unlockButton3"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Unlock"
+        android:id="@+id/unlockButton5"
+        android:background="#F7BE39"
+        android:layout_below="@+id/unlockButton4"
+        android:layout_toEndOf="@+id/banButton4"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Unlock"
+        android:id="@+id/unlockButton6"
+        android:background="#F7BE39"
+        android:layout_below="@+id/unlockButton5"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Unlock"
+        android:id="@+id/unlockButton7"
+        android:background="#F7BE39"
+        android:layout_below="@+id/unlockButton6"
+        android:layout_toEndOf="@+id/banButton1"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Unlock"
+        android:id="@+id/unlockButton8"
+        android:background="#F7BE39"
+        android:layout_below="@+id/unlockButton7"
+        android:layout_toEndOf="@+id/banButton1"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ban"
+        android:id="@+id/banButton2"
+        android:background="#F7BE39"
+        android:paddingBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_above="@+id/unlockButton3"
+        android:layout_toStartOf="@+id/unlockButton2" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ban"
+        android:id="@+id/banButton3"
+        android:background="#F7BE39"
+        android:paddingBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignTop="@+id/unlockButton3"
+        android:layout_toStartOf="@+id/unlockButton3" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ban"
+        android:id="@+id/banButton4"
+        android:background="#F7BE39"
+        android:paddingBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignTop="@+id/unlockButton4"
+        android:layout_toStartOf="@+id/unlockButton4" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ban"
+        android:id="@+id/banButton5"
+        android:background="#F7BE39"
+        android:paddingBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/banButton4"
+        android:layout_toStartOf="@+id/unlockButton5"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ban"
+        android:id="@+id/banButton6"
+        android:background="#F7BE39"
+        android:paddingBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_above="@+id/unlockButton7"
+        android:layout_toStartOf="@+id/unlockButton5" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ban"
+        android:id="@+id/banButton7"
+        android:background="#F7BE39"
+        android:paddingBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignBottom="@+id/unlockButton7"
+        android:layout_toStartOf="@+id/unlockButton6" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ban"
+        android:id="@+id/banButton8"
+        android:background="#F7BE39"
+        android:paddingBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignTop="@+id/unlockButton8"
+        android:layout_alignStart="@+id/banButton7" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/userTextView1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:hint="UserName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/userTextView2"
+        android:hint="UserName"
+        android:layout_alignTop="@+id/banButton2"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/userTextView3"
+        android:hint="UserName"
+        android:layout_alignTop="@+id/banButton3"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/userTextView4"
+        android:hint="UserName"
+        android:layout_alignTop="@+id/banButton4"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/userTextView5"
+        android:hint="UserName"
+        android:layout_alignTop="@+id/banButton5"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/userTextView6"
+        android:hint="UserName"
+        android:layout_alignTop="@+id/banButton6"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/userTextView7"
+        android:hint="UserName"
+        android:layout_alignTop="@+id/banButton7"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/userTextView8"
+        android:hint="UserName"
+        android:layout_alignTop="@+id/banButton8"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
