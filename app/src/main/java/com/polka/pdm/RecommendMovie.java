@@ -1,56 +1,80 @@
 /**
- * @author Christine Shih
- * @version 2.0
- * The start/home page of the application (after we have logged in)
- * Activity that starts after you log into the app
- * this is the right way to do javadocs
+ * Search Activity Class
+ * for When the user wants to search for movies
  */
-
-
 package com.polka.pdm;
 
-//import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.EditText;
 
-public class HomeApp extends AppCompatActivity {
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
+public class RecommendMovie extends AppCompatActivity {
+
+    // Needed for recycler view
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     private User user;
 
-    //
-    private DrawerLayout mDrawer;
     private Toolbar toolbar;
+    private DrawerLayout mDrawer;
     private ActionBarDrawerToggle drawerToggle;
+    protected Movie[] mDataset;
+    private static final int DATASET_COUNT = 30;
+    EditText editTextSearchParam;
 
-    //when we create this activity, there are some things we need to do first
-    // hence the name on create
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_app);
-
+        setContentView(R.layout.activity_recommend_movie);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-//        couldn't get toolbar to work
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // BEGIN_INCLUDE (initializeRecyclerView)
+       mRecyclerView = (RecyclerView) findViewById(R.id.moviesMajorRecylerView);
         //
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
         setupDrawerContent(nvDrawer);
 
+        // improves performance if you know that changes in content do not change the layout size
+        // of the RecyclerView
+        mRecyclerView.setHasFixedSize(true);
+
+        // user linear layout manager
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        mAdapter = new MyAdapter(mDataset);
+        mRecyclerView.setAdapter(mAdapter);
+
+        //toggle for nav bar
         drawerToggle = setupDrawerToggle();
         mDrawer.setDrawerListener(drawerToggle);
 
@@ -65,97 +89,36 @@ public class HomeApp extends AppCompatActivity {
         } else {
             user = savedInstanceState.getParcelable("user");
         }
-//        if (user != null) {
-//            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
-//        }
+
+
     }
 
     /**
-     * Tester code for playing around with the database, creates a toast if found "user1" in db
+     * indicates that the user wants to search the movie typed in the editText
      *
-     * @param view view it is being used on
+     * @param view of the search Movies activity
      */
-    public void testDB(View view) {
-        UserRepo repo = new UserRepo(this);
-        User user = new User("user1", "pass1", "firstName1", "lastName1", "email1");
-        repo.insert(user);
-        String name = repo.getUserByUsername("user1").toString();
-        Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
+    public void onSearchMajorButtonPress(View view) {
+        editTextSearchParam = (EditText) findViewById(R.id.searchMovie);
+       // String searchParam =  editTextSearchParam.getText().toString();
+        //sendJSONRequest(searchParam);
+        initDataset();
     }
 
-    /**
-     *     if you press log out, it will take you to the main activity screen
-     *     future reference, go to layout, xml add button and set its on click
-     *     to the method in this case logoutClickListener
-     *
-     * @param view it is being used on
-     */
-
-    public void logoutClickListener(View view) {
-        Log.d("Logout", "Logout Button Pressed");
-
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+    private void initDataset() {
+        Movie[] data = new Movie[DATASET_COUNT];
+        for (int i = 0; i < 10 && i < DATASET_COUNT; i++) {
+            String title = "title";
+            int year = 1996;
+            String synopsis = "Blahhhhhh";
+            String poster = "";
+            data[i] = new Movie(title, year, synopsis, poster);
+            mDataset = data;
+        }
+        ((MyAdapter)mAdapter).setData(mDataset);
     }
 
-    /**
-    * when you click view profile, it takes you to the view profile activity
-    * @param view that you're looking at.
-     */
-    public void onViewProfileClick(View view) {
-        Log.d("ViewProfile", "View Profile Button Pressed");
-
-        Intent intent = new Intent(this, ViewProfile.class);
-        intent.putExtra("user", user);
-        startActivity(intent);
-    }
-
-    /*
-     * Opens the Recent DVDs page
-     *
-     * @param view user interface component
-     */
-    public void onDVDsButtonClick(View view) {
-        Intent intent = new Intent(this, RecentDvds.class);
-        startActivity(intent);
-    }
-
-
-    /**
-     * opens search button page
-     *
-     * @param view user interface component
-     */
-    public void onSearchButtonPress(View view) {
-        Log.d("HomeApp", "Search Button Pressed");
-
-        Intent intent = new Intent(this, SearchMovies.class);
-        intent.putExtra("user", user);
-        startActivity(intent);
-
-    }
-
-
-    /**
-     * opens movies button
-     *
-     * @param view of the page
-     */
-    public void onMoviesButtonClick(View view) {
-        Intent intent = new Intent(this, RecentMovies.class);
-        intent.putExtra("user", user);
-        startActivity(intent);
-    }
-
-    /**
-     * opens movies button
-     *
-     * @param view of the page
-     */
-    public void onRecommendationButtonClick(View view) {
-        Intent intent = new Intent(this, RecommendMovie.class);
-        startActivity(intent);
-    }
+    //NAVIGATION BAR STUFF
 
     //
     @Override
@@ -208,8 +171,8 @@ public class HomeApp extends AppCompatActivity {
     public void selectDrawerItem(MenuItem menuItem) {
         //create new frag
         //determine what to show
-        Fragment fragment = null;
-        Class fragmentClass;
+//        Fragment fragment = null;
+//        Class fragmentClass;
         Intent intent;
 //        Log.d("HomeApp","starting method");
         switch(menuItem.getItemId()) {
@@ -240,14 +203,9 @@ public class HomeApp extends AppCompatActivity {
 //                Log.d("HomeApp","logging out");
                 intent = new Intent(this, MainActivity.class);
                 break;
-//            case R.id.Cancel:
-////                fragmentClass = Frag.class;
-////                Log.d("HomeApp","logging out");
-//                intent = new Intent(this, HomeApp.class);
-//                break;
             default:
 //                fragmentClass = Frag.class;
-                intent = new Intent(this, HomeApp.class);
+                intent = new Intent(this, SearchMovies.class);
         }
 //        try {
 //            fragment = (Fragment) fragmentClass.newInstance();
@@ -289,4 +247,11 @@ public class HomeApp extends AppCompatActivity {
         drawerToggle.onConfigurationChanged(newConfig);
     }
 
+    /**
+     * Returns the user from this activity. To be used in MyAdapter.
+     * @return the user object
+     */
+    public User getUser() {
+        return user;
+    }
 }

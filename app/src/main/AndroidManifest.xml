@@ -71,7 +71,10 @@
         <activity
             android:name=".BlockUser"
             android:label="@string/title_activity_block_user"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".RecommendMovie"
+            android:label="@string/title_activity_recommend_movie"></activity>
     </application>
 
 </manifest>
