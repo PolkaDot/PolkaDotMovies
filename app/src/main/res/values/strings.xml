@@ -32,5 +32,6 @@
     <string name="title_activity_recent_movies">Recent Movies</string>
     <string name="title_activity_view_movie">View Movie</string>
     <string name="title_activity_block_user">Block User</string>
+    <string name="title_activity_recommend_movie">RecommendMovie</string>
 
 </resources>

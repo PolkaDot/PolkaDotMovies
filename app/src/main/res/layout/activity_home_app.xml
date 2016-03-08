@@ -153,7 +153,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentStart="true"
-                android:background="#F7BE39" />
+                android:background="#F7BE39"
+                android:onClick="onRecommendationButtonClick" />
 
             <!--<include layout="@layout/content_home_app" />-->
         </RelativeLayout>
