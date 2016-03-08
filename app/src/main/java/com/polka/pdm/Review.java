@@ -77,7 +77,7 @@ public class Review {
         if (this == object) {
             return true;
         }
-        if (!(object instanceof Rating)) {
+        if (!(object instanceof Review)) {
             return false;
         }
         Review that = (Review) object;
