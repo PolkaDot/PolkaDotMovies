@@ -1,15 +1,25 @@
 package com.polka.pdm;
 
+/**
+ * Created by Arsh on 2/23/16.
+ * @author Arsh
+ * @version 1.0
+ */
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by Arsh on 2/23/16.
- * @author Arsh, Yami
- * @version 1.0
- */
 public class Movie implements Parcelable {
+//    title
+//    year
+//    synopsis
+//    posters (string to online)
 
+    //    ratings
+//    runtime
+//    release dates
+//    bridge cast
+//    links (online rotten tomatoes)
+//    links to search page
     private String title;
     private int year;
     private String synopsis;

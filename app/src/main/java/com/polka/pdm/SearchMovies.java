@@ -103,6 +103,7 @@ public class SearchMovies extends AppCompatActivity {
         editTextSearchParam = (EditText) findViewById(R.id.searchMovie);
         String searchParam =  editTextSearchParam.getText().toString();
         sendJSONRequest(searchParam);
+
     }
 
     /**
