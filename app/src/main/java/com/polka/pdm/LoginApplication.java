@@ -8,13 +8,10 @@ package com.polka.pdm;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -44,16 +41,32 @@ public class LoginApplication extends AppCompatActivity {
         UserRepo repo = new UserRepo(this);
         // Get user information from database
         User user = repo.getUserByUsername(nameBox.getText().toString());
-        // verify password
-        if (passBox.getText().toString().equals(user.password)) {
-            text = "Login Success!";
 
-            Intent startApp = new Intent(this, HomeApp.class);
-            // Save user data for next activity
-            startApp.putExtra("user", user);
+        // Checks if an admin
+        if (user.getIsAdmin() == 1 && passBox.getText().toString().equals(user.getPassword())) {
+            text = "Logged in as Admin";
+            Intent startApp = new Intent(this, BlockUser.class);
+            startApp.putExtra("user", user); // just in case this is needed...
             startActivity(startApp);
+
         } else {
-            text = "Login Failure!";
+            // is a regular user then...
+            // verify password
+            if (passBox.getText().toString().equals(user.getPassword()) && isNotLocked(user) && user.getIsBanned() != 1) {
+                text = "Login Success!";
+
+                Intent startApp = new Intent(this, HomeApp.class);
+                // Save user data for next activity
+                startApp.putExtra("user", user);
+                startActivity(startApp);
+            } else {
+                if (user.getIsBanned() == 1) {
+                    Toast.makeText(this, "YOU'RE BANNED FROM USING THIS!!!", Toast.LENGTH_SHORT).show();
+                } else {
+                    incrementLock(repo, user);
+                }
+                text = "Login Failure!";
+            }
         }
 
         Context context = getApplicationContext();
@@ -61,6 +74,33 @@ public class LoginApplication extends AppCompatActivity {
         Toast t = Toast.makeText(context, text, duration);
         t.show();
     }
+
+    /**
+     * method to check if user is locked or unlocked
+     * @param user user in question
+     * @return true if user is not locked
+     */
+    private boolean isNotLocked(User user) {
+        return user.getIsLocked() != 3;
+    }
+
+    /**
+     * logic to the lock, incrememnts lock number if login incorrect
+     * then blocks once have 3 tries
+     * @param userRepo the connector to the database
+     * @param user trying to login
+     */
+    private void incrementLock(UserRepo userRepo, User user) {
+        if (user.getUsername() != null && user.getIsAdmin() != 1) {
+            if (user.getIsLocked() < 3) {
+                userRepo.setLock(user.getUsername(), user.getIsLocked() + 1);
+            } else {
+                Toast.makeText(this, "YOU'RE LOCKED OUT!!!", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

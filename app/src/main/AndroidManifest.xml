@@ -33,6 +33,7 @@
             android:name=".RegistrationPage"
             android:label="@string/title_activity_registration_page"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".ViewProfile"
             android:label="@string/title_activity_view_profile"
@@ -49,6 +50,7 @@
             android:name=".RecentDvds"
             android:label="@string/title_activity_recent_dvds"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".SearchMovies"
             android:label="@string/title_activity_search_movies"

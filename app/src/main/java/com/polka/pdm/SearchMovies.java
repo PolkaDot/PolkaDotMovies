@@ -7,7 +7,9 @@ package com.polka.pdm;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -56,10 +58,12 @@ public class SearchMovies extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
         // BEGIN_INCLUDE (initializeRecyclerView)
         mRecyclerView = (RecyclerView) findViewById(R.id.moviesRecylerView);
+        //
+        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
+        setupDrawerContent(nvDrawer);
 
         // improves performance if you know that changes in content do not change the layout size
         // of the RecyclerView
@@ -71,11 +75,6 @@ public class SearchMovies extends AppCompatActivity {
 
         mAdapter = new MyAdapter(mDataset);
         mRecyclerView.setAdapter(mAdapter);
-
-        //
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
-        setupDrawerContent(nvDrawer);
 
         //toggle for nav bar
         drawerToggle = setupDrawerToggle();
@@ -104,6 +103,7 @@ public class SearchMovies extends AppCompatActivity {
         editTextSearchParam = (EditText) findViewById(R.id.searchMovie);
         String searchParam =  editTextSearchParam.getText().toString();
         sendJSONRequest(searchParam);
+
     }
 
     /**

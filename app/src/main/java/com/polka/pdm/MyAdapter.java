@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 /**
  * Created by Yami on 2/23/2016.
+ * helper for recyclerview for movie
  */
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private Movie[] mDataset;
@@ -38,11 +39,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             }
         }
 
+        //implements when a movie is clicked
         @Override
         public void onClick(View view) {
             if (mItem != null) {
                 Log.d("CLICK", "on Click" + mItem.getTitle());// Switch activities
-                // TODO: Replace MainActivity with MovieActivity
                 // PutExtra Movie
                 Intent intent = new Intent(context, ViewMovie.class);
                 intent.putExtra("movie", mItem);

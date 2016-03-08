@@ -66,20 +66,19 @@ import android.widget.Toast;
         interests = (EditText)findViewById(R.id.InterestsLabel);
 
         // Set all the text fields with user data
-        username.setText(user.username);
-        pass.setText(user.password);
-        firstname.setText(user.firstName);
-        lastname.setText(user.lastName);
-        email.setText(user.email);
-        major.setText(user.major);
-        phone.setText(user.phone);
-        interests.setText(user.interests);
+        username.setText(user.getUsername());
+        pass.setText(user.getPassword());
+        firstname.setText(user.getFirstName());
+        lastname.setText(user.getLastName());
+        email.setText(user.getEmail());
+        major.setText(user.getMajor());
+        phone.setText(user.getPhone());
+        interests.setText(user.getInterests());
 
         //        EditText major = (EditText)findViewById(R.id.MajorTextField);
         //  //        major.setText(user.major);
 
     }
-
 
      /**
       * when you press save, it should save all the updates you made to your profile
@@ -120,11 +119,11 @@ import android.widget.Toast;
 
 
         // insert updated user info into database TODO: Check if user is already in database
-        repo.updateProfile(user.username, /*username.getText().toString(),*/ pass.getText().toString(),
+        repo.updateProfile(user.getUsername(), /*username.getText().toString(),*/ pass.getText().toString(),
                 firstname.getText().toString(),lastname.getText().toString(), email.getText().toString(), phone.getText().toString(),
                 major.getText().toString(), interests.getText().toString());
         // update current User instance (I believe this is unchanged at this point)
-        user = repo.getUserByUsername(user.username);
+        user = repo.getUserByUsername(user.getUsername());
 
         // Toasts
         Toast.makeText(this, "Changed name", Toast.LENGTH_SHORT).show();

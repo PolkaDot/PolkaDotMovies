@@ -36,11 +36,11 @@ public class UserRepo {
         // open connection to write data
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(User.KEY_username, user.username);
-        values.put(User.KEY_password, user.password);
-        values.put(User.KEY_firstName, user.firstName);
-        values.put(User.KEY_lastName, user.lastName);
-        values.put(User.KEY_email, user.email);
+        values.put(User.KEY_username, user.getUsername());
+        values.put(User.KEY_password, user.getPassword());
+        values.put(User.KEY_firstName, user.getFirstName());
+        values.put(User.KEY_lastName, user.getLastName());
+        values.put(User.KEY_email, user.getEmail());
 
 
         //inserting row
@@ -70,17 +70,17 @@ public class UserRepo {
         Cursor cursor = db.rawQuery(selectQuery, new String[] {String.valueOf(username)});
         if (cursor.moveToFirst()) {
             do {
-                user.username = cursor.getString(cursor.getColumnIndex(User.KEY_username));
-                user.password = cursor.getString(cursor.getColumnIndex(User.KEY_password));
-                user.firstName = cursor.getString(cursor.getColumnIndex(User.KEY_firstName));
-                user.lastName = cursor.getString(cursor.getColumnIndex(User.KEY_lastName));
-                user.email = cursor.getString(cursor.getColumnIndex(User.KEY_email));
-                user.major = cursor.getString(cursor.getColumnIndex(User.KEY_major));
-                user.phone = cursor.getString(cursor.getColumnIndex(User.KEY_phone));
-                user.interests = cursor.getString(cursor.getColumnIndex(User.KEY_interests));
-                user.isLocked = cursor.getInt(cursor.getColumnIndex(User.KEY_isLocked));
-                user.isBanned = cursor.getInt(cursor.getColumnIndex(User.KEY_isBanned));
-                user.isAdmin = cursor.getInt(cursor.getColumnIndex(User.KEY_isAdmin));
+                user.setUsername(cursor.getString(cursor.getColumnIndex(User.KEY_username)));
+                user.setPassword(cursor.getString(cursor.getColumnIndex(User.KEY_password)));
+                user.setFirstName(cursor.getString(cursor.getColumnIndex(User.KEY_firstName)));
+                user.setLastName(cursor.getString(cursor.getColumnIndex(User.KEY_lastName)));
+                user.setEmail(cursor.getString(cursor.getColumnIndex(User.KEY_email)));
+                user.setMajor(cursor.getString(cursor.getColumnIndex(User.KEY_major)));
+                user.setPhone(cursor.getString(cursor.getColumnIndex(User.KEY_phone)));
+                user.setInterests(cursor.getString(cursor.getColumnIndex(User.KEY_interests)));
+                user.setIsLock(cursor.getInt(cursor.getColumnIndex(User.KEY_isLocked)));
+                user.setIsBanned(cursor.getInt(cursor.getColumnIndex(User.KEY_isBanned)));
+                user.setIsAdmin(cursor.getInt(cursor.getColumnIndex(User.KEY_isAdmin)));
 
 
             } while (cursor.moveToNext());
@@ -272,6 +272,48 @@ public class UserRepo {
 
         ContentValues values = new ContentValues();
         values.put(User.KEY_interests, interests);
+        // creates where and where arguments
+        String where = User.KEY_username + " = ?";
+        String[] whereArgs = {user};
+
+        // update
+        int numberRowsUpdated = db.update(User.TABLE, values, where, whereArgs);
+        db.close();
+    }
+
+    /**
+     * setter for isLocked
+     * @param user name of user
+     * @param isLock value of user
+     */
+    public void setLock(String user, int isLock) {
+
+        // open connection to write data
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(User.KEY_isLocked, isLock);
+        // creates where and where arguments
+        String where = User.KEY_username + " = ?";
+        String[] whereArgs = {user};
+
+        // update
+        int numberRowsUpdated = db.update(User.TABLE, values, where, whereArgs);
+        db.close();
+    }
+
+    /**
+     * setter for isBanned
+     * @param user name of user
+     * @param isBanned value of user
+     */
+    public void setBanned(String user, int isBanned) {
+
+        // open connection to write data
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(User.KEY_isBanned, isBanned);
         // creates where and where arguments
         String where = User.KEY_username + " = ?";
         String[] whereArgs = {user};
