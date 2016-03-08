@@ -10,7 +10,9 @@
     android:background="@drawable/appbackgroundlogo"
     tools:context="com.polka.pdm.RecentDvds">
 
-    <LinearLayout
+
+
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -24,7 +26,9 @@
         <RelativeLayout
             android:id="@+id/flContent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="?attr/actionBarSize"
+            android:background="#F7BE39"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
 
             <TextView
                 android:layout_width="fill_parent"
@@ -34,9 +38,9 @@
                 android:layout_centerHorizontal="true" />
 
             <!--<include layout="@layout/content_home_app" />-->
-        </RelativeLayout>
+        </android.support.design.widget.AppBarLayout>
 
-    </LinearLayout>
+
     <android.support.design.widget.NavigationView
         android:id="@+id/nvView"
         android:layout_width="wrap_content"

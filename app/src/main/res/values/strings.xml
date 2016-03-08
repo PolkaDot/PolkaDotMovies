@@ -25,9 +25,9 @@
     <string name="title_activity_search_movies">Search Movies</string>
     <string name="title_activity_review_page">Review</string>
 
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
 
-    <string name="drawer_open">open drawer</string>
-    <string name="drawer_close">close drawer</string>
 
     <string name="title_activity_recent_movies">Recent Movies</string>
     <string name="title_activity_view_movie">View Movie</string>

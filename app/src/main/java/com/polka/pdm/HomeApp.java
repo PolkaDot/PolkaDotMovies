@@ -2,7 +2,11 @@
  * @author Christine Shih
  * @version 2.0
  * The start/home page of the application (after we have logged in)
+ * Activity that starts after you log into the app
+ * this is the right way to do javadocs
  */
+
+
 package com.polka.pdm;
 
 //import android.app.FragmentManager;
@@ -13,6 +17,10 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -35,6 +43,7 @@ public class HomeApp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_app);
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
 //        couldn't get toolbar to work
@@ -60,9 +69,9 @@ public class HomeApp extends AppCompatActivity {
         } else {
             user = savedInstanceState.getParcelable("user");
         }
-        if (user != null) {
-            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
-        }
+//        if (user != null) {
+//            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
+//        }
     }
 
     /**
@@ -94,10 +103,9 @@ public class HomeApp extends AppCompatActivity {
     }
 
     /**
-     * when you click view profile, it takes you to the view profile activity
-     * @param view it is being used on
-     *
-     * */
+    * when you click view profile, it takes you to the view profile activity
+    * @param view that you're looking at.
+     */
     public void onViewProfileClick(View view) {
         Log.d("ViewProfile", "View Profile Button Pressed");
 
@@ -117,6 +125,11 @@ public class HomeApp extends AppCompatActivity {
     }
 
 
+    /**
+     * opens search button page
+     *
+     * @param view user interface component
+     */
     public void onSearchButtonPress(View view) {
         Log.d("HomeApp", "Search Button Pressed");
 
@@ -126,6 +139,12 @@ public class HomeApp extends AppCompatActivity {
 
     }
 
+
+    /**
+     * opens movies button
+     *
+     * @param view of the page
+     */
     public void onMoviesButtonClick(View view) {
         Intent intent = new Intent(this, RecentMovies.class);
         startActivity(intent);
@@ -262,7 +281,5 @@ public class HomeApp extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
         drawerToggle.onConfigurationChanged(newConfig);
     }
-
-
 
 }

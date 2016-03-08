@@ -21,7 +21,42 @@ public class ReviewPage extends AppCompatActivity {
     String movieName;
     int movieYear ;
     User user;
+    String major;
     String username;
+
+
+//    public float getRatings() {
+//        return this.ratings;
+//    }
+//
+//    public boolean getHasRated() {
+//        return this.hasRated;
+//    }
+//
+//    public Review getRatingObj() {
+//        return this.ratingObj;
+//    }
+//
+//    public Movie getMovie() {
+//        return this.movie;
+//    }
+//
+//    public String getMovieName() {
+//        return this.movieName;
+//    }
+//
+//    public int getMovieYear() {
+//        return this.movieYear;
+//    }
+//
+//    public User getUser() {
+//        return this.user;
+//    }
+//
+//    public String getUsername() {
+//        return this.username;
+//    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +101,8 @@ public class ReviewPage extends AppCompatActivity {
         movieYear = movie.getYear();
         TextView ratingTextViews = (TextView) findViewById(R.id.ratingTextView);
         ratingTextViews.setText(movieName);
-        username = user.username;
+        username = user.getUsername();
+        major = user.getMajor();
 
     }
 
@@ -86,20 +122,23 @@ public class ReviewPage extends AppCompatActivity {
         // Insert user in database
         ReviewRepo ratingRepo = new ReviewRepo(this);
         if (hasRated){
-            ratingObj = new Review(username, movieName, movieYear, ratings, comments);
+            ratingObj = new Review(username, major, movieName, movieYear, ratings, comments);
 
-        }else {
-            ratingObj = new Review(username, movieName, movieYear, comments);
+        } else {
+            ratingObj = new Review(username, major, movieName, movieYear, comments);
         }
 
 
         // insert user already rated the movie
         if (true) {
-            ratingRepo.insert(ratingObj);
+            long check = ratingRepo.insert(ratingObj);
+            if (check == -1) {
+                Toast.makeText(this, "Updated your previous review :D", Toast.LENGTH_SHORT).show();
+            }
             Toast.makeText(this, "Thanks for the rating!", Toast.LENGTH_SHORT).show();
             // Switch to Edit Profile Activity
             Intent intent = new Intent(this, HomeApp.class);
-            // intent.putExtra("user", ratingObj);//not sure what this does
+            intent.putExtra("user", user);//not sure what this does
             startActivity(intent);
         } else {
             Toast.makeText(this, "Already rated.", Toast.LENGTH_SHORT).show();

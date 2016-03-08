@@ -48,12 +48,15 @@ public class Movie implements Parcelable {
         return this.title.equals(that.title) && this.year == that.year;
     }
 
+    
+
     @Override
     public int hashCode() {
         return 7 * year + synopsis.length();
     }
 
-    /*
+
+    /**
      * Gets the title
      * @return the title of the movie
      */
