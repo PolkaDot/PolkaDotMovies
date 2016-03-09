@@ -301,4 +301,25 @@ public class UserRepo {
         int numberRowsUpdated = db.update(User.TABLE, values, where, whereArgs);
         db.close();
     }
+
+    /**
+     * setter for isBanned
+     * @param user name of user
+     * @param isBanned value of user
+     */
+    public void setBanned(String user, int isBanned) {
+
+        // open connection to write data
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(User.KEY_isBanned, isBanned);
+        // creates where and where arguments
+        String where = User.KEY_username + " = ?";
+        String[] whereArgs = {user};
+
+        // update
+        int numberRowsUpdated = db.update(User.TABLE, values, where, whereArgs);
+        db.close();
+    }
 }
