@@ -22,6 +22,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class RecentDvds extends AppCompatActivity {
+    public static final String KEY_MOVIE = "movies";
+    public static final String KEY_ID = "id";
+    public static final String KEY_TITLE = "title";
 
     private User user;
     private Toolbar toolbar;
@@ -103,11 +106,11 @@ public class RecentDvds extends AppCompatActivity {
         try {
             TextView  movie_names = (TextView)findViewById(R.id.RecentDVDsTextView);
             StringBuilder data = new StringBuilder();
-            JSONArray arrayMovies = response.getJSONArray(Keys.KEY_MOVIE);
+            JSONArray arrayMovies = response.getJSONArray(KEY_MOVIE);
             for (int i = 0; i < arrayMovies.length() && i < 10; i++) {
 
                 JSONObject currentMovie = arrayMovies.getJSONObject(i);
-                String name = currentMovie.getString(Keys.KEY_TITLE);
+                String name = currentMovie.getString(KEY_TITLE);
                 int num = i +1;
                 data.append(num + " " + name + "\n");
             }

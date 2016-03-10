@@ -101,8 +101,7 @@ public class ReviewPage extends AppCompatActivity {
         movieYear = movie.getYear();
         TextView ratingTextViews = (TextView) findViewById(R.id.ratingTextView);
         ratingTextViews.setText(movieName);
-        username = user.getUsername();
-        major = user.getMajor();
+        username = user.username;
 
     }
 
@@ -138,7 +137,7 @@ public class ReviewPage extends AppCompatActivity {
             Toast.makeText(this, "Thanks for the rating!", Toast.LENGTH_SHORT).show();
             // Switch to Edit Profile Activity
             Intent intent = new Intent(this, HomeApp.class);
-            intent.putExtra("user", user);//not sure what this does
+            intent.putExtra("user", user);
             startActivity(intent);
         } else {
             Toast.makeText(this, "Already rated.", Toast.LENGTH_SHORT).show();
