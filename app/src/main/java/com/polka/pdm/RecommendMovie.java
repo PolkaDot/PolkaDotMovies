@@ -7,31 +7,16 @@ package com.polka.pdm;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 
 public class RecommendMovie extends AppCompatActivity {
 
@@ -99,10 +84,15 @@ public class RecommendMovie extends AppCompatActivity {
      * @param view of the search Movies activity
      */
     public void onSearchMajorButtonPress(View view) {
-        editTextSearchParam = (EditText) findViewById(R.id.searchMovie);
-       // String searchParam =  editTextSearchParam.getText().toString();
-        //sendJSONRequest(searchParam);
-        initDataset();
+        editTextSearchParam = (EditText) findViewById(R.id.MajorTextField);
+        String searchParam =  editTextSearchParam.getText().toString();
+
+        ReviewRepo repo = new ReviewRepo(this);
+        Movie[] movies = repo.getRatingsByMajor(searchParam, DATASET_COUNT);
+        mDataset = movies;
+        ((MyAdapter)mAdapter).setData(mDataset);
+
+
     }
 
     private void initDataset() {
