@@ -85,7 +85,7 @@ public class LoginApplication extends AppCompatActivity {
     }
 
     /**
-     * logic to the lock, incrememnts lock number if login incorrect
+     * logic to the lock, increments lock number if login incorrect
      * then blocks once have 3 tries
      * @param userRepo the connector to the database
      * @param user trying to login

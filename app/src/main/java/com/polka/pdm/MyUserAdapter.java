@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by C. Shih on 3/8/2016.
@@ -36,7 +37,6 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.ViewHolder
         public ViewHolder(View v) {
             super(v);
             context = itemView.getContext();
-//            v.setOnClickListener(this);
             mTextView = (TextView) v.findViewById(R.id.usernameTextView);
             banButton = (Button) v.findViewById(R.id.banButton);
             lockButton = (Button) v.findViewById(R.id.lockButton);
@@ -46,10 +46,12 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.ViewHolder
 
         public void setItem(User item) {
             mItem = item;
+            Log.d("ANOTHERTHING", "in setItem");
             if (item != null) {
+                Log.d("SOMETHING", item.getUsername());
                 mTextView.setText(item.getUsername());
-                mLock.setText(item.getIsLocked());
-                mBan.setText(item.getIsBanned());
+                mLock.setText(((Integer)item.getIsLocked()).toString());
+                mBan.setText(((Integer)item.getIsBanned()).toString());
             }
         }
 
@@ -73,7 +75,7 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.ViewHolder
                                                    int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.text_row_item, parent, false);
+                .inflate(R.layout.user_recycler, parent, false);
         // set the view's size, margins, paddings and layout parameters
 
         ViewHolder vh = new ViewHolder(v);
@@ -89,7 +91,11 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.ViewHolder
         holder.banButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("Ban Button Pressed", "ban is pressed");
                 UserRepo repo = new UserRepo(v.getContext());
+                if (holder.mItem != null && holder.mItem.getUsername().equals("admin")) {
+                    return;
+                }
                 if (holder.mItem != null) {
                     if (holder.mItem.getIsBanned() == 0) {
                         holder.mItem.setIsBanned(1);
@@ -97,16 +103,23 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.ViewHolder
                         holder.mItem.setIsBanned(0);
                     }
                     repo.setBanned(holder.mItem.getUsername(), holder.mItem.getIsBanned());
+                notifyItemChanged(holder.getAdapterPosition());
                 }
+
             }
         });
         holder.lockButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("Unlock Button Pressed", "unlock is pressed");
                 UserRepo repo = new UserRepo(v.getContext());
                 if (holder.mItem != null) {
+                    if (holder.mItem.getUsername().equals("admin")) {
+                        return;
+                    }
                     holder.mItem.setIsLock(0);
                     repo.setLock(holder.mItem.getUsername(), holder.mItem.getIsLocked());
+                    notifyItemChanged(holder.getAdapterPosition());
                 }
             }
         });

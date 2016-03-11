@@ -5,8 +5,8 @@
 
         <TextView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/usernameTextView"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
             android:textAppearance="?android:attr/textAppearanceListItemSmall"
             android:gravity="center_vertical"
             android:paddingStart="?android:attr/listPreferredItemPaddingStart"
@@ -14,7 +14,8 @@
             android:minHeight="?android:attr/listPreferredItemHeightSmall"
             android:background="?android:attr/selectableItemBackground"
             android:hint="Username"
-            android:layout_toStartOf="@+id/isBannedTextView"/>
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -37,8 +38,8 @@
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/isBannedTextView"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
         android:gravity="center_vertical"
         android:paddingStart="?android:attr/listPreferredItemPaddingStart"
@@ -47,14 +48,12 @@
         android:background="?android:attr/selectableItemBackground"
         android:hint="isBanned"
         android:layout_alignParentTop="true"
-        android:layout_alignEnd="@+id/lockButton"
-        android:layout_toEndOf="@+id/banButton"
-        android:layout_alignStart="@+id/lockButton" />
+        android:layout_toEndOf="@+id/usernameTextView" />
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/isLockedTextView"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
         android:gravity="center_vertical"
         android:paddingStart="?android:attr/listPreferredItemPaddingStart"
@@ -62,6 +61,7 @@
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:background="?android:attr/selectableItemBackground"
         android:hint="isLock"
+        android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/isBannedTextView" />
 
 
