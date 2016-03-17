@@ -106,6 +106,7 @@ public class ReviewPage extends AppCompatActivity {
         TextView ratingTextViews = (TextView) findViewById(R.id.ratingTextView);
         ratingTextViews.setText(movieName);
         username = user.getUsername();
+        major = user.getMajor();
 
     }
 
