@@ -70,6 +70,39 @@ public class User implements Parcelable {
 
 
     /**
+     * constructor for all of the attributes of user
+     *
+     * @param aUsername of user
+     * @param aPassword of user
+     * @param aFirstName of user
+     * @param aLastName of user
+     * @param aEmail of user
+     * @param aMajor of user
+     * @param aPhone of user
+     * @param aInterests of user
+     * @param aIsLocked of user
+     * @param aIsBanned of user
+     * @param aIsAdmin of user
+     */
+    public User(String aUsername, String aPassword, String aFirstName, String aLastName, String aEmail,
+        String aMajor, String aPhone, String aInterests, int aIsLocked, int aIsBanned, int aIsAdmin) {
+        this.username = aUsername;
+        this.password = aPassword;
+        this.firstName = aFirstName;
+        this.lastName = aLastName;
+        this.email = aEmail;
+        this.major = aMajor;
+        this.phone = aPhone;
+        this.interests = aInterests;
+        this.isLocked = aIsLocked;
+        this.isBanned = aIsBanned;
+        this.isAdmin = aIsAdmin;
+    }
+
+
+
+
+    /**
      * gets User's username
      * @return username of User
      */

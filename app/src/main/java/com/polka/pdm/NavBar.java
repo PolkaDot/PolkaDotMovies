@@ -2,7 +2,6 @@ package com.polka.pdm;
 
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
@@ -16,15 +15,15 @@ import android.view.MenuItem;
  *
  * Created by C. Shih on 3/4/2016.
  */
-public class NavBar extends AppCompatActivity {
+public abstract class NavBar extends AppCompatActivity {
 
-    private DrawerLayout mDrawer;
-    private Toolbar toolbar;
-    private ActionBarDrawerToggle drawerToggle;
+    protected DrawerLayout mDrawer;
+    protected Toolbar toolbar;
+    protected ActionBarDrawerToggle drawerToggle;
 
-    User user;
+//    User user;
     //Navigation bar stuff
-    //
+    protected User superuser;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         //open close drawer
@@ -41,11 +40,11 @@ public class NavBar extends AppCompatActivity {
     }
 
     //
-    @Override
-    public void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        drawerToggle.syncState();
-    }
+//    @Override
+//    public void onPostCreate(Bundle savedInstanceState) {
+//        super.onPostCreate(savedInstanceState);
+//        drawerToggle.syncState();
+//    }
 
     /**
      * sets up listener for the side bar
@@ -99,7 +98,7 @@ public class NavBar extends AppCompatActivity {
 //                fragmentClass = Frag.class;
                 break;
             case R.id.Recommendations:
-                intent = new Intent(this, MainActivity.class);
+                intent = new Intent(this, RecommendMovie.class);
 //                fragmentClass = Frag.class;
                 break;
             case R.id.LogOut:
@@ -114,7 +113,7 @@ public class NavBar extends AppCompatActivity {
 //                break;
             default:
 //                fragmentClass = Frag.class;
-                intent = new Intent(this, ViewProfile.class);
+                intent = new Intent(this, HomeApp.class);
         }
 //        try {
 //            fragment = (Fragment) fragmentClass.newInstance();
@@ -134,7 +133,7 @@ public class NavBar extends AppCompatActivity {
 //        Log.d("HomeApp", "creating title");
         // close the drawer
         mDrawer.closeDrawers();
-        intent.putExtra("user", user);
+        intent.putExtra("user", superuser);
         startActivity(intent);
 
     }
@@ -169,7 +168,7 @@ public class NavBar extends AppCompatActivity {
     }
 
     public User getUser() {
-        return this.user;
+        return this.superuser;
     }
 
 
@@ -186,6 +185,8 @@ public class NavBar extends AppCompatActivity {
     }
 
     public void setUser(User user) {
-        this.user = user;
+        this.superuser = user;
     }
+
+
 }

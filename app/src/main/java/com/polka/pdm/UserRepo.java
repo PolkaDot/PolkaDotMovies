@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 /**
  * UserRepo is used in tandom with the database
@@ -52,6 +53,60 @@ public class UserRepo {
             return -1;
         }
     }
+
+
+    public User[] getAllUsers() {
+
+        String countQ = "SELECT * FROM " + User.TABLE;
+        SQLiteDatabase adb = dbHelper.getReadableDatabase();
+        Cursor acursor = adb.rawQuery(countQ, null);
+        int cnt = acursor.getCount();
+        acursor.close();
+        adb.close();
+        int dataCount = cnt;
+
+
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String selectQuery = "SELECT * FROM " + User.TABLE;
+        User[] users = new User[dataCount];
+
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            int i = 0;
+            do {
+                String username = cursor.getString(cursor.getColumnIndex(User.KEY_username));
+                String password = cursor.getString(cursor.getColumnIndex(User.KEY_password));
+                String firstName = cursor.getString(cursor.getColumnIndex(User.KEY_firstName));
+                String lastName = cursor.getString(cursor.getColumnIndex(User.KEY_lastName));
+                String email = cursor.getString(cursor.getColumnIndex(User.KEY_email));
+                String major = cursor.getString(cursor.getColumnIndex(User.KEY_major));
+                String phone = cursor.getString(cursor.getColumnIndex(User.KEY_phone));
+                String interests = cursor.getString(cursor.getColumnIndex(User.KEY_interests));
+                int isLock = cursor.getInt(cursor.getColumnIndex(User.KEY_isLocked));
+                int isBanned = cursor.getInt(cursor.getColumnIndex(User.KEY_isBanned));
+                int isAdmin = cursor.getInt(cursor.getColumnIndex(User.KEY_isAdmin));
+
+                User user = new User(username, password, firstName, lastName, email,
+                        major, phone, interests, isLock, isBanned, isAdmin); // may need new data struct to store total rating
+                Log.d("CCC", "DID STUFF WITH USER ARRAY");
+                users[i++] = user;
+            } while (cursor.moveToNext() && i < users.length);
+        }
+
+        for (int i = 0; i < users.length; i++) {
+            User t = users[i];
+            Log.d("AAA", "has a user");
+
+            if (t != null) {
+                Log.d("BBB", "username: " + t.getUsername());
+            }
+        }
+        cursor.close();
+        db.close();
+        return users;
+    }
+
 
     /**
      * gets the user object by username from database

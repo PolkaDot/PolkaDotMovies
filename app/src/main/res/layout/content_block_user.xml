@@ -12,64 +12,43 @@
     tools:context="com.polka.pdm.BlockUser"
     tools:showIn="@layout/activity_block_user">
 
-    <Button
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:text="unlock"
-        android:id="@+id/unlockButton"
-        android:background="#F7BE39"
-        android:textSize="30dp"
-        android:layout_marginBottom="61dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
 
-    <Button
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:text="Ban"
-        android:id="@+id/banButton"
-        android:background="#F7BE39"
-        android:paddingBottom="10dp"
-        android:layout_marginRight="10dp"
-        android:textSize="30dp"
-        android:layout_alignTop="@+id/unlockButton"
-        android:layout_toEndOf="@+id/unlockButton"
-        android:layout_marginLeft="20dp" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/userAdminRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="420dp"
+        android:layout_below="@+id/userText"
+        android:layout_gravity="center"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentEnd="false">
+    </android.support.v7.widget.RecyclerView>
 
     <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/userTextView"
-        android:hint="Recycler View goes here"
-        android:layout_marginTop="61dp"
-        android:textSize="30dp"
-        android:layout_below="@+id/searchUserEditText"
-        android:layout_alignParentStart="true" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/searchImageButton"
-        android:layout_gravity="right|top"
-        android:clickable="true"
-        android:background="@drawable/search"
-        android:onClick="onSearchButtonPress"
-        android:adjustViewBounds="false"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="isBanned"
+        android:id="@+id/banTextView"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
-
-    <EditText
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/searchUserEditText"
-        android:layout_gravity="left|top"
-        android:hint="Search User"
-        android:editable="true"
-        android:clickable="true"
-        android:textSize="32dp"
-        android:enabled="true"
+        android:layout_toEndOf="@+id/userText" />
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Username"
+        android:id="@+id/userText"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="isLocked"
+        android:id="@+id/lockTextView"
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@+id/userAdminRecyclerView" />
 
 </RelativeLayout>
