@@ -43,7 +43,7 @@ public class LoginApplication extends AppCompatActivity {
         User user = repo.getUserByUsername(nameBox.getText().toString());
 
         // Checks if an admin
-        if (user.getIsAdmin() == 1 && passBox.getText().toString().equals(user.getPassword())) {
+        if(isAdmin(user)){
             text = "Logged in as Admin";
             Intent startApp = new Intent(this, BlockUser.class);
             startApp.putExtra("user", user); // just in case this is needed...
@@ -74,6 +74,17 @@ public class LoginApplication extends AppCompatActivity {
         Toast t = Toast.makeText(context, text, duration);
         t.show();
     }
+
+    /**
+     * method to check if user is admin or not
+     * @param user user in question
+     * @return true if user is admin
+     */
+    private boolean isAdmin(User user) {
+        EditText pass = (EditText) findViewById(R.id.passwordEdit);
+        return user.getIsAdmin() == 1 && pass.getText().toString().equals(user.getPassword());
+    }
+
 
     /**
      * method to check if user is locked or unlocked
