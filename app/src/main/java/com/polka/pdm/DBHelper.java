@@ -8,7 +8,6 @@ package com.polka.pdm;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.media.Rating;
 
 public class DBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "user.db";
