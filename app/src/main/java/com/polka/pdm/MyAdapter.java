@@ -11,20 +11,28 @@ import android.widget.TextView;
 
 /**
  * Created by Yami on 2/23/2016.
+ * @author Yami
+ * @version 1.0
  * helper for recyclerview for movie
  */
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private Movie[] mDataset;
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
+    /**
+     * Provide a reference to the views for each data item
+     * Complex data items may need more than one view per item, and
+     * you provide access to all the views for a data item in a view holder
+     */
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // each data item is just a string in this case
         public TextView mTextView;
         private Movie mItem;
         private final Context context;
 
+        /**
+         *
+         * @param v v
+         */
         public ViewHolder(View v) {
             super(v);
             context = itemView.getContext();
@@ -32,6 +40,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             mTextView = (TextView) v.findViewById(R.id.movieTitleTextView);
         }
 
+        /**
+         *
+         * @param item i
+         */
         public void setItem(Movie item) {
             mItem = item;
             if (item != null) {
@@ -63,19 +75,32 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         }
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
+    /**
+     * Provide a suitable constructor (depends on the kind of dataset)
+     *
+     * @param myDataset
+     */
     public MyAdapter(Movie[] myDataset) {
         mDataset = myDataset;
     }
 
-    // Sets the dataset
+    /**
+     * Sets the dataset
+     * @param myDataset
+     */
     public void setData (Movie[] myDataset) {
         mDataset = myDataset;
         // notify adapter that the data has changed
         notifyDataSetChanged();
     }
 
-    // Create new views (invoked by the layout manager)
+    /**
+     * Create new views (invoked by the layout manager)
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @Override
     public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                    int viewType) {
@@ -88,7 +113,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         return vh;
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
+    /**
+     * Replace the contents of a view (invoked by the layout manager)
+     *
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
@@ -97,7 +127,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
+    /**
+     * Return the size of your dataset (invoked by the layout manager)
+     *
+     * @return length of dataset. if null, 0
+     */
     @Override
     public int getItemCount() {
         if (mDataset != null) {

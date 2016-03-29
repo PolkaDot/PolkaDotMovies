@@ -23,7 +23,6 @@ public class HomeApp extends NavBar {
 
     private User user;
 
-    //
 //    private DrawerLayout mDrawer;
 //    private Toolbar toolbar;
 //    private ActionBarDrawerToggle drawerToggle;
