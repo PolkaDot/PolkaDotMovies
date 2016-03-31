@@ -10,31 +10,61 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Movie implements Parcelable {
-
+    /**
+     * Title of movie
+     */
     private String title;
+    /**
+     * Year movie was made
+     */
     private int year;
+    /**
+     * Synopsis of movie
+     */
     private String synopsis;
+    /**
+     * Represents image of movie poster
+     */
     private String poster;
+    /**
+     * Represents number of instance variables for movie.
+     * This is used to create a movie from a parcel
+     */
     private static final int NUMBER_OF_INSTANCE_VARS = 4;
+    /**
+     * Index in parcel where data for the title is stored
+     */
     private static final int TITLE_INDEX = 0;
+    /**
+     * Index in parcel where data for the year is stored
+     */
     private static final int YEAR_INDEX = 1;
+    /**
+     * Index in parcel where data for the synopsis is stored
+     */
     private static final int SYNOPSIS_INDEX = 2;
+    /**
+     * Index in parcel where data for the poster is stored
+     */
     private static final int POSTER_INDEX = 3;
+    /**
+     * Constant used for the creation of the hashcode
+     */
     private static final int HASHCODE_CONSTANT = 7;
 
     /**
      * Constructor.
      *
-     * @param  title The name of the movie
-     * @param year The year the movie was released
-     * @param synopsis The synopsis of the movie
-     * @param  poster The poster of the movie
+     * @param  movieTitle The name of the movie
+     * @param movieYear The year the movie was released
+     * @param movieSynopsis The synopsis of the movie
+     * @param  moviePoster The poster of the movie
      */
-    public Movie(String title, int year, String synopsis, String poster) {
-        this.title = title;
-        this.year = year;
-        this.synopsis = synopsis;
-        this.poster = poster;
+    public Movie(String movieTitle, int movieYear, String movieSynopsis, String moviePoster) {
+        this.title = movieTitle;
+        this.year = movieYear;
+        this.synopsis = movieSynopsis;
+        this.poster = moviePoster;
     }
     /**
      * Constructor.
