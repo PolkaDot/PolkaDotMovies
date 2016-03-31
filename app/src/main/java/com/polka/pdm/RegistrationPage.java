@@ -1,3 +1,8 @@
+/**
+ * @author Alisha KC
+ * @version 1.0
+ * when you want to create a new user
+ */
 package com.polka.pdm;
 
 import android.content.Intent;
@@ -103,6 +108,7 @@ public class RegistrationPage extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Username already in use.", Toast.LENGTH_SHORT).show();
         }
+
     }
 
 }
