@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 /**
  * Created by Yami on 2/23/2016.
- * helper for recyclerview for movie
+ * Provide views to RecyclerView in SearchMovie activity with data from the movie mDataSet.
  */
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private Movie[] mDataset;
@@ -21,18 +21,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // each data item is just a string in this case
-        public TextView mTextView;
+        private TextView mTextView;
         private Movie mItem;
         private final Context context;
 
-        public ViewHolder(View v) {
+        private ViewHolder(View v) {
             super(v);
             context = itemView.getContext();
             v.setOnClickListener(this);
             mTextView = (TextView) v.findViewById(R.id.movieTitleTextView);
         }
 
-        public void setItem(Movie item) {
+        private void setItem(Movie item) {
             mItem = item;
             if (item != null) {
                 mTextView.setText(item.getTitle());
