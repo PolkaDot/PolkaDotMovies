@@ -15,6 +15,12 @@ public class Movie implements Parcelable {
     private int year;
     private String synopsis;
     private String poster;
+    private static final int NUMBER_OF_INSTANCE_VARS = 4;
+    private static final int TITLE_INDEX = 0;
+    private static final int YEAR_INDEX = 1;
+    private static final int SYNOPSIS_INDEX = 2;
+    private static final int POSTER_INDEX = 3;
+    private static final int HASHCODE_CONSTANT = 7;
 
     /**
      * Constructor.
@@ -36,13 +42,13 @@ public class Movie implements Parcelable {
      * @param  in An object of the Parcel class
      */
     public Movie(Parcel in) {
-        String[] data = new String[4];
+        final String[] data = new String[NUMBER_OF_INSTANCE_VARS];
         in.readStringArray(data);
 
-        this.title = data[0];
-        this.year = Integer.parseInt(data[1]);
-        this.synopsis = data[2];
-        this.poster = data[3];
+        this.title = data[TITLE_INDEX];
+        this.year = Integer.parseInt(data[YEAR_INDEX]);
+        this.synopsis = data[SYNOPSIS_INDEX];
+        this.poster = data[POSTER_INDEX];
     }
 
     @Override
@@ -56,7 +62,7 @@ public class Movie implements Parcelable {
         if (!(object instanceof Movie)) {
             return false;
         }
-        Movie that = (Movie) object;
+        final Movie that = (Movie) object;
         return this.title.equals(that.title) && this.year == that.year;
     }
 
@@ -64,7 +70,7 @@ public class Movie implements Parcelable {
 
     @Override
     public int hashCode() {
-        return 7 * year + synopsis.length();
+        return HASHCODE_CONSTANT * year + synopsis.length();
     }
 
 

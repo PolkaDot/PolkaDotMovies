@@ -14,83 +14,27 @@ import android.widget.TextView;
  * @version 1.0
  * Provide views to RecyclerView in SearchMovie activity with data from the movie mDataSet.
  */
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-    private Movie[] mDataset;
-
+public final class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     /**
-     * Provide a reference to the views for each data item
-     * Complex data items may need more than one view per item, and
-     * you provide access to all the views for a data item in a view holder
+     * dataset that holds all the movies
      */
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        // each data item is just a string in this case
-        private TextView mTextView;
-        private Movie mItem;
-        private final Context context;
-
-
-        /**
-         *
-         * @param v the current view
-         */
-        private ViewHolder(View v) {
-            super(v);
-            context = itemView.getContext();
-            v.setOnClickListener(this);
-            mTextView = (TextView) v.findViewById(R.id.movieTitleTextView);
-        }
-
-
-        /**
-         *
-         * @param item helper method to set the item in the recyclerview
-         */
-        private void setItem(Movie item) {
-            mItem = item;
-            if (item != null) {
-                mTextView.setText(item.getTitle());
-            }
-        }
-
-        //implements when a movie is clicked
-        @Override
-        public void onClick(View view) {
-            if (mItem != null) {
-                Log.d("CLICK", "on Click" + mItem.getTitle());// Switch activities
-                // PutExtra Movie
-                Intent intent = new Intent(context, ViewMovie.class);
-                intent.putExtra("movie", mItem);
-
-                // PutExtra User
-                User user = null;
-                if (context instanceof SearchMovies) {
-                   user = ((SearchMovies)context).getUser();
-                }
-
-                if (user != null) {
-                    intent.putExtra("user", user);
-                }
-                // start next activity
-                context.startActivity(intent);
-            }
-        }
-    }
+    private Movie[] mDataset;
 
     /**
      * Provide a suitable constructor (depends on the kind of dataset)
      *
-     * @param myDataset
+     * @param myDataset data containing movies
      */
     public MyAdapter(Movie[] myDataset) {
-        mDataset = myDataset;
+        mDataset = myDataset.clone();
     }
 
     /**
      * Sets the dataset
-     * @param myDataset
+     * @param myDataset dataset used to update the dataset in the adapter
      */
     public void setData (Movie[] myDataset) {
-        mDataset = myDataset;
+        mDataset = myDataset.clone();
         // notify adapter that the data has changed
         notifyDataSetChanged();
     }
@@ -98,27 +42,26 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     /**
      * Create new views (invoked by the layout manager)
      *
-     * @param parent
-     * @param viewType
-     * @return
+     * @param parent the parent view
+     * @param viewType type of view
+     * @return viewholder made with populated items
      */
     @Override
     public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                    int viewType) {
         // create a new view
-        View v = LayoutInflater.from(parent.getContext())
+        final View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.text_row_item, parent, false);
         // set the view's size, margins, paddings and layout parameters
 
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        return new ViewHolder(v);
     }
 
     /**
      * Replace the contents of a view (invoked by the layout manager)
      *
-     * @param holder
-     * @param position
+     * @param holder the viewholder of the item
+     * @param position the position in the view
      */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
@@ -141,5 +84,70 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         return 0;
     }
 
+    /**
+     * Provide a reference to the views for each data item
+     * Complex data items may need more than one view per item, and
+     * you provide access to all the views for a data item in a view holder
+     */
+    public static final class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        /**
+         * current textview
+         */
+        private TextView mTextView;
+        /**
+         * Current movie item
+         */
+        private Movie mItem;
+        /**
+         * current context
+         */
+        private final Context context;
 
+
+        /**
+         * Instantiates a new ViewHolder with current view
+         * @param v the current view
+         */
+        private ViewHolder(View v) {
+            super(v);
+            context = itemView.getContext();
+            v.setOnClickListener(this);
+            mTextView = (TextView) v.findViewById(R.id.movieTitleTextView);
+        }
+
+
+        /**
+         * Helper method to set the item in the recyclerview
+         * @param item item to be set in the view
+         */
+        private void setItem(Movie item) {
+            mItem = item;
+            if (item != null) {
+                mTextView.setText(item.getTitle());
+            }
+        }
+
+        //implements when a movie is clicked
+        @Override
+        public void onClick(View view) {
+            if (mItem != null) {
+                Log.d("CLICK", "on Click" + mItem.getTitle());// Switch activities
+                // PutExtra Movie
+                final Intent intent = new Intent(context, ViewMovie.class);
+                intent.putExtra("movie", mItem);
+
+                // PutExtra User
+                User user = null;
+                if (context instanceof SearchMovies) {
+                    user = ((SearchMovies)context).getUser();
+                }
+
+                if (user != null) {
+                    intent.putExtra("user", user);
+                }
+                // start next activity
+                context.startActivity(intent);
+            }
+        }
+    }
 }
