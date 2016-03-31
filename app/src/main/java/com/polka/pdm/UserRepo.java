@@ -18,7 +18,7 @@ public class UserRepo {
     private DBHelper dbHelper;
 
     /**
-     * create of db helper
+     * Create of db helper
      * @param context context of the application?
      */
     public UserRepo(Context context) {
@@ -109,7 +109,7 @@ public class UserRepo {
 
 
     /**
-     * gets the user object by username from database
+     * Gets the user object by username from database
      *
      * @param username to find by
      * @return user if found, null otherwise

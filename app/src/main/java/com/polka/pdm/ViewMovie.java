@@ -1,15 +1,9 @@
 package com.polka.pdm;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -21,14 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import javax.net.ssl.HttpsURLConnection;
 
 public class ViewMovie extends AppCompatActivity {
     private Movie movie;
@@ -75,9 +61,6 @@ public class ViewMovie extends AppCompatActivity {
         } else {
             user = savedInstanceState.getParcelable("user");
         }
-//        if (user != null) {
-//            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
-//        }
 
         // Get TextViews on view profile page
         TextView movieNameTextView = (TextView) findViewById(R.id.MovieName);
@@ -149,31 +132,13 @@ public class ViewMovie extends AppCompatActivity {
                 break;
             case R.id.Recommendations:
                 intent = new Intent(this, MainActivity.class);
-//                fragmentClass = Frag.class;
                 break;
             case R.id.LogOut:
-//                fragmentClass = Frag.class;
-//                Log.d("HomeApp","logging out");
                 intent = new Intent(this, MainActivity.class);
                 break;
-//            case R.id.Cancel:
-////                fragmentClass = Frag.class;
-////                Log.d("HomeApp","logging out");
-//                intent = new Intent(this, HomeApp.class);
-//                break;
             default:
-//                fragmentClass = Frag.class;
                 intent = new Intent(this, ViewProfile.class);
         }
-//        try {
-//            fragment = (Fragment) fragmentClass.newInstance();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        //insert frag by replacing existing frag
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        fragmentManager.beginTransaction().replace(R.id.flContent,fragment).commit();
 
         // Highlight the selected item
         menuItem.setChecked(true);
@@ -190,7 +155,7 @@ public class ViewMovie extends AppCompatActivity {
 
 
     /**
-     * allows us to create a new ActionBarDrawerToggle specific to our needs
+     * Allows us to create a new ActionBarDrawerToggle specific to our needs
      *
      * @return a new ActionBarDrawer Toggle
      */
@@ -199,7 +164,7 @@ public class ViewMovie extends AppCompatActivity {
     }
 
     /**
-     * allows us to change the state of the toolbar whenever we change config
+     * Allows us to change the state of the toolbar whenever we change config
      *
      * @param newConfig the new configuration
      */
@@ -209,7 +174,6 @@ public class ViewMovie extends AppCompatActivity {
     }
 
     public void onRateMoviePress(View view) {
-        Log.d("Rate Movie", "Rate Movie Button Pressed");
         Intent intent = new Intent(this, ReviewPage.class);
         intent.putExtra("movie", movie);
         intent.putExtra("user", user);

@@ -1,7 +1,8 @@
 /**
- * Review page
- * basically rating
- * but review is the right name
+ * Allows user to submit movie review
+ *
+ * @author Alisha
+ * @version 1.0
  */
 package com.polka.pdm;
 
@@ -18,48 +19,163 @@ import android.widget.Toast;
 
 public class ReviewPage extends AppCompatActivity {
 
-    float ratings;
-    boolean hasRated;
-    Review ratingObj;
-    Movie movie;
-    String movieName;
-    int movieYear ;
-    User user;
-    String major;
-    String username;
+    private float ratings;
+    private boolean hasRated;
+    private Review ratingObj;
+    private Movie movie;
+    private String movieName;
+    private int movieYear ;
+    private User user;
+    private String major;
+    private String username;
+
+    /**
+     * Gets an object of the Review class
+     * @return Object of review class
+     */
+    public Review getRatingObj() {
+        return ratingObj;
+    }
+
+    /**
+     * Sets an object of the Review class
+     * @param ratingObj of review class
+     */
+    public void setRatingObj(Review ratingObj) {
+        this.ratingObj = ratingObj;
+    }
+
+    /**
+     * Gets the year the movie was released
+     * @return The year the movie was released
+     */
+    public int getMovieYear() {
+        return movieYear;
+    }
+
+    /**
+     * Sets the year the movie was made.
+     * @param movieYear the year the movie was made
+     */
+    public void setMovieYear(int movieYear) {
+        this.movieYear = movieYear;
+    }
+
+    /**
+     * Gets the name of the movie
+     * @return The name of the movie
+     */
+    public String getMovieName() {
+        return movieName;
+    }
+
+    /**
+     * Sets the name of the movie
+     * @param movieName The name of the movie
+     */
+    public void setMovieName(String movieName) {
+        this.movieName = movieName;
+    }
+
+    /**
+     * Gets the major of the user
+     * @return The major of the user
+     */
+    public String getMajor() {
+        return major;
+    }
 
 
-//    public float getRatings() {
-//        return this.ratings;
-//    }
-//
-//    public boolean getHasRated() {
-//        return this.hasRated;
-//    }
-//
-//    public Review getRatingObj() {
-//        return this.ratingObj;
-//    }
-//
-//    public Movie getMovie() {
-//        return this.movie;
-//    }
-//
-//    public String getMovieName() {
-//        return this.movieName;
-//    }
-//
-//    public int getMovieYear() {
-//        return this.movieYear;
-//    }
-//
-//    public User getUser() {
-//        return this.user;
-//    }
-//
-//    public String getUsername() {
-//        return this.username;
-//    }
+    /**
+     * Sets the major of the user
+     * @param major The major of the user
+     */
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    /**
+     * Gets the rated or not rated status of the user
+     * @return True if the user has rated the movie and false if they haven't
+     */
+    public boolean isHasRated() {
+        return hasRated;
+    }
+
+
+    /**
+     * Sets to true if the user has rated the movie false otherwise
+     * @param hasRated True if the user has rated the movie false otherwise
+     */
+    public void setHasRated(boolean hasRated) {
+        this.hasRated = hasRated;
+    }
+
+    /**
+     * Gets the movie object
+     * @return The movie object
+     */
+    public Movie getMovie() {
+        return movie;
+    }
+
+
+    /**
+     * Sets the movie object
+     * @param movie the movie object
+     */
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
+    /**
+     * Gets the rating of the movie
+     * @return the rating of the movie
+     */
+    public float getRatings() {
+        return ratings;
+    }
+
+
+    /**
+     * sets the rating of the movie
+     * @param ratings of the movie
+     */
+    public void setRatings(float ratings) {
+        this.ratings = ratings;
+    }
+
+    /**
+     * Gets the user object
+     * @return The user object
+     */
+    public User getUser() {
+        return user;
+    }
+
+
+    /**
+     * sets the user object
+     * @param user the user object
+     */
+    public void setUser(User user) {
+        this.user = user;
+    }
+    /**
+     * Gets the username
+     * @return The username
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * sets the username
+     * @param username the username
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
 
     @Override
@@ -111,7 +227,7 @@ public class ReviewPage extends AppCompatActivity {
     }
 
     /**
-     * when you press submit, it should save the ratings for the movie
+     * When you press submit, it should save the ratings for the movie
      * @param view of the viewAProfile Activity
      */
     public void onSubmitPress(View view) {
@@ -131,7 +247,6 @@ public class ReviewPage extends AppCompatActivity {
         } else {
             ratingObj = new Review(username, major, movieName, movieYear, comments);
         }
-
 
         // insert user already rated the movie
         if (true) {
