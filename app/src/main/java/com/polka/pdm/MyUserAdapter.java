@@ -20,9 +20,12 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.ViewHolder
 
 //    private User clickedUser;
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
+
+    /**
+     * Provide a reference to the views for each data item
+     * Complex data items may need more than one view per item, and
+     * you provide access to all the views for a data item in a view holder
+     */
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView mTextView;
@@ -34,6 +37,11 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.ViewHolder
         User mItem;
         private final Context context;
 
+
+        /**
+         * sets up view holder
+         * @param v view that it is currently showing
+         */
         public ViewHolder(View v) {
             super(v);
             context = itemView.getContext();
@@ -44,6 +52,11 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.ViewHolder
             mBan = (TextView) v.findViewById(R.id.isBannedTextView);
         }
 
+        /**
+         * sets the item in the view holder
+         *
+         * @param item the user that is to be set
+         */
         public void setItem(User item) {
             mItem = item;
             Log.d("ANOTHERTHING", "in setItem");
@@ -57,11 +70,23 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.ViewHolder
 
     }
 
+
+    /**
+     * constructor for creating a user adapter for admin functionality
+     *
+     * @param myDataset that the recycler view is user
+     */
     // Provide a suitable constructor (depends on the kind of dataset)
     public MyUserAdapter(User[] myDataset) {
         mDataset = myDataset;
     }
 
+
+    /**
+     * sets the set of users of recycler view in admin funcionality
+     *
+     * @param myDataset of users that the recycler view is using
+     */
     // Sets the dataset
     public void setData (User[] myDataset) {
         mDataset = myDataset;

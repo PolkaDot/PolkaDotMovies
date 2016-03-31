@@ -10,6 +10,8 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 /**
  * Rating repository for all the inserts from application into database
  *
