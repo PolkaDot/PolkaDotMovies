@@ -35,9 +35,10 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.ViewHolder
         User mItem;
         private final Context context;
 
+
         /**
-         *
-         * @param v
+         * sets up view holder
+         * @param v view that it is currently showing
          */
         public ViewHolder(View v) {
             super(v);
@@ -48,10 +49,11 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.ViewHolder
             mLock = (TextView) v.findViewById(R.id.isLockedTextView);
             mBan = (TextView) v.findViewById(R.id.isBannedTextView);
         }
-
+        
         /**
+         * sets the item in the view holder
          *
-         * @param item
+         * @param item the user that is to be set
          */
         public void setItem(User item) {
             mItem = item;
@@ -68,18 +70,22 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.ViewHolder
 
     /**
      * Provide a suitable constructor (depends on the kind of dataset)
+     *     * constructor for creating a user adapter for admin functionality
+
      *
-     * @param myDataset
+     * @param myDataset that the recycler view is user
      */
     public MyUserAdapter(User[] myDataset) {
         mDataset = myDataset;
     }
 
+
     /**
-     * Sets the dataset
+     * sets the set of users of recycler view in admin funcionality
      *
-     * @param myDataset
+     * @param myDataset of users that the recycler view is using
      */
+    // Sets the dataset
     public void setData (User[] myDataset) {
         mDataset = myDataset;
         // notify adapter that the data has changed

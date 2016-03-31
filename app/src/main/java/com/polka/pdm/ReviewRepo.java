@@ -10,6 +10,8 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 /**
  * Rev9ew repository for all the inserts from application into database
  *
