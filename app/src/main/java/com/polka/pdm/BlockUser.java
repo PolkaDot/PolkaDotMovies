@@ -1,13 +1,17 @@
 package com.polka.pdm;
 
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+
+/**
+ * Block the user
+ * @author Alisha
+ * @version 1.0
+ */
 
 public class BlockUser extends AppCompatActivity {
     User user;
@@ -57,33 +61,6 @@ public class BlockUser extends AppCompatActivity {
         } else {
             user = savedInstanceState.getParcelable("user");
         }
-    }
-
-    /**
-     * /**
-     * when you press the ban button,
-     * it bans the selected user
-     * @param w that we were are on
-     *
-     */
-    public void onBanButtonPress(View w) {
-        UserRepo repo = new UserRepo(this);
-        repo.setBanned(user.getUsername(), 1);
-//        // Get user information from database
-//        User user = repo.getUserByUsername(user.toString());
-
-    }
-
-    /**
-     * /**
-     * when you press the lock button,
-     * it lock the selected user
-     * @param w that we were are on
-     *
-     */
-    public void onLockButtonPress(View w) {
-        UserRepo repo = new UserRepo(this);
-        repo.setLock(user.getUsername(),1);
     }
 
 }
