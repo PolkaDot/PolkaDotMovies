@@ -1,7 +1,6 @@
 package com.polka.pdm;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,20 +8,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * Created by C. Shih on 3/8/2016.
+ * @author Christine
+ * @version 1.0
  */
 public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.ViewHolder>{
 
     private User[] mDataset;
 
-//    private User clickedUser;
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
+    /**
+     * Provide a reference to the views for each data item
+     * Complex data items may need more than one view per item, and
+     * you provide access to all the views for a data item in a view holder
+     */
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView mTextView;
@@ -34,6 +35,11 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.ViewHolder
         User mItem;
         private final Context context;
 
+
+        /**
+         * sets up view holder
+         * @param v view that it is currently showing
+         */
         public ViewHolder(View v) {
             super(v);
             context = itemView.getContext();
@@ -43,7 +49,12 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.ViewHolder
             mLock = (TextView) v.findViewById(R.id.isLockedTextView);
             mBan = (TextView) v.findViewById(R.id.isBannedTextView);
         }
-
+        
+        /**
+         * sets the item in the view holder
+         *
+         * @param item the user that is to be set
+         */
         public void setItem(User item) {
             mItem = item;
             Log.d("ANOTHERTHING", "in setItem");
@@ -57,11 +68,23 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.ViewHolder
 
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
+    /**
+     * Provide a suitable constructor (depends on the kind of dataset)
+     *     * constructor for creating a user adapter for admin functionality
+
+     *
+     * @param myDataset that the recycler view is user
+     */
     public MyUserAdapter(User[] myDataset) {
         mDataset = myDataset;
     }
 
+
+    /**
+     * sets the set of users of recycler view in admin funcionality
+     *
+     * @param myDataset of users that the recycler view is using
+     */
     // Sets the dataset
     public void setData (User[] myDataset) {
         mDataset = myDataset;
@@ -69,7 +92,13 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.ViewHolder
         notifyDataSetChanged();
     }
 
-    // Create new views (invoked by the layout manager)
+    /**
+     * Create new views (invoked by the layout manager)
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @Override
     public MyUserAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                    int viewType) {
@@ -82,7 +111,12 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.ViewHolder
         return vh;
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
+    /**
+     * Replace the contents of a view (invoked by the layout manager)
+     *
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         // - get element from your dataset at this position
@@ -126,7 +160,11 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.ViewHolder
 
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
+    /**
+     * Return the size of your dataset (invoked by the layout manager)
+     *
+     * @return the length (0 if null)
+     */
     @Override
     public int getItemCount() {
         if (mDataset != null) {
@@ -134,6 +172,4 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.ViewHolder
         }
         return 0;
     }
-
-
 }
