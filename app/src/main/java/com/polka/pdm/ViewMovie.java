@@ -11,10 +11,6 @@ import android.widget.TextView;
 public class ViewMovie extends NavBar {
     private Movie movie;
 
-//    private DrawerLayout mDrawer;
-//    private ActionBarDrawerToggle drawerToggle;
-//    private Toolbar toolbar;
-
     private ImageView poster;
     private User user;
 
@@ -22,22 +18,6 @@ public class ViewMovie extends NavBar {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_movie);
-
-//        Nav bar stuff. removed for now
-        // if we want to implement we should put extra to the view movie class
-        //from wherever you call it
-//        toolbar = (Toolbar) findViewById(R.id.toolbar);
-//
-//        setSupportActionBar(toolbar);
-//
-//        //
-//        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
-//        setupDrawerContent(nvDrawer);
-//
-//        drawerToggle = setupDrawerToggle();
-//        mDrawer.setDrawerListener(drawerToggle);
-
 
         // Grab saved data about Movie
         if (savedInstanceState == null) {
@@ -61,9 +41,6 @@ public class ViewMovie extends NavBar {
         } else {
             user = savedInstanceState.getParcelable("user");
         }
-//        if (user != null) {
-//            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
-//        }
 
         // Get TextViews on view profile page
         TextView movieNameTextView = (TextView) findViewById(R.id.MovieName);
