@@ -16,7 +16,7 @@ import android.widget.TextView;
  */
 public final class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     /**
-     * dataset that holds all the movies
+     * data set that holds all the movies
      */
     private Movie[] mDataset;
 
@@ -93,7 +93,7 @@ public final class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> 
         /**
          * current textview
          */
-        private TextView mTextView;
+        private final TextView mTextView;
         /**
          * Current movie item
          */

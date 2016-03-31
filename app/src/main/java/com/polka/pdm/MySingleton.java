@@ -54,7 +54,7 @@ public final class MySingleton {
      * Returns the RequestQueue
      * @return the RequestQueue
      */
-    public RequestQueue getRequestQueue() {
+    private RequestQueue getRequestQueue() {
         if (mRequestQueue == null) {
             // getApplicationContext() is key, it keeps you from leaking the
             // Activity or BroadcastReceiver if someone passes one in.

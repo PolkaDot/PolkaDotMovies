@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -26,9 +25,8 @@ public class LoginApplication extends AppCompatActivity {
     /**
      * when you press the cancel button,
      * it takes you back to the main activity
-     * @param v that we were are on
      */
-    public void onLoginCancelPressed(View v) {
+    public void onLoginCancelPressed() {
         final Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
@@ -37,9 +35,8 @@ public class LoginApplication extends AppCompatActivity {
      * when you press login
      * it checks if your username and pass is legit
      * if so it takes you to the home screen of the app
-     * @param v view that you are on
      */
-    public void onLoginButtonPressed(View v) {
+    public void onLoginButtonPressed() {
         Log.d("LOGIN ACTIVITY", "Login Button Pressed");
         final EditText nameBox = (EditText) findViewById(R.id.usernameEdit);
         final EditText passBox = (EditText) findViewById(R.id.passwordEdit);

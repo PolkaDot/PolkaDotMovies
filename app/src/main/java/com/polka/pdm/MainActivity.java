@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -38,10 +37,9 @@ public class MainActivity extends AppCompatActivity {
      *
      * when you press the login button,
      * it takes you back to the login activity
-     * @param w that we were are on
      *
      */
-    public void onLoginButtonClicked(View w) {
+    public void onLoginButtonClicked() {
         final Intent intent = new Intent(this, LoginApplication.class);
         startActivity(intent);
     }
@@ -52,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        Log.d("OptionsSelect", "Overriden method of optionsItemSelected was run.");
+        Log.d("OptionsSelect", "optionsItemSelected was run.");
         return super.onOptionsItemSelected(item);
     }
 
@@ -60,9 +58,8 @@ public class MainActivity extends AppCompatActivity {
     /**
      * when you press the sign up button,
      * it takes you back to the registration activity
-     * @param v that we were are on
      */
-    public void onSignUpButtonPress(View v ) {
+    public void onSignUpButtonPress() {
         final Intent intent = new Intent(this, RegistrationPage.class);
         startActivity(intent);
 

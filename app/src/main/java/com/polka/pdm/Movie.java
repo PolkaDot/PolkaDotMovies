@@ -13,19 +13,19 @@ public class Movie implements Parcelable {
     /**
      * Title of movie
      */
-    private String title;
+    private final String title;
     /**
      * Year movie was made
      */
-    private int year;
+    private final int year;
     /**
      * Synopsis of movie
      */
-    private String synopsis;
+    private final String synopsis;
     /**
      * Represents image of movie poster
      */
-    private String poster;
+    private final String poster;
     /**
      * Represents number of instance variables for movie.
      * This is used to create a movie from a parcel
@@ -71,7 +71,7 @@ public class Movie implements Parcelable {
      *
      * @param  in An object of the Parcel class
      */
-    public Movie(Parcel in) {
+    private Movie(Parcel in) {
         final String[] data = new String[NUMBER_OF_INSTANCE_VARS];
         in.readStringArray(data);
 
@@ -132,7 +132,7 @@ public class Movie implements Parcelable {
      * Gets the poster
      * @return the poster image for the movie
      */
-    public String getPoster() {
+    private String getPoster() {
         return poster;
     }
 
