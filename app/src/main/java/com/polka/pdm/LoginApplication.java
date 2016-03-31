@@ -30,7 +30,7 @@ public class LoginApplication extends AppCompatActivity {
     /**
      * when you press login
      * it checks if your username and pass is legit
-     * if so it takes you to the homescreen of the app
+     * if so it takes you to the home screen of the app
      * @param v view that you are on
      */
     public void onLoginButtonPressed(View v) {

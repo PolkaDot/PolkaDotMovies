@@ -99,7 +99,7 @@ public class ViewMovie extends NavBar {
         mDrawer.closeDrawers();
         startActivity(intent);
     }
-    
+
     /**
      * Allows us to change the state of the toolbar whenever we change config
      *

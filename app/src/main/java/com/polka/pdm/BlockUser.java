@@ -5,7 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+
+/**
+ * Block the user
+ * @author Alisha
+ * @version 1.0
+ */
 
 /**
  * Block the user
@@ -14,18 +19,19 @@ import android.view.View;
  */
 
 public class BlockUser extends AppCompatActivity {
-    User user;
-    UserRepo userRepo;
+    private User user;
+    private UserRepo userRepo;
 
     // Needed for recycler view
-    protected User[] mDataset;
+    private User[] mDataset;
 
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        RecyclerView mRecyclerView;
+        RecyclerView.Adapter mAdapter;
+        RecyclerView.LayoutManager mLayoutManager;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_block_user);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
