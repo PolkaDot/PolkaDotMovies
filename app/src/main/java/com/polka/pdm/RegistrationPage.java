@@ -1,8 +1,3 @@
-/**
- * @author Alisha KC
- * @version 1.0
- * when you want to create a new user
- */
 package com.polka.pdm;
 
 import android.content.Intent;
@@ -13,6 +8,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+/**
+ * @author Alisha KC
+ * @version 1.0
+ * when you want to create a new user
+ */
 
 public class RegistrationPage extends AppCompatActivity {
 
@@ -50,8 +50,6 @@ public class RegistrationPage extends AppCompatActivity {
         Log.d("Cancel", "Cancel Button Pressed");
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-//        Intent intent = new Intent(this, SearchMovies.class);
-//        startActivity(intent);
     }
 
     /**
@@ -94,12 +92,10 @@ public class RegistrationPage extends AppCompatActivity {
 
 
 
-        // insert user into database TODO: Check if user is already in database
+        // insert user into database
         if (repo.getUserByUsername(user.getUsername()).getUsername() == null) {
             repo.insert(user);
             Toast.makeText(this, "New student inserted", Toast.LENGTH_SHORT).show();
-//            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
-
             // Switch to Edit Profile Activity
             Intent intent = new Intent(this, EditProfile.class);
             intent.putExtra("user", user);
