@@ -12,6 +12,12 @@ import android.support.v7.widget.Toolbar;
  * @version 1.0
  */
 
+/**
+ * Block the user
+ * @author Alisha
+ * @version 1.0
+ */
+
 public class BlockUser extends AppCompatActivity {
     private User user;
     private UserRepo userRepo;
