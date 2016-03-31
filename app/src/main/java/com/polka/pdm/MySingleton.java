@@ -8,7 +8,7 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
 /**
- * Created by thech_000 on 2/20/2016.
+ * Singleton class to facilitate requests (to Rotten Tomatoes, for instance)
  */
 public class MySingleton {
     private static MySingleton mInstance;

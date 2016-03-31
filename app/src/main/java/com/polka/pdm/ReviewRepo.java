@@ -10,6 +10,8 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 /**
  * Rev9ew repository for all the inserts from application into database
  *
@@ -21,7 +23,7 @@ public class ReviewRepo {
     private DBHelper dbHelper;
 
     /**
-     * create of db helper
+     * create db helper
      *
      * @param context context of the application?
      */
@@ -141,6 +143,12 @@ public class ReviewRepo {
         return ratings;
     }
 
+    /**
+     * Generates a list of movies rated by specified major in order of descending rating
+     * @param major major used to search movie ratings
+     * @param dataCount specifies the size of the list of movies to return
+     * @return returns a list of movies sorted by ratings by specified major
+     */
     public Movie[] getRatingsByMajor(String major, int dataCount) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery = "SELECT " + Review.KEY_movie + ", " + Review.KEY_movieYear + ", " + Review.KEY_major + ", sum(" + Review.KEY_rating + ") as total"
@@ -162,16 +170,12 @@ public class ReviewRepo {
                 int year = cursor.getInt(cursor.getColumnIndex(Review.KEY_movieYear));
                 int totalRating = cursor.getInt(cursor.getColumnIndex("total"));
                 Movie movie = new Movie(title, year, null, null); // may need new data struct to store total rating
-                Log.d("CCC", "Entry # " + i + " " + movie.getTitle() + " - " + totalRating);
                 movies[i++] = movie;
             } while (cursor.moveToNext() && i < movies.length);
         }
 
         for (int i = 0; i < movies.length; i++) {
             Movie t = movies[i];
-            if (t != null) {
-                Log.d("BBB", i + " " + t.getTitle());
-            }
         }
         cursor.close();
         db.close();
