@@ -1,7 +1,8 @@
 package com.polka.pdm;
 
 /**
- * Created by Arsh on 2/23/16.
+ * The class that holds all the movie information
+ *
  * @author Arsh
  * @version 1.0
  */
@@ -9,30 +10,31 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Movie implements Parcelable {
-//    title
-//    year
-//    synopsis
-//    posters (string to online)
 
-    //    ratings
-//    runtime
-//    release dates
-//    bridge cast
-//    links (online rotten tomatoes)
-//    links to search page
     private String title;
     private int year;
     private String synopsis;
     private String poster;
 
-
+    /**
+     * Constructor.
+     *
+     * @param  title The name of the movie
+     * @param year The year the movie was released
+     * @param synopsis The synopsis of the movie
+     * @param  poster The poster of the movie
+     */
     public Movie(String title, int year, String synopsis, String poster) {
         this.title = title;
         this.year = year;
         this.synopsis = synopsis;
         this.poster = poster;
     }
-
+    /**
+     * Constructor.
+     *
+     * @param  in An object of the Parcel class
+     */
     public Movie(Parcel in) {
         String[] data = new String[4];
         in.readStringArray(data);
@@ -115,12 +117,11 @@ public class Movie implements Parcelable {
     }
 
     /**
-     * inner class
-     * creates a new creator
+     * Inner class that creates a new creator
      */
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
         /**
-         * creates a user from parcel
+         * Creates a user from parcel
          * @param in parcel (of data)
          * @return user that we created
          */
@@ -129,7 +130,7 @@ public class Movie implements Parcelable {
         }
 
         /**
-         * gives an array of users
+         * Gives an array of users
          * @param size size of array
          * @return user array
          */

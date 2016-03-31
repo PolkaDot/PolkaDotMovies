@@ -8,7 +8,6 @@ package com.polka.pdm;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.media.Rating;
 
 public class DBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "user.db";
@@ -31,7 +30,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 + User.KEY_lastName + " TEXT, "
                 + User.KEY_email + " TEXT, "
                 + User.KEY_major + " TEXT, "
-                + User.KEY_phone + " TEXT, " //TODO: Text or int?
+                + User.KEY_phone + " TEXT, "
                 + User.KEY_interests + " TEXT, "
                 + User.KEY_isLocked + " INTEGER, "
                 + User.KEY_isBanned + " INTEGER, "
@@ -42,8 +41,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 + User.KEY_lastName + ", " + User.KEY_isAdmin + ") VALUES ("
                 + "'admin', 'pass', 'polka', 'dots', 1);";
         db.execSQL(INSERT_ADMIN);
-
-        // creates rating table
 
         String CREATE_TABLE_RATING = "CREATE TABLE " + Review.TABLE + " ("
                 + Review.KEY_movie + " TEXT, "

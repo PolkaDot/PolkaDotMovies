@@ -2,13 +2,15 @@ package com.polka.pdm;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.content.res.Configuration;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ViewMovie extends NavBar {
+
     private Movie movie;
 
     private ImageView poster;
@@ -48,18 +50,67 @@ public class ViewMovie extends NavBar {
         TextView movieSynopsisTextView = (TextView) findViewById(R.id.MovieSynopsis);
         movieSynopsisTextView.setMovementMethod(new ScrollingMovementMethod());
 
-
          //Put user information in TextView boxes
         movieNameTextView.setText(movie.getTitle());
         movieYearTextView.setText(Integer.toString(movie.getYear()));
         movieSynopsisTextView.setText(movie.getSynopsis());
-
-
     }
 
+    /**
+     * when you click on a menu item
+     * this method is responsible
+     * for directing you to the correct
+     * new activity
+     * and changing the appearances and stuff
+     * (like highlighing your selection)
+     *
+     * @param menuItem the item that you pressed
+     */
+    public void selectDrawerItem(MenuItem menuItem) {
+        Intent intent;
+        switch (menuItem.getItemId()) {
+            case R.id.ViewProfile:
+                intent = new Intent(this, ViewProfile.class);
+                break;
+            case R.id.SearchMovies:
+                intent = new Intent(this, SearchMovies.class);
+                break;
+            case R.id.Movies:
+                intent = new Intent(this, RecentMovies.class);
+                break;
+            case R.id.DVDs:
+                intent = new Intent(this, RecentDvds.class);
+                break;
+            case R.id.Recommendations:
+                intent = new Intent(this, MainActivity.class);
+                break;
+            case R.id.LogOut:
+                intent = new Intent(this, MainActivity.class);
+                break;
+            default:
+                intent = new Intent(this, ViewProfile.class);
+        }
+
+        // Highlight the selected item
+        menuItem.setChecked(true);
+        // update the title
+        setTitle(menuItem.getTitle());
+        // close the drawer
+        mDrawer.closeDrawers();
+        startActivity(intent);
+    }
+    
+    /**
+     * Allows us to change the state of the toolbar whenever we change config
+     *
+     * @param newConfig the new configuration
+     */
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        drawerToggle.onConfigurationChanged(newConfig);
+    }
 
     public void onRateMoviePress(View view) {
-        Log.d("Rate Movie", "Rate Movie Button Pressed");
         Intent intent = new Intent(this, ReviewPage.class);
         intent.putExtra("movie", movie);
         intent.putExtra("user", user);
