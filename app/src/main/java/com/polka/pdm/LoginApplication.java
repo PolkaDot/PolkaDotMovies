@@ -1,10 +1,6 @@
-/**
- * @author Christine Shih
- * @version 1.0
- * screen you see when you log in
- */
 package com.polka.pdm;
 
+//import statements
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +11,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * @author Christine Shih
+ * @version 1.0
+ * screen you see when you log in
+ */
 public class LoginApplication extends AppCompatActivity {
     /**
      * when you press the cancel button,
@@ -38,7 +39,7 @@ public class LoginApplication extends AppCompatActivity {
         EditText passBox = (EditText) findViewById(R.id.passwordEdit);
         CharSequence text;
 
-        UserRepo repo = new UserRepo(this);
+        UserRepo repo = new UserRepo(this); //create repository for users
         // Get user information from database
         User user = repo.getUserByUsername(nameBox.getText().toString());
 
@@ -85,7 +86,6 @@ public class LoginApplication extends AppCompatActivity {
         return user.getIsAdmin() == 1 && pass.getText().toString().equals(user.getPassword());
     }
 
-
     /**
      * method to check if user is locked or unlocked
      * @param user user in question
@@ -111,25 +111,12 @@ public class LoginApplication extends AppCompatActivity {
         }
     }
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_application);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-//        Button btCancel = (Button) findViewById(R.id.cancelButton);
-//
-//        btCancel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                setResult(RESULT_OK);
-//                finish();
-//            }
-//        });
-
     }
 
 }
