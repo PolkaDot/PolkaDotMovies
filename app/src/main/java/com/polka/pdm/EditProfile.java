@@ -18,14 +18,14 @@ import android.widget.Toast;
  public class EditProfile extends AppCompatActivity {
      private User user;
 
-     TextView username;
-     EditText pass;
-     EditText firstname;
-     EditText lastname;
-     EditText email;
-     EditText major;
-     EditText phone;
-     EditText interests;
+     private TextView username;
+     private EditText pass;
+     private EditText firstname;
+     private EditText lastname;
+     private EditText email;
+     private EditText major;
+     private EditText phone;
+     private EditText interests;
 
      //when this activity is created, it makes a toolbar and stuff
     @Override

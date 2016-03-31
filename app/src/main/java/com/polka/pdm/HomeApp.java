@@ -3,7 +3,7 @@
  * @version 2.0
  * The start/home page of the application (after we have logged in)
  * Activity that starts after you log into the app
- * this is the right way to do javadocs
+ * this is the right way to do javadoc
  */
 
 
@@ -197,7 +197,7 @@ public class HomeApp extends NavBar {
 //     * for directing you to the correct
 //     * new activity
 //     * and changing the appearances and stuff
-//     * (like highlighing your selection)
+//     * (like highlighting your selection)
 //     * @param menuItem the item that you pressed
 //     */
 //    public void selectDrawerItem(MenuItem menuItem) {
