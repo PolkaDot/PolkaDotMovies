@@ -83,12 +83,11 @@ public class RecommendMovie extends NavBar {
     }
 
     /**
-     * indicates that the user wants to search the movie typed in the editText
+     * indicates that the user wants to search the major typed in the editText
      *
      * @param view of the search Movies activity
      */
     public void onSearchMajorButtonPress(View view) {
-        Log.d("HEREEEEEEEEE", "HEEEEEEEEERRRRRRRRREEEEEEEEEE1");
         editTextSearchParam = (EditText) findViewById(R.id.MajorTextField);
         String searchParam =  editTextSearchParam.getText().toString();
 

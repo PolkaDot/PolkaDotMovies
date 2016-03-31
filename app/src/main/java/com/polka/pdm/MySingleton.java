@@ -8,19 +8,33 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
 /**
- * Singleton class to facilitate requests (to Rotten Tomatoes, for instance)
+ * Request for volley
+ * @author Y. Avila-Stanley
+ * @version 1.0
  */
 public class MySingleton {
     private static MySingleton mInstance;
     private RequestQueue mRequestQueue;
     private static Context mCtx;
 
+    /**
+     *
+     * Constructor.
+     * @param context ??????
+     *
+     */
     private MySingleton(Context context) {
         mCtx = context;
         mRequestQueue = getRequestQueue();
 
     }
 
+    /**
+     *
+     * ????????
+     * @param context ??????
+     *
+     */
     public static synchronized MySingleton getInstance(Context context) {
         if (mInstance == null) {
             mInstance = new MySingleton(context);
@@ -28,6 +42,11 @@ public class MySingleton {
         return mInstance;
     }
 
+    /**
+     *
+     * ?????
+     *
+     */
     public RequestQueue getRequestQueue() {
         if (mRequestQueue == null) {
             // getApplicationContext() is key, it keeps you from leaking the
@@ -37,6 +56,12 @@ public class MySingleton {
         return mRequestQueue;
     }
 
+    /**
+     *
+     * ??????
+     * @param req ??????
+     *
+     */
     public <T> void addToRequestQueue(Request<T> req) {
         getRequestQueue().add(req);
     }
