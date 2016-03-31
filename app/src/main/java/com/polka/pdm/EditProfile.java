@@ -1,16 +1,7 @@
-
- /**
- * @author Arsh Momin
- * @version 1.0
- * class to help a user edit his/her profile
- */
-
 package com.polka.pdm;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -19,7 +10,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
+/**
+ * @author Arsh Momin
+ * @version 1.0
+ * class to help a user edit his/her profile
+ */
  public class EditProfile extends AppCompatActivity {
      private User user;
 
@@ -74,10 +69,6 @@ import android.widget.Toast;
         major.setText(user.getMajor());
         phone.setText(user.getPhone());
         interests.setText(user.getInterests());
-
-        //        EditText major = (EditText)findViewById(R.id.MajorTextField);
-        //  //        major.setText(user.major);
-
     }
 
      /**
@@ -93,9 +84,6 @@ import android.widget.Toast;
         String aFirstName = firstname.getText().toString();
         String aLastName = lastname.getText().toString();
         String aEmail = email.getText().toString();
-        String aPhone = phone.getText().toString();
-        String aMajor = major.getText().toString();
-        String aInterest = interests.getText().toString();
 
 
         if (aFirstName.length() == 0 || aLastName.length() == 0 || aEmail.length() == 0 || aPassword.length() == 0) {
@@ -111,14 +99,8 @@ import android.widget.Toast;
         // Insert user in database
         UserRepo repo = new UserRepo(this);
 
-//        user.firstName = name.getText().toString();
-//        user.username = username.getText().toString();
-//        user.email = email.getText().toString();
-//        user.password = pass.getText().toString();
 
-
-
-        // insert updated user info into database TODO: Check if user is already in database
+        // insert updated user info into database
         repo.updateProfile(user.getUsername(), /*username.getText().toString(),*/ pass.getText().toString(),
                 firstname.getText().toString(),lastname.getText().toString(), email.getText().toString(), phone.getText().toString(),
                 major.getText().toString(), interests.getText().toString());
@@ -126,8 +108,7 @@ import android.widget.Toast;
         user = repo.getUserByUsername(user.getUsername());
 
         // Toasts
-        Toast.makeText(this, "Changed name", Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Saved Changes to " + user.toString(), Toast.LENGTH_SHORT).show();
 
         // Switch activities
         Intent intent = new Intent(this, ViewProfile.class);

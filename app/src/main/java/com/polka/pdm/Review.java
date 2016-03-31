@@ -11,7 +11,7 @@ public class Review {
 
     public static final String TABLE = "Rating";
 
-    public static final String KEY_ratingId = "ratingId";
+    public static final String KEY_ratingId = "ratingId"; // primary key in db to keep unique
     public static final String KEY_movie = "movie";
     public static final String KEY_movieYear = "movieYear";
     public static final String KEY_user = "user";

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Rating repository for all the inserts from application into database
+ * Rev9ew repository for all the inserts from application into database
  *
  * @author C. Shih on 2/23/2016.
  * @version 1.0
