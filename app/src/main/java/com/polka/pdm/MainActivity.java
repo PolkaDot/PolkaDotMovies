@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 /**
  * Welcome Page
@@ -38,8 +39,9 @@ public class MainActivity extends AppCompatActivity {
      * when you press the login button,
      * it takes you back to the login activity
      *
+     * @param view current view
      */
-    public void onLoginButtonClicked() {
+    public void onLoginButtonClicked(View view) {
         final Intent intent = new Intent(this, LoginApplication.class);
         startActivity(intent);
     }
@@ -58,8 +60,10 @@ public class MainActivity extends AppCompatActivity {
     /**
      * when you press the sign up button,
      * it takes you back to the registration activity
+     *
+     * @param view current view
      */
-    public void onSignUpButtonPress() {
+    public void onSignUpButtonPress(View view) {
         final Intent intent = new Intent(this, RegistrationPage.class);
         startActivity(intent);
 
