@@ -110,7 +110,7 @@ public class RecentMovies extends NavBar {
                 final JSONObject currentMovie = arrayMovies.getJSONObject(i);
                 final String name = currentMovie.getString(Keys.KEY_TITLE);
                 final int num = i + 1;
-                data.append(num).append(" ").append(name).append("\n");
+                data.append(num).append(" ").append(name).append("\n"); // need to append single characters because that's the way the json is formatted
             }
             movienames.setText(data);
         } catch (JSONException e) {
