@@ -1,6 +1,5 @@
 package com.polka.pdm;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,63 +9,19 @@ import android.widget.Button;
 import android.widget.TextView;
 
 /**
- * Created by C. Shih on 3/8/2016.
+ * Created by Christine on 3/8/2016.
  * @author Christine
  * @version 1.0
  */
 public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.ViewHolder>{
 
-    private User[] mDataset;
-
-
     /**
-     * Provide a reference to the views for each data item
-     * Complex data items may need more than one view per item, and
-     * you provide access to all the views for a data item in a view holder
+     * array of users to display for recycler view
      */
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
-        public TextView mTextView;
-        public Button banButton;
-        public Button lockButton;
-        public TextView mLock;
-        public TextView mBan;
-
-        User mItem;
-        private final Context context;
+    private final User[] mDataset;
 
 
-        /**
-         * sets up view holder
-         * @param v view that it is currently showing
-         */
-        public ViewHolder(View v) {
-            super(v);
-            context = itemView.getContext();
-            mTextView = (TextView) v.findViewById(R.id.usernameTextView);
-            banButton = (Button) v.findViewById(R.id.banButton);
-            lockButton = (Button) v.findViewById(R.id.lockButton);
-            mLock = (TextView) v.findViewById(R.id.isLockedTextView);
-            mBan = (TextView) v.findViewById(R.id.isBannedTextView);
-        }
-        
-        /**
-         * sets the item in the view holder
-         *
-         * @param item the user that is to be set
-         */
-        public void setItem(User item) {
-            mItem = item;
-            Log.d("ANOTHERTHING", "in setItem");
-            if (item != null) {
-                Log.d("SOMETHING", item.getUsername());
-                mTextView.setText(item.getUsername());
-                mLock.setText(((Integer)item.getIsLocked()).toString());
-                mBan.setText(((Integer)item.getIsBanned()).toString());
-            }
-        }
 
-    }
 
     /**
      * Provide a suitable constructor (depends on the kind of dataset)
@@ -76,46 +31,46 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.ViewHolder
      * @param myDataset that the recycler view is user
      */
     public MyUserAdapter(User[] myDataset) {
-        mDataset = myDataset;
+        mDataset = myDataset.clone();
     }
 
 
-    /**
-     * sets the set of users of recycler view in admin funcionality
-     *
-     * @param myDataset of users that the recycler view is using
-     */
-    // Sets the dataset
-    public void setData (User[] myDataset) {
-        mDataset = myDataset;
-        // notify adapter that the data has changed
-        notifyDataSetChanged();
-    }
+//    /**
+//     * sets the set of users of recycler view in admin functionality
+//     *
+//     * @param myDataset of users that the recycler view is using
+//     */
+//    // Sets the dataset
+//    public void setData (User[] myDataset) {
+//        mDataset = myDataset.clone();
+//        // notify adapter that the data has changed
+//        notifyDataSetChanged();
+//    }
 
     /**
      * Create new views (invoked by the layout manager)
      *
-     * @param parent
-     * @param viewType
-     * @return
+     * @param parent parent of the view
+     * @param viewType type of view adapter is using
+     * @return  new view holder with populated items
      */
     @Override
     public MyUserAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                    int viewType) {
         // create a new view
-        View v = LayoutInflater.from(parent.getContext())
+        final View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.user_recycler, parent, false);
-        // set the view's size, margins, paddings and layout parameters
+        // set the view's size, margins, padding, and layout parameters
 
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        return new ViewHolder(v);
+//        return vh;
     }
 
     /**
      * Replace the contents of a view (invoked by the layout manager)
      *
-     * @param holder
-     * @param position
+     * @param holder the view holder of item
+     * @param position position of the view holder
      */
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
@@ -126,8 +81,8 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.ViewHolder
             @Override
             public void onClick(View v) {
                 Log.d("Ban Button Pressed", "ban is pressed");
-                UserRepo repo = new UserRepo(v.getContext());
-                if (holder.mItem != null && holder.mItem.getUsername().equals("admin")) {
+                final UserRepo repo = new UserRepo(v.getContext());
+                if (holder.mItem != null && ("admin").equals(holder.mItem.getUsername())) {
                     return;
                 }
                 if (holder.mItem != null) {
@@ -137,7 +92,7 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.ViewHolder
                         holder.mItem.setIsBanned(0);
                     }
                     repo.setBanned(holder.mItem.getUsername(), holder.mItem.getIsBanned());
-                notifyItemChanged(holder.getAdapterPosition());
+                    notifyItemChanged(holder.getAdapterPosition());
                 }
 
             }
@@ -146,9 +101,9 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.ViewHolder
             @Override
             public void onClick(View v) {
                 Log.d("Unlock Button Pressed", "unlock is pressed");
-                UserRepo repo = new UserRepo(v.getContext());
+                final UserRepo repo = new UserRepo(v.getContext());
                 if (holder.mItem != null) {
-                    if (holder.mItem.getUsername().equals("admin")) {
+                    if (("admin").equals(holder.mItem.getUsername())) {
                         return;
                     }
                     holder.mItem.setIsLock(0);
@@ -171,5 +126,74 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.ViewHolder
             return mDataset.length;
         }
         return 0;
+    }
+
+
+    /**
+     * Provide a reference to the views for each data item
+     * Complex data items may need more than one view per item, and
+     * you provide access to all the views for a data item in a view holder
+     */
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        // each data item is just a string in this case
+
+        /**
+         * text view to listen to
+         */
+        private final TextView mTextView;
+        /**
+         * ban button to listen to
+         */
+        private final Button banButton;
+        /**
+         * lock button to listen to
+         */
+        private final Button lockButton;
+        /**
+         * lock view being updated
+         */
+        private final TextView mLock;
+        /**
+         * ban view being updated
+         */
+        private final TextView mBan;
+
+        /**
+         * user to be displayed and modified
+         */
+        private User mItem;
+//        private final Context context;
+
+
+        /**
+         * sets up view holder
+         * @param v view that it is currently showing
+         */
+        public ViewHolder(View v) {
+            super(v);
+//            context = itemView.getContext();
+            mTextView = (TextView) v.findViewById(R.id.usernameTextView);
+            banButton = (Button) v.findViewById(R.id.banButton);
+            lockButton = (Button) v.findViewById(R.id.lockButton);
+            mLock = (TextView) v.findViewById(R.id.isLockedTextView);
+            mBan = (TextView) v.findViewById(R.id.isBannedTextView);
+        }
+
+        /**
+         * sets the item in the view holder
+         *
+         * @param item the user that is to be set
+         */
+        public void setItem(User item) {
+            mItem = item;
+            Log.d("ANOTHER THING", "in setItem");
+            if (item != null) {
+                Log.d("SOMETHING", item.getUsername());
+                mTextView.setText(item.getUsername());
+                mLock.setText(String.format("%d", item.getIsLocked()));
+                mBan.setText(String.format("%d", item.getIsBanned()));
+            }
+        }
+
     }
 }

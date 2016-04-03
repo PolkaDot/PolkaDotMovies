@@ -104,7 +104,7 @@ public class LoginApplication extends AppCompatActivity {
      * @param userRepo the connector to the database
      * @param user trying to login
      */
-    private void incrementLock(UserRepo userRepo, User user) {
+    public void incrementLock(UserRepo userRepo, User user) {
         if (user.getUsername() != null && user.getIsAdmin() != 1) {
             if (user.getIsLocked() < MAX_LOGIN_ATTEMPTS) {
                 userRepo.setLock(user.getUsername(), user.getIsLocked() + 1);
@@ -113,6 +113,7 @@ public class LoginApplication extends AppCompatActivity {
             }
         }
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
