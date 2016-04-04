@@ -4,15 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ViewMovie extends NavBar {
 
-    private Movie movie;
+    private Movie movie;//the movie that the user has selected
 
-    private ImageView poster;
-    private User user;
+    //private ImageView poster;
+    private User user;//the user that wants to view the movie
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +59,7 @@ public class ViewMovie extends NavBar {
 //     * for directing you to the correct
 //     * new activity
 //     * and changing the appearances and stuff
-//     * (like highlighing your selection)
+//     * (like highlighting your selection)
 //     *
 //     * @param menuItem the item that you pressed
 //     */
