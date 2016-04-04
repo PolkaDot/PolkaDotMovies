@@ -12,21 +12,19 @@ import android.os.Parcelable;
  */
 public class User implements Parcelable {
 
-    // labels table name
-    public static final String TABLE = "User";
+    public static final String TABLE = "User";// labels table name
 
-    // labels table columns names
-    public static final String KEY_username = "username";
-    public static final String KEY_password = "password";
-    public static final String KEY_firstName = "firstName";
-    public static final String KEY_lastName = "lastName";
-    public static final String KEY_email = "email";
-    public static final String KEY_major = "major";
-    public static final String KEY_phone = "phone";
-    public static final String KEY_interests = "interests";
-    public static final String KEY_isLocked = "isLocked";
-    public static final String KEY_isBanned = "isBanned";
-    public static final String KEY_isAdmin = "isAdmin";
+    public static final String KEY_username = "username";// labels table columns names
+    public static final String KEY_password = "password"; // labels table columns names
+    public static final String KEY_firstName = "firstName";// labels table columns names
+    public static final String KEY_lastName = "lastName"; // labels table columns names
+    public static final String KEY_email = "email";// labels table columns names
+    public static final String KEY_major = "major";// labels table columns names
+    public static final String KEY_phone = "phone";// labels table columns names
+    public static final String KEY_interests = "interests";// labels table columns names
+    public static final String KEY_isLocked = "isLocked";// labels table columns names
+    public static final String KEY_isBanned = "isBanned";// labels table columns names
+    public static final String KEY_isAdmin = "isAdmin";// labels table columns names
 
 
     // attributes to keep data
@@ -318,17 +316,17 @@ public class User implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeStringArray(new String[] {
-                this.username,
-                this.password,
-                this.firstName,
-                this.lastName,
-                this.email,
-                this.major,
-                this.phone,
-                this.interests,
-                Integer.toString(this.isLocked),
-                Integer.toString(this.isBanned),
-                Integer.toString(this.isAdmin)});
+            this.username,
+            this.password,
+            this.firstName,
+            this.lastName,
+            this.email,
+            this.major,
+            this.phone,
+            this.interests,
+            Integer.toString(this.isLocked),
+            Integer.toString(this.isBanned),
+            Integer.toString(this.isAdmin)});
     }
 
     @Override

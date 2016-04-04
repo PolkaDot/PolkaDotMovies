@@ -1,8 +1,3 @@
-/**
- * @author Esha Singh
- * @version 1.0
- * View User Profile
- */
 package com.polka.pdm;
 
 import android.content.Intent;
@@ -13,8 +8,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
+/**
+ * @author Esha Singh
+ * @version 1.0
+ * View User Profile
+ */
 public class ViewProfile extends NavBar {
-    private User user;
+    private User user;//NEED to know which user's profile to display
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

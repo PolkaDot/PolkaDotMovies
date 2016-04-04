@@ -30,13 +30,12 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 public class SearchMovies extends NavBar {
-    // Size of response array
-    private Movie[] mDataset;
-    private static final int DATASET_COUNT = 30;
+    private Movie[] mDataset;// response array
+    private static final int DATASET_COUNT = 30;// Size of response array
 
-    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.Adapter mAdapter;//needed for recycler view
 
-    private User user;
+    private User user;//the user that wants to search the movie
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,22 +125,22 @@ public class SearchMovies extends NavBar {
         }
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.GET, baseUrl + searchUrl, (String)null, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject resp) {
-                        //handle a valid response coming back.  Getting this string mainly for debug
-                        mDataset = parseJSONObject(resp);
-                        // update data in the adapter
-                        ((MyAdapter)mAdapter).setData(mDataset);
+            (Request.Method.GET, baseUrl + searchUrl, (String)null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject resp) {
+                //handle a valid response coming back.  Getting this string mainly for debug
+                mDataset = parseJSONObject(resp);
+                // update data in the adapter
+                ((MyAdapter)mAdapter).setData(mDataset);
 
-                    }
-                }, new Response.ErrorListener() {
+            }
+        }, new Response.ErrorListener() {
 
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // err
-                    }
-                });
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // err
+                        }
+                    });
 
         // Access the RequestQueue through your singleton class.
         MySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
@@ -155,11 +154,11 @@ public class SearchMovies extends NavBar {
      * @return Array of 10 movie titles that match search
      */
     private Movie[] parseJSONObject(JSONObject response) {
+        Movie[] data = new Movie[DATASET_COUNT];
         if (response == null || response.length() == 0) {
-            return null;
+            return data;
         }
         try {
-            Movie[] data = new Movie[DATASET_COUNT];
             JSONArray arrayMovies = response.getJSONArray("movies");
             for (int i = 0; i < arrayMovies.length() && i < DATASET_COUNT; i++) {
                 JSONObject currentMovie = arrayMovies.getJSONObject(i);

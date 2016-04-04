@@ -15,7 +15,7 @@ import android.util.Log;
  * Updated by Y. Avila-Stanley
  */
 public class UserRepo {
-    private DBHelper dbHelper;
+    private DBHelper dbHelper;//database helper
 
     /**
      * Create of db helper
@@ -54,7 +54,10 @@ public class UserRepo {
         }
     }
 
-
+    /**
+     * get all useres in the database
+     * @return returns User array that contains all the users in the db
+     */
     public User[] getAllUsers() {
 
         String countQ = "SELECT * FROM " + User.TABLE;
@@ -156,8 +159,6 @@ public class UserRepo {
      * @param interests things the user likes
      */
     public void updateProfile(String user, /*String newuser,*/ String pass, String firstname, String lastname, String email, String phone, String major, String interests) {
-        // TODO: not sure about efficiency writing to databases many times
-//        setUsername(user, newuser);
         setPass(user, pass);
         setFirstName(user, firstname);
         setLastName(user,lastname);
@@ -179,9 +180,6 @@ public class UserRepo {
 
         ContentValues values = new ContentValues();
         values.put(User.KEY_username, newUser);
-        // creates where and where arguments
-        String where = User.KEY_username + " = ?";
-        String[] whereArgs = {user};
 
         // update
         db.close();
@@ -199,11 +197,7 @@ public class UserRepo {
 
         ContentValues values = new ContentValues();
         values.put(User.KEY_firstName, name);
-        // creates where and where arguments
-        String where = User.KEY_username + " = ?";
-        String[] whereArgs = {user};
 
-        // update
         db.close();
     }
 
@@ -219,9 +213,6 @@ public class UserRepo {
 
         ContentValues values = new ContentValues();
         values.put(User.KEY_lastName, name);
-        // creates where and where arguments
-        String where = User.KEY_username + " = ?";
-        String[] whereArgs = {user};
 
         db.close();
     }
@@ -238,9 +229,6 @@ public class UserRepo {
 
         ContentValues values = new ContentValues();
         values.put(User.KEY_password, pass);
-        // creates where and where arguments
-        String where = User.KEY_username + " = ?";
-        String[] whereArgs = {user};
 
         db.close();
     }
@@ -257,9 +245,6 @@ public class UserRepo {
 
         ContentValues values = new ContentValues();
         values.put(User.KEY_email, email);
-        // creates where and where arguments
-        String where = User.KEY_username + " = ?";
-        String[] whereArgs = {user};
 
         db.close();
     }
@@ -276,9 +261,6 @@ public class UserRepo {
 
         ContentValues values = new ContentValues();
         values.put(User.KEY_phone, phone);
-        // creates where and where arguments
-        String where = User.KEY_username + " = ?";
-        String[] whereArgs = {user};
 
         db.close();
     }
@@ -295,9 +277,6 @@ public class UserRepo {
 
         ContentValues values = new ContentValues();
         values.put(User.KEY_major, major);
-        // creates where and where arguments
-        String where = User.KEY_username + " = ?";
-        String[] whereArgs = {user};
 
         db.close();
     }
@@ -314,9 +293,6 @@ public class UserRepo {
 
         ContentValues values = new ContentValues();
         values.put(User.KEY_interests, interests);
-        // creates where and where arguments
-        String where = User.KEY_username + " = ?";
-        String[] whereArgs = {user};
 
         db.close();
     }
@@ -333,9 +309,6 @@ public class UserRepo {
 
         ContentValues values = new ContentValues();
         values.put(User.KEY_isLocked, isLock);
-        // creates where and where arguments
-        String where = User.KEY_username + " = ?";
-        String[] whereArgs = {user};
 
         db.close();
     }
@@ -352,9 +325,6 @@ public class UserRepo {
 
         ContentValues values = new ContentValues();
         values.put(User.KEY_isBanned, isBanned);
-        // creates where and where arguments
-        String where = User.KEY_username + " = ?";
-        String[] whereArgs = {user};
 
         db.close();
     }
