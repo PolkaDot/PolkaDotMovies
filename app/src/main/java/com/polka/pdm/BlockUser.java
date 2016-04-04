@@ -12,34 +12,26 @@ import android.support.v7.widget.Toolbar;
  * @version 1.0
  */
 
-/**
- * Block the user
- * @author Alisha
- * @version 1.0
- */
-
 public class BlockUser extends AppCompatActivity {
-    private User user;
-    private UserRepo userRepo;
-
-    // Needed for recycler view
-    private User[] mDataset;
-
+    private User user; //I'm using it in this conditional
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        User[] dataSet; //need for recycler view aka m-Data-set
+
         RecyclerView mRecyclerView;
         RecyclerView.Adapter mAdapter;
         RecyclerView.LayoutManager mLayoutManager;
 
-        super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_block_user);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
         UserRepo repo = new UserRepo(this);
-        mDataset = repo.getAllUsers();
+        dataSet = repo.getAllUsers();
         // BEGIN_INCLUDE (initializeRecyclerView)
         mRecyclerView = (RecyclerView) findViewById(R.id.userAdminRecyclerView);
         //
@@ -53,7 +45,7 @@ public class BlockUser extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new MyUserAdapter(mDataset);
+        mAdapter = new MyUserAdapter(dataSet);
         mRecyclerView.setAdapter(mAdapter);
 
         //get the user from extras
