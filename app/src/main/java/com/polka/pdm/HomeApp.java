@@ -36,16 +36,16 @@ public class HomeApp extends NavBar {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_app);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setToolbar((Toolbar) findViewById(R.id.toolbar));
 
-        setSupportActionBar(toolbar);
+        setSupportActionBar(getToolbar());
 
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        setMDrawer((DrawerLayout) findViewById(R.id.drawer_layout));
         NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
         setupDrawerContent(nvDrawer);
 
-        drawerToggle = setupDrawerToggle();
-        mDrawer.setDrawerListener(drawerToggle);
+        setDrawerToggle(setupDrawerToggle());
+        getMDrawer().setDrawerListener(getDrawerToggle());
 
         // Grab data about user from extras
         if (savedInstanceState == null) {

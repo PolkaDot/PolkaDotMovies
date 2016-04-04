@@ -24,12 +24,16 @@ public class ViewProfile extends NavBar {
         setSupportActionBar(toolbar);
 
         //NAV bar stuff
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        setToolbar((Toolbar) findViewById(R.id.toolbar));
+
+        setSupportActionBar(getToolbar());
+
+        setMDrawer((DrawerLayout) findViewById(R.id.drawer_layout));
         NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
         setupDrawerContent(nvDrawer);
 
-        drawerToggle = setupDrawerToggle();
-        mDrawer.setDrawerListener(drawerToggle);
+        setDrawerToggle(setupDrawerToggle());
+        getMDrawer().setDrawerListener(getDrawerToggle());
 
         // Grab saved data about user
         if (savedInstanceState == null) {

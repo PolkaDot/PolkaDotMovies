@@ -7,7 +7,6 @@
 package com.polka.pdm;
 
 
-import android.support.v7.widget.RecyclerView;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -33,15 +32,16 @@ public class RecommendMovie extends NavBar {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommend_movie);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setToolbar((Toolbar) findViewById(R.id.toolbar));
 
-        // BEGIN_INCLUDE (initializeRecyclerView)
-        mRecyclerView = (RecyclerView) findViewById(R.id.moviesMajorRecylerView);
-        //
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        setSupportActionBar(getToolbar());
+
+        setMDrawer((DrawerLayout) findViewById(R.id.drawer_layout));
         NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
         setupDrawerContent(nvDrawer);
+
+        setDrawerToggle(setupDrawerToggle());
+        getMDrawer().setDrawerListener(getDrawerToggle());
 
         // Improves performance if you know that changes in content
         // do not change the layout size of the RecyclerView
@@ -55,8 +55,8 @@ public class RecommendMovie extends NavBar {
         mRecyclerView.setAdapter(mAdapter);
 
         //Toggle for nav bar
-        drawerToggle = setupDrawerToggle();
-        mDrawer.setDrawerListener(drawerToggle);
+//        drawerToggle = setupDrawerToggle();
+//        mDrawer.setDrawerListener(drawerToggle);
 
         // Grab data about user from extras
         if (savedInstanceState == null) {
@@ -84,8 +84,8 @@ public class RecommendMovie extends NavBar {
         String searchParam =  editTextSearchParam.getText().toString();
 
         ReviewRepo repo = new ReviewRepo(this);
-        Movie[] movies = repo.getRatingsByMajor(searchParam, DATASET_COUNT);
-        mDataset = movies;
+        mDataset = repo.getRatingsByMajor(searchParam, DATASET_COUNT);
+//        mDataset = movies;
         ((MyAdapter)mAdapter).setData(mDataset);
 
 

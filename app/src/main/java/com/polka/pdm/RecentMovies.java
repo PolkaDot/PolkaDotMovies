@@ -36,16 +36,26 @@ public class RecentMovies extends NavBar {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recent_movies);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setToolbar((Toolbar) findViewById(R.id.toolbar));
 
-        // deals with the navigation bar
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        final NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
+        setSupportActionBar(getToolbar());
+
+        setMDrawer((DrawerLayout) findViewById(R.id.drawer_layout));
+        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
         setupDrawerContent(nvDrawer);
 
-        drawerToggle = setupDrawerToggle();
-        mDrawer.setDrawerListener(drawerToggle);
+        setDrawerToggle(setupDrawerToggle());
+        getMDrawer().setDrawerListener(getDrawerToggle());
+//        toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//
+//        // deals with the navigation bar
+//        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        final NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
+//        setupDrawerContent(nvDrawer);
+//
+//        drawerToggle = setupDrawerToggle();
+//        mDrawer.setDrawerListener(drawerToggle);
 
         User user;
 

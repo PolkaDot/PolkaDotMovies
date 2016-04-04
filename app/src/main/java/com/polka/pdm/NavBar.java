@@ -17,16 +17,18 @@ import android.view.MenuItem;
  */
 public abstract class NavBar extends AppCompatActivity {
 
-    protected DrawerLayout mDrawer;
-    protected Toolbar toolbar;
-    protected ActionBarDrawerToggle drawerToggle;
+    private DrawerLayout mDrawer;
+    private Toolbar toolbar;
+    private ActionBarDrawerToggle drawerToggle;
 
     //Navigation bar stuff
-    protected User superuser;
+    //can't be abstract because every class would define the same thing
+    private User superuser;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         //cannot be replaced with 1 return statement because
         //if it is false we need to check super.onOptionsItemSelected
+        //and must user super class to do that so must be extended
         if (drawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
@@ -35,6 +37,7 @@ public abstract class NavBar extends AppCompatActivity {
 
     /**
      * sets up listener for the side bar
+     * can't be abstract because every class would define the same thing
      * @param navigationView the side bar
      */
     public void setupDrawerContent(NavigationView navigationView) {
@@ -56,9 +59,10 @@ public abstract class NavBar extends AppCompatActivity {
      * new activity
      * and changing the appearances and stuff
      * (like highlighting your selection)
+     * shouldn't be abstract because every class would define the same thing
      * @param menuItem the item that you pressed
      */
-    public void selectDrawerItem(MenuItem menuItem) {
+    private void selectDrawerItem(MenuItem menuItem) {
         //create new frag
         //determine what to show
         Intent intent;
@@ -94,6 +98,7 @@ public abstract class NavBar extends AppCompatActivity {
 
     /**
      * allows us to create a new ActionBarDrawerToggle specific to our needs
+     * shouldn't be abstract because every class would define the same thing
      * @return a new ActionBarDrawer Toggle
      */
     public ActionBarDrawerToggle setupDrawerToggle() {
@@ -102,6 +107,7 @@ public abstract class NavBar extends AppCompatActivity {
 
     /**
      * allows us to change the state of the toolbar whenever we change config
+     * shouldn't be abstract because every class would define the same thing
      * @param newConfig the new configuration
      */
     public void onConfigurationChanged(Configuration newConfig) {
@@ -109,35 +115,69 @@ public abstract class NavBar extends AppCompatActivity {
         drawerToggle.onConfigurationChanged(newConfig);
     }
 
+    /**
+     * getter method for mDrawer
+     * shouldn't be abstract because every class would define the same thing
+     * @return mDrawer
+     */
     public DrawerLayout getMDrawer() {
         return this.mDrawer;
     }
-
+    /**
+     * getter method for toolbar
+     * shouldn't be abstract because every class would define the same thing
+     * @return toolbar
+     */
     public Toolbar getToolbar() {
         return this.toolbar;
     }
 
+    /**
+     * getter method for bar for drawer toggle
+     * shouldn't be abstract because every class would define the same thing
+     * @return drawer toggle
+     */
     public ActionBarDrawerToggle getDrawerToggle() {
         return this.drawerToggle;
     }
 
+    /**
+     * getter method for user
+     * shouldn't be abstract because every class would define the same thing
+     * @return user
+     */
     public User getUser() {
         return this.superuser;
     }
 
-
+    /**
+     * set method for mDrawer
+     * shouldn't be abstract because every class would define the same thing
+     */
     public void setMDrawer(DrawerLayout mDrawer) {
         this.mDrawer = mDrawer;
     }
 
+    /**
+     * set method for toolbar
+     * shouldn't be abstract because every class would define the same thing
+     */
     public void setToolbar(Toolbar toolbar) {
         this.toolbar = toolbar;
     }
 
+    /**
+     * set method for drawerToggle
+     * shouldn't be abstract because every class would define the same thing
+     */
     public void setDrawerToggle(ActionBarDrawerToggle drawerToggle) {
         this.drawerToggle = drawerToggle;
     }
 
+    /**
+     * set method for user
+     * shouldn't be abstract because every class would define the same thing
+     */
     public void setUser(User user) {
         this.superuser = user;
     }

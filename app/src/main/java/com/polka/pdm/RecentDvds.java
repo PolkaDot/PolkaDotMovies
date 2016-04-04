@@ -43,17 +43,16 @@ public class RecentDvds extends NavBar {
         super.onCreate(savedInstanceState);
         // getActionBar().setHomeButtonEnabled(true);
         setContentView(R.layout.activity_recentdvds);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        super.setToolbar(toolbar);
-        setSupportActionBar(toolbar);
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        super.setMDrawer(mDrawer);
-        final NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
+        setToolbar((Toolbar) findViewById(R.id.toolbar));
 
+        setSupportActionBar(getToolbar());
+
+        setMDrawer((DrawerLayout) findViewById(R.id.drawer_layout));
+        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
         setupDrawerContent(nvDrawer);
 
-        drawerToggle = setupDrawerToggle();
-        mDrawer.setDrawerListener(drawerToggle);
+        setDrawerToggle(setupDrawerToggle());
+        getMDrawer().setDrawerListener(getDrawerToggle());
 //        super.setMDrawer(mDrawer);
         // Grab data about user from extras
         if (savedInstanceState == null) {

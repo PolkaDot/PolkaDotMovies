@@ -46,15 +46,26 @@ public class SearchMovies extends NavBar {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_movies);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+
+        setToolbar((Toolbar) findViewById(R.id.toolbar));
+
+        setSupportActionBar(getToolbar());
+
+        setMDrawer((DrawerLayout) findViewById(R.id.drawer_layout));
+        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
+        setupDrawerContent(nvDrawer);
+
+        setDrawerToggle(setupDrawerToggle());
+        getMDrawer().setDrawerListener(getDrawerToggle());
 
         // BEGIN_INCLUDE (initializeRecyclerView)
         mRecyclerView = (RecyclerView) findViewById(R.id.moviesRecylerView);
         //
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
-        setupDrawerContent(nvDrawer);
+//        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
+//        setupDrawerContent(nvDrawer);
 
         // improves performance if you know that changes in content do not change the layout size
         // of the RecyclerView
@@ -67,9 +78,9 @@ public class SearchMovies extends NavBar {
         mAdapter = new MyAdapter(mDataset);
         mRecyclerView.setAdapter(mAdapter);
 
-        //toggle for nav bar
-        drawerToggle = setupDrawerToggle();
-        mDrawer.setDrawerListener(drawerToggle);
+//        //toggle for nav bar
+//        drawerToggle = setupDrawerToggle();
+//        mDrawer.setDrawerListener(drawerToggle);
 
         // Grab data about user from extras
         if (savedInstanceState == null) {
