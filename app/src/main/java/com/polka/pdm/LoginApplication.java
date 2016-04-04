@@ -26,7 +26,7 @@ public class LoginApplication extends AppCompatActivity {
      * when you press the cancel button,
      * it takes you back to the main activity
      */
-    public void onLoginCancelPressed() {
+    public void onLoginCancelPressed(View v) {
         final Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

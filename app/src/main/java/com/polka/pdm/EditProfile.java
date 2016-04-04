@@ -62,7 +62,7 @@ import android.widget.Toast;
         interests = (EditText)findViewById(R.id.InterestsLabel);
 
         // Set all the text fields with user data
-        username.setText(user.getUsername());
+//        username.setText(user.getUsername());
         pass.setText(user.getPassword());
         firstName.setText(user.getFirstName());
         lastName.setText(user.getLastName());
