@@ -34,7 +34,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase db) { //needed
         // creates user table
         final String createTableUser = "CREATE TABLE " + User.TABLE + " ("
                 + User.KEY_username + " TEXT PRIMARY KEY, "

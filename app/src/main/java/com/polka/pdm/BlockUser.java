@@ -17,7 +17,7 @@ public class BlockUser extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState); //needed
         User[] dataSet; //need for recycler view aka m-Data-set
 
         RecyclerView mRecyclerView;

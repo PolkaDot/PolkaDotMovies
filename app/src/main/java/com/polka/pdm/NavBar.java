@@ -25,6 +25,8 @@ public abstract class NavBar extends AppCompatActivity {
     protected User superuser;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        //cannot be replaced with 1 return statement because
+        //if it is false we need to check super.onOptionsItemSelected
         if (drawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
@@ -53,7 +55,7 @@ public abstract class NavBar extends AppCompatActivity {
      * for directing you to the correct
      * new activity
      * and changing the appearances and stuff
-     * (like highlighing your selection)
+     * (like highlighting your selection)
      * @param menuItem the item that you pressed
      */
     public void selectDrawerItem(MenuItem menuItem) {

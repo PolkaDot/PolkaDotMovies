@@ -27,9 +27,10 @@ import android.view.View;
 public class HomeApp extends NavBar {
 
     private User user;
-
+    private String userString = "user";
     //when we create this activity, there are some things we need to do first
     // hence the name on create
+    //we totally need this
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,10 +53,10 @@ public class HomeApp extends NavBar {
             if (extras == null) {
                 user = null;
             } else {
-                user = extras.getParcelable("user");
+                user = extras.getParcelable(userString);
             }
         } else {
-            user = savedInstanceState.getParcelable("user");
+            user = savedInstanceState.getParcelable(userString);
         }
 
         super.setUser(user);
@@ -67,6 +68,7 @@ public class HomeApp extends NavBar {
      * to the method in this case logoutClickListener
      *
      * @param view it is being used on
+     *             view is def used
      */
     public void logoutClickListener(View view) {
         Log.d("Logout", "Logout Button Pressed");
@@ -79,12 +81,13 @@ public class HomeApp extends NavBar {
      * when you click view profile, it takes you to the view profile activity
      *
      * @param view that you're looking at.
+     *             view is def used
      */
     public void onViewProfileClick(View view) {
         Log.d("ViewProfile", "View Profile Button Pressed");
 
         Intent intent = new Intent(this, ViewProfile.class);
-        intent.putExtra("user", user);
+        intent.putExtra(userString, user);
         startActivity(intent);
     }
 
@@ -92,6 +95,7 @@ public class HomeApp extends NavBar {
      * Opens the Recent DVDs page
      *
      * @param view user interface component
+     * view is used so much
      */
     public void onDVDsButtonClick(View view) {
         Intent intent = new Intent(this, RecentDvds.class);
@@ -103,12 +107,13 @@ public class HomeApp extends NavBar {
      * opens search button page
      *
      * @param view user interface component
+     *             need view
      */
     public void onSearchButtonPress(View view) {
         Log.d("HomeApp", "Search Button Pressed");
 
         Intent intent = new Intent(this, SearchMovies.class);
-        intent.putExtra("user", user);
+        intent.putExtra(userString, user);
         startActivity(intent);
 
     }
@@ -119,10 +124,11 @@ public class HomeApp extends NavBar {
      * button is clicked
      *
      * @param view of the page
+     *             need view for method to work
      */
     public void onMoviesButtonClick(View view) {
         Intent intent = new Intent(this, RecentMovies.class);
-        intent.putExtra("user", user);
+        intent.putExtra(userString, user);
         startActivity(intent);
     }
 
@@ -130,6 +136,7 @@ public class HomeApp extends NavBar {
      * Switches to recommend movie page on recommendation button click
      *
      * @param view of the page
+     *             just need view for method to work okay?
      */
     public void onRecommendationButtonClick(View view) {
         Intent intent = new Intent(this, RecommendMovie.class);

@@ -16,12 +16,13 @@ import android.widget.Toast;
  * class to help a user edit his/her profile
  */
  public class EditProfile extends AppCompatActivity {
-     private User user;
+     private User user; //NEED to know which user's profile to display and update
 
-     private TextView username;
+//     private TextView username;
+     private String userString;
      private EditText pass;
-     private EditText firstname;
-     private EditText lastname;
+     private EditText firstName;
+     private EditText lastName;
      private EditText email;
      private EditText major;
      private EditText phone;
@@ -41,20 +42,20 @@ import android.widget.Toast;
             if (extras == null) {
                 user = null;
             } else {
-                user = extras.getParcelable("user");
+                user = extras.getParcelable(userString);
             }
         } else {
-            user = savedInstanceState.getParcelable("user");
+            user = savedInstanceState.getParcelable(userString);
         }
         if (user!=null) {
             Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
         }
 
         // get edit text fields
-        username = (TextView)findViewById(R.id.UserTextField);
+        TextView username = (TextView)findViewById(R.id.UserTextField);
         pass = (EditText)findViewById(R.id.PassTextField);
-        firstname = (EditText)findViewById(R.id.FirstNameTextField);
-        lastname = (EditText)findViewById(R.id.LastNameTextField);
+        firstName = (EditText)findViewById(R.id.FirstNameTextField);
+        lastName = (EditText)findViewById(R.id.LastNameTextField);
         email = (EditText)findViewById(R.id.EmailTextField);
         major = (EditText)findViewById(R.id.MajorTextField);
         phone = (EditText)findViewById(R.id.PhoneTextField);
@@ -63,8 +64,8 @@ import android.widget.Toast;
         // Set all the text fields with user data
         username.setText(user.getUsername());
         pass.setText(user.getPassword());
-        firstname.setText(user.getFirstName());
-        lastname.setText(user.getLastName());
+        firstName.setText(user.getFirstName());
+        lastName.setText(user.getLastName());
         email.setText(user.getEmail());
         major.setText(user.getMajor());
         phone.setText(user.getPhone());
@@ -74,6 +75,7 @@ import android.widget.Toast;
      /**
       * when you press save, it should save all the updates you made to your profile
       * @param view of the viewAProfile Activity
+      * need view
       */
     public void onSavePress(View view) {
         Log.d("EditProfile", "Save Button Pressed");
@@ -81,8 +83,8 @@ import android.widget.Toast;
 
 //        String aUsername = username.getText().toString();
         String aPassword = pass.getText().toString();
-        String aFirstName = firstname.getText().toString();
-        String aLastName = lastname.getText().toString();
+        String aFirstName = firstName.getText().toString();
+        String aLastName = lastName.getText().toString();
         String aEmail = email.getText().toString();
 
 
@@ -102,7 +104,7 @@ import android.widget.Toast;
 
         // insert updated user info into database
         repo.updateProfile(user.getUsername(), /*username.getText().toString(),*/ pass.getText().toString(),
-                firstname.getText().toString(),lastname.getText().toString(), email.getText().toString(), phone.getText().toString(),
+                firstName.getText().toString(),lastName.getText().toString(), email.getText().toString(), phone.getText().toString(),
                 major.getText().toString(), interests.getText().toString());
         // update current User instance (I believe this is unchanged at this point)
         user = repo.getUserByUsername(user.getUsername());
@@ -112,7 +114,7 @@ import android.widget.Toast;
 
         // Switch activities
         Intent intent = new Intent(this, ViewProfile.class);
-        intent.putExtra("user", user);
+        intent.putExtra(userString, user);
         startActivity(intent);
     }
 
@@ -120,12 +122,13 @@ import android.widget.Toast;
       * cancel button. should take you back to view profile
       * without saving data
       * @param view of Edit Profile
+      * need view though
       */
     public void onCancelPress(View view) {
         Log.d("EditProfile", "Cancel Button Pressed");
         //don't save anything
         Intent intent = new Intent(this, ViewProfile.class);
-        intent.putExtra("user", user);
+        intent.putExtra(userString, user);
         startActivity(intent);
     }
 
