@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -21,7 +22,15 @@ import org.json.JSONObject;
  * Shows the recent movies that have been released
  */
 public class RecentMovies extends NavBar {
-    private User user;
+
+    /**
+     * value that gives amount to be displayed
+     */
+    private static final int TOPTEN = 10;
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,15 +41,18 @@ public class RecentMovies extends NavBar {
 
         // deals with the navigation bar
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
+        final NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
         setupDrawerContent(nvDrawer);
 
         drawerToggle = setupDrawerToggle();
         mDrawer.setDrawerListener(drawerToggle);
 
+        User user;
+
+
         // Grab data about user from extras
         if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
+            final Bundle extras = getIntent().getExtras();
             if (extras == null) {
                 user = null;
             } else {
@@ -55,26 +67,24 @@ public class RecentMovies extends NavBar {
         sendJsonRequest();
     }
 
+    /**
+     * method to send the JSON request
+     */
     private void sendJsonRequest() {
-        String url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=yedukp76ffytfuy24zsqk7f5";
+        final String url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=yedukp76ffytfuy24zsqk7f5";
 
 
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.GET, url, (String)null, new Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        parseJSONObject(response);
-                    }
-                }, new ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // TODO Auto-generated method stub
-
-                    }
+        final JsonObjectRequest jsObjRequest =
+            new JsonObjectRequest(Request.Method.GET, url, (String)null, new Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    parseJSONObject(response);
                 }
-                );
+            }, new ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {}
+            }
+            );
         MySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
 
     }
@@ -92,19 +102,20 @@ public class RecentMovies extends NavBar {
         }
 
         try {
-            TextView  movie_names = (TextView)findViewById(R.id.RecentMoviesTextView);
-            StringBuilder data = new StringBuilder();
-            JSONArray arrayMovies = response.getJSONArray(Keys.KEY_MOVIE);
-            for (int i = 0; i < arrayMovies.length() && i < 10; i++) {
+            final TextView  movienames = (TextView)findViewById(R.id.RecentMoviesTextView);
+            final StringBuilder data = new StringBuilder();
+            final JSONArray arrayMovies = response.getJSONArray(Keys.KEY_MOVIE);
+            for (int i = 0; i < arrayMovies.length() && i < TOPTEN; i++) {
 
-                JSONObject currentMovie = arrayMovies.getJSONObject(i);
-                String name = currentMovie.getString(Keys.KEY_TITLE);
-                int num = i +1;
-                data.append(num + " " + name + "\n");
+                final JSONObject currentMovie = arrayMovies.getJSONObject(i);
+                final String name = currentMovie.getString(Keys.KEY_TITLE);
+                final int num = i + 1;
+                data.append(num).append(" ").append(name).append("\n"); // need to append single characters because that's the way the json is formatted
             }
-            movie_names.setText(data);
+            movienames.setText(data);
         } catch (JSONException e) {
-            System.out.println("JSON Exception Exception");
+//            System.out.println("JSON Exception Exception");
+            Log.d("JSON", "JSON Exception Exception");
         }
 
     }

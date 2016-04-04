@@ -74,14 +74,13 @@ public class RegistrationPage extends AppCompatActivity {
         String aEmail = editTextEmail.getText().toString();
         String aPassword = editTextPassword.getText().toString();
 
-        if (aFirstName.length() == 0 || aLastName.length() == 0 || aUsername.length() == 0 || aEmail.length() == 0 || aPassword.length() == 0) {
+        if (checkInfo(aFirstName, aLastName, aUsername, aEmail, aPassword) == -1) {
             Toast.makeText(this, "First Name, Last Name, Username, Password, and Email must all be filled!", Toast.LENGTH_SHORT).show();
+
             return;
         }
-
-        if (!aEmail.contains("@")) {
+        if (checkInfo(aFirstName, aLastName, aUsername, aEmail, aPassword) == 0) {
             Toast.makeText(this, "Must have valid email", Toast.LENGTH_SHORT).show();
-            return;
         }
 
         // Insert user in database
@@ -109,6 +108,32 @@ public class RegistrationPage extends AppCompatActivity {
             Toast.makeText(this, "Username already in use.", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+
+    /**
+     * checks to see if user has filled out all fields of registration page
+     *
+     * @param aFirstName of new registered user
+     * @param aLastName of new registered user
+     * @param aUsername of new registered user
+     * @param aEmail of new registered user
+     * @param aPassword of new registered user
+     * @return whether or not all fields are filled
+     */
+    public int checkInfo(String aFirstName, String aLastName, String aUsername, String aEmail, String aPassword) {
+        if (aFirstName.length() == 0 || aLastName.length() == 0 || aUsername.length() == 0 || aEmail.length() == 0 || aPassword.length() == 0) {
+            // needs all fields filled in
+            return -1;
+        }
+
+
+        if (!aEmail.contains("@")) {
+            // need valid looking email, just checks for @ now...
+            return 0;
+        }
+
+        return 1;
     }
 
 }

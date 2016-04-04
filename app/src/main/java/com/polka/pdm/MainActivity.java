@@ -3,9 +3,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 /**
  * Welcome Page
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainscreen);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
 
@@ -37,11 +38,11 @@ public class MainActivity extends AppCompatActivity {
      *
      * when you press the login button,
      * it takes you back to the login activity
-     * @param w that we were are on
      *
+     * @param view current view
      */
-    public void onLoginButtonClicked(View w) {
-        Intent intent = new Intent(this, LoginApplication.class);
+    public void onLoginButtonClicked(View view) {
+        final Intent intent = new Intent(this, LoginApplication.class);
         startActivity(intent);
     }
 
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+        Log.d("OptionsSelect", "optionsItemSelected was run.");
         return super.onOptionsItemSelected(item);
     }
 
@@ -58,10 +60,11 @@ public class MainActivity extends AppCompatActivity {
     /**
      * when you press the sign up button,
      * it takes you back to the registration activity
-     * @param v that we were are on
+     *
+     * @param view current view
      */
-    public void onSignUpButtonPress(View v ) {
-        Intent intent = new Intent(this, RegistrationPage.class);
+    public void onSignUpButtonPress(View view) {
+        final Intent intent = new Intent(this, RegistrationPage.class);
         startActivity(intent);
 
 

@@ -62,6 +62,9 @@
   <component name="ProjectType">
     <option name="id" value="Android" />
   </component>
+  <component name="QAPlugAnalysisUIOptions">
+    <option name="SPLITTER_PROPORTION" value="0.6061151" />
+  </component>
   <component name="SuppressionsComponent">
     <option name="suppComments" value="[]" />
   </component>
