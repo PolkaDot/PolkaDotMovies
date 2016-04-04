@@ -88,12 +88,13 @@ import android.widget.Toast;
         String aEmail = email.getText().toString();
 
 
-        if (aFirstName.length() == 0 || aLastName.length() == 0 || aEmail.length() == 0 || aPassword.length() == 0) {
+        int isValid = checkValidChange(aFirstName, aLastName, aEmail, aPassword);
+        if (isValid == -1) {
             Toast.makeText(this, "First Name, Last Name, Password, and Email must all be filled!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (!aEmail.contains("@")) {
+        if (isValid == 0) {
             Toast.makeText(this, "Must have valid email", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -104,7 +105,7 @@ import android.widget.Toast;
 
         // insert updated user info into database
         repo.updateProfile(user.getUsername(), /*username.getText().toString(),*/ pass.getText().toString(),
-                firstName.getText().toString(),lastName.getText().toString(), email.getText().toString(), phone.getText().toString(),
+                firstName.getText().toString(), lastName.getText().toString(), email.getText().toString(), phone.getText().toString(),
                 major.getText().toString(), interests.getText().toString());
         // update current User instance (I believe this is unchanged at this point)
         user = repo.getUserByUsername(user.getUsername());
@@ -130,6 +131,31 @@ import android.widget.Toast;
         Intent intent = new Intent(this, ViewProfile.class);
         intent.putExtra(userString, user);
         startActivity(intent);
+    }
+
+    /**
+     * Checks if user filled out entries on edit profile page
+     *
+     * @param aFirstName first name for the user
+     * @param aLastName last name for the user
+     * @param aEmail email of the user
+     * @param aPassword password of the user
+     * @return 1 if all fields are filled and valid, -1 if a field is empty,
+     *          0 if the email address is invalid
+     */
+    public int checkValidChange(String aFirstName, String aLastName, String aEmail,
+                                String aPassword) {
+        if (aFirstName.length() == 0 || aLastName.length() == 0 || aEmail.length() == 0 || aPassword.length() == 0) {
+            // makes sure all entries are filled in
+            return -1;
+        }
+
+        if (!aEmail.contains("@")) {
+            // make sure email is valid (simply checks for @ character)
+            return 0;
+        }
+
+        return 1;
     }
 
 }
