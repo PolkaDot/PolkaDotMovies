@@ -1,7 +1,6 @@
 package com.polka.pdm;
 
 //import statements
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +32,25 @@ public class LoginApplication extends AppCompatActivity {
     }
 
     /**
+     * checks if toasts made
+     * @param num aka check input
+     */
+    public boolean makeToast(int num) {
+        if (num == 0) {
+            Toast.makeText(this, "Enter Username", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if (num == -1) {
+            Toast.makeText(this, "Enter Password", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if ((num) == 1) {
+            Toast.makeText(getApplicationContext(), "Enter UserName and Password", Toast.LENGTH_SHORT).show();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * when you press login
      * it checks if your username and pass is legit
      * if so it takes you to the home screen of the app
@@ -43,13 +61,7 @@ public class LoginApplication extends AppCompatActivity {
         String Username = ((EditText) findViewById(R.id.usernameEdit)).getText().toString();
         String password = ((EditText) findViewById(R.id.passwordEdit)).getText().toString();
 
-        if (checkInput(Username, password) == 0) {
-            Toast.makeText(this, "Enter Username", Toast.LENGTH_SHORT).show();
-        } else if (checkInput(Username, password) == -1) {
-            Toast.makeText(this, "Enter Password", Toast.LENGTH_SHORT).show();
-        } else if (checkInput(Username, password) == 1) {
-            Toast.makeText(this, "Enter UserName and Password", Toast.LENGTH_SHORT).show();
-        } else {
+        if (!makeToast(checkInput(Username, password))) {
             UserRepo repo = new UserRepo(this); //create repository for users
             // Get user information from database
             User user = repo.getUserByUsername(Username);
