@@ -293,7 +293,7 @@ public class User implements Parcelable {
      * takes in the user data from database
      * @param in input from database
      */
-    public User(Parcel in) {
+    private User(Parcel in) {
         String[] data = new String[11];
         in.readStringArray(data);
 

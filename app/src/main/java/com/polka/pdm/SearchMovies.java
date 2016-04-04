@@ -31,19 +31,18 @@ import java.net.URLEncoder;
 
 public class SearchMovies extends NavBar {
     // Size of response array
-    protected Movie[] mDataset;
+    private Movie[] mDataset;
     private static final int DATASET_COUNT = 30;
 
-    // Needed for recycler view
-    private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-    // search param
-    EditText editTextSearchParam;
+
     private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Needed for recycler view
+        RecyclerView mRecyclerView;
+        RecyclerView.LayoutManager mLayoutManager;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_movies);
 //        toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -102,6 +101,7 @@ public class SearchMovies extends NavBar {
      * @param view of the search Movies activity
      */
     public void onSearchButtonPress(View view) {
+        EditText editTextSearchParam;
         editTextSearchParam = (EditText) findViewById(R.id.searchMovie);
         String searchParam =  editTextSearchParam.getText().toString();
         sendJSONRequest(searchParam);
@@ -112,7 +112,7 @@ public class SearchMovies extends NavBar {
      * Sends a JSON request to the Rotten Tomato API using the search parameter
      * specified by the user
      *
-     * @param searchParam The parameter inputed by user to search for a movie
+     * @param searchParam The parameter input by user to search for a movie
      */
     private void sendJSONRequest(String searchParam) {
         String apiKey = "yedukp76ffytfuy24zsqk7f5";

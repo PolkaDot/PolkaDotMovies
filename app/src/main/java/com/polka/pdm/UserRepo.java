@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 /**
- * UserRepo is used in tandom with the database
+ * UserRepo is used in random with the database
  * inserts user into db and gets user by username
  *
  * Created by C. Shih on 2/12/2016.
@@ -63,12 +63,11 @@ public class UserRepo {
         int cnt = acursor.getCount();
         acursor.close();
         adb.close();
-        int dataCount = cnt;
 
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery = "SELECT * FROM " + User.TABLE;
-        User[] users = new User[dataCount];
+        User[] users = new User[cnt];
 
 
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -153,7 +152,7 @@ public class UserRepo {
      * @param lastname the sir name
      * @param email the email of the user
      * @param phone number
-     * @param major major offical
+     * @param major major offcial
      * @param interests things the user likes
      */
     public void updateProfile(String user, /*String newuser,*/ String pass, String firstname, String lastname, String email, String phone, String major, String interests) {
@@ -185,7 +184,6 @@ public class UserRepo {
         String[] whereArgs = {user};
 
         // update
-        int numberRowsUpdated = db.update(User.TABLE, values, where, whereArgs);
         db.close();
     }
 
@@ -194,7 +192,7 @@ public class UserRepo {
      * @param user name of user
      * @param name new first name
      */
-    public void setFirstName(String user, String name) {
+    private void setFirstName(String user, String name) {
 
         // open connection to write data
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -206,7 +204,6 @@ public class UserRepo {
         String[] whereArgs = {user};
 
         // update
-        int numberRowsUpdated = db.update(User.TABLE, values, where, whereArgs);
         db.close();
     }
 
@@ -215,7 +212,7 @@ public class UserRepo {
      * @param user name of user
      * @param name new last name
      */
-    public void setLastName(String user, String name) {
+    private void setLastName(String user, String name) {
 
         // open connection to write data
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -226,17 +223,15 @@ public class UserRepo {
         String where = User.KEY_username + " = ?";
         String[] whereArgs = {user};
 
-        // update
-        int numberRowsUpdated = db.update(User.TABLE, values, where, whereArgs);
         db.close();
     }
 
     /**
-     * setter for passsowrd
+     * setter for passsword
      * @param user name of user
-     * @param pass new pwassword
+     * @param pass new password
      */
-    public void setPass(String user, String pass) {
+    private void setPass(String user, String pass) {
 
         // open connection to write data
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -247,8 +242,6 @@ public class UserRepo {
         String where = User.KEY_username + " = ?";
         String[] whereArgs = {user};
 
-        // update
-        int numberRowsUpdated = db.update(User.TABLE, values, where, whereArgs);
         db.close();
     }
 
@@ -257,7 +250,7 @@ public class UserRepo {
      * @param user name of user
      * @param email new email
      */
-    public void setEmail(String user, String email) {
+    private void setEmail(String user, String email) {
 
         // open connection to write data
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -268,8 +261,6 @@ public class UserRepo {
         String where = User.KEY_username + " = ?";
         String[] whereArgs = {user};
 
-        // update
-        int numberRowsUpdated = db.update(User.TABLE, values, where, whereArgs);
         db.close();
     }
 
@@ -278,7 +269,7 @@ public class UserRepo {
      * @param user name of user
      * @param phone new number
      */
-    public void setPhone(String user, String phone) {
+    private void setPhone(String user, String phone) {
 
         // open connection to write data
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -289,8 +280,6 @@ public class UserRepo {
         String where = User.KEY_username + " = ?";
         String[] whereArgs = {user};
 
-        // update
-        int numberRowsUpdated = db.update(User.TABLE, values, where, whereArgs);
         db.close();
     }
 
@@ -299,7 +288,7 @@ public class UserRepo {
      * @param user name of user
      * @param major new major
      */
-    public void setMajor(String user, String major) {
+    private void setMajor(String user, String major) {
 
         // open connection to write data
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -310,17 +299,15 @@ public class UserRepo {
         String where = User.KEY_username + " = ?";
         String[] whereArgs = {user};
 
-        // update
-        int numberRowsUpdated = db.update(User.TABLE, values, where, whereArgs);
         db.close();
     }
 
     /**
-     * setter for interets
+     * setter for interests
      * @param user name of user
      * @param interests new interests
      */
-    public void setInterests(String user, String interests) {
+    private void setInterests(String user, String interests) {
 
         // open connection to write data
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -331,8 +318,6 @@ public class UserRepo {
         String where = User.KEY_username + " = ?";
         String[] whereArgs = {user};
 
-        // update
-        int numberRowsUpdated = db.update(User.TABLE, values, where, whereArgs);
         db.close();
     }
 
@@ -352,8 +337,6 @@ public class UserRepo {
         String where = User.KEY_username + " = ?";
         String[] whereArgs = {user};
 
-        // update
-        int numberRowsUpdated = db.update(User.TABLE, values, where, whereArgs);
         db.close();
     }
 
@@ -373,8 +356,6 @@ public class UserRepo {
         String where = User.KEY_username + " = ?";
         String[] whereArgs = {user};
 
-        // update
-        int numberRowsUpdated = db.update(User.TABLE, values, where, whereArgs);
         db.close();
     }
 }

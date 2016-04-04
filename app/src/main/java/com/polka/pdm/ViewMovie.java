@@ -11,7 +11,7 @@ public class ViewMovie extends NavBar {
 
     private Movie movie;
 
-    private ImageView poster;
+    //private ImageView poster;
     private User user;
 
     @Override
@@ -60,7 +60,7 @@ public class ViewMovie extends NavBar {
 //     * for directing you to the correct
 //     * new activity
 //     * and changing the appearances and stuff
-//     * (like highlighing your selection)
+//     * (like highlighting your selection)
 //     *
 //     * @param menuItem the item that you pressed
 //     */
