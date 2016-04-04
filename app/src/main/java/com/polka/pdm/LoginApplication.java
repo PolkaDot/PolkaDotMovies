@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -35,49 +36,77 @@ public class LoginApplication extends AppCompatActivity {
      * when you press login
      * it checks if your username and pass is legit
      * if so it takes you to the home screen of the app
+     * @param v view that you are on
      */
-    public void onLoginButtonPressed() {
+    public void onLoginButtonPressed(View v) {
         Log.d("LOGIN ACTIVITY", "Login Button Pressed");
-        final EditText nameBox = (EditText) findViewById(R.id.usernameEdit);
-        final EditText passBox = (EditText) findViewById(R.id.passwordEdit);
-        CharSequence text;
+        String Username = ((EditText) findViewById(R.id.usernameEdit)).getText().toString();
+        String password = ((EditText) findViewById(R.id.passwordEdit)).getText().toString();
 
-        final UserRepo repo = new UserRepo(this); //create repository for users
-        // Get user information from database
-        final User user = repo.getUserByUsername(nameBox.getText().toString());
-
-        // Checks if an admin
-        if(isAdmin(user)){
-            text = "Logged in as Admin";
-            final Intent startApp = new Intent(this, BlockUser.class);
-            startApp.putExtra("user", user); // just in case this is needed...
-            startActivity(startApp);
-
+        if (checkInput(Username, password) == 0) {
+            Toast.makeText(this, "Enter Username", Toast.LENGTH_SHORT).show();
+        } else if (checkInput(Username, password) == -1) {
+            Toast.makeText(this, "Enter Password", Toast.LENGTH_SHORT).show();
+        } else if (checkInput(Username, password) == 1) {
+            Toast.makeText(this, "Enter UserName and Password", Toast.LENGTH_SHORT).show();
         } else {
-            // is a regular user then...
-            // verify password
-            if (passBox.getText().toString().equals(user.getPassword()) && isNotLocked(user) && user.getIsBanned() != 1) {
-                text = "Login Success!";
+            UserRepo repo = new UserRepo(this); //create repository for users
+            // Get user information from database
+            User user = repo.getUserByUsername(Username);
 
-                final Intent startApp = new Intent(this, HomeApp.class);
-                // Save user data for next activity
-                startApp.putExtra("user", user);
+            // Checks if an admin
+            if (isAdmin(user)) {
+                Toast.makeText(this, "Logged in as Admin", Toast.LENGTH_SHORT).show();
+                Intent startApp = new Intent(this, BlockUser.class);
+                startApp.putExtra("user", user); // just in case this is needed...
                 startActivity(startApp);
+
             } else {
-                if (user.getIsBanned() == 1) {
-                    Toast.makeText(this, "YOU'RE BANNED FROM USING THIS!!!", Toast.LENGTH_SHORT).show();
-                } else {
-                    incrementLock(repo, user);
-                }
-                text = "Login Failure!";
+                // is a regular user then...
+                // verify password
+                regularUser(password, user, repo);
             }
         }
-
-        final Context context = getApplicationContext();
-        final int duration = Toast.LENGTH_SHORT;
-        final Toast t = Toast.makeText(context, text, duration);
-        t.show();
     }
+
+    public int checkInput(String Username,String password) {
+        if(Username.isEmpty() && password.isEmpty()){
+            return -1;
+        }
+        if(Username.isEmpty()) {
+            return 0;
+        }
+
+        if(password.isEmpty()) {
+            return 1;
+        }
+
+        return 2;
+    }
+
+    /**
+     * In case of a regular user, checks if your username and pass is legit
+     * if so it takes you to the home screen of the app
+     * @param password the user entered
+     * @param user user user in question
+     * @param repo used in the database
+     */
+    private void regularUser(String password, User user, UserRepo repo) {
+        if (password.equals(user.getPassword()) && isNotLocked(user) && user.getIsBanned() != 1) {
+            Toast.makeText(this, "Login Success!!", Toast.LENGTH_SHORT).show();
+            Intent startApp = new Intent(this, HomeApp.class);
+            startApp.putExtra("user", user);
+            startActivity(startApp);
+        } else {
+            if (user.getIsBanned() == 1) {
+                Toast.makeText(this, "YOU'RE BANNED FROM USING THIS!!!", Toast.LENGTH_SHORT).show();
+            } else {
+                incrementLock(repo, user);
+            }
+            Toast.makeText(this, "Login Failed!!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     /**
      * method to check if user is admin or not
