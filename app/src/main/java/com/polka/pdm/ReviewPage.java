@@ -223,14 +223,14 @@ public class ReviewPage extends AppCompatActivity {
         } else {
             user = savedInstanceState.getParcelable("user");
         }
-
-        movieName = movie.getTitle();
-        movieYear = movie.getYear();
-        TextView ratingTextViews = (TextView) findViewById(R.id.ratingTextView);
-        ratingTextViews.setText(movieName);
-        username = user.getUsername();
-        major = user.getMajor();
-
+        if (movie != null){
+            movieName = movie.getTitle();
+            movieYear = movie.getYear();
+            TextView ratingTextViews = (TextView) findViewById(R.id.ratingTextView);
+            ratingTextViews.setText(movieName);
+            username = user.getUsername();
+            major = user.getMajor();
+        }
     }
 
     /**
