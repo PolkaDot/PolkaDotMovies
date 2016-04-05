@@ -24,9 +24,9 @@ public class RecommendMovie extends NavBar {
     private RecyclerView.LayoutManager mLayoutManager;
 
     private User user;
-    protected Movie[] mDataset;
+    private Movie[] mDataset;
     private static final int DATASET_COUNT = 30;
-    EditText editTextSearchParam;
+    private EditText editTextSearchParam;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

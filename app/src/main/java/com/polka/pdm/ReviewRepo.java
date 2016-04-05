@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +17,9 @@ import java.util.List;
  * @author C. Shih on 2/23/2016.
  * @version 1.0
  */
-public class ReviewRepo {
+class ReviewRepo {
 
-    private DBHelper dbHelper;
+    private final DBHelper dbHelper;
 
     /**
      * create db helper
@@ -77,7 +76,7 @@ public class ReviewRepo {
         String[] whereArgs = {user, movie, ((Integer)movieYear).toString()};
 
         // update
-        int numberRowsUpdated = db.update(Review.TABLE, values, where, whereArgs);
+        db.update(Review.TABLE, values, where, whereArgs);
         db.close();
     }
 
@@ -95,12 +94,12 @@ public class ReviewRepo {
         String[] whereArgs = {user, movie, ((Integer)movieYear).toString()};
 
         // update
-        int numberRowsUpdated = db.update(Review.TABLE, values, where, whereArgs);
+        db.update(Review.TABLE, values, where, whereArgs);
         db.close();
     }
 
 
-    public void updateReview(String user, String movie, int movieYear, double rating, String comment) {
+    private void updateReview(String user, String movie, int movieYear, double rating, String comment) {
         setRating(user, movie, movieYear, rating);
         setComment(user, movie, movieYear, comment);
     }
@@ -168,7 +167,7 @@ public class ReviewRepo {
             do {
                 String title = cursor.getString(cursor.getColumnIndex(Review.KEY_movie));
                 int year = cursor.getInt(cursor.getColumnIndex(Review.KEY_movieYear));
-                int totalRating = cursor.getInt(cursor.getColumnIndex("total"));
+//                int totalRating = cursor.getInt(cursor.getColumnIndex("total"));
                 Movie movie = new Movie(title, year, null, null); // may need new data struct to store total rating
                 movies[i++] = movie;
             } while (cursor.moveToNext() && i < movies.length);
