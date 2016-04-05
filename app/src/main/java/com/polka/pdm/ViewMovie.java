@@ -6,6 +6,11 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 
+/**
+ * Activity when viewing a movie any movie
+ * @author Esha Singh
+ * @version
+ */
 public class ViewMovie extends NavBar {
 
     private Movie movie;//the movie that the user has selected

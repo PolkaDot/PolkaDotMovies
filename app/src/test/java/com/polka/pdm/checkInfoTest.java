@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 
 /**
  * Junit test for checkInfoTest method
- *
+ * does not need to be in manifeest
  * Created by C. Shih on 4/2/2016.
  */
 public class checkInfoTest extends RegistrationPage{

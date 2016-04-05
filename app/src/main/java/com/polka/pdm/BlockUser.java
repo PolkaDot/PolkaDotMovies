@@ -13,7 +13,6 @@ import android.support.v7.widget.Toolbar;
  */
 
 public class BlockUser extends AppCompatActivity {
-    private User user; //I'm using it in this conditional
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +47,8 @@ public class BlockUser extends AppCompatActivity {
         mAdapter = new MyUserAdapter(dataSet);
         mRecyclerView.setAdapter(mAdapter);
 
-        //get the user from extras
+//        get the user from extras
+        User user; //I'm using it in this conditional below
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if (extras == null) {

@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 /**
  * Junit test for checkInput method
- *
+ * does not need to be in manifest
  * Created by Esha Singh on 4/3/2016.
  */
 public class checkInputTest extends LoginApplication{
