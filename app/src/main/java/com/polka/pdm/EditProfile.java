@@ -7,7 +7,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -26,7 +25,7 @@ public class EditProfile extends AppCompatActivity {
     /**
      * user string for extra
      */
-    private String userString = "user";
+    private final String userString = "user";
 
     /**
      * user's password
@@ -87,7 +86,8 @@ public class EditProfile extends AppCompatActivity {
         }
 
         // get edit text fields
-        final TextView username = (TextView)findViewById(R.id.UserTextField);
+//        WE MIGHT NEED THIS UNCOMMENT IF NEED
+//        final TextView username = (TextView)findViewById(R.id.UserTextField);
         pass = (EditText)findViewById(R.id.PassTextField);
         firstName = (EditText)findViewById(R.id.FirstNameTextField);
         lastName = (EditText)findViewById(R.id.LastNameTextField);
@@ -112,7 +112,7 @@ public class EditProfile extends AppCompatActivity {
       * @param view of the viewAProfile Activity
       * need view
       */
-    public void onSavePress(View view) {
+    public void onSavePress(View view) {  //we need the view in the method header
         Log.d("EditProfile", "Save Button Pressed");
         //save some data here
 
@@ -160,7 +160,7 @@ public class EditProfile extends AppCompatActivity {
       * @param view of Edit Profile
       * need view though
       */
-    public void onCancelPress(View view) {
+    public void onCancelPress(View view) {  //we need the view in the method header
         Log.d("EditProfile", "Cancel Button Pressed");
         //don't save anything
         final Intent intent = new Intent(this, ViewProfile.class);

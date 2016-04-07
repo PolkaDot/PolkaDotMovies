@@ -35,7 +35,7 @@ public class HomeApp extends NavBar {
     /**
      * user string for extra
      */
-    private String userString = "user";
+    private final String userString = "user";
     //when we create this activity, there are some things we need to do first
     // hence the name on create
     //we totally need this
@@ -78,7 +78,7 @@ public class HomeApp extends NavBar {
      * @param view it is being used on
      *             view is def used
      */
-    public void logoutClickListener(View view) {
+    public void logoutClickListener(View view) {  //we need the view in the method header
         Log.d("Logout", "Logout Button Pressed");
 
         final Intent intent = new Intent(this, MainActivity.class);
@@ -91,7 +91,7 @@ public class HomeApp extends NavBar {
      * @param view that you're looking at.
      *             view is def used
      */
-    public void onViewProfileClick(View view) {
+    public void onViewProfileClick(View view) { //we need the view in the method header
         Log.d("ViewProfile", "View Profile Button Pressed");
 
         final Intent intent = new Intent(this, ViewProfile.class);
@@ -104,7 +104,7 @@ public class HomeApp extends NavBar {
      *
      * @param view user interface component
      */
-    public void onDVDsButtonClick(View view) {
+    public void onDVDsButtonClick(View view) {  //we need the view in the method header
         final Intent intent = new Intent(this, RecentDvds.class);
         startActivity(intent);
     }
@@ -116,7 +116,7 @@ public class HomeApp extends NavBar {
      * @param view user interface component
      *             need view
      */
-    public void onSearchButtonPress(View view) {
+    public void onSearchButtonPress(View view) {  //we need the view in the method header
         Log.d("HomeApp", "Search Button Pressed");
 
         final Intent intent = new Intent(this, SearchMovies.class);
@@ -133,7 +133,7 @@ public class HomeApp extends NavBar {
      * @param view of the page
      *             need view for method to work
      */
-    public void onMoviesButtonClick(View view) {
+    public void onMoviesButtonClick(View view) {  //we need the view in the method header
         final Intent intent = new Intent(this, RecentMovies.class);
         intent.putExtra(userString, user);
         startActivity(intent);
@@ -145,7 +145,7 @@ public class HomeApp extends NavBar {
      * @param view of the page
      *             just need view for method to work okay?
      */
-    public void onRecommendationButtonClick(View view) {
+    public void onRecommendationButtonClick(View view) {  //we need the view in the method header
         final Intent intent = new Intent(this, RecommendMovie.class);
         startActivity(intent);
     }

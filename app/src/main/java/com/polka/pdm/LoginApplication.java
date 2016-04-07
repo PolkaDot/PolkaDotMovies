@@ -29,7 +29,7 @@ public class LoginApplication extends AppCompatActivity {
      *
      * @param v current view to go to
      */
-    public void onLoginCancelPressed(View v) {
+    public void onLoginCancelPressed(View v) {  //we need the view in the method header
         final Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
@@ -42,7 +42,7 @@ public class LoginApplication extends AppCompatActivity {
      * if so it takes you to the home screen of the app
      * @param v view that you are on
      */
-    public void onLoginButtonPressed(View v) {
+    public void onLoginButtonPressed(View v) {  //we need the view in the method header
         Log.d("LOGIN ACTIVITY", "Login Button Pressed");
         String Username = ((EditText) findViewById(R.id.usernameEdit)).getText().toString();
         String password = ((EditText) findViewById(R.id.passwordEdit)).getText().toString();
@@ -147,7 +147,7 @@ public class LoginApplication extends AppCompatActivity {
      * @param userRepo the connector to the database
      * @param user trying to login
      */
-    public void incrementLock(UserRepo userRepo, User user) {
+    private void incrementLock(UserRepo userRepo, User user) {
         if (user.getUsername() != null && user.getIsAdmin() != 1) {
             if (user.getIsLocked() < MAX_LOGIN_ATTEMPTS) {
                 userRepo.setLock(user.getUsername(), user.getIsLocked() + 1);

@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param view current view
      */
-    public void onLoginButtonClicked(View view) {
+    public void onLoginButtonClicked(View view) { //we need the view in the method header
         final Intent intent = new Intent(this, LoginApplication.class);
         startActivity(intent);
     }
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param view current view
      */
-    public void onSignUpButtonPress(View view) {
+    public void onSignUpButtonPress(View view) {  //we need the view in the method header
         final Intent intent = new Intent(this, RegistrationPage.class);
         startActivity(intent);
 
