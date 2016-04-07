@@ -15,7 +15,15 @@ import android.util.Log;
  * Updated by Y. Avila-Stanley
  */
 public class UserRepo {
+    /**
+     * database helper
+     */
     private final DBHelper dbHelper;//database helper
+
+    /**
+     * String literal for " =?"
+     */
+    private static final String QUESTIONMARK = " = ?";
 
     /**
      * Create of db helper
@@ -30,27 +38,28 @@ public class UserRepo {
      * everything else is null
      *
      * @param user that it is inserting
-//     * @return returns row ID of newly inserted row, -1 otherwise
      */
     public void insert(User user) {
 
         // open connection to write data
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(User.KEY_username, user.getUsername());
-        values.put(User.KEY_password, user.getPassword());
-        values.put(User.KEY_firstName, user.getFirstName());
-        values.put(User.KEY_lastName, user.getLastName());
-        values.put(User.KEY_email, user.getEmail());
+        final SQLiteDatabase db = dbHelper.getWritableDatabase();
+        final ContentValues values = new ContentValues();
+        values.put(User.KEY_USERNAME, user.getUsername());
+        values.put(User.KEY_PASSWORD, user.getPassword());
+        values.put(User.KEY_FIRSTNAME, user.getFirstName());
+        values.put(User.KEY_LASTNAME, user.getLastName());
+        values.put(User.KEY_EMAIL, user.getEmail());
 
 
         //inserting row
         try {
-            long user_username = db.insertOrThrow(User.TABLE, null, values);
+            db.insertOrThrow(User.TABLE, null, values);
             db.close();
 //            return user_username;
         } catch (SQLException e) {
 //            return -1;
+            Log.d("SQL", "SQLException");
+
         }
     }
 
@@ -60,36 +69,36 @@ public class UserRepo {
      */
     public User[] getAllUsers() {
 
-        String countQ = "SELECT * FROM " + User.TABLE;
-        SQLiteDatabase adb = dbHelper.getReadableDatabase();
-        Cursor acursor = adb.rawQuery(countQ, null);
-        int cnt = acursor.getCount();
+        final String countQ = "SELECT * FROM " + User.TABLE;
+        final SQLiteDatabase adb = dbHelper.getReadableDatabase();
+        final Cursor acursor = adb.rawQuery(countQ, null);
+        final int cnt = acursor.getCount();
         acursor.close();
         adb.close();
 
 
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery = "SELECT * FROM " + User.TABLE;
-        User[] users = new User[cnt];
+        final SQLiteDatabase db = dbHelper.getReadableDatabase();
+        final String selectQuery = "SELECT * FROM " + User.TABLE;
+        final User[] users = new User[cnt];
 
 
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        final Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
             int i = 0;
             do {
-                String username = cursor.getString(cursor.getColumnIndex(User.KEY_username));
-                String password = cursor.getString(cursor.getColumnIndex(User.KEY_password));
-                String firstName = cursor.getString(cursor.getColumnIndex(User.KEY_firstName));
-                String lastName = cursor.getString(cursor.getColumnIndex(User.KEY_lastName));
-                String email = cursor.getString(cursor.getColumnIndex(User.KEY_email));
-                String major = cursor.getString(cursor.getColumnIndex(User.KEY_major));
-                String phone = cursor.getString(cursor.getColumnIndex(User.KEY_phone));
-                String interests = cursor.getString(cursor.getColumnIndex(User.KEY_interests));
-                int isLock = cursor.getInt(cursor.getColumnIndex(User.KEY_isLocked));
-                int isBanned = cursor.getInt(cursor.getColumnIndex(User.KEY_isBanned));
-                int isAdmin = cursor.getInt(cursor.getColumnIndex(User.KEY_isAdmin));
+                final String username = cursor.getString(cursor.getColumnIndex(User.KEY_USERNAME));
+                final String password = cursor.getString(cursor.getColumnIndex(User.KEY_PASSWORD));
+                final String firstName = cursor.getString(cursor.getColumnIndex(User.KEY_FIRSTNAME));
+                final String lastName = cursor.getString(cursor.getColumnIndex(User.KEY_LASTNAME));
+                final String email = cursor.getString(cursor.getColumnIndex(User.KEY_EMAIL));
+                final String major = cursor.getString(cursor.getColumnIndex(User.KEY_MAJOR));
+                final String phone = cursor.getString(cursor.getColumnIndex(User.KEY_PHONE));
+                final String interests = cursor.getString(cursor.getColumnIndex(User.KEY_INTERESTS));
+                final int isLock = cursor.getInt(cursor.getColumnIndex(User.KEY_ISLOCKED));
+                final int isBanned = cursor.getInt(cursor.getColumnIndex(User.KEY_ISBANNED));
+                final int isAdmin = cursor.getInt(cursor.getColumnIndex(User.KEY_ISADMIN));
 
-                User user = new User(username, password, firstName, lastName, email,
+                final User user = new User(username, password, firstName, lastName, email,
                         major, phone, interests, isLock, isBanned, isAdmin); // may need new data struct to store total rating
                 Log.d("CCC", "DID STUFF WITH USER ARRAY");
                 users[i++] = user;
@@ -117,27 +126,27 @@ public class UserRepo {
      * @return user if found, null otherwise
      */
     public User getUserByUsername(String username) {
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery = "SELECT * FROM " + User.TABLE
+        final SQLiteDatabase db = dbHelper.getReadableDatabase();
+        final String selectQuery = "SELECT * FROM " + User.TABLE
                 + " WHERE " +
-                User.KEY_username + " =?";
+                User.KEY_USERNAME + " =?";
 
-        User user = new User();
+        final User user = new User();
 
-        Cursor cursor = db.rawQuery(selectQuery, new String[] {String.valueOf(username)});
+        final Cursor cursor = db.rawQuery(selectQuery, new String[] {String.valueOf(username)});
         if (cursor.moveToFirst()) {
             do {
-                user.setUsername(cursor.getString(cursor.getColumnIndex(User.KEY_username)));
-                user.setPassword(cursor.getString(cursor.getColumnIndex(User.KEY_password)));
-                user.setFirstName(cursor.getString(cursor.getColumnIndex(User.KEY_firstName)));
-                user.setLastName(cursor.getString(cursor.getColumnIndex(User.KEY_lastName)));
-                user.setEmail(cursor.getString(cursor.getColumnIndex(User.KEY_email)));
-                user.setMajor(cursor.getString(cursor.getColumnIndex(User.KEY_major)));
-                user.setPhone(cursor.getString(cursor.getColumnIndex(User.KEY_phone)));
-                user.setInterests(cursor.getString(cursor.getColumnIndex(User.KEY_interests)));
-                user.setIsLock(cursor.getInt(cursor.getColumnIndex(User.KEY_isLocked)));
-                user.setIsBanned(cursor.getInt(cursor.getColumnIndex(User.KEY_isBanned)));
-                user.setIsAdmin(cursor.getInt(cursor.getColumnIndex(User.KEY_isAdmin)));
+                user.setUsername(cursor.getString(cursor.getColumnIndex(User.KEY_USERNAME)));
+                user.setPassword(cursor.getString(cursor.getColumnIndex(User.KEY_PASSWORD)));
+                user.setFirstName(cursor.getString(cursor.getColumnIndex(User.KEY_FIRSTNAME)));
+                user.setLastName(cursor.getString(cursor.getColumnIndex(User.KEY_LASTNAME)));
+                user.setEmail(cursor.getString(cursor.getColumnIndex(User.KEY_EMAIL)));
+                user.setMajor(cursor.getString(cursor.getColumnIndex(User.KEY_MAJOR)));
+                user.setPhone(cursor.getString(cursor.getColumnIndex(User.KEY_PHONE)));
+                user.setInterests(cursor.getString(cursor.getColumnIndex(User.KEY_INTERESTS)));
+                user.setIsLock(cursor.getInt(cursor.getColumnIndex(User.KEY_ISLOCKED)));
+                user.setIsBanned(cursor.getInt(cursor.getColumnIndex(User.KEY_ISBANNED)));
+                user.setIsAdmin(cursor.getInt(cursor.getColumnIndex(User.KEY_ISADMIN)));
 
 
             } while (cursor.moveToNext());
@@ -198,13 +207,13 @@ public class UserRepo {
     private void setFirstName(String user, String name) {
 
         // open connection to write data
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        final SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put(User.KEY_firstName, name);
+        final ContentValues values = new ContentValues();
+        values.put(User.KEY_FIRSTNAME, name);
 
-        String where = User.KEY_username + " = ?";
-        String[] whereArgs = {user};
+        final String where = User.KEY_USERNAME + QUESTIONMARK;
+        final String[] whereArgs = {user};
 
         // update
         db.update(User.TABLE, values, where, whereArgs);
@@ -220,13 +229,13 @@ public class UserRepo {
     private void setLastName(String user, String name) {
 
         // open connection to write data
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        final SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put(User.KEY_lastName, name);
+        final ContentValues values = new ContentValues();
+        values.put(User.KEY_LASTNAME, name);
 
-        String where = User.KEY_username + " = ?";
-        String[] whereArgs = {user};
+        final String where = User.KEY_USERNAME + QUESTIONMARK;
+        final String[] whereArgs = {user};
 
         // update
         db.update(User.TABLE, values, where, whereArgs);
@@ -242,13 +251,13 @@ public class UserRepo {
     private void setPass(String user, String pass) {
 
         // open connection to write data
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        final SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put(User.KEY_password, pass);
+        final ContentValues values = new ContentValues();
+        values.put(User.KEY_PASSWORD, pass);
 
-        String where = User.KEY_username + " = ?";
-        String[] whereArgs = {user};
+        final String where = User.KEY_USERNAME + QUESTIONMARK;
+        final String[] whereArgs = {user};
 
         // update
         db.update(User.TABLE, values, where, whereArgs);
@@ -264,13 +273,13 @@ public class UserRepo {
     private void setEmail(String user, String email) {
 
         // open connection to write data
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        final SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put(User.KEY_email, email);
+        final ContentValues values = new ContentValues();
+        values.put(User.KEY_EMAIL, email);
 
-        String where = User.KEY_username + " = ?";
-        String[] whereArgs = {user};
+        final String where = User.KEY_USERNAME + QUESTIONMARK;
+        final String[] whereArgs = {user};
 
         // update
         db.update(User.TABLE, values, where, whereArgs);
@@ -286,13 +295,13 @@ public class UserRepo {
     private void setPhone(String user, String phone) {
 
         // open connection to write data
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        final SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put(User.KEY_phone, phone);
+        final ContentValues values = new ContentValues();
+        values.put(User.KEY_PHONE, phone);
 
-        String where = User.KEY_username + " = ?";
-        String[] whereArgs = {user};
+        final String where = User.KEY_USERNAME + QUESTIONMARK;
+        final String[] whereArgs = {user};
 
         // update
         db.update(User.TABLE, values, where, whereArgs);
@@ -308,13 +317,13 @@ public class UserRepo {
     private void setMajor(String user, String major) {
 
         // open connection to write data
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        final SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put(User.KEY_major, major);
+        final ContentValues values = new ContentValues();
+        values.put(User.KEY_MAJOR, major);
 
-        String where = User.KEY_username + " = ?";
-        String[] whereArgs = {user};
+        final String where = User.KEY_USERNAME + QUESTIONMARK;
+        final String[] whereArgs = {user};
 
         // update
         db.update(User.TABLE, values, where, whereArgs);
@@ -330,13 +339,13 @@ public class UserRepo {
     private void setInterests(String user, String interests) {
 
         // open connection to write data
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        final SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put(User.KEY_interests, interests);
+        final ContentValues values = new ContentValues();
+        values.put(User.KEY_INTERESTS, interests);
 
-        String where = User.KEY_username + " = ?";
-        String[] whereArgs = {user};
+        final String where = User.KEY_USERNAME + QUESTIONMARK;
+        final String[] whereArgs = {user};
 
         // update
         db.update(User.TABLE, values, where, whereArgs);
@@ -352,13 +361,13 @@ public class UserRepo {
     public void setLock(String user, int isLock) {
 
         // open connection to write data
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        final SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put(User.KEY_isLocked, isLock);
+        final ContentValues values = new ContentValues();
+        values.put(User.KEY_ISLOCKED, isLock);
 
-        String where = User.KEY_username + " = ?";
-        String[] whereArgs = {user};
+        final String where = User.KEY_USERNAME + QUESTIONMARK;
+        final String[] whereArgs = {user};
 
         // update
         db.update(User.TABLE, values, where, whereArgs);
@@ -374,13 +383,13 @@ public class UserRepo {
     public void setBanned(String user, int isBanned) {
 
         // open connection to write data
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        final SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put(User.KEY_isBanned, isBanned);
+        final ContentValues values = new ContentValues();
+        values.put(User.KEY_ISBANNED, isBanned);
 
-        String where = User.KEY_username + " = ?";
-        String[] whereArgs = {user};
+        final String where = User.KEY_USERNAME + QUESTIONMARK;
+        final String[] whereArgs = {user};
 
         // update
         db.update(User.TABLE, values, where, whereArgs);

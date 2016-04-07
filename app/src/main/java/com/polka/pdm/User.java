@@ -12,34 +12,106 @@ import android.os.Parcelable;
  */
 public class User implements Parcelable {
 
+    /**
+     * User table name
+     */
     public static final String TABLE = "User";// labels table name
-
-    public static final String KEY_username = "username";// labels table columns names
-    public static final String KEY_password = "password"; // labels table columns names
-    public static final String KEY_firstName = "firstName";// labels table columns names
-    public static final String KEY_lastName = "lastName"; // labels table columns names
-    public static final String KEY_email = "email";// labels table columns names
-    public static final String KEY_major = "major";// labels table columns names
-    public static final String KEY_phone = "phone";// labels table columns names
-    public static final String KEY_interests = "interests";// labels table columns names
-    public static final String KEY_isLocked = "isLocked";// labels table columns names
-    public static final String KEY_isBanned = "isBanned";// labels table columns names
-    public static final String KEY_isAdmin = "isAdmin";// labels table columns names
+    /**
+     * username column
+     */
+    public static final String KEY_USERNAME = "username";// labels table columns names
+    /**
+     * password column
+     */
+    public static final String KEY_PASSWORD = "password"; // labels table columns names
+    /**
+     * first name column
+     */
+    public static final String KEY_FIRSTNAME = "firstName";// labels table columns names
+    /**
+     * last name column
+     */
+    public static final String KEY_LASTNAME= "lastName"; // labels table columns names
+    /**
+     * email column
+     */
+    public static final String KEY_EMAIL = "email";// labels table columns names
+    /**
+     * major column
+     */
+    public static final String KEY_MAJOR = "major";// labels table columns names
+    /**
+     * phone column
+     */
+    public static final String KEY_PHONE = "phone";// labels table columns names
+    /**
+     * interests column
+     */
+    public static final String KEY_INTERESTS = "interests";// labels table columns names
+    /**
+     * is locked column
+     */
+    public static final String KEY_ISLOCKED = "isLocked";// labels table columns names
+    /**
+     * is banned column
+     */
+    public static final String KEY_ISBANNED = "isBanned";// labels table columns names
+    /**
+     * is admin column
+     */
+    public static final String KEY_ISADMIN = "isAdmin";// labels table columns names
 
 
     // attributes to keep data
+    /**
+     * username
+     */
     private String username;
+    /**
+     * password
+     */
     private String password;
+    /**
+     * first name
+     */
     private String firstName;
+    /**
+     * last name
+     */
     private String lastName;
+    /**
+     * email
+     */
     private String email;
+    /**
+     * major
+     */
     private String major;
+    /**
+     * phone
+     */
     private String phone;
+    /**
+     * interests
+     */
     private String interests;
+    /**
+     * is locked or not
+     */
     private int isLocked;
+    /**
+     * is banned or not
+     */
     private int isBanned;
+    /**
+     * is admin or not
+     */
     private int isAdmin;
 
+    /**
+     * Constant used for the creation of the hashcode
+     */
+    private static final int HASHCODE_CONSTANT = 7;
 
     /**
      * constructor for user, with no params, inserted later
@@ -190,90 +262,90 @@ public class User implements Parcelable {
 
     /**
      * sets User's username
-     * @param username of user
+     * @param ausername of user
      */
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String ausername) {
+        this.username = ausername;
     }
 
     /**
      * sets user's password
-     * @param password of user
+     * @param apassword of user
      */
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String apassword) {
+        this.password = apassword;
     }
 
     /**
      * sets user's first name
-     * @param firstName of the user
+     * @param afirstName of the user
      */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstName(String afirstName) {
+        this.firstName = afirstName;
     }
 
     /**
      * sets last name of user
-     * @param lastName of user
+     * @param alastName of user
      */
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastName(String alastName) {
+        this.lastName = alastName;
     }
 
     /**
      * sets user's phone
-     * @param phone of user
+     * @param aphone of user
      */
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhone(String aphone) {
+        this.phone = aphone;
     }
 
     /**
      * sets user's email
-     * @param email of user
+     * @param aemail of user
      */
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String aemail) {
+        this.email = aemail;
     }
 
     /**
      * sets user's major
-     * @param major of user
+     * @param amajor of user
      */
-    public void setMajor(String major) {
-        this.major = major;
+    public void setMajor(String amajor) {
+        this.major = amajor;
     }
 
     /**
      * set user's interests
-     * @param interests of the user
+     * @param ainterests of the user
      */
-    public void setInterests(String interests) {
-        this.interests = interests;
+    public void setInterests(String ainterests) {
+        this.interests = ainterests;
     }
 
     /**
      * sets if user is admin
-     * @param isAdmin int val if admin
+     * @param aisAdmin int val if admin
      */
-    public void setIsAdmin(int isAdmin) {
-        this.isAdmin = isAdmin;
+    public void setIsAdmin(int aisAdmin) {
+        this.isAdmin = aisAdmin;
     }
 
     /**
      * sets if user is banned
-     * @param isBanned int value if user banned
+     * @param aisBanned int value if user banned
      */
-    public void setIsBanned(int isBanned) {
-        this.isBanned = isBanned;
+    public void setIsBanned(int aisBanned) {
+        this.isBanned = aisBanned;
     }
 
     /**
      * sets if user locked
-     * @param isLocked int value if user locked
+     * @param aisLocked int value if user locked
      */
-    public void setIsLock(int isLocked) {
-        this.isLocked = isLocked;
+    public void setIsLock(int aisLocked) {
+        this.isLocked = aisLocked;
     }
 
 
@@ -292,7 +364,9 @@ public class User implements Parcelable {
      * @param in input from database
      */
     private User(Parcel in) {
-        String[] data = new String[11];
+        // 11 is number of fields, and the 0 - 10 are corresponding index to it in array
+        // for that specific data value
+        final String[] data = new String[11];
         in.readStringArray(data);
 
         this.username = data[0];
@@ -340,9 +414,15 @@ public class User implements Parcelable {
         if (!(object instanceof User)) {
             return false;
         }
-        User that = (User) object;
+        final User that = (User) object;
         return this.username.equals(that.username);
     }
+
+    @Override
+    public int hashCode() {
+        return HASHCODE_CONSTANT * username.hashCode();
+    }
+
 
 
     /**

@@ -9,16 +9,47 @@ package com.polka.pdm;
  */
 public class Review {
 
+    /**
+     * rating's table name
+     */
     public static final String TABLE = "Rating";
 
+    /**
+     * rating id column
+     */
     public static final String KEY_RATINGID = "ratingId"; // primary key in db to keep unique
+
+    /**
+     * movie column
+     */
     public static final String KEY_MOVIE = "movie";
+
+    /**
+     * movie year column
+     */
     public static final String KEY_MOVIEYEAR = "movieYear";
+
+    /**
+     * user column
+     */
     public static final String KEY_USER = "user";
+
+    /**
+     * major column
+     */
     public static final String KEY_MAJOR = "major";
+
+    /**
+     * rating column
+     */
     public static final String KEY_RATING = "rating";
+
+    /**
+     * comment column
+     */
     public static final String KEY_COMMENT = "comment";
 
+    
     private int hashNum = 13;
     private String movie;
     private double rating;

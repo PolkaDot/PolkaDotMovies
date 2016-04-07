@@ -25,7 +25,7 @@ public class EditProfile extends AppCompatActivity {
     /**
      * user string for extra
      */
-    private final String userString = "user";
+    private static final String USERSTRING = "user";
 
     /**
      * user's password
@@ -76,10 +76,10 @@ public class EditProfile extends AppCompatActivity {
             if (extras == null) {
                 user = null;
             } else {
-                user = extras.getParcelable(userString);
+                user = extras.getParcelable(USERSTRING);
             }
         } else {
-            user = savedInstanceState.getParcelable(userString);
+            user = savedInstanceState.getParcelable(USERSTRING);
         }
         if (user!=null) {
             Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
@@ -123,7 +123,7 @@ public class EditProfile extends AppCompatActivity {
         final String aEmail = email.getText().toString();
 
 
-        int isValid = checkValidChange(aFirstName, aLastName, aEmail, aPassword);
+        final int isValid = checkValidChange(aFirstName, aLastName, aEmail, aPassword);
         if (isValid == -1) {
             Toast.makeText(this, "First Name, Last Name, Password, and Email must all be filled!", Toast.LENGTH_SHORT).show();
             return;
@@ -150,7 +150,7 @@ public class EditProfile extends AppCompatActivity {
 
         // Switch activities
         final Intent intent = new Intent(this, ViewProfile.class);
-        intent.putExtra(userString, user);
+        intent.putExtra(USERSTRING, user);
         startActivity(intent);
     }
 
@@ -164,7 +164,7 @@ public class EditProfile extends AppCompatActivity {
         Log.d("EditProfile", "Cancel Button Pressed");
         //don't save anything
         final Intent intent = new Intent(this, ViewProfile.class);
-        intent.putExtra(userString, user);
+        intent.putExtra(USERSTRING, user);
         startActivity(intent);
     }
 

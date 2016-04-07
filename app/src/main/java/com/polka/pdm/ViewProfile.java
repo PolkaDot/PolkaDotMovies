@@ -14,13 +14,21 @@ import android.widget.TextView;
  * View User Profile
  */
 public class ViewProfile extends NavBar {
+    /**
+     * user using app
+     */
     private User user;//NEED to know which user's profile to display
+
+    /**
+     * user string for extra
+     */
+    private static final String USERSTRING = "user";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_profile);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         //NAV bar stuff
@@ -29,7 +37,7 @@ public class ViewProfile extends NavBar {
         setSupportActionBar(getToolbar());
 
         setMDrawer((DrawerLayout) findViewById(R.id.drawer_layout));
-        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
+        final NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
         setupDrawerContent(nvDrawer);
 
         setDrawerToggle(setupDrawerToggle());
@@ -37,27 +45,27 @@ public class ViewProfile extends NavBar {
 
         // Grab saved data about user
         if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
+            final Bundle extras = getIntent().getExtras();
             if (extras == null) {
                 user = null;
             } else {
-                user = extras.getParcelable("user");
+                user = extras.getParcelable(USERSTRING);
             }
         } else {
-            user = savedInstanceState.getParcelable("user");
+            user = savedInstanceState.getParcelable(USERSTRING);
         }
 
         super.setUser(user);
 
         // Get TextViews on view profile page
-        TextView phoneTextView = (TextView)findViewById(R.id.PhoneTextField);
-        TextView firstNameTextView = (TextView)findViewById(R.id.FirstNameTextField);
-        TextView lastNameTextView = (TextView)findViewById(R.id.LastNameTextField);
-        TextView userTextView = (TextView)findViewById(R.id.UserTextField);
-        TextView emailTextView = (TextView)findViewById(R.id.EmailTextField);
-        TextView majorTextView = (TextView)findViewById(R.id.MajorTextField);
-        TextView passTextView = (TextView)findViewById(R.id.PassTextField);
-        TextView interestsTextView = (TextView)findViewById(R.id.InterestTextField);
+        final TextView phoneTextView = (TextView)findViewById(R.id.PhoneTextField);
+        final TextView firstNameTextView = (TextView)findViewById(R.id.FirstNameTextField);
+        final TextView lastNameTextView = (TextView)findViewById(R.id.LastNameTextField);
+        final TextView userTextView = (TextView)findViewById(R.id.UserTextField);
+        final TextView emailTextView = (TextView)findViewById(R.id.EmailTextField);
+        final TextView majorTextView = (TextView)findViewById(R.id.MajorTextField);
+        final TextView passTextView = (TextView)findViewById(R.id.PassTextField);
+        final TextView interestsTextView = (TextView)findViewById(R.id.InterestTextField);
 
         // Put user information in TextView boxes
         phoneTextView.setText(user.getPhone());
@@ -76,7 +84,7 @@ public class ViewProfile extends NavBar {
      * @param  view  the view of the Edit button that is clicked
      */
     public void onEditProfileClick(View view) { //we need the view in the method header
-        Intent intent = new Intent(this, EditProfile.class);
+        final Intent intent = new Intent(this, EditProfile.class);
         // putExtra to store user information between views
         intent.putExtra("user", user);
         startActivity(intent);
@@ -87,7 +95,7 @@ public class ViewProfile extends NavBar {
      * @param view of the current page
      */
     public void onHomeClick(View view) {  //we need the view in the method header
-        Intent intent = new Intent(this, HomeApp.class);
+        final Intent intent = new Intent(this, HomeApp.class);
         intent.putExtra("user", user);
         startActivity(intent);
     }

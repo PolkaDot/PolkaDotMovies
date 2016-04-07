@@ -19,8 +19,13 @@ import java.util.List;
  */
 class ReviewRepo {
 
-
+    /**
+     * database helper
+     */
     private DBHelper dbHelper;
+    /**
+     * comment connector
+     */
     private String commentConnector = " = ? AND ";
 
     /**

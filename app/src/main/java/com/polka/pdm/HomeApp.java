@@ -36,7 +36,7 @@ public class HomeApp extends NavBar {
      * user string for extra
      */
 
-    private final String userString = "user";
+    private static final String USERSTRING = "user";
     //when we create this activity, there are some things we need to do first
     // hence the name on create
     //we totally need this
@@ -62,10 +62,10 @@ public class HomeApp extends NavBar {
             if (extras == null) {
                 user = null;
             } else {
-                user = extras.getParcelable(userString);
+                user = extras.getParcelable(USERSTRING);
             }
         } else {
-            user = savedInstanceState.getParcelable(userString);
+            user = savedInstanceState.getParcelable(USERSTRING);
         }
 
         super.setUser(user);
@@ -96,7 +96,7 @@ public class HomeApp extends NavBar {
         Log.d("ViewProfile", "View Profile Button Pressed");
 
         final Intent intent = new Intent(this, ViewProfile.class);
-        intent.putExtra(userString, user);
+        intent.putExtra(USERSTRING, user);
         startActivity(intent);
     }
 
@@ -121,7 +121,7 @@ public class HomeApp extends NavBar {
         Log.d("HomeApp", "Search Button Pressed");
 
         final Intent intent = new Intent(this, SearchMovies.class);
-        intent.putExtra(userString, user);
+        intent.putExtra(USERSTRING, user);
         startActivity(intent);
 
     }
@@ -136,7 +136,7 @@ public class HomeApp extends NavBar {
      */
     public void onMoviesButtonClick(View view) {  //we need the view in the method header
         final Intent intent = new Intent(this, RecentMovies.class);
-        intent.putExtra(userString, user);
+        intent.putExtra(USERSTRING, user);
         startActivity(intent);
     }
 

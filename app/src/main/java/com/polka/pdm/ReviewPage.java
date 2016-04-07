@@ -26,14 +26,41 @@ import android.widget.Toast;
  */
 public class ReviewPage extends AppCompatActivity {
 
+    /**
+     * ratings
+     */
     private float ratings;
+    /**
+     * has rated boolean
+     */
     private boolean hasRated;
+    /**
+     * rating object
+     */
     private Review ratingObj;
+    /**
+     * movie
+     */
     private Movie movie;
+    /**
+     * movie's name
+     */
     private String movieName;
-    private int movieYear ;
+    /**
+     * year movie was made
+     */
+    private int movieYear;
+    /**
+     * user using app
+     */
     private User user;
+    /**
+     * user's major
+     */
     private String major;
+    /**
+     * user's username
+     */
     private String username;
 
     /**
@@ -198,10 +225,10 @@ public class ReviewPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_page);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        final RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         ratingBar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
 
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
@@ -212,7 +239,7 @@ public class ReviewPage extends AppCompatActivity {
         });
 
        if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
+            final Bundle extras = getIntent().getExtras();
             if (extras == null) {
                 movie = null;
             } else {
@@ -223,7 +250,7 @@ public class ReviewPage extends AppCompatActivity {
         }
 
         if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
+            final Bundle extras = getIntent().getExtras();
             if (extras == null) {
                 user = null;
             } else {
@@ -235,7 +262,7 @@ public class ReviewPage extends AppCompatActivity {
         if (movie != null){
             movieName = movie.getTitle();
             movieYear = movie.getYear();
-            TextView ratingTextViews = (TextView) findViewById(R.id.ratingTextView);
+            final TextView ratingTextViews = (TextView) findViewById(R.id.ratingTextView);
             ratingTextViews.setText(movieName);
             username = user.getUsername();
             major = user.getMajor();
@@ -247,8 +274,8 @@ public class ReviewPage extends AppCompatActivity {
      * @param view of the viewAProfile Activity
      */
     public void onSubmitPress(View view) {
-        EditText comment = (EditText) findViewById(R.id.reviewEditText);
-        String comments = comment.getText().toString();
+        final EditText comment = (EditText) findViewById(R.id.reviewEditText);
+        final String comments = comment.getText().toString();
 
         if (ratings == 0 && comment.length() == 0) {
             Toast.makeText(this, "Please enter either a review or rating before submitting!", Toast.LENGTH_SHORT).show();
@@ -256,7 +283,7 @@ public class ReviewPage extends AppCompatActivity {
         }
 
         // Insert user in database
-        ReviewRepo ratingRepo = new ReviewRepo(this);
+        final ReviewRepo ratingRepo = new ReviewRepo(this);
         if (hasRated){
             ratingObj = new Review(username, major, movieName, movieYear, ratings, comments);
 
@@ -265,14 +292,14 @@ public class ReviewPage extends AppCompatActivity {
         }
 
         // insert user already rated the movie
-        long check = ratingRepo.insert(ratingObj);
+        final long check = ratingRepo.insert(ratingObj);
         if (check == -1) {
             Toast.makeText(this, "Updated your previous review :D", Toast.LENGTH_SHORT).show();
         }
         Toast.makeText(this, "Thanks for the rating!", Toast.LENGTH_SHORT).show();
 
         // Switch to Edit Profile Activity
-        Intent intent = new Intent(this, HomeApp.class);
+        final Intent intent = new Intent(this, HomeApp.class);
         intent.putExtra("user", user);
         startActivity(intent);
     }

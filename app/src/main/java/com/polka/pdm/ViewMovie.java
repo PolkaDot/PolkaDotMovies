@@ -13,9 +13,15 @@ import android.widget.TextView;
  */
 public class ViewMovie extends NavBar {
 
+    /**
+     * movie that was selected
+     */
     private Movie movie;//the movie that the user has selected
 
     //private ImageView poster;
+    /**
+     * user using app
+     */
     private User user;//the user that wants to view the movie
 
     @Override
@@ -25,7 +31,7 @@ public class ViewMovie extends NavBar {
 
         // Grab saved data about Movie
         if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
+            final Bundle extras = getIntent().getExtras();
             if (extras == null) {
                 movie = null;
             } else {
@@ -36,7 +42,7 @@ public class ViewMovie extends NavBar {
         }
 
         if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
+            final Bundle extras = getIntent().getExtras();
             if (extras == null) {
                 user = null;
             } else {
@@ -47,9 +53,9 @@ public class ViewMovie extends NavBar {
         }
 
         // Get TextViews on view profile page
-        TextView movieNameTextView = (TextView) findViewById(R.id.MovieName);
-        TextView movieYearTextView = (TextView) findViewById(R.id.MovieYear);
-        TextView movieSynopsisTextView = (TextView) findViewById(R.id.MovieSynopsis);
+        final TextView movieNameTextView = (TextView) findViewById(R.id.MovieName);
+        final TextView movieYearTextView = (TextView) findViewById(R.id.MovieYear);
+        final TextView movieSynopsisTextView = (TextView) findViewById(R.id.MovieSynopsis);
         movieSynopsisTextView.setMovementMethod(new ScrollingMovementMethod());
 
          //Put user information in TextView boxes
@@ -112,8 +118,12 @@ public class ViewMovie extends NavBar {
 //        drawerToggle.onConfigurationChanged(newConfig);
 //    }
 
+    /**
+     * rates movie when button pressed
+     * @param view current view
+     */
     public void onRateMoviePress(View view) { //we need the view in the method header
-        Intent intent = new Intent(this, ReviewPage.class);
+        final Intent intent = new Intent(this, ReviewPage.class);
         intent.putExtra("movie", movie);
         intent.putExtra("user", user);
 

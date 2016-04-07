@@ -95,7 +95,7 @@ public class RegistrationPage extends AppCompatActivity {
 
 
 
-        // insert user into database TODO: Check if user is already in database
+        // insert user into database
         if (repo.getUserByUsername(user.getUsername()).getUsername() == null) {
             repo.insert(user);
             Toast.makeText(this, "New student inserted", Toast.LENGTH_SHORT).show();

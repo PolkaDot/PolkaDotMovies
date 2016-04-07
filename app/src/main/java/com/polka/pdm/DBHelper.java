@@ -37,21 +37,21 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) { //needed
         // creates user table
         final String createTableUser = "CREATE TABLE " + User.TABLE + " ("
-                + User.KEY_username + " TEXT PRIMARY KEY, "
-                + User.KEY_password + TEXT
-                + User.KEY_firstName + TEXT
-                + User.KEY_lastName + TEXT
-                + User.KEY_email + TEXT
-                + User.KEY_major + TEXT
-                + User.KEY_phone + TEXT
-                + User.KEY_interests + TEXT
-                + User.KEY_isLocked + " INTEGER, "
-                + User.KEY_isBanned + " INTEGER, "
-                + User.KEY_isAdmin + " INTEGER)";
+                + User.KEY_USERNAME + " TEXT PRIMARY KEY, "
+                + User.KEY_PASSWORD + TEXT
+                + User.KEY_FIRSTNAME + TEXT
+                + User.KEY_LASTNAME + TEXT
+                + User.KEY_EMAIL + TEXT
+                + User.KEY_MAJOR + TEXT
+                + User.KEY_PHONE + TEXT
+                + User.KEY_INTERESTS + TEXT
+                + User.KEY_ISLOCKED + " INTEGER, "
+                + User.KEY_ISBANNED + " INTEGER, "
+                + User.KEY_ISADMIN + " INTEGER)";
         db.execSQL(createTableUser);
         final String insertAdmin = "INSERT INTO " + User.TABLE
-                + " (" + User.KEY_username + COMMA + User.KEY_password + COMMA + User.KEY_firstName + COMMA
-                + User.KEY_lastName + COMMA + User.KEY_isAdmin + ") VALUES ("
+                + " (" + User.KEY_USERNAME + COMMA + User.KEY_PASSWORD + COMMA + User.KEY_FIRSTNAME + COMMA
+                + User.KEY_LASTNAME + COMMA + User.KEY_ISADMIN + ") VALUES ("
                 + "'admin', 'pass', 'polka', 'dots', 1);";
         db.execSQL(insertAdmin);
 

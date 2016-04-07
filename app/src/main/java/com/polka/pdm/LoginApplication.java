@@ -44,23 +44,23 @@ public class LoginApplication extends AppCompatActivity {
      */
     public void onLoginButtonPressed(View v) {  //we need the view in the method header
         Log.d("LOGIN ACTIVITY", "Login Button Pressed");
-        String Username = ((EditText) findViewById(R.id.usernameEdit)).getText().toString();
+        String username = ((EditText) findViewById(R.id.usernameEdit)).getText().toString();
         String password = ((EditText) findViewById(R.id.passwordEdit)).getText().toString();
 
 
-            if (checkInput(Username,password) == 0) {
+            if (checkInput(username, password) == 0) {
                 Toast.makeText(this, "Enter Username", Toast.LENGTH_SHORT).show();
 //                return true;
-            } else if (checkInput(Username,password)== -1) {
+            } else if (checkInput(username, password)== -1) {
                 Toast.makeText(this, "Enter Password", Toast.LENGTH_SHORT).show();
 //                return true;
-            } else if ((checkInput(Username,password)) == 1) {
+            } else if ((checkInput(username, password)) == 1) {
                 Toast.makeText(getApplicationContext(), "Enter UserName and Password", Toast.LENGTH_SHORT).show();
 //                return true;
             } else {
             UserRepo repo = new UserRepo(this); //create repository for users
             // Get user information from database
-            User user = repo.getUserByUsername(Username);
+            User user = repo.getUserByUsername(username);
 
             // Checks if an admin
             if (isAdmin(user)) {
@@ -80,15 +80,15 @@ public class LoginApplication extends AppCompatActivity {
     /**
      * it checks if the user has entered a username and password
      * and warns the user to input username and password
-     * @param Username username entered
+     * @param username username entered
      * @param password password entered
      */
-    public int checkInput(String Username,String password) {
+    public int checkInput(String username,String password) {
 
-        if(Username.isEmpty() && password.isEmpty()){
+        if(username.isEmpty() && password.isEmpty()){
             return -1;
         }
-        if(Username.isEmpty()) {
+        if(username.isEmpty()) {
             return 0;
         }
 
