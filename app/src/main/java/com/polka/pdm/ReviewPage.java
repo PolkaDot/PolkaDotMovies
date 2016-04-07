@@ -31,13 +31,14 @@ public class ReviewPage extends AppCompatActivity {
     private Review ratingObj;
     private Movie movie;
     private String movieName;
-    private int movieYear ;
+    private int movieYear;
     private User user;
     private String major;
     private String username;
 
     /**
      * Gets an object of the Review class
+     *
      * @return Object of review class
      */
     public Review getRatingObj() {
@@ -46,6 +47,7 @@ public class ReviewPage extends AppCompatActivity {
 
     /**
      * Sets an object of the Review class
+     *
      * @param ratingObj of review class
      */
     public void setRatingObj(Review ratingObj) {
@@ -54,6 +56,7 @@ public class ReviewPage extends AppCompatActivity {
 
     /**
      * Gets the year the movie was released
+     *
      * @return The year the movie was released
      */
     public int getMovieYear() {
@@ -62,6 +65,7 @@ public class ReviewPage extends AppCompatActivity {
 
     /**
      * Sets the year the movie was made.
+     *
      * @param movieYear the year the movie was made
      */
     public void setMovieYear(int movieYear) {
@@ -70,6 +74,7 @@ public class ReviewPage extends AppCompatActivity {
 
     /**
      * Gets the name of the movie
+     *
      * @return The name of the movie
      */
     public String getMovieName() {
@@ -78,6 +83,7 @@ public class ReviewPage extends AppCompatActivity {
 
     /**
      * Sets the name of the movie
+     *
      * @param movieName The name of the movie
      */
     public void setMovieName(String movieName) {
@@ -86,6 +92,7 @@ public class ReviewPage extends AppCompatActivity {
 
     /**
      * Gets the major of the user
+     *
      * @return The major of the user
      */
     public String getMajor() {
@@ -95,6 +102,7 @@ public class ReviewPage extends AppCompatActivity {
 
     /**
      * Sets the major of the user
+     *
      * @param major The major of the user
      */
     public void setMajor(String major) {
@@ -103,6 +111,7 @@ public class ReviewPage extends AppCompatActivity {
 
     /**
      * Gets the rated or not rated status of the user
+     *
      * @return True if the user has rated the movie and false if they haven't
      */
     public boolean isHasRated() {
@@ -112,6 +121,7 @@ public class ReviewPage extends AppCompatActivity {
 
     /**
      * Sets to true if the user has rated the movie false otherwise
+     *
      * @param hasRated True if the user has rated the movie false otherwise
      */
     public void setHasRated(boolean hasRated) {
@@ -120,6 +130,7 @@ public class ReviewPage extends AppCompatActivity {
 
     /**
      * Gets the movie object
+     *
      * @return The movie object
      */
     public Movie getMovie() {
@@ -129,6 +140,7 @@ public class ReviewPage extends AppCompatActivity {
 
     /**
      * Sets the movie object
+     *
      * @param movie the movie object
      */
     public void setMovie(Movie movie) {
@@ -137,6 +149,7 @@ public class ReviewPage extends AppCompatActivity {
 
     /**
      * Gets the rating of the movie
+     *
      * @return the rating of the movie
      */
     public float getRatings() {
@@ -146,6 +159,7 @@ public class ReviewPage extends AppCompatActivity {
 
     /**
      * sets the rating of the movie
+     *
      * @param ratings of the movie
      */
     public void setRatings(float ratings) {
@@ -154,6 +168,7 @@ public class ReviewPage extends AppCompatActivity {
 
     /**
      * Gets the user object
+     *
      * @return The user object
      */
     public User getUser() {
@@ -163,13 +178,16 @@ public class ReviewPage extends AppCompatActivity {
 
     /**
      * sets the user object
+     *
      * @param user the user object
      */
     public void setUser(User user) {
         this.user = user;
     }
+
     /**
      * Gets the username
+     *
      * @return The username
      */
     public String getUsername() {
@@ -178,6 +196,7 @@ public class ReviewPage extends AppCompatActivity {
 
     /**
      * sets the username
+     *
      * @param username the username
      */
     public void setUsername(String username) {
@@ -202,7 +221,7 @@ public class ReviewPage extends AppCompatActivity {
             }
         });
 
-       if (savedInstanceState == null) {
+        if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if (extras == null) {
                 movie = null;
@@ -223,7 +242,7 @@ public class ReviewPage extends AppCompatActivity {
         } else {
             user = savedInstanceState.getParcelable("user");
         }
-        if (movie != null){
+        if (movie != null) {
             movieName = movie.getTitle();
             movieYear = movie.getYear();
             TextView ratingTextViews = (TextView) findViewById(R.id.ratingTextView);
@@ -235,20 +254,21 @@ public class ReviewPage extends AppCompatActivity {
 
     /**
      * When you press submit, it should save the ratings for the movie
+     *
      * @param view of the viewAProfile Activity
      */
     public void onSubmitPress(View view) {
         EditText comment = (EditText) findViewById(R.id.reviewEditText);
         String comments = comment.getText().toString();
 
-        if (ratings == 0 && comment.length() == 0) {
+        if (ratingInfoNotEntered(comments, ratings)) {
             Toast.makeText(this, "Please enter either a review or rating before submitting!", Toast.LENGTH_SHORT).show();
             return;
         }
 
         // Insert user in database
         ReviewRepo ratingRepo = new ReviewRepo(this);
-        if (hasRated){
+        if (hasRated) {
             ratingObj = new Review(username, major, movieName, movieYear, ratings, comments);
 
         } else {
@@ -268,4 +288,12 @@ public class ReviewPage extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public boolean ratingInfoNotEntered(String comment, float rating) {
+        if (rating == 0 && comment.length() == 0) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
 }

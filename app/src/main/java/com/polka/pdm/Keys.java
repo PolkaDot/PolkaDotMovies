@@ -7,7 +7,7 @@ package com.polka.pdm;
  *
  * had ID but unused so removed
  */
-public interface Keys {
+interface Keys {
     String KEY_MOVIE = "movies";
     String KEY_TITLE = "title";
 }

@@ -81,6 +81,7 @@ public class RegistrationPage extends AppCompatActivity {
         }
         if (checkInfo(aFirstName, aLastName, aUsername, aEmail, aPassword) == 0) {
             Toast.makeText(this, "Must have valid email", Toast.LENGTH_SHORT).show();
+            return;
         }
 
         // Insert user in database
