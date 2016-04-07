@@ -9,7 +9,7 @@ import android.widget.TextView;
 /**
  * Activity when viewing a movie any movie
  * @author Esha Singh
- * @version
+ * @version 1.0
  */
 public class ViewMovie extends NavBar {
 
