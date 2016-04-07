@@ -48,10 +48,10 @@ public class ReviewPage extends AppCompatActivity {
     /**
      * Sets an object of the Review class
      *
-     * @param ratingObj of review class
+     * @param ratingObjs of review class
      */
-    public void setRatingObj(Review ratingObj) {
-        this.ratingObj = ratingObj;
+    public void setRatingObj(Review ratingObjs) {
+        this.ratingObj = ratingObjs;
     }
 
     /**
@@ -66,10 +66,10 @@ public class ReviewPage extends AppCompatActivity {
     /**
      * Sets the year the movie was made.
      *
-     * @param movieYear the year the movie was made
+     * @param movieYears the year the movie was made
      */
-    public void setMovieYear(int movieYear) {
-        this.movieYear = movieYear;
+    public void setMovieYear(int movieYears) {
+        this.movieYear = movieYears;
     }
 
     /**
@@ -84,10 +84,10 @@ public class ReviewPage extends AppCompatActivity {
     /**
      * Sets the name of the movie
      *
-     * @param movieName The name of the movie
+     * @param movieNames The name of the movie
      */
-    public void setMovieName(String movieName) {
-        this.movieName = movieName;
+    public void setMovieName(String movieNames) {
+        this.movieName = movieNames;
     }
 
     /**
@@ -103,10 +103,10 @@ public class ReviewPage extends AppCompatActivity {
     /**
      * Sets the major of the user
      *
-     * @param major The major of the user
+     * @param majors The major of the user
      */
-    public void setMajor(String major) {
-        this.major = major;
+    public void setMajor(String majors) {
+        this.major = majors;
     }
 
     /**
@@ -122,10 +122,10 @@ public class ReviewPage extends AppCompatActivity {
     /**
      * Sets to true if the user has rated the movie false otherwise
      *
-     * @param hasRated True if the user has rated the movie false otherwise
+     * @param hasRateds True if the user has rated the movie false otherwise
      */
-    public void setHasRated(boolean hasRated) {
-        this.hasRated = hasRated;
+    public void setHasRated(boolean hasRateds) {
+        this.hasRated = hasRateds;
     }
 
     /**
@@ -141,10 +141,10 @@ public class ReviewPage extends AppCompatActivity {
     /**
      * Sets the movie object
      *
-     * @param movie the movie object
+     * @param movies the movie object
      */
-    public void setMovie(Movie movie) {
-        this.movie = movie;
+    public void setMovie(Movie movies) {
+        this.movie = movies;
     }
 
     /**
@@ -160,10 +160,10 @@ public class ReviewPage extends AppCompatActivity {
     /**
      * sets the rating of the movie
      *
-     * @param ratings of the movie
+     * @param rating of the movie
      */
-    public void setRatings(float ratings) {
-        this.ratings = ratings;
+    public void setRatings(float rating) {
+        this.ratings = rating;
     }
 
     /**
@@ -179,10 +179,10 @@ public class ReviewPage extends AppCompatActivity {
     /**
      * sets the user object
      *
-     * @param user the user object
+     * @param users the user object
      */
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(User users) {
+        this.user = users;
     }
 
     /**
@@ -197,10 +197,10 @@ public class ReviewPage extends AppCompatActivity {
     /**
      * sets the username
      *
-     * @param username the username
+     * @param usernames the username
      */
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String usernames) {
+        this.username = usernames;
     }
 
 

@@ -21,11 +21,11 @@ import android.widget.Toast;
  */
 public class RegistrationPage extends AppCompatActivity {
 
-    EditText editTextFirstName;
-    EditText editTextLastName;
-    EditText editTextUserName;
-    EditText editTextEmail;
-    EditText editTextPassword;
+    private EditText editTextFirstName;
+    private EditText editTextLastName;
+    private EditText editTextUserName;
+    private EditText editTextEmail;
+    private EditText editTextPassword;
 
 
     @Override

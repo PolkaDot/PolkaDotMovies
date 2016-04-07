@@ -11,14 +11,15 @@ public class Review {
 
     public static final String TABLE = "Rating";
 
-    public static final String KEY_ratingId = "ratingId"; // primary key in db to keep unique
-    public static final String KEY_movie = "movie";
-    public static final String KEY_movieYear = "movieYear";
-    public static final String KEY_user = "user";
-    public static final String KEY_major = "major";
-    public static final String KEY_rating = "rating";
-    public static final String KEY_comment = "comment";
+    public static final String KEY_RATINGID = "ratingId"; // primary key in db to keep unique
+    public static final String KEY_MOVIE = "movie";
+    public static final String KEY_MOVIEYEAR = "movieYear";
+    public static final String KEY_USER = "user";
+    public static final String KEY_MAJOR = "major";
+    public static final String KEY_RATING = "rating";
+    public static final String KEY_COMMENT = "comment";
 
+    private int hashNum = 13;
     private String movie;
     private double rating;
     private String comment;
@@ -36,36 +37,36 @@ public class Review {
     /**
      * constructor with user, movie, and rating input, comment null
      *
-     * @param user who wrote the rating
-     * @param major of the user
-     * @param movie that rating is about
-     * @param movieYear year movie made
-     * @param comment about that movie
+     * @param users who wrote the rating
+     * @param majors of the user
+     * @param movies that rating is about
+     * @param movieYears year movie made
+     * @param comments about that movie
      */
-    public Review(String user, String major, String movie, int movieYear, String comment) {
-        this.user = user;
-        this.major = major;
-        this.movie = movie;
-        this.movieYear = movieYear;
-        this.comment = comment;
+    public Review(String users, String majors, String movies, int movieYears, String comments) {
+        this.user = users;
+        this.major = majors;
+        this.movie = movies;
+        this.movieYear = movieYears;
+        this.comment = comments;
     }
 
     /**
      * constructor with user, movie, rating, and comment
      *
-     * @param user who wrote the rating
-     * @param movie that rating is about
-     * @param movieYear that movie was made
-     * @param rating of that movie
-     * @param comment about that movie
+     * @param users who wrote the rating
+     * @param movies that rating is about
+     * @param movieYears that movie was made
+     * @param ratings of that movie
+     * @param comments about that movie
      */
-    public Review(String user, String major, String movie, int movieYear, double rating, String comment) {
-        this.user = user;
-        this.major = major;
-        this.movie = movie;
-        this.movieYear = movieYear;
-        this.rating = rating;
-        this.comment = comment;
+    public Review(String users, String majors, String movies, int movieYears, double ratings, String comments) {
+        this.user = users;
+        this.major = majors;
+        this.movie = movies;
+        this.movieYear = movieYears;
+        this.rating = ratings;
+        this.comment = comments;
     }
 
     /**
@@ -118,34 +119,34 @@ public class Review {
 
     /**
      * sets review's movie
-     * @param movie review is about
+     * @param movies review is about
      */
-    public void setMovie(String movie) {
-        this.movie = movie;
+    public void setMovie(String movies) {
+        this.movie = movies;
     }
 
     /**
      * sets review's rating
-     * @param rating of the movie
+     * @param ratings of the movie
      */
-    public void setRating(double rating) {
-        this.rating = rating;
+    public void setRating(double ratings) {
+        this.rating = ratings;
     }
 
     /**
      * sets review's comment
-     * @param comment about review
+     * @param comments about review
      */
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setComment(String comments) {
+        this.comment = comments;
     }
 
     /**
      * sets the movie's year
-     * @param movieYear of the movie
+     * @param movieYears of the movie
      */
-    public void setMovieYear(int movieYear) {
-        this.movieYear = movieYear;
+    public void setMovieYear(int movieYears) {
+        this.movieYear = movieYears;
     }
 
     /**
@@ -158,10 +159,10 @@ public class Review {
 
     /**
      * review's user's major
-     * @param major of the user
+     * @param majors of the user
      */
-    public void setMajor(String major) {
-        this.major = major;
+    public void setMajor(String majors) {
+        this.major = majors;
     }
 
 
@@ -183,7 +184,7 @@ public class Review {
 
     @Override
     public int hashCode() {
-        return (int) (13 * rating + comment.length());
+        return (int) (hashNum * rating + comment.length());
     }
 
 }
