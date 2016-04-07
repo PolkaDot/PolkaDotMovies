@@ -27,7 +27,6 @@
             android:id="@+id/flContent"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#F7BE39"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
             <TextView
@@ -35,7 +34,8 @@
                 android:layout_height="fill_parent"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:id="@+id/RecentDVDsTextView"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/appbackgroundlogo" />
 
             <!--<include layout="@layout/content_home_app" />-->
         </android.support.design.widget.AppBarLayout>
