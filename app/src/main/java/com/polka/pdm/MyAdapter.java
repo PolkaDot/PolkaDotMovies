@@ -30,8 +30,8 @@ public final class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> 
     }
 
     /**
-     * Sets the dataset
-     * @param myDataset dataset used to update the dataset in the adapter
+     * Sets the data set
+     * @param myDataset data set used to update the data set in the adapter
      */
     public void setData (Movie[] myDataset) {
         mDataset = myDataset.clone();
@@ -44,7 +44,7 @@ public final class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> 
      *
      * @param parent the parent view
      * @param viewType type of view
-     * @return viewholder made with populated items
+     * @return view holder made with populated items
      */
     @Override
     public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
@@ -52,7 +52,7 @@ public final class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> 
         // create a new view
         final View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.text_row_item, parent, false);
-        // set the view's size, margins, paddings and layout parameters
+        // set the view's size, margins, padding and layout parameters
 
         return new ViewHolder(v);
     }
@@ -60,21 +60,21 @@ public final class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> 
     /**
      * Replace the contents of a view (invoked by the layout manager)
      *
-     * @param holder the viewholder of the item
+     * @param holder the view holder of the item
      * @param position the position in the view
      */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        // - get element from your dataset at this position
+        // - get element from your data set at this position
         // - replace the contents of the view with that element
         holder.setItem(mDataset[position]);
 
     }
 
     /**
-     * Return the size of your dataset (invoked by the layout manager)
+     * Return the size of your data set (invoked by the layout manager)
      *
-     * @return length of dataset. if null, 0
+     * @return length of data set. if null, 0
      */
     @Override
     public int getItemCount() {
@@ -91,7 +91,7 @@ public final class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> 
      */
     public static final class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         /**
-         * current textview
+         * current text view
          */
         private final TextView mTextView;
         /**
@@ -117,7 +117,7 @@ public final class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> 
 
 
         /**
-         * Helper method to set the item in the recyclerview
+         * Helper method to set the item in the recycler view
          * @param item item to be set in the view
          */
         private void setItem(Movie item) {

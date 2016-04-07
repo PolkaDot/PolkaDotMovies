@@ -29,7 +29,7 @@ public class LoginApplication extends AppCompatActivity {
      *
      * @param v current view to go to
      */
-    public void onLoginCancelPressed(View v) {
+    public void onLoginCancelPressed(View v) {  //we need the view in the method header
         final Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
@@ -42,7 +42,7 @@ public class LoginApplication extends AppCompatActivity {
      * if so it takes you to the home screen of the app
      * @param v view that you are on
      */
-    public void onLoginButtonPressed(View v) {
+    public void onLoginButtonPressed(View v) {  //we need the view in the method header
         Log.d("LOGIN ACTIVITY", "Login Button Pressed");
         String Username = ((EditText) findViewById(R.id.usernameEdit)).getText().toString();
         String password = ((EditText) findViewById(R.id.passwordEdit)).getText().toString();
