@@ -64,7 +64,7 @@ public class LoginApplication extends AppCompatActivity {
 
             // Checks if an admin
             if (isAdmin(user)) {
-                Toast.makeText(this, "Logged in as Admin", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "Logged in as Admin", Toast.LENGTH_SHORT).show();
                 Intent startApp = new Intent(this, BlockUser.class);
                 startApp.putExtra("user", user); // just in case this is needed...
                 startActivity(startApp);
