@@ -13,7 +13,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -33,15 +32,19 @@ public class RecommendMovie extends NavBar {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommend_movie);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setToolbar((Toolbar) findViewById(R.id.toolbar));
+
+        setSupportActionBar(getToolbar());
 
         // BEGIN_INCLUDE (initializeRecyclerView)
         mRecyclerView = (RecyclerView) findViewById(R.id.moviesMajorRecylerView);
-        //
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        setMDrawer((DrawerLayout) findViewById(R.id.drawer_layout));
         NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
         setupDrawerContent(nvDrawer);
+
+        setDrawerToggle(setupDrawerToggle());
+        getMDrawer().setDrawerListener(getDrawerToggle());
 
         // Improves performance if you know that changes in content
         // do not change the layout size of the RecyclerView
@@ -55,8 +58,8 @@ public class RecommendMovie extends NavBar {
         mRecyclerView.setAdapter(mAdapter);
 
         //Toggle for nav bar
-        drawerToggle = setupDrawerToggle();
-        mDrawer.setDrawerListener(drawerToggle);
+//        drawerToggle = setupDrawerToggle();
+//        mDrawer.setDrawerListener(drawerToggle);
 
         // Grab data about user from extras
         if (savedInstanceState == null) {
@@ -80,13 +83,12 @@ public class RecommendMovie extends NavBar {
      * @param view View of the search Movies activity
      */
     public void onSearchMajorButtonPress(View view) {
-        Log.d("HEREEEEEEEEE", "HEEEEEEEEERRRRRRRRREEEEEEEEEE1");
         editTextSearchParam = (EditText) findViewById(R.id.MajorTextField);
         String searchParam =  editTextSearchParam.getText().toString();
 
         ReviewRepo repo = new ReviewRepo(this);
-        Movie[] movies = repo.getRatingsByMajor(searchParam, DATASET_COUNT);
-        mDataset = movies;
+        mDataset = repo.getRatingsByMajor(searchParam, DATASET_COUNT);
+//        mDataset = movies;
         ((MyAdapter)mAdapter).setData(mDataset);
 
 

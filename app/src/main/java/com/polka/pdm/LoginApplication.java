@@ -1,11 +1,7 @@
-/**
- * @author Christine Shih
- * @version 1.0
- * screen you see when you log in
- */
 package com.polka.pdm;
 
-import android.content.Context;
+//import statements
+//Mockito
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,65 +11,110 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * @author Christine Shih
+ * @version 1.0
+ * screen you see when you log in
+ */
 public class LoginApplication extends AppCompatActivity {
+    /**
+     * Number of times a user can attempt to login before being locked out
+     * of their account.
+     */
+    private static final int MAX_LOGIN_ATTEMPTS = 3;
+
     /**
      * when you press the cancel button,
      * it takes you back to the main activity
-     * @param v that we were are on
+     *
+     * @param v current view to go to
      */
     public void onLoginCancelPressed(View v) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
+
+
     /**
      * when you press login
      * it checks if your username and pass is legit
-     * if so it takes you to the homescreen of the app
+     * if so it takes you to the home screen of the app
      * @param v view that you are on
      */
     public void onLoginButtonPressed(View v) {
         Log.d("LOGIN ACTIVITY", "Login Button Pressed");
-        EditText nameBox = (EditText) findViewById(R.id.usernameEdit);
-        EditText passBox = (EditText) findViewById(R.id.passwordEdit);
-        CharSequence text;
+        String Username = ((EditText) findViewById(R.id.usernameEdit)).getText().toString();
+        String password = ((EditText) findViewById(R.id.passwordEdit)).getText().toString();
 
-        UserRepo repo = new UserRepo(this);
-        // Get user information from database
-        User user = repo.getUserByUsername(nameBox.getText().toString());
 
-        // Checks if an admin
-        if(isAdmin(user)){
-            text = "Logged in as Admin";
-            Intent startApp = new Intent(this, BlockUser.class);
-            startApp.putExtra("user", user); // just in case this is needed...
-            startActivity(startApp);
-
-        } else {
-            // is a regular user then...
-            // verify password
-            if (passBox.getText().toString().equals(user.getPassword()) && isNotLocked(user) && user.getIsBanned() != 1) {
-                text = "Login Success!";
-
-                Intent startApp = new Intent(this, HomeApp.class);
-                // Save user data for next activity
-                startApp.putExtra("user", user);
-                startActivity(startApp);
+            if (checkInput(Username,password) == 0) {
+                Toast.makeText(this, "Enter Username", Toast.LENGTH_SHORT).show();
+//                return true;
+            } else if (checkInput(Username,password)== -1) {
+                Toast.makeText(this, "Enter Password", Toast.LENGTH_SHORT).show();
+//                return true;
+            } else if ((checkInput(Username,password)) == 1) {
+                Toast.makeText(getApplicationContext(), "Enter UserName and Password", Toast.LENGTH_SHORT).show();
+//                return true;
             } else {
-                if (user.getIsBanned() == 1) {
-                    Toast.makeText(this, "YOU'RE BANNED FROM USING THIS!!!", Toast.LENGTH_SHORT).show();
-                } else {
-                    incrementLock(repo, user);
-                }
-                text = "Login Failure!";
+            UserRepo repo = new UserRepo(this); //create repository for users
+            // Get user information from database
+            User user = repo.getUserByUsername(Username);
+
+            // Checks if an admin
+            if (isAdmin(user)) {
+                Toast.makeText(this, "Logged in as Admin", Toast.LENGTH_SHORT).show();
+                Intent startApp = new Intent(this, BlockUser.class);
+                startApp.putExtra("user", user); // just in case this is needed...
+                startActivity(startApp);
+
+            } else {
+                // is a regular user then...
+                // verify password
+                regularUser(password, user, repo);
             }
         }
-
-        Context context = getApplicationContext();
-        int duration = Toast.LENGTH_SHORT;
-        Toast t = Toast.makeText(context, text, duration);
-        t.show();
     }
+
+    public int checkInput(String Username,String password) {
+        if(Username.isEmpty() && password.isEmpty()){
+            return -1;
+        }
+        if(Username.isEmpty()) {
+            return 0;
+        }
+
+        if(password.isEmpty()) {
+            return 1;
+        }
+
+        return 2;
+    }
+
+    /**
+     * In case of a regular user, checks if your username and pass is legit
+     * if so it takes you to the home screen of the app
+     * @param password the user entered
+     * @param user user user in question
+     * @param repo used in the database
+     */
+    private void regularUser(String password, User user, UserRepo repo) {
+        if (password.equals(user.getPassword()) && isNotLocked(user) && user.getIsBanned() != 1) {
+            Toast.makeText(this, "Login Success!!", Toast.LENGTH_SHORT).show();
+            Intent startApp = new Intent(this, HomeApp.class);
+            startApp.putExtra("user", user);
+            startActivity(startApp);
+        } else {
+            if (user.getIsBanned() == 1) {
+                Toast.makeText(this, "YOU'RE BANNED FROM USING THIS!!!", Toast.LENGTH_SHORT).show();
+            } else {
+                incrementLock(repo, user);
+            }
+            Toast.makeText(this, "Login Failed!!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     /**
      * method to check if user is admin or not
@@ -81,10 +122,9 @@ public class LoginApplication extends AppCompatActivity {
      * @return true if user is admin
      */
     private boolean isAdmin(User user) {
-        EditText pass = (EditText) findViewById(R.id.passwordEdit);
+        final EditText pass = (EditText) findViewById(R.id.passwordEdit);
         return user.getIsAdmin() == 1 && pass.getText().toString().equals(user.getPassword());
     }
-
 
     /**
      * method to check if user is locked or unlocked
@@ -92,7 +132,7 @@ public class LoginApplication extends AppCompatActivity {
      * @return true if user is not locked
      */
     private boolean isNotLocked(User user) {
-        return user.getIsLocked() != 3;
+        return user.getIsLocked() != MAX_LOGIN_ATTEMPTS;
     }
 
     /**
@@ -101,9 +141,9 @@ public class LoginApplication extends AppCompatActivity {
      * @param userRepo the connector to the database
      * @param user trying to login
      */
-    private void incrementLock(UserRepo userRepo, User user) {
+    public void incrementLock(UserRepo userRepo, User user) {
         if (user.getUsername() != null && user.getIsAdmin() != 1) {
-            if (user.getIsLocked() < 3) {
+            if (user.getIsLocked() < MAX_LOGIN_ATTEMPTS) {
                 userRepo.setLock(user.getUsername(), user.getIsLocked() + 1);
             } else {
                 Toast.makeText(this, "YOU'RE LOCKED OUT!!!", Toast.LENGTH_SHORT).show();
@@ -112,24 +152,12 @@ public class LoginApplication extends AppCompatActivity {
     }
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_application);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-//        Button btCancel = (Button) findViewById(R.id.cancelButton);
-//
-//        btCancel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                setResult(RESULT_OK);
-//                finish();
-//            }
-//        });
-
     }
 
 }

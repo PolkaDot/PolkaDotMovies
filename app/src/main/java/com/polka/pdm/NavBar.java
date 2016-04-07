@@ -3,7 +3,6 @@ package com.polka.pdm;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,43 +10,34 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 /**
- * attempt at Navigation bar class to have all methods in one place
+ * Navigation bar class to have all methods in one place
  *
- * Created by C. Shih on 3/4/2016.
+ * @author Created by C. Shih on 3/4/2016.
+ * @version 2.1
  */
 public abstract class NavBar extends AppCompatActivity {
 
-    protected DrawerLayout mDrawer;
-    protected Toolbar toolbar;
-    protected ActionBarDrawerToggle drawerToggle;
+    private DrawerLayout mDrawer;
+    private Toolbar toolbar;
+    private ActionBarDrawerToggle drawerToggle;
 
-//    User user;
     //Navigation bar stuff
-    protected User superuser;
+    //can't be abstract because every class would define the same thing
+    private User superuser;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //open close drawer
-//        switch(item.getItemId()) {
-//            case android.R.id.home:
-//                mDrawer.openDrawer(GravityCompat.START);
-//                return true;
-//        }
-//        return super.onOptionsItemSelected(item);
+        //cannot be replaced with 1 return statement because
+        //if it is false we need to check super.onOptionsItemSelected
+        //and must user super class to do that so must be extended
         if (drawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    //
-//    @Override
-//    public void onPostCreate(Bundle savedInstanceState) {
-//        super.onPostCreate(savedInstanceState);
-//        drawerToggle.syncState();
-//    }
-
     /**
      * sets up listener for the side bar
+     * can't be abstract because every class would define the same thing
      * @param navigationView the side bar
      */
     public void setupDrawerContent(NavigationView navigationView) {
@@ -68,78 +58,47 @@ public abstract class NavBar extends AppCompatActivity {
      * for directing you to the correct
      * new activity
      * and changing the appearances and stuff
-     * (like highlighing your selection)
+     * (like highlighting your selection)
+     * shouldn't be abstract because every class would define the same thing
      * @param menuItem the item that you pressed
      */
-    public void selectDrawerItem(MenuItem menuItem) {
+    private void selectDrawerItem(MenuItem menuItem) {
         //create new frag
         //determine what to show
-        Fragment fragment = null;
-        Class fragmentClass;
         Intent intent;
-//        Log.d("HomeApp","starting method");
         switch(menuItem.getItemId()) {
             case R.id.ViewProfile:
-//                fragmentClass = Frag.class;
                 intent = new Intent(this, ViewProfile.class);
                 break;
             case R.id.SearchMovies:
-//                fragmentClass = Frag.class;
-//                Log.d("HomeApp","searching movies");
                 intent = new Intent(this, SearchMovies.class);
-//                Log.d("HomeApp","searched movies");
                 break;
             case R.id.Movies:
                 intent = new Intent(this, RecentMovies.class);
-//                fragmentClass = Frag.class;
                 break;
             case R.id.DVDs:
                 intent = new Intent(this, RecentDvds.class);
-//                fragmentClass = Frag.class;
                 break;
             case R.id.Recommendations:
                 intent = new Intent(this, RecommendMovie.class);
-//                fragmentClass = Frag.class;
                 break;
             case R.id.LogOut:
-//                fragmentClass = Frag.class;
-//                Log.d("HomeApp","logging out");
                 intent = new Intent(this, MainActivity.class);
                 break;
-//            case R.id.Cancel:
-////                fragmentClass = Frag.class;
-////                Log.d("HomeApp","logging out");
-//                intent = new Intent(this, HomeApp.class);
-//                break;
             default:
-//                fragmentClass = Frag.class;
                 intent = new Intent(this, HomeApp.class);
         }
-//        try {
-//            fragment = (Fragment) fragmentClass.newInstance();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        //insert frag by replacing existing frag
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        fragmentManager.beginTransaction().replace(R.id.flContent,fragment).commit();
 
-        // Highlight the selected item
         menuItem.setChecked(true);
-//        Log.d("HomeApp", "checking item");
-        // update the title
         setTitle(menuItem.getTitle());
-//        Log.d("HomeApp", "creating title");
-        // close the drawer
         mDrawer.closeDrawers();
         intent.putExtra("user", superuser);
         startActivity(intent);
-
     }
 
     /**
      * allows us to create a new ActionBarDrawerToggle specific to our needs
+     * shouldn't be abstract because every class would define the same thing
      * @return a new ActionBarDrawer Toggle
      */
     public ActionBarDrawerToggle setupDrawerToggle() {
@@ -148,6 +107,7 @@ public abstract class NavBar extends AppCompatActivity {
 
     /**
      * allows us to change the state of the toolbar whenever we change config
+     * shouldn't be abstract because every class would define the same thing
      * @param newConfig the new configuration
      */
     public void onConfigurationChanged(Configuration newConfig) {
@@ -155,35 +115,69 @@ public abstract class NavBar extends AppCompatActivity {
         drawerToggle.onConfigurationChanged(newConfig);
     }
 
+    /**
+     * getter method for mDrawer
+     * shouldn't be abstract because every class would define the same thing
+     * @return mDrawer
+     */
     public DrawerLayout getMDrawer() {
         return this.mDrawer;
     }
-
+    /**
+     * getter method for toolbar
+     * shouldn't be abstract because every class would define the same thing
+     * @return toolbar
+     */
     public Toolbar getToolbar() {
         return this.toolbar;
     }
 
+    /**
+     * getter method for bar for drawer toggle
+     * shouldn't be abstract because every class would define the same thing
+     * @return drawer toggle
+     */
     public ActionBarDrawerToggle getDrawerToggle() {
         return this.drawerToggle;
     }
 
+    /**
+     * getter method for user
+     * shouldn't be abstract because every class would define the same thing
+     * @return user
+     */
     public User getUser() {
         return this.superuser;
     }
 
-
+    /**
+     * set method for mDrawer
+     * shouldn't be abstract because every class would define the same thing
+     */
     public void setMDrawer(DrawerLayout mDrawer) {
         this.mDrawer = mDrawer;
     }
 
+    /**
+     * set method for toolbar
+     * shouldn't be abstract because every class would define the same thing
+     */
     public void setToolbar(Toolbar toolbar) {
         this.toolbar = toolbar;
     }
 
+    /**
+     * set method for drawerToggle
+     * shouldn't be abstract because every class would define the same thing
+     */
     public void setDrawerToggle(ActionBarDrawerToggle drawerToggle) {
         this.drawerToggle = drawerToggle;
     }
 
+    /**
+     * set method for user
+     * shouldn't be abstract because every class would define the same thing
+     */
     public void setUser(User user) {
         this.superuser = user;
     }

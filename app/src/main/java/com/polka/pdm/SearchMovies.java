@@ -30,31 +30,40 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 public class SearchMovies extends NavBar {
-    // Size of response array
-    protected Movie[] mDataset;
-    private static final int DATASET_COUNT = 30;
+    private Movie[] mDataset;// response array
+    private static final int DATASET_COUNT = 30;// Size of response array
 
-    // Needed for recycler view
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-    // search param
-    EditText editTextSearchParam;
-    private User user;
+    private RecyclerView.Adapter mAdapter;//needed for recycler view
+
+    private User user;//the user that wants to search the movie
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Needed for recycler view
+        RecyclerView mRecyclerView;
+        RecyclerView.LayoutManager mLayoutManager;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_movies);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+
+        setToolbar((Toolbar) findViewById(R.id.toolbar));
+
+        setSupportActionBar(getToolbar());
+
+        setMDrawer((DrawerLayout) findViewById(R.id.drawer_layout));
+        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
+        setupDrawerContent(nvDrawer);
+
+        setDrawerToggle(setupDrawerToggle());
+        getMDrawer().setDrawerListener(getDrawerToggle());
 
         // BEGIN_INCLUDE (initializeRecyclerView)
         mRecyclerView = (RecyclerView) findViewById(R.id.moviesRecylerView);
         //
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
-        setupDrawerContent(nvDrawer);
+//        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
+//        setupDrawerContent(nvDrawer);
 
         // improves performance if you know that changes in content do not change the layout size
         // of the RecyclerView
@@ -67,9 +76,9 @@ public class SearchMovies extends NavBar {
         mAdapter = new MyAdapter(mDataset);
         mRecyclerView.setAdapter(mAdapter);
 
-        //toggle for nav bar
-        drawerToggle = setupDrawerToggle();
-        mDrawer.setDrawerListener(drawerToggle);
+//        //toggle for nav bar
+//        drawerToggle = setupDrawerToggle();
+//        mDrawer.setDrawerListener(drawerToggle);
 
         // Grab data about user from extras
         if (savedInstanceState == null) {
@@ -91,6 +100,7 @@ public class SearchMovies extends NavBar {
      * @param view of the search Movies activity
      */
     public void onSearchButtonPress(View view) {
+        EditText editTextSearchParam;
         editTextSearchParam = (EditText) findViewById(R.id.searchMovie);
         String searchParam =  editTextSearchParam.getText().toString();
         sendJSONRequest(searchParam);
@@ -101,7 +111,7 @@ public class SearchMovies extends NavBar {
      * Sends a JSON request to the Rotten Tomato API using the search parameter
      * specified by the user
      *
-     * @param searchParam The parameter inputed by user to search for a movie
+     * @param searchParam The parameter input by user to search for a movie
      */
     private void sendJSONRequest(String searchParam) {
         String apiKey = "yedukp76ffytfuy24zsqk7f5";
@@ -115,22 +125,22 @@ public class SearchMovies extends NavBar {
         }
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.GET, baseUrl + searchUrl, (String)null, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject resp) {
-                        //handle a valid response coming back.  Getting this string mainly for debug
-                        mDataset = parseJSONObject(resp);
-                        // update data in the adapter
-                        ((MyAdapter)mAdapter).setData(mDataset);
+            (Request.Method.GET, baseUrl + searchUrl, (String)null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject resp) {
+                //handle a valid response coming back.  Getting this string mainly for debug
+                mDataset = parseJSONObject(resp);
+                // update data in the adapter
+                ((MyAdapter)mAdapter).setData(mDataset);
 
-                    }
-                }, new Response.ErrorListener() {
+            }
+        }, new Response.ErrorListener() {
 
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // err
-                    }
-                });
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // err
+                        }
+                    });
 
         // Access the RequestQueue through your singleton class.
         MySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
@@ -144,11 +154,11 @@ public class SearchMovies extends NavBar {
      * @return Array of 10 movie titles that match search
      */
     private Movie[] parseJSONObject(JSONObject response) {
+        Movie[] data = new Movie[DATASET_COUNT];
         if (response == null || response.length() == 0) {
-            return null;
+            return data;
         }
         try {
-            Movie[] data = new Movie[DATASET_COUNT];
             JSONArray arrayMovies = response.getJSONArray("movies");
             for (int i = 0; i < arrayMovies.length() && i < DATASET_COUNT; i++) {
                 JSONObject currentMovie = arrayMovies.getJSONObject(i);

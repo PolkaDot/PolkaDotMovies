@@ -1,35 +1,36 @@
 package com.polka.pdm;
 
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+
+/**
+ * Block the user
+ * @author Alisha
+ * @version 1.0
+ */
 
 public class BlockUser extends AppCompatActivity {
-    User user;
-    UserRepo userRepo;
-
-    // Needed for recycler view
-    protected User[] mDataset;
-
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState); //needed
+        User[] dataSet; //need for recycler view aka m-Data-set
+
+        RecyclerView mRecyclerView;
+        RecyclerView.Adapter mAdapter;
+        RecyclerView.LayoutManager mLayoutManager;
+
+
         setContentView(R.layout.activity_block_user);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
         UserRepo repo = new UserRepo(this);
-        mDataset = repo.getAllUsers();
+        dataSet = repo.getAllUsers();
         // BEGIN_INCLUDE (initializeRecyclerView)
         mRecyclerView = (RecyclerView) findViewById(R.id.userAdminRecyclerView);
         //
@@ -43,10 +44,11 @@ public class BlockUser extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new MyUserAdapter(mDataset);
+        mAdapter = new MyUserAdapter(dataSet);
         mRecyclerView.setAdapter(mAdapter);
 
-        //get the user from extras
+//        get the user from extras
+        User user; //I'm using it in this conditional below
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if (extras == null) {
@@ -57,33 +59,6 @@ public class BlockUser extends AppCompatActivity {
         } else {
             user = savedInstanceState.getParcelable("user");
         }
-    }
-
-    /**
-     * /**
-     * when you press the ban button,
-     * it bans the selected user
-     * @param w that we were are on
-     *
-     */
-    public void onBanButtonPress(View w) {
-        UserRepo repo = new UserRepo(this);
-        repo.setBanned(user.getUsername(), 1);
-//        // Get user information from database
-//        User user = repo.getUserByUsername(user.toString());
-
-    }
-
-    /**
-     * /**
-     * when you press the lock button,
-     * it lock the selected user
-     * @param w that we were are on
-     *
-     */
-    public void onLockButtonPress(View w) {
-        UserRepo repo = new UserRepo(this);
-        repo.setLock(user.getUsername(),1);
     }
 
 }

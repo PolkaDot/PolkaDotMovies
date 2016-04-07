@@ -1,10 +1,8 @@
 package com.polka.pdm;
 
-import android.media.Rating;
-import android.widget.TextView;
-
 /**
- * Ratings AND COMMENTS class (but we wanted the name to be short hehehe)
+ * Ratings AND COMMENTS class
+ * Holds information regarding a review for a movie
  * Created by Arsh on 2/23/16.
  * @author Arsh
  * @version 1.0
@@ -13,7 +11,7 @@ public class Review {
 
     public static final String TABLE = "Rating";
 
-    public static final String KEY_ratingId = "ratingId";
+    public static final String KEY_ratingId = "ratingId"; // primary key in db to keep unique
     public static final String KEY_movie = "movie";
     public static final String KEY_movieYear = "movieYear";
     public static final String KEY_user = "user";
@@ -25,7 +23,7 @@ public class Review {
     private double rating;
     private String comment;
     private int movieYear;
-    private  String user;
+    private String user;
     private String major;
 
     /*
@@ -49,9 +47,7 @@ public class Review {
         this.major = major;
         this.movie = movie;
         this.movieYear = movieYear;
-        this.rating = -1 ;
         this.comment = comment;
-
     }
 
     /**
@@ -181,7 +177,8 @@ public class Review {
             return false;
         }
         Review that = (Review) object;
-        return this.movie.equals(that.movie) && this.rating == that.rating && this.user.equals(that.user);
+        return this.movie.equals(that.movie) && this.rating == that.rating
+                && this.user.equals(that.user);
     }
 
     @Override

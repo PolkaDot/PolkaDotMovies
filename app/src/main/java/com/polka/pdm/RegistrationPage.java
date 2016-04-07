@@ -14,6 +14,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * @author Alisha KC
+ * @version 1.0
+ * when you want to create a new user
+ */
 public class RegistrationPage extends AppCompatActivity {
 
     EditText editTextFirstName;
@@ -50,8 +55,6 @@ public class RegistrationPage extends AppCompatActivity {
         Log.d("Cancel", "Cancel Button Pressed");
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-//        Intent intent = new Intent(this, SearchMovies.class);
-//        startActivity(intent);
     }
 
     /**
@@ -62,7 +65,6 @@ public class RegistrationPage extends AppCompatActivity {
      *
      * @param  v  the view of the Register button that is clicked
      */
-
     public void onRegisterButtonPress(View v ) {
         Log.d("Register", "Register Button Pressed");
 
@@ -72,14 +74,13 @@ public class RegistrationPage extends AppCompatActivity {
         String aEmail = editTextEmail.getText().toString();
         String aPassword = editTextPassword.getText().toString();
 
-        if (aFirstName.length() == 0 || aLastName.length() == 0 || aUsername.length() == 0 || aEmail.length() == 0 || aPassword.length() == 0) {
+        if (checkInfo(aFirstName, aLastName, aUsername, aEmail, aPassword) == -1) {
             Toast.makeText(this, "First Name, Last Name, Username, Password, and Email must all be filled!", Toast.LENGTH_SHORT).show();
+
             return;
         }
-
-        if (!aEmail.contains("@")) {
+        if (checkInfo(aFirstName, aLastName, aUsername, aEmail, aPassword) == 0) {
             Toast.makeText(this, "Must have valid email", Toast.LENGTH_SHORT).show();
-            return;
         }
 
         // Insert user in database
@@ -98,7 +99,6 @@ public class RegistrationPage extends AppCompatActivity {
         if (repo.getUserByUsername(user.getUsername()).getUsername() == null) {
             repo.insert(user);
             Toast.makeText(this, "New student inserted", Toast.LENGTH_SHORT).show();
-//            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
 
             // Switch to Edit Profile Activity
             Intent intent = new Intent(this, EditProfile.class);
@@ -108,6 +108,32 @@ public class RegistrationPage extends AppCompatActivity {
             Toast.makeText(this, "Username already in use.", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+
+    /**
+     * checks to see if user has filled out all fields of registration page
+     *
+     * @param aFirstName of new registered user
+     * @param aLastName of new registered user
+     * @param aUsername of new registered user
+     * @param aEmail of new registered user
+     * @param aPassword of new registered user
+     * @return whether or not all fields are filled
+     */
+    public int checkInfo(String aFirstName, String aLastName, String aUsername, String aEmail, String aPassword) {
+        if (aFirstName.length() == 0 || aLastName.length() == 0 || aUsername.length() == 0 || aEmail.length() == 0 || aPassword.length() == 0) {
+            // needs all fields filled in
+            return -1;
+        }
+
+
+        if (!aEmail.contains("@")) {
+            // need valid looking email, just checks for @ now...
+            return 0;
+        }
+
+        return 1;
     }
 
 }

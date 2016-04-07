@@ -33,7 +33,7 @@
         android:textSize="30dp"
         android:layout_below="@+id/EditProfile"
         android:layout_alignParentStart="true" />
->>>>>>> 50479638fd1fc6167e3291f9046107a367b3c4f6
+
 
     <TextView
         android:layout_width="wrap_content"

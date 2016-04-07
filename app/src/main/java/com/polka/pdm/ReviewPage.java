@@ -1,3 +1,4 @@
+
 /**
  * Allows user to submit movie review
  *
@@ -17,6 +18,12 @@ import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+/**
+ * @author Alisha
+ *
+ * Review page activity so user can review a movie and comment on it
+ */
 public class ReviewPage extends AppCompatActivity {
 
     private float ratings;
@@ -216,14 +223,14 @@ public class ReviewPage extends AppCompatActivity {
         } else {
             user = savedInstanceState.getParcelable("user");
         }
-
-        movieName = movie.getTitle();
-        movieYear = movie.getYear();
-        TextView ratingTextViews = (TextView) findViewById(R.id.ratingTextView);
-        ratingTextViews.setText(movieName);
-        username = user.getUsername();
-        major = user.getMajor();
-
+        if (movie != null){
+            movieName = movie.getTitle();
+            movieYear = movie.getYear();
+            TextView ratingTextViews = (TextView) findViewById(R.id.ratingTextView);
+            ratingTextViews.setText(movieName);
+            username = user.getUsername();
+            major = user.getMajor();
+        }
     }
 
     /**
@@ -249,19 +256,16 @@ public class ReviewPage extends AppCompatActivity {
         }
 
         // insert user already rated the movie
-        if (true) {
-            long check = ratingRepo.insert(ratingObj);
-            if (check == -1) {
-                Toast.makeText(this, "Updated your previous review :D", Toast.LENGTH_SHORT).show();
-            }
-            Toast.makeText(this, "Thanks for the rating!", Toast.LENGTH_SHORT).show();
-            // Switch to Edit Profile Activity
-            Intent intent = new Intent(this, HomeApp.class);
-            intent.putExtra("user", user);
-            startActivity(intent);
-        } else {
-            Toast.makeText(this, "Already rated.", Toast.LENGTH_SHORT).show();
+        long check = ratingRepo.insert(ratingObj);
+        if (check == -1) {
+            Toast.makeText(this, "Updated your previous review :D", Toast.LENGTH_SHORT).show();
         }
+        Toast.makeText(this, "Thanks for the rating!", Toast.LENGTH_SHORT).show();
+
+        // Switch to Edit Profile Activity
+        Intent intent = new Intent(this, HomeApp.class);
+        intent.putExtra("user", user);
+        startActivity(intent);
     }
 
 }
