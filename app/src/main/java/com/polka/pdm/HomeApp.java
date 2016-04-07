@@ -36,6 +36,7 @@ public class HomeApp extends NavBar {
      * user string for extra
      */
     private String userString = "user";
+
     //when we create this activity, there are some things we need to do first
     // hence the name on create
     //we totally need this

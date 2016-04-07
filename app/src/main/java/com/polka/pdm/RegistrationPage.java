@@ -21,11 +21,11 @@ import android.widget.Toast;
  */
 public class RegistrationPage extends AppCompatActivity {
 
-    EditText editTextFirstName;
-    EditText editTextLastName;
-    EditText editTextUserName;
-    EditText editTextEmail;
-    EditText editTextPassword;
+    private EditText editTextFirstName;
+    private EditText editTextLastName;
+    private EditText editTextUserName;
+    private EditText editTextEmail;
+    private EditText editTextPassword;
 
 
     @Override
@@ -121,7 +121,7 @@ public class RegistrationPage extends AppCompatActivity {
      * @param aPassword of new registered user
      * @return whether or not all fields are filled
      */
-    public int checkInfo(String aFirstName, String aLastName, String aUsername, String aEmail, String aPassword) {
+    int checkInfo(String aFirstName, String aLastName, String aUsername, String aEmail, String aPassword) {
         if (aFirstName.length() == 0 || aLastName.length() == 0 || aUsername.length() == 0 || aEmail.length() == 0 || aPassword.length() == 0) {
             // needs all fields filled in
             return -1;

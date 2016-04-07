@@ -55,7 +55,7 @@ public abstract class NavBar extends AppCompatActivity {
      * can't be abstract because every class would define the same thing
      * @param navigationView the side bar
      */
-    public void setupDrawerContent(NavigationView navigationView) {
+    void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -116,7 +116,7 @@ public abstract class NavBar extends AppCompatActivity {
      * shouldn't be abstract because every class would define the same thing
      * @return a new ActionBarDrawer Toggle
      */
-    public ActionBarDrawerToggle setupDrawerToggle() {
+    ActionBarDrawerToggle setupDrawerToggle() {
         return new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.drawer_open, R.string.drawer_close);
     }
 
@@ -135,7 +135,7 @@ public abstract class NavBar extends AppCompatActivity {
      * shouldn't be abstract because every class would define the same thing
      * @return mDrawer
      */
-    public DrawerLayout getMDrawer() {
+    DrawerLayout getMDrawer() {
         return this.mDrawer;
     }
     /**
@@ -143,7 +143,7 @@ public abstract class NavBar extends AppCompatActivity {
      * shouldn't be abstract because every class would define the same thing
      * @return toolbar
      */
-    public Toolbar getToolbar() {
+    Toolbar getToolbar() {
         return this.toolbar;
     }
 
@@ -152,7 +152,7 @@ public abstract class NavBar extends AppCompatActivity {
      * shouldn't be abstract because every class would define the same thing
      * @return drawer toggle
      */
-    public ActionBarDrawerToggle getDrawerToggle() {
+    ActionBarDrawerToggle getDrawerToggle() {
         return this.drawerToggle;
     }
 
@@ -183,9 +183,9 @@ public abstract class NavBar extends AppCompatActivity {
      */
     public void setToolbar(Toolbar atoolbar) {
         this.toolbar = atoolbar;
-    }
+     }
 
-    /**
+     /**
      * set method for drawerToggle
      * shouldn't be abstract because every class would define the same thing
      *

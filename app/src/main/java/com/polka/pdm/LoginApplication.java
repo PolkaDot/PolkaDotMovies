@@ -84,6 +84,7 @@ public class LoginApplication extends AppCompatActivity {
      * @param password password entered
      */
     public int checkInput(String Username,String password) {
+
         if(Username.isEmpty() && password.isEmpty()){
             return -1;
         }
@@ -147,7 +148,7 @@ public class LoginApplication extends AppCompatActivity {
      * @param userRepo the connector to the database
      * @param user trying to login
      */
-    public void incrementLock(UserRepo userRepo, User user) {
+    private void incrementLock(UserRepo userRepo, User user) {
         if (user.getUsername() != null && user.getIsAdmin() != 1) {
             if (user.getIsLocked() < MAX_LOGIN_ATTEMPTS) {
                 userRepo.setLock(user.getUsername(), user.getIsLocked() + 1);
