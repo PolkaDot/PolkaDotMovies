@@ -76,7 +76,6 @@ public class RegistrationPage extends AppCompatActivity {
 
         if (checkInfo(aFirstName, aLastName, aUsername, aEmail, aPassword) == -1) {
             Toast.makeText(this, "First Name, Last Name, Username, Password, and Email must all be filled!", Toast.LENGTH_SHORT).show();
-
             return;
         }
         if (checkInfo(aFirstName, aLastName, aUsername, aEmail, aPassword) == 0) {
