@@ -30,7 +30,7 @@ public class LoginApplication extends AppCompatActivity {
      * @param v current view to go to
      */
     public void onLoginCancelPressed(View v) {
-        Intent intent = new Intent(this, MainActivity.class);
+        final Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
