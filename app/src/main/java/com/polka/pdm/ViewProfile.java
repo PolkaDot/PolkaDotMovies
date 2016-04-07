@@ -66,7 +66,7 @@ public class ViewProfile extends NavBar {
         userTextView.setText(user.getUsername());
         emailTextView.setText(user.getEmail());
         majorTextView.setText(user.getMajor());
-        passTextView.setText(user.getPhone());
+        passTextView.setText(user.getPassword());
         interestsTextView.setText(user.getInterests());
     }
 

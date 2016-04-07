@@ -30,7 +30,7 @@ public class LoginApplication extends AppCompatActivity {
      * @param v current view to go to
      */
     public void onLoginCancelPressed(View v) {
-        Intent intent = new Intent(this, MainActivity.class);
+        final Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
@@ -77,6 +77,12 @@ public class LoginApplication extends AppCompatActivity {
         }
     }
 
+    /**
+     * it checks if the user has entered a username and password
+     * and warns the user to input username and password
+     * @param Username username entered
+     * @param password password entered
+     */
     public int checkInput(String Username,String password) {
         if(Username.isEmpty() && password.isEmpty()){
             return -1;

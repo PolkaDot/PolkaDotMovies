@@ -181,7 +181,12 @@ public class UserRepo {
         ContentValues values = new ContentValues();
         values.put(User.KEY_username, newUser);
 
+
+        String where = User.KEY_username + " = ?";
+        String[] whereArgs = {user};
+
         // update
+        db.update(User.TABLE, values, where, whereArgs);
         db.close();
     }
 
@@ -197,6 +202,12 @@ public class UserRepo {
 
         ContentValues values = new ContentValues();
         values.put(User.KEY_firstName, name);
+
+        String where = User.KEY_username + " = ?";
+        String[] whereArgs = {user};
+
+        // update
+        db.update(User.TABLE, values, where, whereArgs);
 
         db.close();
     }
@@ -214,6 +225,12 @@ public class UserRepo {
         ContentValues values = new ContentValues();
         values.put(User.KEY_lastName, name);
 
+        String where = User.KEY_username + " = ?";
+        String[] whereArgs = {user};
+
+        // update
+        db.update(User.TABLE, values, where, whereArgs);
+
         db.close();
     }
 
@@ -229,6 +246,12 @@ public class UserRepo {
 
         ContentValues values = new ContentValues();
         values.put(User.KEY_password, pass);
+
+        String where = User.KEY_username + " = ?";
+        String[] whereArgs = {user};
+
+        // update
+        db.update(User.TABLE, values, where, whereArgs);
 
         db.close();
     }
@@ -246,6 +269,12 @@ public class UserRepo {
         ContentValues values = new ContentValues();
         values.put(User.KEY_email, email);
 
+        String where = User.KEY_username + " = ?";
+        String[] whereArgs = {user};
+
+        // update
+        db.update(User.TABLE, values, where, whereArgs);
+
         db.close();
     }
 
@@ -261,6 +290,12 @@ public class UserRepo {
 
         ContentValues values = new ContentValues();
         values.put(User.KEY_phone, phone);
+
+        String where = User.KEY_username + " = ?";
+        String[] whereArgs = {user};
+
+        // update
+        db.update(User.TABLE, values, where, whereArgs);
 
         db.close();
     }
@@ -278,6 +313,12 @@ public class UserRepo {
         ContentValues values = new ContentValues();
         values.put(User.KEY_major, major);
 
+        String where = User.KEY_username + " = ?";
+        String[] whereArgs = {user};
+
+        // update
+        db.update(User.TABLE, values, where, whereArgs);
+
         db.close();
     }
 
@@ -293,6 +334,12 @@ public class UserRepo {
 
         ContentValues values = new ContentValues();
         values.put(User.KEY_interests, interests);
+
+        String where = User.KEY_username + " = ?";
+        String[] whereArgs = {user};
+
+        // update
+        db.update(User.TABLE, values, where, whereArgs);
 
         db.close();
     }
@@ -310,6 +357,12 @@ public class UserRepo {
         ContentValues values = new ContentValues();
         values.put(User.KEY_isLocked, isLock);
 
+        String where = User.KEY_username + " = ?";
+        String[] whereArgs = {user};
+
+        // update
+        db.update(User.TABLE, values, where, whereArgs);
+
         db.close();
     }
 
@@ -325,6 +378,12 @@ public class UserRepo {
 
         ContentValues values = new ContentValues();
         values.put(User.KEY_isBanned, isBanned);
+
+        String where = User.KEY_username + " = ?";
+        String[] whereArgs = {user};
+
+        // update
+        db.update(User.TABLE, values, where, whereArgs);
 
         db.close();
     }
