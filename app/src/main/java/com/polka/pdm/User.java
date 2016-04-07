@@ -49,7 +49,7 @@ public class User implements Parcelable {
 
 
     /**
-     * constructor for user, with username, password, firstname, lastname
+     * constructor for user, with username, password, first name, last name
      * as parameters, testing mostly
      *
      * @param aUsername of the user
@@ -205,7 +205,7 @@ public class User implements Parcelable {
     }
 
     /**
-     * sets user's firstname
+     * sets user's first name
      * @param firstName of the user
      */
     public void setFirstName(String firstName) {

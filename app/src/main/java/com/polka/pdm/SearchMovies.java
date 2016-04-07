@@ -99,7 +99,7 @@ public class SearchMovies extends NavBar {
      *
      * @param view of the search Movies activity
      */
-    public void onSearchButtonPress(View view) {
+    public void onSearchButtonPress(View view) { //we need the view in the method header
         EditText editTextSearchParam;
         editTextSearchParam = (EditText) findViewById(R.id.searchMovie);
         String searchParam =  editTextSearchParam.getText().toString();

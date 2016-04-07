@@ -15,7 +15,7 @@ import android.util.Log;
  * Updated by Y. Avila-Stanley
  */
 public class UserRepo {
-    private DBHelper dbHelper;//database helper
+    private final DBHelper dbHelper;//database helper
 
     /**
      * Create of db helper
@@ -96,14 +96,14 @@ public class UserRepo {
             } while (cursor.moveToNext() && i < users.length);
         }
 
-        for (int i = 0; i < users.length; i++) {
-            User t = users[i];
-            Log.d("AAA", "has a user");
-
-            if (t != null) {
-                Log.d("BBB", "username: " + t.getUsername());
-            }
-        }
+//        for (int i = 0; i < users.length; i++) {
+//            User t = users[i];
+//            Log.d("AAA", "has a user");
+//
+//            if (t != null) {
+//                Log.d("BBB", "username: " + t.getUsername());
+//            }
+//        }
         cursor.close();
         db.close();
         return users;
@@ -168,27 +168,27 @@ public class UserRepo {
         setInterests(user, interests);
     }
 
-    /**
-     * setter for user
-     * @param user name of user
-     * @param newUser new username
-     */
-    public void setUsername(String user, String newUser) {
-
-        // open connection to write data
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(User.KEY_username, newUser);
-
-
-        String where = User.KEY_username + " = ?";
-        String[] whereArgs = {user};
-
-        // update
-        db.update(User.TABLE, values, where, whereArgs);
-        db.close();
-    }
+//    /**
+//     * setter for user
+//     * @param user name of user
+//     * @param newUser new username
+//     */
+//    public void setUsername(String user, String newUser) {
+//
+//        // open connection to write data
+//        SQLiteDatabase db = dbHelper.getWritableDatabase();
+//
+//        ContentValues values = new ContentValues();
+//        values.put(User.KEY_username, newUser);
+//
+//
+//        String where = User.KEY_username + " = ?";
+//        String[] whereArgs = {user};
+//
+//        // update
+//        db.update(User.TABLE, values, where, whereArgs);
+//        db.close();
+//    }
 
     /**
      * setter for first name
