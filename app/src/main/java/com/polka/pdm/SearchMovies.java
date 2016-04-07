@@ -30,11 +30,26 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 public class SearchMovies extends NavBar {
+
+    /**
+     * dataset for movie
+     */
     private Movie[] mDataset;// response array
+
+    /**
+     * final count for what is in data set
+     */
     private static final int DATASET_COUNT = 30;// Size of response array
 
+    /**
+     * recycler view
+     */
     private RecyclerView.Adapter mAdapter;//needed for recycler view
 
+
+    /**
+     * user using it
+     */
     private User user;//the user that wants to search the movie
 
     @Override
@@ -52,7 +67,7 @@ public class SearchMovies extends NavBar {
         setSupportActionBar(getToolbar());
 
         setMDrawer((DrawerLayout) findViewById(R.id.drawer_layout));
-        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
+        final NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
         setupDrawerContent(nvDrawer);
 
         setDrawerToggle(setupDrawerToggle());
@@ -82,7 +97,7 @@ public class SearchMovies extends NavBar {
 
         // Grab data about user from extras
         if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
+            final Bundle extras = getIntent().getExtras();
             if (extras == null) {
                 user = null;
             } else {
@@ -102,7 +117,7 @@ public class SearchMovies extends NavBar {
     public void onSearchButtonPress(View view) { //we need the view in the method header
         EditText editTextSearchParam;
         editTextSearchParam = (EditText) findViewById(R.id.searchMovie);
-        String searchParam =  editTextSearchParam.getText().toString();
+        final String searchParam =  editTextSearchParam.getText().toString();
         sendJSONRequest(searchParam);
 
     }
@@ -114,33 +129,36 @@ public class SearchMovies extends NavBar {
      * @param searchParam The parameter input by user to search for a movie
      */
     private void sendJSONRequest(String searchParam) {
-        String apiKey = "yedukp76ffytfuy24zsqk7f5";
-        String baseUrl = "http://api.rottentomatoes.com/api/public/v1.0/";
+        final String apiKey = "yedukp76ffytfuy24zsqk7f5";
+        final String baseUrl = "http://api.rottentomatoes.com/api/public/v1.0/";
         String searchUrl = null;
         try {
             searchUrl = "movies.json?apikey=" + apiKey + "&q=" + URLEncoder.encode(searchParam, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             // UTF-8 should always be supported; can safely ignore
-            e.printStackTrace();
+//            e.printStackTrace();
+            Log.d("Unsupported", "UnsupportedEncodingException");
+
         }
 
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest
-            (Request.Method.GET, baseUrl + searchUrl, (String)null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject resp) {
-                //handle a valid response coming back.  Getting this string mainly for debug
-                mDataset = parseJSONObject(resp);
-                // update data in the adapter
-                ((MyAdapter)mAdapter).setData(mDataset);
 
-            }
-        }, new Response.ErrorListener() {
 
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            // err
-                        }
-                    });
+        final JsonObjectRequest jsObjRequest =
+                new JsonObjectRequest(Request.Method.GET, baseUrl + searchUrl, (String)null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject resp) {
+                        //handle a valid response coming back.  Getting this string mainly for debug
+                        mDataset = parseJSONObject(resp);
+                        // update data in the adapter
+                        ((MyAdapter)mAdapter).setData(mDataset);
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // err
+                    }
+                });
 
         // Access the RequestQueue through your singleton class.
         MySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
@@ -154,18 +172,18 @@ public class SearchMovies extends NavBar {
      * @return Array of 10 movie titles that match search
      */
     private Movie[] parseJSONObject(JSONObject response) {
-        Movie[] data = new Movie[DATASET_COUNT];
+        final Movie[] data = new Movie[DATASET_COUNT];
         if (response == null || response.length() == 0) {
             return data;
         }
         try {
-            JSONArray arrayMovies = response.getJSONArray("movies");
+            final JSONArray arrayMovies = response.getJSONArray("movies");
             for (int i = 0; i < arrayMovies.length() && i < DATASET_COUNT; i++) {
-                JSONObject currentMovie = arrayMovies.getJSONObject(i);
-                String title = currentMovie.getString(Keys.KEY_TITLE);
-                int year = currentMovie.getInt("year");
-                String synopsis = currentMovie.getString("synopsis");
-                JSONObject posters = currentMovie.getJSONObject("posters");
+                final JSONObject currentMovie = arrayMovies.getJSONObject(i);
+                final String title = currentMovie.getString(Keys.KEY_TITLE);
+                final int year = currentMovie.getInt("year");
+                final String synopsis = currentMovie.getString("synopsis");
+                final JSONObject posters = currentMovie.getJSONObject("posters");
                 String poster;
                 if (posters.isNull("thumbnail")) {
                     poster = null;
@@ -176,11 +194,14 @@ public class SearchMovies extends NavBar {
                 Log.d("LLL", "Synopsis " + synopsis);
 
             }
+
             return data;
         } catch (JSONException e) {
-            System.out.println("JSON Exception Exception");
+//            System.out.println("JSON Exception Exception");
+            Log.d("JSON", "JSON Exception Exception");
+
         }
-        return null;
+        return data;
     }
 
     /**
