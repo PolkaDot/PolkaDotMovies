@@ -36,6 +36,9 @@ public class RecommendMovie extends NavBar {
 
         setSupportActionBar(getToolbar());
 
+        // BEGIN_INCLUDE (initializeRecyclerView)
+        mRecyclerView = (RecyclerView) findViewById(R.id.moviesMajorRecylerView);
+
         setMDrawer((DrawerLayout) findViewById(R.id.drawer_layout));
         NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
         setupDrawerContent(nvDrawer);

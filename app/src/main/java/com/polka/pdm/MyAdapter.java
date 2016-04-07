@@ -26,7 +26,7 @@ public final class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> 
      * @param myDataset data containing movies
      */
     public MyAdapter(Movie[] myDataset) {
-        mDataset = myDataset.clone();
+        mDataset = myDataset;
     }
 
     /**

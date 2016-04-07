@@ -19,7 +19,7 @@ import android.widget.Toast;
      private User user; //NEED to know which user's profile to display and update
 
 //     private TextView username;
-     private String userString;
+     private String userString = "user";
      private EditText pass;
      private EditText firstName;
      private EditText lastName;
