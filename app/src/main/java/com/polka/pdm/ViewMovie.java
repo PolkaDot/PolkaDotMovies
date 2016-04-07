@@ -54,7 +54,7 @@ public class ViewMovie extends NavBar {
 
          //Put user information in TextView boxes
         movieNameTextView.setText(movie.getTitle());
-        movieYearTextView.setText(Integer.toString(movie.getYear()));
+        movieYearTextView.setText(String.valueOf(movie.getYear()));
         movieSynopsisTextView.setText(movie.getSynopsis());
     }
 
