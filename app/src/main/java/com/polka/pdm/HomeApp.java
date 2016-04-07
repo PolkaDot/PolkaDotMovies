@@ -26,7 +26,15 @@ import android.view.View;
  */
 public class HomeApp extends NavBar {
 
+
+    /**
+     * user using app
+     */
     private User user;
+
+    /**
+     * user string for extra
+     */
     private String userString = "user";
     //when we create this activity, there are some things we need to do first
     // hence the name on create
@@ -41,7 +49,7 @@ public class HomeApp extends NavBar {
         setSupportActionBar(getToolbar());
 
         setMDrawer((DrawerLayout) findViewById(R.id.drawer_layout));
-        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
+        final NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
         setupDrawerContent(nvDrawer);
 
         setDrawerToggle(setupDrawerToggle());
@@ -49,7 +57,7 @@ public class HomeApp extends NavBar {
 
         // Grab data about user from extras
         if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
+            final Bundle extras = getIntent().getExtras();
             if (extras == null) {
                 user = null;
             } else {
@@ -73,7 +81,7 @@ public class HomeApp extends NavBar {
     public void logoutClickListener(View view) {
         Log.d("Logout", "Logout Button Pressed");
 
-        Intent intent = new Intent(this, MainActivity.class);
+        final Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
@@ -86,19 +94,18 @@ public class HomeApp extends NavBar {
     public void onViewProfileClick(View view) {
         Log.d("ViewProfile", "View Profile Button Pressed");
 
-        Intent intent = new Intent(this, ViewProfile.class);
+        final Intent intent = new Intent(this, ViewProfile.class);
         intent.putExtra(userString, user);
         startActivity(intent);
     }
 
-    /*
+    /**
      * Opens the Recent DVDs page
      *
      * @param view user interface component
-     * view is used so much
      */
     public void onDVDsButtonClick(View view) {
-        Intent intent = new Intent(this, RecentDvds.class);
+        final Intent intent = new Intent(this, RecentDvds.class);
         startActivity(intent);
     }
 
@@ -112,7 +119,7 @@ public class HomeApp extends NavBar {
     public void onSearchButtonPress(View view) {
         Log.d("HomeApp", "Search Button Pressed");
 
-        Intent intent = new Intent(this, SearchMovies.class);
+        final Intent intent = new Intent(this, SearchMovies.class);
         intent.putExtra(userString, user);
         startActivity(intent);
 
@@ -127,7 +134,7 @@ public class HomeApp extends NavBar {
      *             need view for method to work
      */
     public void onMoviesButtonClick(View view) {
-        Intent intent = new Intent(this, RecentMovies.class);
+        final Intent intent = new Intent(this, RecentMovies.class);
         intent.putExtra(userString, user);
         startActivity(intent);
     }
@@ -139,7 +146,7 @@ public class HomeApp extends NavBar {
      *             just need view for method to work okay?
      */
     public void onRecommendationButtonClick(View view) {
-        Intent intent = new Intent(this, RecommendMovie.class);
+        final Intent intent = new Intent(this, RecommendMovie.class);
         startActivity(intent);
     }
 }
