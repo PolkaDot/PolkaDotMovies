@@ -21,12 +21,12 @@ public final class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> 
     private Movie[] mDataset;
 
     /**
-     * Provide a suitable constructor (depends on the kind of dataset)
+     * Provide a suitable constructor (depends on the kind of data set)
      *
      * @param myDataset data containing movies
      */
     public MyAdapter(Movie[] myDataset) {
-        mDataset = myDataset;
+        mDataset = myDataset; // because need to directly modify values in our recycler view
     }
 
     /**

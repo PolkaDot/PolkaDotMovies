@@ -17,12 +17,27 @@ import android.view.MenuItem;
  */
 public abstract class NavBar extends AppCompatActivity {
 
+    /**
+     * drawer layout
+     */
     private DrawerLayout mDrawer;
+
+    /**
+     * toolbar
+     */
     private Toolbar toolbar;
+
+    /**
+     * action bar toggle
+     */
     private ActionBarDrawerToggle drawerToggle;
 
     //Navigation bar stuff
     //can't be abstract because every class would define the same thing
+
+    /**
+     * user to be passed
+     */
     private User superuser;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -153,33 +168,41 @@ public abstract class NavBar extends AppCompatActivity {
     /**
      * set method for mDrawer
      * shouldn't be abstract because every class would define the same thing
+     *
+     * @param amDrawer drawer layout
      */
-    public void setMDrawer(DrawerLayout mDrawer) {
-        this.mDrawer = mDrawer;
+    public void setMDrawer(DrawerLayout amDrawer) {
+        this.mDrawer = amDrawer;
     }
 
     /**
      * set method for toolbar
      * shouldn't be abstract because every class would define the same thing
+     *
+     * @param atoolbar toolbar to be set
      */
-    public void setToolbar(Toolbar toolbar) {
-        this.toolbar = toolbar;
+    public void setToolbar(Toolbar atoolbar) {
+        this.toolbar = atoolbar;
     }
 
     /**
      * set method for drawerToggle
      * shouldn't be abstract because every class would define the same thing
+     *
+     * @param adrawerToggle toggle bar
      */
-    public void setDrawerToggle(ActionBarDrawerToggle drawerToggle) {
-        this.drawerToggle = drawerToggle;
+    public void setDrawerToggle(ActionBarDrawerToggle adrawerToggle) {
+        this.drawerToggle = adrawerToggle;
     }
 
     /**
      * set method for user
      * shouldn't be abstract because every class would define the same thing
+     *
+     * @param auser a user to be set
      */
-    public void setUser(User user) {
-        this.superuser = user;
+    public void setUser(User auser) {
+        this.superuser = auser;
     }
 
 
