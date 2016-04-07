@@ -17,7 +17,7 @@ import java.util.List;
  * @author C. Shih on 2/23/2016.
  * @version 1.0
  */
-public class ReviewRepo {
+class ReviewRepo {
 
     private DBHelper dbHelper;
     private String commentConnector = " = ? AND ";
@@ -100,7 +100,7 @@ public class ReviewRepo {
     }
 
 
-    public void updateReview(String user, String movie, int movieYear, double rating, String comment) {
+    private void updateReview(String user, String movie, int movieYear, double rating, String comment) {
         setRating(user, movie, movieYear, rating);
         setComment(user, movie, movieYear, comment);
     }
@@ -169,6 +169,7 @@ public class ReviewRepo {
                 String title = cursor.getString(cursor.getColumnIndex(Review.KEY_MOVIE));
                 int year = cursor.getInt(cursor.getColumnIndex(Review.KEY_MOVIEYEAR));
                 cursor.getInt(cursor.getColumnIndex("total"));
+
                 Movie movie = new Movie(title, year, null, null); // may need new data struct to store total rating
                 movies[i++] = movie;
             } while (cursor.moveToNext() && i < movies.length);

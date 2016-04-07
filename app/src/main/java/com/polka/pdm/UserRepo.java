@@ -15,7 +15,7 @@ import android.util.Log;
  * Updated by Y. Avila-Stanley
  */
 public class UserRepo {
-    private DBHelper dbHelper;//database helper
+    private final DBHelper dbHelper;//database helper
 
     /**
      * Create of db helper
@@ -30,9 +30,9 @@ public class UserRepo {
      * everything else is null
      *
      * @param user that it is inserting
-     * @return returns row ID of newly inserted row, -1 otherwise
+//     * @return returns row ID of newly inserted row, -1 otherwise
      */
-    public long insert(User user) {
+    public void insert(User user) {
 
         // open connection to write data
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -48,9 +48,9 @@ public class UserRepo {
         try {
             long user_username = db.insertOrThrow(User.TABLE, null, values);
             db.close();
-            return user_username;
+//            return user_username;
         } catch (SQLException e) {
-            return -1;
+//            return -1;
         }
     }
 
