@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 /**
  * Block the user
@@ -25,11 +26,11 @@ public class BlockUser extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_block_user);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
-        UserRepo repo = new UserRepo(this);
+        final UserRepo repo = new UserRepo(this);
         dataSet = repo.getAllUsers();
         // BEGIN_INCLUDE (initializeRecyclerView)
         mRecyclerView = (RecyclerView) findViewById(R.id.userAdminRecyclerView);
@@ -48,9 +49,9 @@ public class BlockUser extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
 
 //        get the user from extras
-        User user; //I'm using it in this conditional below
+        User user;
         if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
+            final Bundle extras = getIntent().getExtras();
             if (extras == null) {
                 user = null;
             } else {
@@ -58,6 +59,10 @@ public class BlockUser extends AppCompatActivity {
             }
         } else {
             user = savedInstanceState.getParcelable("user");
+        }
+
+        if (user != null) {
+            Toast.makeText(this, "Logged in as " + user.getUsername(), Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -15,30 +15,65 @@ import android.widget.Toast;
  * @version 1.0
  * class to help a user edit his/her profile
  */
- public class EditProfile extends AppCompatActivity {
-     private User user; //NEED to know which user's profile to display and update
+public class EditProfile extends AppCompatActivity {
+    /**
+     * user using user profile
+     */
+    private User user; //NEED to know which user's profile to display and update
 
 //     private TextView username;
-     private String userString = "user";
-     private EditText pass;
-     private EditText firstName;
-     private EditText lastName;
-     private EditText email;
-     private EditText major;
-     private EditText phone;
-     private EditText interests;
+
+    /**
+     * user string for extra
+     */
+    private String userString = "user";
+
+    /**
+     * user's password
+     */
+    private EditText pass;
+
+    /**
+     * user's first name
+     */
+    private EditText firstName;
+
+    /**
+     * user's last name
+     */
+    private EditText lastName;
+
+    /**
+     * user's email
+     */
+    private EditText email;
+
+    /**
+     * user's major
+     */
+    private EditText major;
+
+    /**
+     * user's phone
+     */
+    private EditText phone;
+
+    /**
+     * user's interests
+     */
+    private EditText interests;
 
      //when this activity is created, it makes a toolbar and stuff
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         // Grab saved data about user
         if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
+            final Bundle extras = getIntent().getExtras();
             if (extras == null) {
                 user = null;
             } else {
@@ -52,7 +87,7 @@ import android.widget.Toast;
         }
 
         // get edit text fields
-        TextView username = (TextView)findViewById(R.id.UserTextField);
+        final TextView username = (TextView)findViewById(R.id.UserTextField);
         pass = (EditText)findViewById(R.id.PassTextField);
         firstName = (EditText)findViewById(R.id.FirstNameTextField);
         lastName = (EditText)findViewById(R.id.LastNameTextField);
@@ -82,10 +117,10 @@ import android.widget.Toast;
         //save some data here
 
 //        String aUsername = username.getText().toString();
-        String aPassword = pass.getText().toString();
-        String aFirstName = firstName.getText().toString();
-        String aLastName = lastName.getText().toString();
-        String aEmail = email.getText().toString();
+        final String aPassword = pass.getText().toString();
+        final String aFirstName = firstName.getText().toString();
+        final String aLastName = lastName.getText().toString();
+        final String aEmail = email.getText().toString();
 
 
         int isValid = checkValidChange(aFirstName, aLastName, aEmail, aPassword);
@@ -100,7 +135,7 @@ import android.widget.Toast;
         }
 
         // Insert user in database
-        UserRepo repo = new UserRepo(this);
+        final UserRepo repo = new UserRepo(this);
 
 
         // insert updated user info into database
@@ -114,7 +149,7 @@ import android.widget.Toast;
         Toast.makeText(this, "Saved Changes to " + user.toString(), Toast.LENGTH_SHORT).show();
 
         // Switch activities
-        Intent intent = new Intent(this, ViewProfile.class);
+        final Intent intent = new Intent(this, ViewProfile.class);
         intent.putExtra(userString, user);
         startActivity(intent);
     }
@@ -128,7 +163,7 @@ import android.widget.Toast;
     public void onCancelPress(View view) {
         Log.d("EditProfile", "Cancel Button Pressed");
         //don't save anything
-        Intent intent = new Intent(this, ViewProfile.class);
+        final Intent intent = new Intent(this, ViewProfile.class);
         intent.putExtra(userString, user);
         startActivity(intent);
     }
