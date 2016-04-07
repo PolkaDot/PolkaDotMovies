@@ -9,7 +9,7 @@ import android.widget.TextView;
 /**
  * Activity when viewing a movie any movie
  * @author Esha Singh
- * @version
+ * @version 1.0
  */
 public class ViewMovie extends NavBar {
 
@@ -112,7 +112,7 @@ public class ViewMovie extends NavBar {
 //        drawerToggle.onConfigurationChanged(newConfig);
 //    }
 
-    public void onRateMoviePress(View view) {
+    public void onRateMoviePress(View view) { //we need the view in the method header
         Intent intent = new Intent(this, ReviewPage.class);
         intent.putExtra("movie", movie);
         intent.putExtra("user", user);

@@ -75,7 +75,7 @@ public class ViewProfile extends NavBar {
      *
      * @param  view  the view of the Edit button that is clicked
      */
-    public void onEditProfileClick(View view) {
+    public void onEditProfileClick(View view) { //we need the view in the method header
         Intent intent = new Intent(this, EditProfile.class);
         // putExtra to store user information between views
         intent.putExtra("user", user);
@@ -86,7 +86,7 @@ public class ViewProfile extends NavBar {
      * when you click on the home button it takes you to the home page
      * @param view of the current page
      */
-    public void onHomeClick(View view) {
+    public void onHomeClick(View view) {  //we need the view in the method header
         Intent intent = new Intent(this, HomeApp.class);
         intent.putExtra("user", user);
         startActivity(intent);
