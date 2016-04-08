@@ -14,7 +14,7 @@ import android.util.Log;
  * Created by C. Shih on 2/12/2016.
  * Updated by Y. Avila-Stanley
  */
-public class UserRepo {
+class UserRepo {
     /**
      * database helper
      */

@@ -30,6 +30,8 @@ public class RegistrationPage extends AppCompatActivity {
 
     @Override
     final protected void onCreate(Bundle savedInstanceState) {
+
+        //using protected gives one error not using protected gives us another error
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -51,7 +53,7 @@ public class RegistrationPage extends AppCompatActivity {
      * @param  v  the view of the Cancel button that is clicked
      */
 
-    public void onCancelButtonPress(View v ) {
+    public void onCancelButtonPress(View v ) {  //we need the view in the method header
         Log.d("Cancel", "Cancel Button Pressed");
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
@@ -65,7 +67,7 @@ public class RegistrationPage extends AppCompatActivity {
      *
      * @param  v  the view of the Register button that is clicked
      */
-    public void onRegisterButtonPress(View v ) {
+    public void onRegisterButtonPress(View v ) {  //we need the view in the method header
         Log.d("Register", "Register Button Pressed");
 
         String aFirstName = editTextFirstName.getText().toString();

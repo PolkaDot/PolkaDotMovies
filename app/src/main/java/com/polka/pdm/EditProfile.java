@@ -177,8 +177,9 @@ public class EditProfile extends AppCompatActivity {
      * @param aPassword password of the user
      * @return 1 if all fields are filled and valid, -1 if a field is empty,
      *          0 if the email address is invalid
+     * is not an extension
      */
-    public int checkValidChange(String aFirstName, String aLastName, String aEmail,
+    int checkValidChange(String aFirstName, String aLastName, String aEmail,
                                 String aPassword) {
         if (aFirstName.length() == 0 || aLastName.length() == 0 || aEmail.length() == 0 || aPassword.length() == 0) {
             // makes sure all entries are filled in

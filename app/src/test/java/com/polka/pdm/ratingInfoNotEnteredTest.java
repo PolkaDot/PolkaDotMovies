@@ -2,6 +2,8 @@ package com.polka.pdm;
 
 /**
  * Created by alisha on 4/7/2016.
+ *
+ * does not need to be in the manifest
  */
 
 import org.junit.Test;

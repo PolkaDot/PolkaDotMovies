@@ -39,6 +39,7 @@ public class RecentDvds extends NavBar {
 
     @Override
     final protected void onCreate(Bundle savedInstanceState) {
+        //using protected gives one error not using protected gives us another error
         User user;
         super.onCreate(savedInstanceState);
         // getActionBar().setHomeButtonEnabled(true);

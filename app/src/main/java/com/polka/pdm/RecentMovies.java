@@ -22,6 +22,7 @@ import org.json.JSONObject;
  * Shows the recent movies that have been released
  */
 public class RecentMovies extends NavBar {
+    //using protected gives one error not using protected gives us another error
 
     /**
      * value that gives amount to be displayed

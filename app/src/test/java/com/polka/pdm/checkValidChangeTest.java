@@ -9,6 +9,9 @@ import static junit.framework.Assert.assertEquals;
  * Junit test for CheckValidTest Method
  *
  * Created by Yami on 4/4/2016.
+ *
+ *
+ * does not need to be in the manifest
  */
  class CheckValidChangeTest extends EditProfile{
     /**
@@ -58,6 +61,9 @@ import static junit.framework.Assert.assertEquals;
         userWoutLastName = new User("validUsername", "validPassword", "validFirstName", "", "Valid@Email.com");
         userWoutValidEmail = new User("validUsername", "validPassword", "validFirstName", "validLastName", "InvalidEmail.com");
         userWValidEmail = new User("validUsername", "validPassword", "validFirstName", "validLastName", "Valid@Email.com");
+        checkValidChangeReturns1();
+        checkValidChangeReturns0();
+        checkValidChangeReturnsNeg1();
     }
 
     /**

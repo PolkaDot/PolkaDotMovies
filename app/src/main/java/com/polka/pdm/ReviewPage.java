@@ -68,7 +68,7 @@ public class ReviewPage extends AppCompatActivity {
      *
      * @return Object of review class
      */
-    public Review getRatingObj() {
+    public Review getRatingObj() { //want to keep getter in case we use it in the future
         return ratingObj;
     }
 
@@ -77,7 +77,7 @@ public class ReviewPage extends AppCompatActivity {
      *
      * @param ratingObjs of review class
      */
-    public void setRatingObj(Review ratingObjs) {
+    public void setRatingObj(Review ratingObjs) { //want to keep setter
         this.ratingObj = ratingObjs;
     }
 
@@ -86,7 +86,7 @@ public class ReviewPage extends AppCompatActivity {
      *
      * @return The year the movie was released
      */
-    public int getMovieYear() {
+    public int getMovieYear() { //want to keep getter
         return movieYear;
     }
 
@@ -233,6 +233,8 @@ public class ReviewPage extends AppCompatActivity {
 
     @Override
     final protected void onCreate(Bundle savedInstanceState) {
+
+        //using protected gives one error not using protected gives us another error
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_page);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -284,7 +286,7 @@ public class ReviewPage extends AppCompatActivity {
      *
      * @param view of the viewAProfile Activity
      */
-    public void onSubmitPress(View view) {
+    public void onSubmitPress(View view) {  //we need the view in the method header
         final EditText comment = (EditText) findViewById(R.id.reviewEditText);
         final String comments = comment.getText().toString();
 
@@ -315,11 +317,11 @@ public class ReviewPage extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public boolean ratingInfoNotEntered(String comments, float num) {
-        if (num == 0 && comments.length() == 0) {
-            return true;
-        }
-            return false;
-
+    boolean ratingInfoNotEntered(String comments, float num) {
+//        if (num == 0 && comments.length() == 0) {
+//            return true;
+//        }
+//            return false;
+        return num == 0 && comments.length() == 0;
     }
 }

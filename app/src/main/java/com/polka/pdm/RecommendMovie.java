@@ -27,6 +27,8 @@ public class RecommendMovie extends NavBar {
     @Override
     final protected void onCreate(Bundle savedInstanceState) {
 
+        //using protected gives one error not using protected gives us another error
+
         //Needed for recycler view
         RecyclerView mRecyclerView;
         RecyclerView.LayoutManager mLayoutManager;
@@ -83,7 +85,7 @@ public class RecommendMovie extends NavBar {
      *
      * @param view View of the search Movies activity
      */
-    public void onSearchMajorButtonPress(View view) {
+    public void onSearchMajorButtonPress(View view) {  //we need the view in the method header
         EditText editTextSearchParam;
         editTextSearchParam = (EditText) findViewById(R.id.MajorTextField);
         String searchParam =  editTextSearchParam.getText().toString();
