@@ -4,16 +4,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 /**
- * Junit test for CheckValidTest Method
- *
- * Created by Yami on 4/4/2016.
- *
- *
- * does not need to be in the manifest
+ * To work on unit tests, switch the Test Artifact in the Build Variants view.
  */
- class CheckValidChangeTest extends EditProfile{
+public class CheckEditInputTest extends EditProfile {
     /**
      * Instance of user without password filled in
      */
@@ -93,5 +89,4 @@ import static junit.framework.Assert.assertEquals;
         assertEquals(-1, checkValidChange(userWoutLastName.getFirstName(), userWoutLastName.getLastName(), userWoutLastName.getEmail(), userWoutLastName.getPassword()));
         assertEquals(-1, checkValidChange(userWoutEmail.getFirstName(), userWoutEmail.getLastName(), userWoutEmail.getEmail(), userWoutEmail.getPassword()));
     }
-
 }
