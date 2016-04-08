@@ -44,28 +44,28 @@ public class LoginApplication extends AppCompatActivity {
      */
     public void onLoginButtonPressed(View v) {  //we need the view in the method header
         Log.d("LOGIN ACTIVITY", "Login Button Pressed");
-        String username = ((EditText) findViewById(R.id.usernameEdit)).getText().toString();
-        String password = ((EditText) findViewById(R.id.passwordEdit)).getText().toString();
+        final String username = ((EditText) findViewById(R.id.usernameEdit)).getText().toString();
+        final String password = ((EditText) findViewById(R.id.passwordEdit)).getText().toString();
 
 
-            if (checkInput(username, password) == 0) {
-                Toast.makeText(this, "Enter Username", Toast.LENGTH_SHORT).show();
+        if (checkInput(username, password) == 0) {
+            Toast.makeText(this, "Enter Username", Toast.LENGTH_SHORT).show();
 //                return true;
-            } else if (checkInput(username, password)== -1) {
-                Toast.makeText(this, "Enter Password", Toast.LENGTH_SHORT).show();
+        } else if (checkInput(username, password)== -1) {
+            Toast.makeText(this, "Enter Password", Toast.LENGTH_SHORT).show();
 //                return true;
-            } else if ((checkInput(username, password)) == 1) {
-                Toast.makeText(getApplicationContext(), "Enter UserName and Password", Toast.LENGTH_SHORT).show();
+        } else if ((checkInput(username, password)) == 1) {
+            Toast.makeText(getApplicationContext(), "Enter UserName and Password", Toast.LENGTH_SHORT).show();
 //                return true;
-            } else {
-            UserRepo repo = new UserRepo(this); //create repository for users
+        } else {
+            final UserRepo repo = new UserRepo(this); //create repository for users
             // Get user information from database
-            User user = repo.getUserByUsername(username);
+            final User user = repo.getUserByUsername(username);
 
             // Checks if an admin
             if (isAdmin(user)) {
-//                Toast.makeText(this, "Logged in as Admin", Toast.LENGTH_SHORT).show();
-                Intent startApp = new Intent(this, BlockUser.class);
+    //                Toast.makeText(this, "Logged in as Admin", Toast.LENGTH_SHORT).show();
+                final Intent startApp = new Intent(this, BlockUser.class);
                 startApp.putExtra("user", user); // just in case this is needed...
                 startActivity(startApp);
 
@@ -82,8 +82,10 @@ public class LoginApplication extends AppCompatActivity {
      * and warns the user to input username and password
      * @param username username entered
      * @param password password entered
+     *
+     * @return int representation of empty or not
      */
-    int checkInput(String username,String password) {
+    private int checkInput(String username,String password) {
 
         if(username.isEmpty() && password.isEmpty()){
             return -1;
@@ -109,7 +111,7 @@ public class LoginApplication extends AppCompatActivity {
     private void regularUser(String password, User user, UserRepo repo) {
         if (password.equals(user.getPassword()) && isNotLocked(user) && user.getIsBanned() != 1) {
             Toast.makeText(this, "Login Success!!", Toast.LENGTH_SHORT).show();
-            Intent startApp = new Intent(this, HomeApp.class);
+            final Intent startApp = new Intent(this, HomeApp.class);
             startApp.putExtra("user", user);
             startActivity(startApp);
         } else {

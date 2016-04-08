@@ -51,15 +51,33 @@ public class Review {
 
     
    // private int hashNum = 13;//why 13?
+    /**
+     * movie being reviewed
+     */
     private String movie;
+    /**
+     * rating of the movie
+     */
     private double rating;
+    /**
+     * comment of the movie
+     */
     private String comment;
+    /**
+     * year movie was made
+     */
     private int movieYear;
+    /**
+     * user using app
+     */
     private String user;
+    /**
+     * user's major
+     */
     private String major;
 
-    /*
-    * Empty constructor
+    /**
+     * Empty constructor
      */
     public Review(){
 
@@ -86,6 +104,7 @@ public class Review {
      * constructor with user, movie, rating, and comment
      *
      * @param users who wrote the rating
+     * @param majors user's major
      * @param movies that rating is about
      * @param movieYears that movie was made
      * @param ratings of that movie
@@ -208,7 +227,7 @@ public class Review {
         if (!(object instanceof Review)) {
             return false;
         }
-        Review that = (Review) object;
+        final Review that = (Review) object;
         return this.movie.equals(that.movie) && this.rating == that.rating
                 && this.user.equals(that.user);
     }

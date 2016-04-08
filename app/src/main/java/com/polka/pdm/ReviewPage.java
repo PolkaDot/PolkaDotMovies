@@ -232,7 +232,7 @@ public class ReviewPage extends AppCompatActivity {
 
 
     @Override
-    final protected void onCreate(Bundle savedInstanceState) {
+    protected final void onCreate(Bundle savedInstanceState) {
 
         //using protected gives one error not using protected gives us another error
         super.onCreate(savedInstanceState);
@@ -317,7 +317,14 @@ public class ReviewPage extends AppCompatActivity {
         startActivity(intent);
     }
 
-    boolean ratingInfoNotEntered(String comments, float num) {
+    /**
+     * method to check if rating info is entered or not
+     *
+     * @param comments comments made
+     * @param num number
+     * @return if comments made
+     */
+    private boolean ratingInfoNotEntered(String comments, float num) {
 //        if (num == 0 && comments.length() == 0) {
 //            return true;
 //        }

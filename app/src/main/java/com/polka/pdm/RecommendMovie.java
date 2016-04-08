@@ -18,14 +18,26 @@ import android.widget.EditText;
 
 public class RecommendMovie extends NavBar {
 
+    /**
+     * mAdapter of movie for recycler view
+     */
     private RecyclerView.Adapter mAdapter;
 
+    /**
+     * user using app
+     */
     private User user;
+    /**
+     * movies to be displayed
+     */
     private Movie[] mDataset;
+    /**
+     * number of total movies showing
+     */
     private static final int DATASET_COUNT = 30;
 
     @Override
-    final protected void onCreate(Bundle savedInstanceState) {
+    protected final void onCreate(Bundle savedInstanceState) {
 
         //using protected gives one error not using protected gives us another error
 
@@ -43,7 +55,7 @@ public class RecommendMovie extends NavBar {
         mRecyclerView = (RecyclerView) findViewById(R.id.moviesMajorRecylerView);
 
         setMDrawer((DrawerLayout) findViewById(R.id.drawer_layout));
-        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
+        final NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
         setupDrawerContent(nvDrawer);
 
         setDrawerToggle(setupDrawerToggle());
@@ -66,7 +78,7 @@ public class RecommendMovie extends NavBar {
 
         // Grab data about user from extras
         if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
+            final Bundle extras = getIntent().getExtras();
             if (extras == null) {
                 user = null;
             } else {
@@ -88,9 +100,9 @@ public class RecommendMovie extends NavBar {
     public void onSearchMajorButtonPress(View view) {  //we need the view in the method header
         EditText editTextSearchParam;
         editTextSearchParam = (EditText) findViewById(R.id.MajorTextField);
-        String searchParam =  editTextSearchParam.getText().toString();
+        final String searchParam =  editTextSearchParam.getText().toString();
 
-        ReviewRepo repo = new ReviewRepo(this);
+        final ReviewRepo repo = new ReviewRepo(this);
         mDataset = repo.getRatingsByMajor(searchParam, DATASET_COUNT);
 //        mDataset = movies;
         ((MyAdapter)mAdapter).setData(mDataset);
