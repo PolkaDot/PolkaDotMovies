@@ -1,37 +1,78 @@
 <resources>
     <string name="app_name">PDM</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
+    <string name="signIn">Sign in</string>
+    <string name="login">Login</string>
+    <string name="signUp">Sign Up</string>
+    <string name="logout">Log Out</string>
+    <string name="registration">Registration</string>
+
+    <!-- Strings related to View Profile -->
+    <string name="Username">Username</string>
+    <string name="password">Password</string>
+    <string name="firstName">First Name</string>
+    <string name="lastName">Last Name</string>
+    <string name="major">Major</string>
+    <string name="email">Email</string>
+    <string name= "phone">Phone</string>
+    <string name= "interest">Interests</string>
+
+    <!-- Strings related to activity titles -->
+    <string name= "buzzMovieSelector">Buzz-Movie Selector</string>
+    <string name="viewProfile">View Profile</string>
+    <string name="searchMovies">Search Movies</string>
+    <string name="title_activity_registration_page">Registration Page</string>
+    <string name="title_activity_home_app">Home Page</string>
+    <string name="title_activity_recent_dvds">Recent Dvds</string>
+    <string name="title_activity_recent_movies">Recent Movies</string>
+    <string name="editProfile">Edit Profile</string>
+    <string name="title_activity_view_movie">View Movie</string>
+    <string name="recommendation">Recommendation</string>
+    <string name="home">Home</string>
+
+    <!--String related to movie -->
+    <string name="movies">Movies</string>
+    <string name="dvd">DVD</string>
+    <string name="movieName">Movie Name</string>
+    <string name="title_activity_review_page">Review</string>
+    <string name="year">YEAR</string>
+    <string name="movieSypnosis">movieSypnosis</string>
+
+
+
+    <!-- Buttons and Actions -->
+    <string name="banUnban">Ban / Un-Ban</string>
+    <string name="searchButton">Search Button</string>
+    <string name="unlock">Unlock</string>
+    <string name="submit">Submit</string>
+    <string name="register">Register</string>
+    <string name="cancel">Cancel</string>
+    <string name="title_activity_block_user">Block User</string>
+    <string name="title_activity_recommend_movie">RecommendMovie</string>
+    <string name="logoutButton">LOGOUT</string>
+    <string name="rateMovieButton">RATE MOVIE</string>
+    <string name="viewProfileButton">VIEW PROFILE</string>
+    <string name="searchMovieButton">SEARCH MOVIE</string>
+    <string name="reccomendationButton">RECCOMENDATIONS</string>
+    <string name="saveButton">SAVE</string>
+
+
+
+    <!-- Miscellaneous -->
+    <string name="drawer_open">open drawer</string>
+    <string name="drawer_close">close drawer</string>
+    <string name="isBanned">isBanned</string>
+    <string name="isLocked">isLocked</string>
+
+
+    <!-- Error Messages -->
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
-
-    <string name="title_activity_view_profile">View Profile</string>
-    <string name="title_activity_edit_profile">Edit Profile</string>
-    <string name="title_activity_login_application">Login</string>
-    <string name="title_activity_registration_page">Registration Page</string>
-    <string name="title_activity_home_app">Home Page</string>
-    <string name="title_activity_recent_dvds">Recent Dvds</string>
-    <string name="title_activity_search_movies">Search Movies</string>
-    <string name="title_activity_review_page">Review</string>
-
-
-    <string name="drawer_open">open drawer</string>
-    <string name="drawer_close">close drawer</string>
-
-    <string name="title_activity_recent_movies">Recent Movies</string>
-    <string name="title_activity_view_movie">View Movie</string>
-    <string name="title_activity_block_user">Block User</string>
-    <string name="title_activity_recommend_movie">RecommendMovie</string>
+        completions."</string>
+    <string name="enterReview">Please enter your review here</string>
 
 </resources>

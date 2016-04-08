@@ -8,8 +8,10 @@ import static org.junit.Assert.*;
 
 /**
  * Junit test for checkInfoTest method
- * does not need to be in manifeest
+ * does not need to be in manifest
  * Created by C. Shih on 4/2/2016.
+ *
+ * does not need to be in the manifest
  */
 public class checkInfoTest extends RegistrationPage{
     /**

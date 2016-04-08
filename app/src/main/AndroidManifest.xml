@@ -27,7 +27,7 @@
         <!-- <activity android:name=".StartApplication" /> -->
         <activity
             android:name=".LoginApplication"
-            android:label="@string/title_activity_login_application"
+            android:label="@string/login"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RegistrationPage"
@@ -36,11 +36,11 @@
 
         <activity
             android:name=".ViewProfile"
-            android:label="@string/title_activity_view_profile"
+            android:label="@string/viewProfile"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EditProfile"
-            android:label="@string/title_activity_edit_profile"
+            android:label="@string/editProfile"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".HomeApp"
@@ -53,7 +53,7 @@
 
         <activity
             android:name=".SearchMovies"
-            android:label="@string/title_activity_search_movies"
+            android:label="@string/searchMovies"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ReviewPage"
@@ -75,6 +75,7 @@
         <activity
             android:name=".RecommendMovie"
             android:label="@string/title_activity_recommend_movie"></activity>
+
     </application>
 
 </manifest>

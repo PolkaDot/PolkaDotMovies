@@ -18,18 +18,21 @@ import android.widget.EditText;
 
 public class RecommendMovie extends NavBar {
 
-    //Needed for recycler view
-    private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
 
     private User user;
     private Movie[] mDataset;
     private static final int DATASET_COUNT = 30;
-    private EditText editTextSearchParam;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    final protected void onCreate(Bundle savedInstanceState) {
+
+        //using protected gives one error not using protected gives us another error
+
+        //Needed for recycler view
+        RecyclerView mRecyclerView;
+        RecyclerView.LayoutManager mLayoutManager;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommend_movie);
         setToolbar((Toolbar) findViewById(R.id.toolbar));
@@ -82,7 +85,8 @@ public class RecommendMovie extends NavBar {
      *
      * @param view View of the search Movies activity
      */
-    public void onSearchMajorButtonPress(View view) {
+    public void onSearchMajorButtonPress(View view) {  //we need the view in the method header
+        EditText editTextSearchParam;
         editTextSearchParam = (EditText) findViewById(R.id.MajorTextField);
         String searchParam =  editTextSearchParam.getText().toString();
 

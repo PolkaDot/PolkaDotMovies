@@ -22,11 +22,11 @@ class ReviewRepo {
     /**
      * database helper
      */
-    private DBHelper dbHelper;
+    private final DBHelper dbHelper;
     /**
      * comment connector
      */
-    private String commentConnector = " = ? AND ";
+    private final String commentConnector = " = ? AND ";
 
     /**
      * create db helper
@@ -153,7 +153,7 @@ class ReviewRepo {
     /**
      * Generates a list of movies rated by specified major in order of descending rating
      * @param major major used to search movie ratings
-     * @param dataCount specifies the size of the list of movies to return
+     * @param dataCount specifies the size of the list of movies to return // changes depending on the major in the dataset
      * @return returns a list of movies sorted by ratings by specified major
      */
     public Movie[] getRatingsByMajor(String major, int dataCount) {
@@ -183,6 +183,7 @@ class ReviewRepo {
             } while (cursor.moveToNext() && i < movies.length);
         }
 
+        //do we actually need this? what does this do?
         for (int i = 0; i < movies.length; i++) {
             Movie t = movies[i]; //need for database
         }

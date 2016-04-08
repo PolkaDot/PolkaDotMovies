@@ -83,7 +83,7 @@ public class LoginApplication extends AppCompatActivity {
      * @param username username entered
      * @param password password entered
      */
-    public int checkInput(String username,String password) {
+    int checkInput(String username,String password) {
 
         if(username.isEmpty() && password.isEmpty()){
             return -1;

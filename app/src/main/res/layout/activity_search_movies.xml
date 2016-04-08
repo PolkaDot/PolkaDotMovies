@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/searchMovie"
                 android:layout_gravity="left|top"
-                android:hint="Search Movie"
+                android:hint="@string/searchMovies"
                 android:editable="true"
                 android:clickable="true"
                 android:textSize="32dp"

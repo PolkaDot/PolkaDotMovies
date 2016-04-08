@@ -7,7 +7,7 @@ package com.polka.pdm;
  *
  * had ID but unused so removed
  */
-public interface Keys {
+interface Keys {
     // don't want to instantiate instances, just want as fields
 
     /**

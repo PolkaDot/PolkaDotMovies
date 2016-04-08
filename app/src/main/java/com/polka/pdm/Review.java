@@ -49,7 +49,7 @@ public class Review {
      */
     public static final String KEY_COMMENT = "comment";
 
-
+    
    // private int hashNum = 13;//why 13?
     private String movie;
     private double rating;

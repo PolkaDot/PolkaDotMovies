@@ -38,7 +38,8 @@ public class RecentDvds extends NavBar {
 //    private ActionBarDrawerToggle drawerToggle;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    final protected void onCreate(Bundle savedInstanceState) {
+        //using protected gives one error not using protected gives us another error
         User user;
         super.onCreate(savedInstanceState);
         // getActionBar().setHomeButtonEnabled(true);

@@ -25,7 +25,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
             android:width="280dp"
-            android:hint="Search Movie Here"
+            android:hint="@string/searchMovies"
             android:clickable="false" />
 
         <ImageButton
@@ -35,7 +35,7 @@
             android:onClick="onSearchButtonPress"
             android:background="@drawable/search"
             android:clickable="true"
-            android:contentDescription="SearchButton"
+            android:contentDescription="@string/searchButton"
             android:layout_alignParentEnd="true"
             android:layout_toEndOf="@+id/editText"
             android:layout_alignParentTop="true" />

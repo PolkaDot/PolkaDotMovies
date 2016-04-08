@@ -14,26 +14,26 @@
         <item
             android:id="@+id/ViewProfile"
             android:checked="true"
-            android:title="View Profile"/>
+            android:title="@string/viewProfile"/>
 
         <item
             android:id="@+id/SearchMovies"
-            android:title="Search Movies"/>
+            android:title="@string/searchMovies"/>
 
         <item
             android:id="@+id/Movies"
-            android:title="Mooovies"/>
+            android:title="@string/movies"/>
 
         <item
             android:id="@+id/DVDs"
-            android:title="DVD"/>
+            android:title="@string/dvd"/>
 
         <item
             android:id="@+id/Recommendations"
-            android:title="Recommendations"/>
+            android:title="@string/recommendation"/>
 
         <item
             android:id="@+id/LogOut"
-            android:title="Log Out"/>
+            android:title="@string/logout"/>
     </group>
 </menu>

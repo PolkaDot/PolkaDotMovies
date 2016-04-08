@@ -22,6 +22,7 @@ import org.json.JSONObject;
  * Shows the recent movies that have been released
  */
 public class RecentMovies extends NavBar {
+    //using protected gives one error not using protected gives us another error
 
     /**
      * value that gives amount to be displayed
@@ -29,11 +30,8 @@ public class RecentMovies extends NavBar {
     private static final int TOPTEN = 10;
 
 
-
-
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    final protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recent_movies);
         setToolbar((Toolbar) findViewById(R.id.toolbar));

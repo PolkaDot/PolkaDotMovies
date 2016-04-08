@@ -65,9 +65,10 @@ public class ReviewPage extends AppCompatActivity {
 
     /**
      * Gets an object of the Review class
+     *
      * @return Object of review class
      */
-    public Review getRatingObj() {
+    public Review getRatingObj() { //want to keep getter in case we use it in the future
         return ratingObj;
     }
 
@@ -76,15 +77,16 @@ public class ReviewPage extends AppCompatActivity {
      *
      * @param ratingObjs of review class
      */
-    public void setRatingObj(Review ratingObjs) {
+    public void setRatingObj(Review ratingObjs) { //want to keep setter
         this.ratingObj = ratingObjs;
     }
 
     /**
      * Gets the year the movie was released
+     *
      * @return The year the movie was released
      */
-    public int getMovieYear() {
+    public int getMovieYear() { //want to keep getter
         return movieYear;
     }
 
@@ -99,6 +101,7 @@ public class ReviewPage extends AppCompatActivity {
 
     /**
      * Gets the name of the movie
+     *
      * @return The name of the movie
      */
     public String getMovieName() {
@@ -116,6 +119,7 @@ public class ReviewPage extends AppCompatActivity {
 
     /**
      * Gets the major of the user
+     *
      * @return The major of the user
      */
     public String getMajor() {
@@ -134,6 +138,7 @@ public class ReviewPage extends AppCompatActivity {
 
     /**
      * Gets the rated or not rated status of the user
+     *
      * @return True if the user has rated the movie and false if they haven't
      */
     public boolean isHasRated() {
@@ -152,6 +157,7 @@ public class ReviewPage extends AppCompatActivity {
 
     /**
      * Gets the movie object
+     *
      * @return The movie object
      */
     public Movie getMovie() {
@@ -170,6 +176,7 @@ public class ReviewPage extends AppCompatActivity {
 
     /**
      * Gets the rating of the movie
+     *
      * @return the rating of the movie
      */
     public float getRatings() {
@@ -188,6 +195,7 @@ public class ReviewPage extends AppCompatActivity {
 
     /**
      * Gets the user object
+     *
      * @return The user object
      */
     public User getUser() {
@@ -203,8 +211,10 @@ public class ReviewPage extends AppCompatActivity {
     public void setUser(User users) {
         this.user = users;
     }
+
     /**
      * Gets the username
+     *
      * @return The username
      */
     public String getUsername() {
@@ -222,7 +232,9 @@ public class ReviewPage extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    final protected void onCreate(Bundle savedInstanceState) {
+
+        //using protected gives one error not using protected gives us another error
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_page);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -238,7 +250,7 @@ public class ReviewPage extends AppCompatActivity {
             }
         });
 
-       if (savedInstanceState == null) {
+        if (savedInstanceState == null) {
             final Bundle extras = getIntent().getExtras();
             if (extras == null) {
                 movie = null;
@@ -259,7 +271,7 @@ public class ReviewPage extends AppCompatActivity {
         } else {
             user = savedInstanceState.getParcelable("user");
         }
-        if (movie != null){
+        if (movie != null) {
             movieName = movie.getTitle();
             movieYear = movie.getYear();
             final TextView ratingTextViews = (TextView) findViewById(R.id.ratingTextView);
@@ -271,20 +283,21 @@ public class ReviewPage extends AppCompatActivity {
 
     /**
      * When you press submit, it should save the ratings for the movie
+     *
      * @param view of the viewAProfile Activity
      */
-    public void onSubmitPress(View view) {
+    public void onSubmitPress(View view) {  //we need the view in the method header
         final EditText comment = (EditText) findViewById(R.id.reviewEditText);
         final String comments = comment.getText().toString();
 
-        if (ratings == 0 && comment.length() == 0) {
+        if (ratingInfoNotEntered(comments, ratings)) {
             Toast.makeText(this, "Please enter either a review or rating before submitting!", Toast.LENGTH_SHORT).show();
             return;
         }
 
         // Insert user in database
         final ReviewRepo ratingRepo = new ReviewRepo(this);
-        if (hasRated){
+        if (hasRated) {
             ratingObj = new Review(username, major, movieName, movieYear, ratings, comments);
 
         } else {
@@ -304,4 +317,11 @@ public class ReviewPage extends AppCompatActivity {
         startActivity(intent);
     }
 
+    boolean ratingInfoNotEntered(String comments, float num) {
+//        if (num == 0 && comments.length() == 0) {
+//            return true;
+//        }
+//            return false;
+        return num == 0 && comments.length() == 0;
+    }
 }

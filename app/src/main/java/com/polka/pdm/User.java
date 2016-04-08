@@ -366,7 +366,7 @@ public class User implements Parcelable {
     private User(Parcel in) {
         // 11 is number of fields, and the 0 - 10 are corresponding index to it in array
         // for that specific data value
-        final String[] data = new String[11];
+        final String[] data = new String[11]; //11 stuff that we want
         in.readStringArray(data);
 
         this.username = data[0];

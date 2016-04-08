@@ -65,7 +65,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Edit Profile"
+                android:text="@string/editProfile"
                 android:id="@+id/EditProfile"
                 android:clickable="true"
                 android:onClick="onEditProfileClick"
@@ -78,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Username"
+                android:text="@string/Username"
                 android:id="@+id/UserNameLabel"
                 android:textSize="30dp"
                 android:layout_below="@+id/EditProfile"
@@ -88,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Password"
+                android:text="@string/password"
                 android:id="@+id/PasswordLabel"
                 android:layout_below="@+id/UserNameLabel"
                 android:layout_alignParentStart="true"
@@ -99,7 +99,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="First Name"
+                android:text="@string/firstName"
                 android:id="@+id/FirstNameLabel"
                 android:textSize="30dp"
                 android:layout_gravity="left|top"
@@ -110,7 +110,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Last Name"
+                android:text="@string/lastName"
                 android:id="@+id/LastNameLabel"
                 android:textSize="30dp"
                 android:layout_gravity="left|top"
@@ -121,7 +121,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Email"
+                android:text="@string/email"
                 android:id="@+id/emailLabel"
                 android:textSize="30dp"
                 android:layout_gravity="left"
@@ -132,7 +132,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Phone"
+                android:text="@string/phone"
                 android:id="@+id/phoneLabel"
                 android:textSize="30dp"
                 android:layout_gravity="left"
@@ -143,7 +143,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Major"
+                android:text="@string/major"
                 android:id="@+id/MajorLabel"
                 android:clickable="false"
                 android:textSize="30dp"
@@ -155,7 +155,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Interests:"
+                android:text="@string/interest"
                 android:id="@+id/InterestLabel"
                 android:textSize="30dp"
                 android:layout_gravity="right"
@@ -175,7 +175,7 @@
                 android:id="@+id/PhoneTextField"
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="right"
-                android:text="Hello"
+                android:text="@string/phone"
                 android:layout_alignBaseline="@+id/phoneLabel" />
 
 
@@ -188,7 +188,7 @@
                 android:id="@+id/FirstNameTextField"
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="right"
-                android:text="Hello"
+                android:text="@string/firstName"
                 android:layout_alignBaseline="@+id/FirstNameLabel" />
 
             <TextView
@@ -200,7 +200,7 @@
                 android:id="@+id/LastNameTextField"
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="right"
-                android:text="Hello"
+                android:text="@string/lastName"
                 android:layout_alignBaseline="@+id/LastNameLabel" />
 
 
@@ -213,7 +213,7 @@
                 android:id="@+id/PassTextField"
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="right"
-                android:text="Hello"
+                android:text="@string/password"
                 android:layout_alignBaseline="@+id/PasswordLabel" />
 
             <TextView
@@ -225,7 +225,7 @@
                 android:id="@+id/UserTextField"
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="right"
-                android:text="Hello"
+                android:text="@string/Username"
                 android:layout_alignBaseline="@+id/UserNameLabel" />
 
 
@@ -238,7 +238,7 @@
                 android:id="@+id/EmailTextField"
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="right"
-                android:text="Hello"
+                android:text="@string/email"
                 android:layout_alignBaseline="@+id/emailLabel" />
 
             <TextView
@@ -253,7 +253,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/InterestLabel"
-                android:text="Hellooooooooooooooo"
+                android:text="@string/saveButton"
                 android:layout_above="@+id/Save" />
 
             <TextView
@@ -266,13 +266,13 @@
                 android:layout_alignTop="@+id/MajorLabel"
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="right"
-                android:text="Hello"
+                android:text="@string/major"
                 android:layout_alignBaseline="@+id/MajorLabel" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Home"
+                android:text="@string/home"
                 android:id="@+id/HomeProfileButton"
                 android:background="#F7BE39"
                 android:onClick="onHomeClick"

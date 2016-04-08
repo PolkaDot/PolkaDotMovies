@@ -161,7 +161,7 @@ public abstract class NavBar extends AppCompatActivity {
      * shouldn't be abstract because every class would define the same thing
      * @return user
      */
-    public User getUser() {
+    public User getUser() { // want to keep getter in case we use it in the future
         return this.superuser;
     }
 
@@ -171,7 +171,7 @@ public abstract class NavBar extends AppCompatActivity {
      *
      * @param amDrawer drawer layout
      */
-    public void setMDrawer(DrawerLayout amDrawer) {
+    void setMDrawer(DrawerLayout amDrawer) {
         this.mDrawer = amDrawer;
     }
 
@@ -181,7 +181,7 @@ public abstract class NavBar extends AppCompatActivity {
      *
      * @param atoolbar toolbar to be set
      */
-    public void setToolbar(Toolbar atoolbar) {
+    void setToolbar(Toolbar atoolbar) {
         this.toolbar = atoolbar;
      }
 
@@ -191,7 +191,7 @@ public abstract class NavBar extends AppCompatActivity {
      *
      * @param adrawerToggle toggle bar
      */
-    public void setDrawerToggle(ActionBarDrawerToggle adrawerToggle) {
+     void setDrawerToggle(ActionBarDrawerToggle adrawerToggle) {
         this.drawerToggle = adrawerToggle;
     }
 
@@ -201,7 +201,7 @@ public abstract class NavBar extends AppCompatActivity {
      *
      * @param auser a user to be set
      */
-    public void setUser(User auser) {
+    void setUser(User auser) {
         this.superuser = auser;
     }
 
