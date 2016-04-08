@@ -14,7 +14,7 @@
         <item
             android:id="@+id/ViewProfile"
             android:checked="true"
-            android:title="@string/ViewProfile"/>
+            android:title="@string/viewProfile"/>
 
         <item
             android:id="@+id/SearchMovies"

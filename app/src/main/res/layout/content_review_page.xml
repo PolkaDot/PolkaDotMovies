@@ -33,7 +33,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Submit"
+        android:text="@string/submit"
         android:id="@+id/submitRatingButton"
         android:layout_marginBottom="69dp"
         android:layout_alignParentBottom="true"
@@ -51,5 +51,5 @@
         android:id="@+id/reviewEditText"
         android:layout_below="@+id/ratingTextView"
         android:layout_centerHorizontal="true"
-        android:hint="Please enter your review here" />
+        android:hint="@string/enterReview" />
 </RelativeLayout>

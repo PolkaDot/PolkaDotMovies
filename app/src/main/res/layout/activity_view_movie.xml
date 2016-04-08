@@ -50,7 +50,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MOVIE NAME"
+                android:text="@string/movieName"
                 android:id="@+id/MovieName"
                 android:textSize="30dp"
                 android:layout_alignParentTop="true"
@@ -60,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="YEAR"
+                android:text="@string/year"
                 android:id="@+id/MovieYear"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentStart="true"
@@ -71,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scrollbars = "vertical"
-                android:text="MovieSynopsis"
+                android:text="@string/movieSypnosis"
                 android:id="@+id/MovieSynopsis"
                 android:layout_below="@+id/MovieYear" />
 
@@ -79,7 +79,7 @@
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="RATE MOVIE"
+                android:text="@string/rateMovieButton"
                 android:id="@+id/rateButton"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"

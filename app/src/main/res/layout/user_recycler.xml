@@ -30,7 +30,7 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Unlock"
+        android:text="@string/unlock"
         android:id="@+id/lockButton"
         android:layout_below="@+id/usernameTextView"
         android:layout_toEndOf="@+id/banButton"
@@ -46,7 +46,7 @@
         android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:background="?android:attr/selectableItemBackground"
-        android:hint="isBanned"
+        android:hint="@string/isBanned"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/usernameTextView" />
 
@@ -60,7 +60,7 @@
         android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:background="?android:attr/selectableItemBackground"
-        android:hint="isLock"
+        android:hint="@string/isLocked"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/isBannedTextView" />
 
