@@ -324,7 +324,8 @@ public class ReviewPage extends AppCompatActivity {
      * @param num number
      * @return if comments made
      */
-    private boolean ratingInfoNotEntered(String comments, float num) {
+    boolean ratingInfoNotEntered(String comments, float num) {
+        // so junit can use
 //        if (num == 0 && comments.length() == 0) {
 //            return true;
 //        }

@@ -142,7 +142,8 @@ public class RegistrationPage extends AppCompatActivity {
      * @param aPassword of new registered user
      * @return whether or not all fields are filled
      */
-    private int checkInfo(String aFirstName, String aLastName, String aUsername, String aEmail, String aPassword) {
+    int checkInfo(String aFirstName, String aLastName, String aUsername, String aEmail, String aPassword) {
+        // so junits can use
         if (aFirstName.length() == 0 || aLastName.length() == 0 || aUsername.length() == 0 || aEmail.length() == 0 || aPassword.length() == 0) {
             // needs all fields filled in
             return -1;

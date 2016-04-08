@@ -85,8 +85,8 @@ public class LoginApplication extends AppCompatActivity {
      *
      * @return int representation of empty or not
      */
-    private int checkInput(String username,String password) {
-
+    int checkInput(String username,String password) {
+    // so junits can use
         if(username.isEmpty() && password.isEmpty()){
             return -1;
         }
