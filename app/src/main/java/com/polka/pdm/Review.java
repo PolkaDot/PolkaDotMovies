@@ -49,8 +49,8 @@ public class Review {
      */
     public static final String KEY_COMMENT = "comment";
 
-    
-    private int hashNum = 13;
+
+   // private int hashNum = 13;//why 13?
     private String movie;
     private double rating;
     private String comment;
@@ -215,7 +215,7 @@ public class Review {
 
     @Override
     public int hashCode() {
-        return (int) (hashNum * rating + comment.length());
-    }
+        return (int) ( rating + comment.length());
+    } //deleted(13*rating) 13 was a magic number was it important?
 
 }
