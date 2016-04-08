@@ -25,7 +25,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
             android:width="280dp"
-            android:hint="Search Movie Here"
+            android:hint="@string/searchMovies"
             android:clickable="false" />
 
         <ImageButton

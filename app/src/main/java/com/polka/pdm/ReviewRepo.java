@@ -183,6 +183,7 @@ class ReviewRepo {
             } while (cursor.moveToNext() && i < movies.length);
         }
 
+        //do we actually need this? what does this do?
         for (int i = 0; i < movies.length; i++) {
             Movie t = movies[i]; //need for database
         }

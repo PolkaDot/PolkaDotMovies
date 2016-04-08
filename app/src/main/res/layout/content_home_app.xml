@@ -16,7 +16,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LOGOUT"
+        android:text="@string/logout"
         android:id="@+id/LogoutHomeButton"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -26,7 +26,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="VIEW PROFILE"
+        android:text="@string/ViewProfile"
         android:id="@+id/ViewProfileButton"
         android:layout_marginTop="45dp"
         android:layout_below="@+id/LogoutHomeButton"
@@ -38,7 +38,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SEARCH MOVIES"
+        android:text="@string/searchMovies"
         android:id="@+id/SearchMoviesButton"
         android:layout_below="@+id/ViewProfileButton"
         android:layout_centerHorizontal="true"
@@ -53,7 +53,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MOVIES"
+        android:text="@string/movies"
         android:id="@+id/MoviesButton"
         android:layout_below="@+id/SearchMoviesButton"
         android:layout_centerVertical="true"
@@ -66,7 +66,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DVDS"
+        android:text="@string/dvd"
         android:id="@+id/DVDsButton"
         android:layout_below="@+id/MoviesButton"
         android:layout_centerVertical="true"
@@ -80,7 +80,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RECOMMENDATIONS"
+        android:text="@string/recommendation"
         android:id="@+id/RecommendationsButton"
         android:layout_below="@+id/DVDsButton"
         android:layout_centerVertical="true"

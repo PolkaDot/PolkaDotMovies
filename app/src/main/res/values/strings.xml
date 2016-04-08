@@ -25,6 +25,26 @@
     <string name="title_activity_search_movies">Search Movies</string>
     <string name="title_activity_review_page">Review</string>
 
+    <string name="Username">Username</string>
+    <string name="ViewProfile">View Profile</string>
+    <string name="searchMovies">Search Movies</string>
+    <string name="movies">Movies</string>
+    <string name="dvd">DVD</string>
+    <string name="recommendation">Recommendation</string>
+    <string name="logout">Log Out</string>
+    <string name="banUnban">Ban / Un-Ban</string>
+    <string name="login">Login</string>
+
+
+
+
+    <string name="registration">Registration</string>
+    <string name="editProfile">Edit Profile</string>
+
+
+
+
+
 
     <string name="drawer_open">open drawer</string>
     <string name="drawer_close">close drawer</string>

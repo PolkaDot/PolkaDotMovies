@@ -29,11 +29,8 @@ public class RecentMovies extends NavBar {
     private static final int TOPTEN = 10;
 
 
-
-
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    final protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recent_movies);
         setToolbar((Toolbar) findViewById(R.id.toolbar));

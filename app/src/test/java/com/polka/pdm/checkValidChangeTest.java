@@ -10,7 +10,7 @@ import static junit.framework.Assert.assertEquals;
  *
  * Created by Yami on 4/4/2016.
  */
-public class CheckValidChangeTest extends EditProfile{
+ class CheckValidChangeTest extends EditProfile{
     /**
      * Instance of user without password filled in
      */
