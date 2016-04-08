@@ -7,7 +7,9 @@ import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.*;
 
 /**
- * To work on unit tests, switch the Test Artifact in the Build Variants view.
+ * Junit test for CheckValidTest Method
+ *
+ * Created by Yami on 4/4/2016.
  */
 public class CheckEditInputTest extends EditProfile {
     /**
