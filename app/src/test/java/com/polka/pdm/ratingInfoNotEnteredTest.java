@@ -18,7 +18,7 @@ public class ratingInfoNotEnteredTest extends ReviewPage{
     @Test
     public void neitherEntered() {
 
-        assertEquals(true, ratingInfoNotEntered(null, 0));
+        assertEquals(true, ratingInfoNotEntered("", 0));
     }
 
     /**
