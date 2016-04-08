@@ -179,8 +179,9 @@ public class EditProfile extends AppCompatActivity {
      *          0 if the email address is invalid
      * is not an extension
      */
-    private int checkValidChange(String aFirstName, String aLastName, String aEmail,
+    int checkValidChange(String aFirstName, String aLastName, String aEmail,
                                 String aPassword) {
+        // so junits work
         if (aFirstName.length() == 0 || aLastName.length() == 0 || aEmail.length() == 0 || aPassword.length() == 0) {
             // makes sure all entries are filled in
             return -1;
