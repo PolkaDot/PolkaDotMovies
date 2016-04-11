@@ -183,15 +183,15 @@ public abstract class NavBar extends AppCompatActivity {
      */
     void setToolbar(Toolbar atoolbar) {
         this.toolbar = atoolbar;
-     }
+    }
 
-     /**
+
+    /**
      * set method for drawerToggle
      * shouldn't be abstract because every class would define the same thing
-     *
      * @param adrawerToggle toggle bar
      */
-     void setDrawerToggle(ActionBarDrawerToggle adrawerToggle) {
+    void setDrawerToggle(ActionBarDrawerToggle adrawerToggle) {
         this.drawerToggle = adrawerToggle;
     }
 

@@ -181,6 +181,7 @@ public class EditProfile extends AppCompatActivity {
      */
     int checkValidChange(String aFirstName, String aLastName, String aEmail,
                                 String aPassword) {
+        // so junits work
         if (aFirstName.length() == 0 || aLastName.length() == 0 || aEmail.length() == 0 || aPassword.length() == 0) {
             // makes sure all entries are filled in
             return -1;

@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class ratingInfoNotEnteredTest extends ReviewPage{
+public class ratingInfoTest extends ReviewPage{
 
     /**
      * Checks if neither rating nor comment is entered

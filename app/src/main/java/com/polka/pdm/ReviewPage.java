@@ -234,6 +234,7 @@ public class ReviewPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+
         //using protected gives one error not using protected gives us another error
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_page);
@@ -317,11 +318,19 @@ public class ReviewPage extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * method to check if rating info is entered or not
+     *
+     * @param comments comments made
+     * @param num number
+     * @return if comments made
+     */
     boolean ratingInfoNotEntered(String comments, float num) {
-//        if (num == 0 && comments.length() == 0) {
-//            return true;
-//        }
-//            return false;
-        return num == 0 && comments.length() == 0;
+        // so junit can use
+        if (num == 0 && comments.length() == 0) {
+            return true;
+        }
+            return false;
+//        return num == 0 && comments.length() == 0;
     }
 }

@@ -21,20 +21,40 @@ import android.widget.Toast;
  */
 public class RegistrationPage extends AppCompatActivity {
 
+    /**
+     * editing first name field
+     */
     private EditText editTextFirstName;
+
+    /**
+     * editing last name field
+     */
     private EditText editTextLastName;
+
+    /**
+     * editing user name field
+     */
     private EditText editTextUserName;
+
+    /**
+     * editing email field
+     */
     private EditText editTextEmail;
+
+    /**
+     * editing password field
+     */
     private EditText editTextPassword;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+
         //using protected gives one error not using protected gives us another error
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_page);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         // Get EditText fields
@@ -55,7 +75,7 @@ public class RegistrationPage extends AppCompatActivity {
 
     public void onCancelButtonPress(View v ) {  //we need the view in the method header
         Log.d("Cancel", "Cancel Button Pressed");
-        Intent intent = new Intent(this, MainActivity.class);
+        final Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
@@ -70,11 +90,11 @@ public class RegistrationPage extends AppCompatActivity {
     public void onRegisterButtonPress(View v ) {  //we need the view in the method header
         Log.d("Register", "Register Button Pressed");
 
-        String aFirstName = editTextFirstName.getText().toString();
-        String aLastName = editTextLastName.getText().toString();
-        String aUsername = editTextUserName.getText().toString();
-        String aEmail = editTextEmail.getText().toString();
-        String aPassword = editTextPassword.getText().toString();
+        final String aFirstName = editTextFirstName.getText().toString();
+        final String aLastName = editTextLastName.getText().toString();
+        final String aUsername = editTextUserName.getText().toString();
+        final String aEmail = editTextEmail.getText().toString();
+        final String aPassword = editTextPassword.getText().toString();
 
         if (checkInfo(aFirstName, aLastName, aUsername, aEmail, aPassword) == -1) {
             Toast.makeText(this, "First Name, Last Name, Username, Password, and Email must all be filled!", Toast.LENGTH_SHORT).show();
@@ -86,8 +106,8 @@ public class RegistrationPage extends AppCompatActivity {
         }
 
         // Insert user in database
-        UserRepo repo = new UserRepo(this);
-        User user = new User();
+        final UserRepo repo = new UserRepo(this);
+        final User user = new User();
 
         user.setFirstName(aFirstName);
         user.setLastName(aLastName);
@@ -103,7 +123,7 @@ public class RegistrationPage extends AppCompatActivity {
             Toast.makeText(this, "New student inserted", Toast.LENGTH_SHORT).show();
 
             // Switch to Edit Profile Activity
-            Intent intent = new Intent(this, EditProfile.class);
+            final Intent intent = new Intent(this, EditProfile.class);
             intent.putExtra("user", user);
             startActivity(intent);
         } else {
@@ -124,6 +144,7 @@ public class RegistrationPage extends AppCompatActivity {
      * @return whether or not all fields are filled
      */
     int checkInfo(String aFirstName, String aLastName, String aUsername, String aEmail, String aPassword) {
+        // so junits can use
         if (aFirstName.length() == 0 || aLastName.length() == 0 || aUsername.length() == 0 || aEmail.length() == 0 || aPassword.length() == 0) {
             // needs all fields filled in
             return -1;

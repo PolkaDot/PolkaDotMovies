@@ -26,7 +26,8 @@ class ReviewRepo {
     /**
      * comment connector
      */
-    private final static String commentConnector = " = ? AND ";
+
+    private static final String COMMENTCONNECTOR = " = ? AND ";
 
     /**
      * create db helper
@@ -46,8 +47,8 @@ class ReviewRepo {
     public long insert(Review rating) {
 
         // open connection to write data
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        ContentValues values = new ContentValues();
+        final SQLiteDatabase db = dbHelper.getWritableDatabase();
+        final ContentValues values = new ContentValues();
         values.put(Review.KEY_MOVIE, rating.getMovie());
         values.put(Review.KEY_MOVIEYEAR, rating.getMovieYear());
         values.put(Review.KEY_USER, rating.getUser());
@@ -58,7 +59,7 @@ class ReviewRepo {
 
         //inserting row
         try {
-            long ratingRatingId = db.insertOrThrow(Review.TABLE, null, values);
+            final long ratingRatingId = db.insertOrThrow(Review.TABLE, null, values);
             db.close();
             return ratingRatingId;
         } catch (SQLException e) {
@@ -68,37 +69,52 @@ class ReviewRepo {
         }
     }
 
-
+    /**
+     * sets ratings of movie
+     *
+     * @param user using app
+     * @param movie that user is rating
+     * @param movieYear year movie made
+     * @param rating rating of the movie
+     */
     private void setRating(String user, String movie, int movieYear, double rating) {
 
         // open connection to write data
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        final SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
+        final ContentValues values = new ContentValues();
         values.put(Review.KEY_RATING, rating);
         // creates where and where arguments
-        String where = Review.KEY_USER + commentConnector
-                + Review.KEY_MOVIE + commentConnector
+        final String where = Review.KEY_USER + COMMENTCONNECTOR
+                + Review.KEY_MOVIE + COMMENTCONNECTOR
                 + Review.KEY_MOVIEYEAR + " = ? ";
-        String[] whereArgs = {user, movie, ((Integer)movieYear).toString()};
+        final String[] whereArgs = {user, movie, ((Integer)movieYear).toString()};
 
         // update
         db.update(Review.TABLE, values, where, whereArgs);
         db.close();
     }
 
+    /**
+     * sets comments for that move
+     *
+     * @param user using app
+     * @param movie user is rating
+     * @param movieYear movie was made
+     * @param comment user's comment
+     */
     private void setComment(String user, String movie, int movieYear, String comment) {
 
         // open connection to write data
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        final  SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
+        final ContentValues values = new ContentValues();
         values.put(Review.KEY_COMMENT, comment);
         // creates where and where arguments
-        String where = Review.KEY_USER + commentConnector
-                + Review.KEY_MOVIE + commentConnector
+        final String where = Review.KEY_USER + COMMENTCONNECTOR
+                + Review.KEY_MOVIE + COMMENTCONNECTOR
                 + Review.KEY_MOVIEYEAR + " = ? ";
-        String[] whereArgs = {user, movie, ((Integer)movieYear).toString()};
+        final String[] whereArgs = {user, movie, ((Integer)movieYear).toString()};
 
         // update
         db.update(Review.TABLE, values, where, whereArgs);
@@ -106,6 +122,15 @@ class ReviewRepo {
     }
 
 
+    /**
+     * updates review of a movie if user already wrote a review of that movie
+     *
+     * @param user using app
+     * @param movie that is being rated
+     * @param movieYear year movie made
+     * @param rating rating of that movie
+     * @param comment comment of that movie
+     */
     private void updateReview(String user, String movie, int movieYear, double rating, String comment) {
         setRating(user, movie, movieYear, rating);
         setComment(user, movie, movieYear, comment);
@@ -121,21 +146,21 @@ class ReviewRepo {
      * //may implement later
      */
     public List<Review> getRatingsByMovie(Movie movie) {
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery = "SELECT * FROM " + Review.TABLE
+        final SQLiteDatabase db = dbHelper.getReadableDatabase();
+        final String selectQuery = "SELECT * FROM " + Review.TABLE
                 + " WHERE " +
                 Review.KEY_MOVIE + " = " + movie.getTitle() +
                 " AND " + Review.KEY_MOVIEYEAR  + " = "
                 + movie.getYear();
 
-        ArrayList<Review> ratings = new ArrayList<>();
+        final ArrayList<Review> ratings = new ArrayList<>();
 
-        Review ratingForSize = new Review();
+        final Review ratingForSize = new Review();
 
-        Cursor cursor = db.rawQuery(selectQuery, new String[]{String.valueOf(ratingForSize)});
+        final Cursor cursor = db.rawQuery(selectQuery, new String[]{String.valueOf(ratingForSize)});
         if (cursor.moveToFirst()) {
             do {
-                Review rating = new Review();
+                final Review rating = new Review();
                 rating.setMovie(cursor.getString(cursor.getColumnIndex(Review.KEY_MOVIE)));
                 rating.setMovieYear(cursor.getInt(cursor.getColumnIndex(Review.KEY_MOVIEYEAR)));
                 rating.setUser(cursor.getString(cursor.getColumnIndex(Review.KEY_USER)));
@@ -157,8 +182,8 @@ class ReviewRepo {
      * @return returns a list of movies sorted by ratings by specified major
      */
     public Movie[] getRatingsByMajor(String major, int dataCount) {
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String selectQuery = "SELECT " + Review.KEY_MOVIE + ", " + Review.KEY_MOVIEYEAR + ", " + Review.KEY_MAJOR + ", sum(" + Review.KEY_RATING + ") as total"
+        final SQLiteDatabase db = dbHelper.getReadableDatabase();
+        final String selectQuery = "SELECT " + Review.KEY_MOVIE + ", " + Review.KEY_MOVIEYEAR + ", " + Review.KEY_MAJOR + ", sum(" + Review.KEY_RATING + ") as total"
                 + " FROM " +
                 Review.TABLE
                 + " WHERE " +
@@ -166,27 +191,27 @@ class ReviewRepo {
                 + " GROUP BY " +
                 Review.KEY_MOVIE
                 + " ORDER BY total DESC";
-        Movie[] movies = new Movie[dataCount];
+        final Movie[] movies = new Movie[dataCount];
 
 
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        final Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
             int i = 0;
             do {
 
-                String title = cursor.getString(cursor.getColumnIndex(Review.KEY_MOVIE));
-                int year = cursor.getInt(cursor.getColumnIndex(Review.KEY_MOVIEYEAR));
+                final String title = cursor.getString(cursor.getColumnIndex(Review.KEY_MOVIE));
+                final int year = cursor.getInt(cursor.getColumnIndex(Review.KEY_MOVIEYEAR));
                 cursor.getInt(cursor.getColumnIndex("total"));
 
-                Movie movie = new Movie(title, year, null, null); // may need new data struct to store total rating
+                final Movie movie = new Movie(title, year, null, null); // may need new data struct to store total rating
                 movies[i++] = movie;
             } while (cursor.moveToNext() && i < movies.length);
         }
 
-        //do we actually need this? what does this do?
-        for (int i = 0; i < movies.length; i++) {
-            Movie t = movies[i]; //need for database
-        }
+//        //do we actually need this? what does this do?
+//        for (int i = 0; i < movies.length; i++) {
+//            Movie t = movies[i]; //need for database
+//        }
         cursor.close();
         db.close();
         return movies;
