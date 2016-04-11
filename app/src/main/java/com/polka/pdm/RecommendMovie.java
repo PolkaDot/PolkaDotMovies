@@ -25,7 +25,7 @@ public class RecommendMovie extends NavBar {
     private static final int DATASET_COUNT = 30;
 
     @Override
-    final protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
 
         //using protected gives one error not using protected gives us another error
 

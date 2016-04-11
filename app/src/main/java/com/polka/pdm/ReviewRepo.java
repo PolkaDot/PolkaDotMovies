@@ -26,7 +26,7 @@ class ReviewRepo {
     /**
      * comment connector
      */
-    private final String commentConnector = " = ? AND ";
+    private final static String commentConnector = " = ? AND ";
 
     /**
      * create db helper

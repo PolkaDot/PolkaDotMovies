@@ -1,5 +1,7 @@
 package com.polka.pdm;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,14 +19,32 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity {
 
 
-
+public boolean loggedIn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainscreen);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+    //shared preference stuff for autologin
+        SharedPreferences settings = getSharedPreferences("Auto login", 0);
+        if (settings.getString("loggedIn", "").toString().equals("loggedIn")) {
+            Intent intent = new Intent(MainActivity.this, HomeApp.class);
+            startActivity(intent);
+        }
     }
+
+
+   /** public void saveInfo(View view){
+        SharedPreferences sharedPref = getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean("loggedIn", loggedIn);
+        editor.apply();
+
+
+    }*/
 
 
     @Override
@@ -43,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void onLoginButtonClicked(View view) { //we need the view in the method header
         final Intent intent = new Intent(this, LoginApplication.class);
+        loggedIn = true;
         startActivity(intent);
     }
 

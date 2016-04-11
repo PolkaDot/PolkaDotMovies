@@ -3,6 +3,7 @@ package com.polka.pdm;
 //import statements
 //Mockito
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -22,6 +23,7 @@ public class LoginApplication extends AppCompatActivity {
      * of their account.
      */
     private static final int MAX_LOGIN_ATTEMPTS = 3;
+
 
     /**
      * when you press the cancel button,
@@ -109,6 +111,14 @@ public class LoginApplication extends AppCompatActivity {
     private void regularUser(String password, User user, UserRepo repo) {
         if (password.equals(user.getPassword()) && isNotLocked(user) && user.getIsBanned() != 1) {
             Toast.makeText(this, "Login Success!!", Toast.LENGTH_SHORT).show();
+
+            //shared Preference for auto login
+            SharedPreferences settings = getSharedPreferences("Auto login", MODE_PRIVATE);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putString("loggedIn", "loggedIn");
+            editor.commit();
+
+
             Intent startApp = new Intent(this, HomeApp.class);
             startApp.putExtra("user", user);
             startActivity(startApp);

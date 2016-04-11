@@ -29,7 +29,7 @@ public class RegistrationPage extends AppCompatActivity {
 
 
     @Override
-    final protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
 
         //using protected gives one error not using protected gives us another error
         super.onCreate(savedInstanceState);
