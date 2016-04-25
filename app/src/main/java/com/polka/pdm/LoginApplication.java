@@ -180,7 +180,10 @@ public class LoginApplication extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
-
+    /**
+     * *
+     * @param v to get to the forget email screen
+     */
     public void onClickForget(View v) {
 
         UserRepo repo = new UserRepo(this);

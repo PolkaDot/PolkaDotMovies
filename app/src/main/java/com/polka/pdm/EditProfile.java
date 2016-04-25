@@ -146,7 +146,7 @@ public class EditProfile extends AppCompatActivity {
         user = repo.getUserByUsername(user.getUsername());
 
         // Toasts
-        Toast.makeText(this, "Saved Changes to " + user.toString(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Saved Changes to " + user.getUsername(), Toast.LENGTH_SHORT).show();
 
         // Switch activities
         final Intent intent = new Intent(this, ViewProfile.class);
