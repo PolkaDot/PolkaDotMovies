@@ -83,4 +83,15 @@
         android:layout_marginTop="40dp"
         android:textSize="20dp"
         android:onClick="onSocialMediaPressed" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot Password"
+        android:id="@+id/forgotPass"
+        android:layout_alignTop="@+id/cancelButton"
+        android:layout_alignParentEnd="true"
+        android:background="#F7BE39"
+        android:layout_toEndOf="@+id/loginTitle"
+        android:onClick="onClickForget" />
 </RelativeLayout>

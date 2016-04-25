@@ -1,3 +1,8 @@
+/**
+ * Activity that the admin sees
+ * @author Alisha
+ * @version 1.0
+ */
 package com.polka.pdm;
 
 import android.os.Bundle;

@@ -185,4 +185,33 @@ public class LoginApplication extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
+    /**
+     * *
+     * @param v to get to the forget email screen
+     */
+    public void onClickForget(View v) {
+
+        UserRepo repo = new UserRepo(this);
+        String username = ((EditText) findViewById(R.id.usernameEdit)).getText().toString();
+        User forgotUser = repo.getUserByUsername(username);
+        if (forgotUser.getUsername() == null) {
+            Toast.makeText(this, "No Such User", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String to = forgotUser.getEmail();
+        String subject = "Email Recovery";
+        String message = "Username: " + username + "\n Password: " + forgotUser.getPassword();
+
+        Intent email = new Intent(Intent.ACTION_SEND);
+        email.putExtra(Intent.EXTRA_EMAIL, new String[]{ to});
+        email.putExtra(Intent.EXTRA_SUBJECT, subject);
+        email.putExtra(Intent.EXTRA_TEXT, message);
+
+        //need this to prompts email client only
+        email.setType("message/rfc822");
+
+        startActivity(Intent.createChooser(email, "Choose an Email client :"));
+
+    }
+
 }
