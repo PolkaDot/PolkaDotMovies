@@ -15,11 +15,19 @@
     <string name="lastName">Last Name</string>
     <string name="major">Major</string>
     <string name="email">Email</string>
-    <string name= "phone">Phone</string>
-    <string name= "interest">Interests</string>
+    <string name="phone">Phone</string>
+    <string name="interest">Interests</string>
+
+    <!--Google Play-->
+    <string name="btn_logout_from_google">Logout from Google</string>
+    <string name="btn_revoke_access">Revoke Access</string>
+
+    <!-- Google Play Button labels -->
+    <string name="sign_out">Sign Out</string>
+    <string name="disconnect">Disconnect</string>
 
     <!-- Strings related to activity titles -->
-    <string name= "buzzMovieSelector">Buzz-Movie Selector</string>
+    <string name="buzzMovieSelector">Buzz-Movie Selector</string>
     <string name="viewProfile">View Profile</string>
     <string name="searchMovies">Search Movies</string>
     <string name="title_activity_registration_page">Registration Page</string>
@@ -40,7 +48,6 @@
     <string name="movieSypnosis">movieSypnosis</string>
 
 
-
     <!-- Buttons and Actions -->
     <string name="banUnban">Ban / Un-Ban</string>
     <string name="searchButton">Search Button</string>
@@ -58,7 +65,6 @@
     <string name="saveButton">SAVE</string>
 
 
-
     <!-- Miscellaneous -->
     <string name="drawer_open">open drawer</string>
     <string name="drawer_close">close drawer</string>
@@ -74,5 +80,6 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."</string>
     <string name="enterReview">Please enter your review here</string>
+    <string name="title_activity_social_media_login">SocialMediaLogin</string>
 
 </resources>

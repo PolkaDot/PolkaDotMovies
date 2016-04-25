@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="com.polka.pdm.SocialMediaLogin"
+        tools:showIn="@layout/activity_social_media_login">
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/sign_out_and_disconnect"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_pic"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@android:drawable/sym_def_app_icon"
+                    />
+
+                <TextView
+                    android:id="@+id/userName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" user name:"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@android:color/black"
+                    android:layout_toRightOf="@+id/profile_pic"
+                    android:textSize="14sp"
+                    />
+
+                <TextView
+                    android:id="@+id/emailId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="email id:"
+                    android:textColor="@android:color/black"
+                    android:layout_below="@+id/userName"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="14sp"
+                    android:layout_toRightOf="@+id/profile_pic" />
+
+            </RelativeLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CONTINUE"
+                android:id="@+id/button"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="180dp"
+                android:background="#F7BE39"
+                android:onClick="onContinueButtonPressed" />
+
+            <Button
+                android:id="@+id/sign_out_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sign_out"
+
+                android:layout_marginTop="20dp"
+                android:background="#F7BE39" />
+
+            <Button
+                android:id="@+id/disconnect_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/disconnect"
+                android:background="#F7BE39"
+                android:layout_marginTop="20dp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>

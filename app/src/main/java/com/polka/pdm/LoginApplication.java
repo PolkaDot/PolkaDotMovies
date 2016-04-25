@@ -36,6 +36,11 @@ public class LoginApplication extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onSocialMediaPressed(View v) {
+        final Intent intent = new Intent(this, SocialMediaLogin.class);
+        startActivity(intent);
+    }
+
 
 
     /**

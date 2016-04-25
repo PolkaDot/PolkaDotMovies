@@ -7,6 +7,8 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
 
     <application
         android:allowBackup="true"
@@ -33,7 +35,6 @@
             android:name=".RegistrationPage"
             android:label="@string/title_activity_registration_page"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".ViewProfile"
             android:label="@string/viewProfile"
@@ -45,17 +46,17 @@
         <activity
             android:name=".HomeApp"
             android:label="@string/title_activity_home_app"
-            android:theme="@style/AppTheme.NoActionBar" >
-        <intent-filter>
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.DEFAULT" />
-        </intent-filter>
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".RecentDvds"
             android:label="@string/title_activity_recent_dvds"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".SearchMovies"
             android:label="@string/searchMovies"
@@ -79,8 +80,16 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".RecommendMovie"
-            android:label="@string/title_activity_recommend_movie"></activity>
+            android:label="@string/title_activity_recommend_movie" />
+        <activity
+            android:name=".SocialMediaLogin"
+            android:label="@string/title_activity_social_media_login"
+            android:theme="@style/AppTheme">
 
+            <meta-data
+                android:name="com.google.android.gms.version"
+                android:value="@integer/google_play_services_version" />
+        </activity>
     </application>
 
 </manifest>

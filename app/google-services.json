@@ -1,0 +1,52 @@
+{
+  "project_info": {
+    "project_id": "polkadotmovies-1289",
+    "project_number": "342728454078",
+    "name": "PolkaDotMovies"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:342728454078:android:85a787e715976005",
+        "client_id": "android:com.polka.pdm",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "com.polka.pdm",
+          "certificate_hash": []
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "342728454078-bb0mv7cdd2jqp633p9lvt1gr3atet89s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.polka.pdm",
+            "certificate_hash": "A0BF22A77AA7F3C8CB3904B36AC013F7DF86DF1D"
+          }
+        }
+      ],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 2
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}
