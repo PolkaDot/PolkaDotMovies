@@ -16,7 +16,7 @@
         android:id="@+id/usernameEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Username"
+        android:hint="@string/Username"
         android:inputType="text"
         android:maxLines="1"
         android:singleLine="true"
@@ -28,9 +28,9 @@
         android:id="@+id/passwordEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
+        android:hint="@string/password"
         android:imeActionId="@+id/login"
-        android:imeActionLabel="@string/action_sign_in_short"
+        android:imeActionLabel="@string/signIn"
         android:imeOptions="actionUnspecified"
         android:inputType="textPassword"
         android:maxLines="1"
@@ -42,7 +42,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="@string/login"
         android:id="@+id/loginButton"
         android:background="#F7BE39"
         android:textSize="25dp"
@@ -54,7 +54,7 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cancel"
+        android:text="@string/cancel"
         android:id="@+id/cancelButton"
         android:background="#F7BE39"
         android:textSize="20dp"
@@ -67,7 +67,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/loginTitle"
-        android:text="LOGIN"
+        android:text="@string/login"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot Password"
+        android:id="@+id/forgotPass"
+        android:layout_alignTop="@+id/cancelButton"
+        android:layout_alignParentEnd="true"
+        android:background="#F7BE39"
+        android:layout_toEndOf="@+id/loginTitle"
+        android:onClick="onClickForget" />
 </RelativeLayout>

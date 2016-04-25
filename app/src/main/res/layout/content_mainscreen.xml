@@ -23,7 +23,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="@string/login"
         android:id="@+id/loginButton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -36,7 +36,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign Up"
+        android:text="@string/signUp"
         android:id="@+id/signUpButton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Buzz-Movie Selector"
+        android:text="@string/buzzMovieSelector"
         android:id="@+id/appTitle"
         android:textStyle="bold"
         android:textSize="50dp"

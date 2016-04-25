@@ -16,7 +16,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LOGOUT"
+        android:text="@string/logout"
         android:id="@+id/LogoutHomeButton"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -26,7 +26,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="VIEW PROFILE"
+        android:text="@string/viewProfile"
         android:id="@+id/ViewProfileButton"
         android:layout_marginTop="45dp"
         android:layout_below="@+id/LogoutHomeButton"
@@ -38,43 +38,49 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SEARCH MOVIES"
+        android:text="@string/searchMovies"
         android:id="@+id/SearchMoviesButton"
         android:layout_below="@+id/ViewProfileButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:background="#F7BE39" />
+        android:background="#F7BE39"
+
+        android:clickable="true"
+        android:onClick="onSearchButtonPress" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MOVIES"
+        android:text="@string/movies"
         android:id="@+id/MoviesButton"
         android:layout_below="@+id/SearchMoviesButton"
         android:layout_centerVertical="true"
         android:layout_marginTop="10dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
-        android:background="#F7BE39" />
+        android:background="#F7BE39"
+        android:onClick="onMoviesButtonClick" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DVDS"
+        android:text="@string/dvd"
         android:id="@+id/DVDsButton"
         android:layout_below="@+id/MoviesButton"
         android:layout_centerVertical="true"
         android:layout_marginTop="10dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
+        android:onClick="onDVDsButtonClick"
         android:background="#F7BE39" />
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RECOMMENDATIONS"
+        android:text="@string/recommendation"
         android:id="@+id/RecommendationsButton"
         android:layout_below="@+id/DVDsButton"
         android:layout_centerVertical="true"
@@ -82,4 +88,34 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
         android:background="#F7BE39" />
+
+    <!-- This LinearLayout represents the contents of the screen  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- The ActionBar displayed at the top -->
+        <include
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- The main content view where fragments are loaded -->
+        <FrameLayout
+            android:id="@+id/flContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <!-- The navigation drawer that comes from the left -->
+    <!-- Note that `android:layout_gravity` needs to be set to 'start' -->
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nvView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@android:color/white"
+        app:menu="@menu/menu_main" />
+
 </RelativeLayout>

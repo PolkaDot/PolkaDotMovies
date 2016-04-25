@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Username"
+        android:text="@string/Username"
         android:id="@+id/UserNameLabel"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Password"
+        android:text="@string/password"
         android:id="@+id/PasswordLabel"
         android:textSize="27dp"
         android:gravity="left"
@@ -53,13 +53,13 @@
         android:layout_below="@+id/UserTextField"
         android:layout_alignParentEnd="true"
         android:textAlignment="viewEnd"
-        android:hint="Password"/>
+        android:hint="@string/password"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="First Name"
+        android:text="@string/firstName"
         android:id="@+id/FirstNameLabel"
         android:textSize="27dp"
         android:layout_gravity="left"
@@ -75,13 +75,13 @@
         android:layout_below="@+id/PassTextField"
         android:layout_alignParentEnd="true"
         android:textAlignment="viewEnd"
-        android:hint="First Name"/>
+        android:hint="@string/firstName"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Last Name"
+        android:text="@string/lastName"
         android:id="@+id/LastNameLabel"
         android:textSize="27dp"
         android:layout_gravity="left"
@@ -97,13 +97,13 @@
         android:layout_alignTop="@+id/LastNameLabel"
         android:layout_alignParentEnd="true"
         android:textAlignment="viewEnd"
-        android:hint="Last Name"/>
+        android:hint="@string/lastName"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Email"
+        android:text="@string/email"
         android:id="@+id/emailLabel"
         android:textSize="27dp"
         android:layout_gravity="left"
@@ -118,13 +118,13 @@
         android:layout_below="@+id/LastNameTextField"
         android:layout_alignParentEnd="true"
         android:textAlignment="viewEnd"
-        android:hint="Email" />
+        android:hint="@string/email" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Phone"
+        android:text="@string/phone"
         android:id="@+id/phoneLabel"
         android:textSize="27dp"
         android:layout_gravity="left"
@@ -140,12 +140,12 @@
         android:layout_below="@+id/EmailTextField"
         android:layout_alignParentEnd="true"
         android:textAlignment="viewEnd"
-        android:hint="Phone" />
+        android:hint="@string/phone" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Major"
+        android:text="@string/major"
         android:id="@+id/MajorLabel"
         android:clickable="false"
         android:textSize="27dp"
@@ -161,15 +161,13 @@
         android:layout_below="@+id/PhoneTextField"
         android:layout_alignParentEnd="true"
         android:textAlignment="viewEnd"
-        android:hint="Major" />
-
-
+        android:hint="@string/major" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Interests:"
+        android:text="@string/interest"
         android:id="@+id/InterestLabel"
         android:textSize="27dp"
         android:layout_gravity="right"
@@ -186,14 +184,14 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/InterestLabel"
-        android:hint="Interests"
+        android:hint="@string/interest"
         android:textAlignment="viewEnd" />
 
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
+        android:text="@string/saveButton"
         android:id="@+id/Save"
         android:background="#F7BE39"
         android:clickable="true"
@@ -208,7 +206,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cancel"
+        android:text="@string/cancel"
         android:id="@+id/cancelButton"
         android:layout_below="@+id/InterestsLabel"
         android:layout_alignParentStart="true"
