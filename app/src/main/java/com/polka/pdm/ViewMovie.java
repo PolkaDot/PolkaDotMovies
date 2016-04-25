@@ -129,5 +129,11 @@ public class ViewMovie extends NavBar {
 
         startActivity(intent);
     }
+
+    public void onTheatresClick(View view) {
+        Intent intent = new Intent(this, GooglePlacesActivity.class);
+        intent.putExtra("movie", movie);
+        startActivity(intent);
+    }
 }
 

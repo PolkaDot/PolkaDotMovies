@@ -28,6 +28,7 @@
     <string name="title_activity_recent_movies">Recent Movies</string>
     <string name="editProfile">Edit Profile</string>
     <string name="title_activity_view_movie">View Movie</string>
+    <string name="title_activity_Google_Places"> MAp</string>
     <string name="recommendation">Recommendation</string>
     <string name="home">Home</string>
 
@@ -56,6 +57,7 @@
     <string name="searchMovieButton">SEARCH MOVIE</string>
     <string name="reccomendationButton">RECCOMENDATIONS</string>
     <string name="saveButton">SAVE</string>
+
 
 
 

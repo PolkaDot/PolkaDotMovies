@@ -118,6 +118,8 @@ public class HomeApp extends NavBar {
         startActivity(intent);
     }
 
+    /*
+
 
     /**
      * opens search button page
