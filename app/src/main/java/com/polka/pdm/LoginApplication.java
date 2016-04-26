@@ -22,7 +22,9 @@ public class LoginApplication extends AppCompatActivity {
      * @param v that we were are on
      */
     public void onLoginCancelPressed(View v) {
+
         Intent intent = new Intent(this, MainActivity.class);
+//        overridePendingTransition(17432579, 17432578);
         startActivity(intent);
     }
 
