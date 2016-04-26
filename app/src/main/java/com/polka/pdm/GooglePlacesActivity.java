@@ -9,6 +9,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -23,12 +24,11 @@ import com.google.android.gms.maps.model.LatLng;
 
 public class GooglePlacesActivity extends FragmentActivity implements LocationListener {
 
-    private static final String GOOGLE_API_KEY = "AIzaSyDLLytOp_KeO5gpHKaZI5dT1P6rWnGIp0I";
+    private static final String GOOGLE_API_KEY = "AIzaSyDOZQBG1HJ_AmD_9K0nHTP_FA8oQ5MqDg8";
     GoogleMap googleMap;
     EditText placeText;
     double latitude = 0;
     double longitude = 0;
-    private int PROXIMITY_RADIUS = 5000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +39,6 @@ public class GooglePlacesActivity extends FragmentActivity implements LocationLi
             finish();
         }
         setContentView(R.layout.activity_google_places);
-
-        placeText = (EditText) findViewById(R.id.placeText);
-        Button btnFind = (Button) findViewById(R.id.btnFind);
         SupportMapFragment fragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.googleMap);
         googleMap = fragment.getMap();
         googleMap.setMyLocationEnabled(true);
@@ -53,25 +50,21 @@ public class GooglePlacesActivity extends FragmentActivity implements LocationLi
             onLocationChanged(location);
         }
         locationManager.requestLocationUpdates(bestProvider, 20000, 0, this);
-
-        btnFind.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String type = "movie_theater";
-                StringBuilder googlePlacesUrl = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
-                googlePlacesUrl.append("location=" + latitude + "," + longitude);
-                googlePlacesUrl.append("&radius=" + PROXIMITY_RADIUS);
-                googlePlacesUrl.append("&types=" + type);
-                googlePlacesUrl.append("&sensor=true");
-                googlePlacesUrl.append("&key=" + GOOGLE_API_KEY);
-
-                GooglePlacesReadTask googlePlacesReadTask = new GooglePlacesReadTask();
-                Object[] toPass = new Object[2];
-                toPass[0] = googleMap;
-                toPass[1] = googlePlacesUrl.toString();
-                googlePlacesReadTask.execute(toPass);
-            }
-        });
+        StringBuilder googlePlacesUrl = new StringBuilder("https://maps.googleapis.com/maps/api/place/search/json?");;
+        googlePlacesUrl.append("&location=");
+        googlePlacesUrl.append(Double.toString(latitude));
+        googlePlacesUrl.append(",");
+        googlePlacesUrl.append(Double.toString(longitude));
+        googlePlacesUrl.append("&radius=5000");
+        googlePlacesUrl.append("&types=" + "movie_theater");
+        googlePlacesUrl.append("&key=" + GOOGLE_API_KEY);
+        Log.v("URL ", "" + googlePlacesUrl);
+        System.out.println("googlePlacesUrl");
+        ReadURL ru = new  ReadURL();
+        Object[] toPass = new Object[2];
+        toPass[0] = googleMap;
+        toPass[1] = googlePlacesUrl.toString();
+        ru .execute(toPass);
     }
 
     private boolean isGooglePlayServicesAvailable() {
