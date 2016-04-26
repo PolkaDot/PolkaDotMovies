@@ -10,6 +10,7 @@
 package com.polka.pdm;
 
 //import android.app.FragmentManager;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -64,7 +65,22 @@ public class HomeApp extends NavBar {
 //            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
 //        }
         super.setUser(user);
+
+        //animation stuff:
+//        WebView myWebView = (WebView) findViewById(R.id.webView);
+//        myWebView.loadUrl("screedbot.gif");
+//        InputStream stream = null;
+//        try {
+//            stream = getAssets().open("screedbot.gif");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        GifWebView view = new GifWebView(this, stream);
+//        setContentView(view);
+
     }
+
+
 
     /**
      * Tester code for playing around with the database, creates a toast if found "user1" in db
@@ -284,5 +300,6 @@ public class HomeApp extends NavBar {
 //        super.onConfigurationChanged(newConfig);
 //        drawerToggle.onConfigurationChanged(newConfig);
 //    }
+
 
 }
