@@ -35,6 +35,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.1.1'
     compile 'com.mcxiaoke.volley:library:1.0.+'
     compile 'de.hdodenhof:circleimageview:1.3.0'
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.+' //for animatioin
 
 
     testCompile 'junit:junit:4.12'
