@@ -58,7 +58,7 @@ public class ViewMovie extends NavBar {
         final TextView movieSynopsisTextView = (TextView) findViewById(R.id.MovieSynopsis);
         movieSynopsisTextView.setMovementMethod(new ScrollingMovementMethod());
 
-         //Put user information in TextView boxes
+        //Put user information in TextView boxes
         movieNameTextView.setText(movie.getTitle());
         movieYearTextView.setText(String.valueOf(movie.getYear()));
         movieSynopsisTextView.setText(movie.getSynopsis());
@@ -127,6 +127,11 @@ public class ViewMovie extends NavBar {
         intent.putExtra("movie", movie);
         intent.putExtra("user", user);
 
+        startActivity(intent);
+    }
+
+    public void onTheatresClick(View view) {
+        Intent intent = new Intent(this, TheatreMap.class);
         startActivity(intent);
     }
 }

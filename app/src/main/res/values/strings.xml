@@ -37,6 +37,7 @@
     <string name="editProfile">Edit Profile</string>
     <string name="title_activity_view_movie">View Movie</string>
     <string name="recommendation">Recommendation</string>
+    <string name="title_activity_theatre_Map"> Map</string>
     <string name="home">Home</string>
 
     <!--String related to movie -->

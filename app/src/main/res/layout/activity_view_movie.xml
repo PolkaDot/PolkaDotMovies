@@ -93,6 +93,16 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignStart="@+id/rateButton" />
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="VeiwTheatres"
+                android:id="@+id/VeiwTheatres"
+                android:background="#F7BE39"
+                android:onClick="onTheatresClick"
+                android:layout_above="@+id/rateButton"
+                android:layout_alignParentEnd="true" />
+
             <!--<include layout="@layout/content_home_app" />-->
         </RelativeLayout>
 
